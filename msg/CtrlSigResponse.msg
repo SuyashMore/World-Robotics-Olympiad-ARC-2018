@@ -1,0 +1,2 @@
+string address
+bool acknowledge

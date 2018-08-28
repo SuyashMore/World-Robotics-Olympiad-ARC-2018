@@ -1,4 +1,5 @@
 #include "ros/ros.h"
+#include "std_msgs/String.h"
 
 #include "Navigation.cpp"
 
@@ -6,6 +7,8 @@ Motor motor;
 
 ros::Publisher atmegaPub ;	
 
+
+void inputCallback(const std_msgs::String::ConstPtr& msg);
 
 int main(int argc,char **argv)
 {
@@ -15,25 +18,21 @@ int main(int argc,char **argv)
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
 		
-	ros::spin();
-
-	return 0;
-}
-
-
-void inputCallback(const std_msgs::String::ConstPtr& msg)
-{	
-	std_msgs::String msg;
-	
+	while(ros::ok())
+	{
+		std_msgs::String msg;
+		msg.data = motor.encrypt_message();
+		atmegaPub.publish(msg);
 	motor.bot_Forward_withPWM(200);
 	// motor.bot_Backward_withPWM(200);
 	// motor.spot_Left_withPWM(200);
 	// motor.spot_Right_withPWM(200);
 	// motor.strafe_Right_withPWM(200)
 	// motor.strafe_Left_withPWM(200);
+	
+	ros::spinOnce()	;
 
+	}
 
-	msg.data = motor.encrypt_message();
-	atmegaPub.publish(msg);
-
-}	
+	return 0;
+}

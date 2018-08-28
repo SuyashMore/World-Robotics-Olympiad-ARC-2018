@@ -52,7 +52,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	// Process Only After The Servo-Node had Completed Processing
 	if(navFlag) 			
 		{
-			mainLoop(bt,storage,motor);
+			followLine(bt,storage,motor);
 	// Process_data and then enable the Publish Flag
 	shouldPublish = true;
 	if(!bt.preserveHistoryF)
@@ -91,7 +91,7 @@ int main(int argc,char **argv)
 		}
 
 
-		if(cordinator || pickup || stackBlock)
+		if(cordinator | pickup | stackBlock)
 		{
 			Jetson::Dyx servo;
 			servo.cordinator=cordinator;

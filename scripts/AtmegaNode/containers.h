@@ -324,7 +324,7 @@ struct Motor
 	void bot_Forward()
 	{
 	  direction[MOTOR_LEFT] = true;
-	  direction[MOTOR_RIGHT] = false;
+	  direction[MOTOR_RIGHT] = true;
 	}
 
 	void bot_Forward_withPWM(int pwm)

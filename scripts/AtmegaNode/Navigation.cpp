@@ -302,7 +302,7 @@ void mainLoop(botData& newSensor,botData& oldSensor,Motor& motor)
     {
       
             // navigates from gome 2 stack the block with the block in Arm
-      navigate(newSensor,oldSensor,motor);
+      followLine(newSensor,oldSensor,motor);
       
 
 

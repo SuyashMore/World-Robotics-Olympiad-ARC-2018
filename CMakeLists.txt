@@ -158,8 +158,10 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/Jetson_node.cpp)
-add_executable(AtmegaNode scripts/AtmegaNode/AtmegaNode.cpp)
-target_link_libraries(AtmegaNode ${catkin_LIBRARIES} )
+
+
+#add_executable(AtmegaNode scripts/AtmegaNode/AtmegaNode.cpp)
+#target_link_libraries(AtmegaNode ${catkin_LIBRARIES} )
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

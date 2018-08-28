@@ -37,7 +37,7 @@ def callbackD(data):
 	
 	cordinator = data.cordinator
 
-	print(data.pickUp)
+	#print(data.pickUp)
 
 	if(pickup or stack or cordinator):
 			if(pickup):
@@ -59,6 +59,8 @@ def callbackD(data):
 			else:
 				print("Disabling Cordinator !")
 				super.cordinatorDisable()
+
+
 			pickup = False
 			stack = False
 			cordinator = False
@@ -75,6 +77,7 @@ def listener():
 	rospy.Subscriber("Dyx",Dyx,callbackD)
 
 	while not rospy.is_shutdown():
+		print("Spinning")
 		rospy.spin()
 
 

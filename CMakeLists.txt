@@ -163,6 +163,23 @@ include_directories(
 add_executable(AtmegaNode scripts/AtmegaNode/AtmegaNode.cpp)
 target_link_libraries(AtmegaNode ${catkin_LIBRARIES} )
 
+
+# Motor Unit Test
+add_executable(unit_Motor_Fwd scripts/AtmegaNode/unit_botForward.cpp)
+add_executable(unit_Motor_Bck scripts/AtmegaNode/unit_botBackward.cpp)
+add_executable(unit_Motor_SLeft scripts/AtmegaNode/unit_botSpot_Left.cpp)
+add_executable(unit_Motor_SRight scripts/AtmegaNode/unit_botSpot_Right.cpp)
+add_executable(unit_Motor_SfLeft scripts/AtmegaNode/unit_botStrafe_Left.cpp)
+add_executable(unit_Motor_SfRight scripts/AtmegaNode/unit_botStrafe_Right.cpp)
+
+target_link_libraries(unit_Motor_Fwd ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_Bck ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SLeft ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SRight ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SfLeft ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SfRight ${catkin_LIBRARIES} )
+
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use

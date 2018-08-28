@@ -37,7 +37,8 @@ using namespace std;
 #define TOF_ERROR_THRESH 10
 #define BALANCE_WITH_TOF_PWM 100
 
-
+// UNIT TEST PWM
+#define UNIT_PWM  200
 
 // Atmega-Output Message : f0000000b00000000w00s00l0r0t000y000e
 #define _1_MESSAGE 'f'

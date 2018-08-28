@@ -55,6 +55,8 @@ add_message_files(
   Position.msg
   ControlSignal.msg
   CtrlSigResponse.msg
+  Dyx.msg
+  bot.msg
 )
 
 ## Generate services in the 'srv' folder

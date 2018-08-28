@@ -67,6 +67,12 @@ def setAngles(a0,a1,a2,a3,a4):
 def processIK(x,y,z):
 	return ik.process(x,y,z)
 
+def cordinatorEnable():
+	setAngle(7,512)
+	
+
+def cordinatorDisable():
+	setAngle(7,812)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):
@@ -83,7 +89,7 @@ def processFK(a0,a1,a2,a3,a4):
 	return fk.process(a0,a1,a2,a3,a4)
 
 def move2angle(a0,a1,a2,a3,a4):
-	# fk.process(a0,a1,a2,a3,a4)
+	fk.process(a0,a1,a2,a3,a4)
 	setAngles(a0,a1,a2,a3,a4)
 
 
@@ -99,10 +105,10 @@ def setPickupPosition():
 
 def gripEnable():
 	setSpeed(constants.servoIDArm[5],constants.servoGripperSpeed)
-	setTransformedAngle(5,constants.GRIPCLOSE)
+	setTransformedAngle(5,constants.GRIPOPEN)
 	
 
 def gripDisable():
 	setSpeed(constants.servoIDArm[5],constants.servoGripperSpeed)
-	setTransformedAngle(5,constants.GRIPOPEN)
+	setTransformedAngle(5,constants.GRIPCLOSE)
 	

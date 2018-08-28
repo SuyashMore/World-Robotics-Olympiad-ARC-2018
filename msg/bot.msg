@@ -1,0 +1,2 @@
+bool nav
+bool reverse

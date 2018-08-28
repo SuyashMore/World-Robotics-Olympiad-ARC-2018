@@ -360,9 +360,9 @@ struct Motor
 
 	void spot_Left()
 	{
-	  direction[MOTOR_FRONT] = true;
-	  direction[MOTOR_RIGHT] = true;
-	  direction[MOTOR_BACK] = true;
+	  direction[MOTOR_FRONT] = false;
+	  direction[MOTOR_RIGHT] = false;
+	  direction[MOTOR_BACK] = false;
 	  direction[MOTOR_LEFT] = false;
 	}
 
@@ -382,7 +382,7 @@ struct Motor
 	void spot_Right()
 	{
 	  direction[MOTOR_FRONT] = false;
-	  direction[MOTOR_RIGHT] = true;
+	  direction[MOTOR_RIGHT] = false;
 	  direction[MOTOR_BACK] = false;
 	  direction[MOTOR_LEFT] = false;
 	}

@@ -3,7 +3,7 @@ import super_servo_functions as super
 import time
 
 
-FINAL_X = 11
+FINAL_X = 9
 FINAL_Y = -7
 INITITALZ = -9
 FINAL_Z = -12.5

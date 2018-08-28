@@ -17,29 +17,30 @@ bool shouldPublish =false;
 botData storage; //Used to Store History Data
 Motor motor; 
 
+
 	
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void inputCallback(const std_msgs::String::ConstPtr& msg);
 
+ros::Publisher atmegaPub ;
+ros::Publisher servoPub ;
+
 int main(int argc,char **argv)
 {
 	ros::init(argc,argv,"Atmega_listener");
-
+	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
 
+
+	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
+	servoPub = n.advertise<Jetson::Dyx>("Dyx",100);
 	
 	ros::spin();
 
 	return 0;
 }
 
-
-
-ros::NodeHandle n;
-
-ros::Publisher atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
-ros::Publisher servoPub = n.advertise<Jetson::Dyx>("Dyx",100);
 	
 
 void botCallBack(const Jetson::bot::ConstPtr& msg)

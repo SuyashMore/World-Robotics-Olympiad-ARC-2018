@@ -8,25 +8,12 @@
 gameState state;
 int itr = 0;
 
-bool stopFlag = false;
-int stopFlagIterations = 0;
-int maxStopFlagItr = 70;
-bool armItr = false;
 
-bool cordinator=false;
-bool pickup=false;
-bool stackBlock=false;
-
-bool navFlag = true;
+bool temp =true;
 
 int strafeItr=0;
 int maxStrafeItr = 40;
-bool temp =true;
 
-void setDelayItr(int num)
-{
-  maxStopFlagItr=num;
-}
 
 bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor);
 
@@ -37,52 +24,30 @@ void navigate(botData& newSensor,botData& oldSensor,Motor& motor)
   motor.reset();
 	// Step 1 :
 			// Go Forward until the Bot has Not Reached To the Starting Line (Passed 2 Lines)
- 	if(state.digiCounter<2)
-  	{
-      itr=1;
-    	motor.bot_Forward_withPWM(FORWARD_MOTION_PWM);
-  	}
- 	 // Step 2:
-  			//Stop and  Turn Left
-  if ((state.digiCounter >= 2) && state.executeStep2)
-  	{
-		  // Step 2.1:+
-  			// (BOT_STOP)
-  		if (state.step2Counter == 0)
-  		{
-        itr=2;
-    		stopFlag=true;
-        motor.bot_Stop();
-    		state.step2Counter=1;
-  		}
-
-      	//SPOT-LEFT until Front Turn is Complete
-      else if (state.step2Counter==1 && !newSensor.isFrontTurnComplete())
-  		{
-        itr=3;
-    		motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-  		}
-      else if(state.step2Counter==1)
-      {
-        motor.bot_Stop();
-        stopFlag=true;
-        itr=4;
-        state.step2Counter=3;
+  if(state.executeStep1)
+  {
+     	if(state.digiCounter<1)
+      { 	
+          itr=1;
+        	motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
       }
-  		// Step 2.3:
-  			// Wait for 1 second after the Turn is Complete (BOT_STOP)
-  		else if (state.step2Counter==3)
-  		{
-    		state.executeStep2 = false;
-    		state.executeStep3=true;
-  		}
-  	}
+      else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
+      {
+          itr=2;
+          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
+      }
+      else if(newSensor.isFrontTurnComplete())
+      {
+        state.executeStep1=false;
+        state.executeStep3=true;
+      }
+  }
 
-  	// Step 3:
+  	// Step 3(no Step 2):
   		// Go Forward To Stacking Form Unless the TOF-Reading is Received
 	if (state.executeStep3)
    	{
-      itr = 5;
+      itr = 3;
       if(newSensor.tofFlag==false)
           followLine(newSensor,oldSensor,motor);
       else if(balanceWithTOF(200,newSensor,motor) && followLine(newSensor,oldSensor,motor))
@@ -95,18 +60,30 @@ void navigate(botData& newSensor,botData& oldSensor,Motor& motor)
     // Send Signal to Stack the Block
     if(state.executeStep4)
     {
-      itr=6;
-      stackBlock=true;
+      itr=4;
+      stackBlock();
       state.executeStep4=false;
       state.executeStep5=true;
     }
     // Bot-Stop after Executing All the Steps
     if(state.executeStep5)
     {
-      itr=7;
+      itr=5;
       motor.bot_Stop();
+      state.executeStep5=false;
+      state.executeStep6=true;
     }
-
+    else if(state.executeStep6)
+    {
+      if(newSensor.tofFront < 400)
+      {
+        followLineBackpwm(newSensor,oldSensor,motor,90);
+      }
+      else 
+      {
+        motor.bot_Stop();
+      }
+    }
 }
 
 // Navigates to Pickup the Block
@@ -115,55 +92,27 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
   state.updateDigiCounter(newSensor,oldSensor,motor);
   motor.reset();
 
-
- // Step 1 : Go Forward and Turn Left
+  // Step 1 :
+      // Go Forward until the Bot has Not Reached To the Starting Line (Passed 2 Lines)
   if(state.executeStep1)
   {
-    // Go Forward until the Bot has Not Reached To the Starting Line (Passed 2 Lines)
-      if(state.digiCounter<2)
-      {
-        itr=1;
-        motor.bot_Forward_withPWM(FORWARD_MOTION_PWM);
-
+      if(state.digiCounter<1)
+      {   
+          itr=1;
+          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
       }
-      // Step 2:
-        //Stop and  Turn Left
-      if ((state.digiCounter >= 2) && state.executeStep2)
+      else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
       {
-        // Step 2.1:+
-          // (BOT_STOP)
-      if (state.step2Counter == 0)
-      {
-        itr=2;
-        stopFlag=true;
-        motor.bot_Stop();
-        state.step2Counter=1;
+          itr=2;
+          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
       }
-
-        //SPOT-LEFT until Front Turn is Complete
-      // if (!newSensor.isFrontTurnComplete() && state.step2Counter==1)
-      else if (state.step2Counter==1 && !newSensor.isFrontTurnComplete())
+      else if(newSensor.isFrontTurnComplete())
       {
-        itr=3;
-        motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-      }
-      else if(state.step2Counter==1)
-      {
-        motor.bot_Stop();
-        stopFlag=true;
-        itr=4;
-        state.step2Counter=3;
-      }
-      // Step 2.3:
-        // Wait for 1 second after the Turn is Complete (BOT_STOP)
-      else if (state.step2Counter==3)
-      {
-        state.executeStep2 = false;
+        state.executeStep1=false;
         state.executeStep3=true;
       }
-    }
-
   }
+
 
     // Step 3:
       // Go Forward Until digi-Count == 4 and Turn Left
@@ -171,25 +120,29 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
     {
         if(state.digiCounter<4)
         {
-          itr = 5;
+          itr = 3;
           followLine(newSensor,oldSensor,motor);
         }  
         else if(newSensor.isFrontTurnComplete() && temp)
         {
-          itr=6;
+
+          itr=4;
           motor.spot_Left_withPWM(SPOT_LEFT_PWM);
         }
         else if(!newSensor.isFrontTurnComplete())
         {
           temp = false;
-          itr=7;
+          itr=5;
           motor.spot_Left_withPWM(SPOT_LEFT_PWM);
         }
         else
         {
+          itr=6;
+          motor.bot_Stop();
+          stopFlag=true;
           state.executeStep3=false;
           state.executeStep4=true;
-          cordinator=true;
+          enableCordinator();
       }
 
     }
@@ -197,11 +150,11 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
     // Step 4:
       // Go Forward for few Seconds and Strafe Right for few Iterations
 
-    if(state.executeStep4)
+    else if(state.executeStep4)
     {
       if(strafeItr<=maxStrafeItr)
       {
-        itr=8;
+        itr=7;
         if(strafeItr  <= int((maxStrafeItr)/2)    )
         {
           motor.bot_Forward_withPWM(100);
@@ -218,7 +171,8 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         state.executeStep4=false;
         itr=8;
         motor.bot_Stop();
-        // stopFlag=true;
+        stopFlag=true;
+        pickupBlock();
         state.executeStep5=true;
         pickup=true;
       }
@@ -233,16 +187,18 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
     {
       if(!newSensor.isFrontTurnComplete())
       {
+        itr=9;
         motor.strafe_Left_withPWM(100);
       }
       else
       {
+        itr=10;
         state.executeStep5=false;
         state.executeStep6=true;
         // Reset the Digi-Counter
         state.digiCounter=0;
         temp =false;
-        cordinator=false;
+        disableCordinator();
       }
     }
 
@@ -257,12 +213,14 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       {
           if(newSensor.isFrontTurnComplete() && temp)
           {
-            motor.strafe_Right_withPWM(100);
+            itr=12;
+            motor.spot_Right_withPWM(100);
           }
           else if(!newSensor.isFrontTurnComplete())
           {
+            itr=13;
             temp=false;
-           motor.strafe_Right_withPWM(100); 
+           motor.spot_Right_withPWM(100); 
           }
           else
           {
@@ -276,20 +234,39 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         // Bot Forward Until Reached at and Desired Distance from the Stacking Form
     if(state.executeStep7)
     {
+
       if(newSensor.tofFlag==false)
           followLine(newSensor,oldSensor,motor);
       else if(balanceWithTOF(200,newSensor,motor) && followLine(newSensor,oldSensor,motor))
         {
+          itr=14;
           motor.bot_Stop();
+          stopFlag=true;
           state.executeStep7=false;
           state.executeStep8=true;
-          stackBlock=true;
+          stackBlock();
         }
     }
     // Bot-Stop
     if(state.executeStep8)
     {
+      itr=15;
       motor.bot_Stop();
+      stopFlag=true;
+    }
+
+    else if(state.executeStep9)
+    {
+      if(newSensor.tofFront < 400)
+      {
+        itr=16;
+        followLineBackpwm(newSensor,oldSensor,motor,80);
+      }
+      else 
+      {
+        itr=17;
+        motor.bot_Stop();
+      }
     }
 
 
@@ -300,31 +277,19 @@ void mainLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 {
   if(!stopFlag)
     {
-      
             // navigates from gome 2 stack the block with the block in Arm
       followLine(newSensor,oldSensor,motor);
       
-
-
-              // Navigates from home 2 pickup the block and Stack
+            // Navigates from home 2 pickup the block and Stack
       // navigate2(newSensor,oldSensor,motor);
     }
   else
     {
       motor.bot_Stop();
       // Loop through Stop for Certain Iterations
-      stopFlagIterations++;
-      if(stopFlagIterations>=maxStopFlagItr)
-      {
-        stopFlag=false;
-        stopFlagIterations=0;
-      }
-    };
-
-
+      handle_delay();
+    }
 }
-
-
 
 
 // Balances Bot at (targetDistance) from the TOF-Reading

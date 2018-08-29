@@ -12,7 +12,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg);
 
 int main(int argc,char **argv)
 {
-	ros::init(argc,argv,"Atmega_listener");
+	ros::init(argc,argv,"debug_Node_Motor");
 
 	ros::NodeHandle n;
 
@@ -24,9 +24,9 @@ int main(int argc,char **argv)
 		msg.data = motor.encrypt_message();
 		atmegaPub.publish(msg);
 		
-		motor.bot_Forward_withPWM(UNIT_PWM);
+		motor.spot_Right_withPWM(UNIT_PWM);
 	
-		ros::spinOnce()	;
+		ros::spinOnce();
 
 	}
 

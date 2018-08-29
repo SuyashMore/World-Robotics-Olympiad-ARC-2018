@@ -164,7 +164,7 @@ add_executable(AtmegaNode scripts/AtmegaNode/AtmegaNode.cpp)
 target_link_libraries(AtmegaNode ${catkin_LIBRARIES} )
 
 
-# Motor Unit Test
+# Motor Unit Tests
 add_executable(unit_Motor_Fwd scripts/AtmegaNode/unit_botForward.cpp)
 add_executable(unit_Motor_Bck scripts/AtmegaNode/unit_botBackward.cpp)
 add_executable(unit_Motor_SLeft scripts/AtmegaNode/unit_botSpot_Left.cpp)
@@ -178,6 +178,22 @@ target_link_libraries(unit_Motor_SLeft ${catkin_LIBRARIES} )
 target_link_libraries(unit_Motor_SRight ${catkin_LIBRARIES} )
 target_link_libraries(unit_Motor_SfLeft ${catkin_LIBRARIES} )
 target_link_libraries(unit_Motor_SfRight ${catkin_LIBRARIES} )
+
+# Arm Unit Tests on ROS
+
+add_executable(unit_Arm_Cord_disable scripts/AtmegaNode/unit_arm_cordinator_disable.cpp)
+add_executable(unit_Arm_Cord_enable scripts/AtmegaNode/unit_arm_cordinator_enable.cpp)
+add_executable(unit_Arm_pickup scripts/AtmegaNode/unit_arm_pickup.cpp)
+add_executable(unit_Arm_stack scripts/AtmegaNode/unit_arm_stack.cpp)
+add_executable(unit_Arm_std scripts/AtmegaNode/unit_arm_standard.cpp)
+add_executable(unit_Arm_std_w_cord scripts/AtmegaNode/unit_arm_standard_with_cordinator.cpp)
+
+target_link_libraries(unit_Arm_Cord_enable ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_Cord_disable ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_pickup ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_stack ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_std ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_std_w_cord ${catkin_LIBRARIES} )
 
 
 ## Rename C++ executable without prefix

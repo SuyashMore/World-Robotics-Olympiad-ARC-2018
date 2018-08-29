@@ -351,6 +351,13 @@ struct Motor
    		setPWMof(MOTOR_FRONT,0);
 	}
 
+	void bot_Backward_withPWMm(int pwm)
+	{
+		bot_Backward();
+   		setPWMof(MOTOR_RIGHT,pwm);
+   		setPWMof(MOTOR_LEFT,pwm);
+	}
+
 
 	void bot_Backward()
 	{
@@ -434,6 +441,7 @@ struct gameState
   bool executeStep6=false;
   bool executeStep7=false;
   bool executeStep8=false;
+  bool executeStep9=false;
   
 
   void updateDigiCounter(botData& newSensor,botData& oldSensor,Motor& motor)

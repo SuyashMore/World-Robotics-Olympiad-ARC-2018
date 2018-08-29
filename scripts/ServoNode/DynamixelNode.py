@@ -34,39 +34,32 @@ def callbackD(data):
 	global cordinator
 	pickup = data.pickUp
 	stack = data.stack
-	
 	cordinator = data.cordinator
+	print(data)
 
-	#print(data.pickUp)
+	if(pickup):
+		print("Picking Up the Block")
+		super.cordinatorDisable()
+		super.pickupXYZ()
 
-	if(pickup or stack or cordinator):
-			if(pickup):
-				print("Picking Up the Block")
-				super.pickupXYZ()
-			else:
-				super.move2standard()
+	if(stack):
+		print("Stacking Block")
+		super.stackBlock()
 
-			if(stack):
-				print("Stacking Block")
-				super.stackBlock()
-			else:
-				super.move2standard()
-
-
-			if(cordinator):
-				print("Enabling Cordinator !")
-				super.cordinatorEnable()
-			else:
-				print("Disabling Cordinator !")
-				super.cordinatorDisable()
+	if (not pickup and not stack):
+		print("Moving to Standard Position")
+		super.move2standard()
 
 
-			pickup = False
-			stack = False
-			cordinator = False
-			msg = bot()
-			msg.nav = True
-			pub.publish(msg)
+	if(cordinator):
+		print("Enabling Cordinator !")
+		super.cordinatorDisable()
+	else:
+		print("Disabling Cordinator !")
+		super.cordinatorEnable()
+	msg = bot()
+	msg.nav = True
+	pub.publish(msg)
 
 
 
@@ -77,7 +70,6 @@ def listener():
 	rospy.Subscriber("Dyx",Dyx,callbackD)
 
 	while not rospy.is_shutdown():
-		print("Spinning")
 		rospy.spin()
 
 

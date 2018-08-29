@@ -2,6 +2,7 @@ import servo_functions as servos
 import constants
 import fk3 as fk
 import inverseK as ik
+import time
 
 def init():
     return servos.enable_port()
@@ -68,11 +69,13 @@ def processIK(x,y,z):
     return ik.process(x,y,z)
 
 def cordinatorEnable():
-    setAngle(7,512)
+    setSpeed(7,100)
+    setAngle(7,480)
     
 
 def cordinatorDisable():
-    setAngle(7,812)
+    setSpeed(7,100)
+    setAngle(7,185)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):
@@ -191,7 +194,7 @@ def pickupXYZ():
     gripDisable()
     # raw_input("Press  Any Key to Pickup")
 
-    super.setSpeedAll(100)
+    setSpeedAll(100)
 
     move2pos(17,-2,-2)
     setTransformedAngle(4,ID_4_ANGLE)

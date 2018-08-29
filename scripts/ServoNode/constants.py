@@ -1,13 +1,12 @@
-
-
 ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
+# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
 
-#DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/eshita/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
 # DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
@@ -17,15 +16,15 @@ ENABLE_KINEMATIC_DEBUG_MESSAGES_RES = True
 
 
 #Link Lengths
-L1=10.9
-L2=11.0
-L3=7.7
+L1=1.1+8.9151
+L2=11.284
+L3=7.635
 L4=3.8
-L5=14.7
+L5=14.70
 
 #Servo Motor Parameters - Speed
 servoSpeed = 200
-servoSpeedArm = 100
+servoSpeedArm = 50
 servoSpeedStack = 200
 servoSpeedCentre = 200
 servoGripperSpeed = 350
@@ -36,7 +35,6 @@ servoGripperSpeed = 350
 SERVO_RES = 0.29
 
 #Servo Angles Transformation Functions
-
 def transform2ServoAngles(angle,angleIndex):
     CompoundAngle=0
     0
@@ -70,6 +68,7 @@ def transform2StandardAngles(angle,angleIndex):
         return (((angle - 461)*SERVO_RES) ) -14
     elif angleIndex == 5:
         return (((angle)*SERVO_RES) )
+
 
 
 #Gripper Angles

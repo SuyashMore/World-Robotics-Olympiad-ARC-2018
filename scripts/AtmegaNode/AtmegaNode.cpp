@@ -20,6 +20,7 @@ Motor motor;
 
 	
 void botCallBack(const Jetson::bot::ConstPtr& msg);
+void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
 
 ros::Publisher atmegaPub ;
@@ -42,7 +43,7 @@ int main(int argc,char **argv)
 }
 
 	
-
+// Handles Control Back to the Node After Processing the Arm
 void botCallBack(const Jetson::bot::ConstPtr& msg)
 {
 	if(msg->nav)
@@ -51,12 +52,35 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 
 
 
+void handleArmSignal()
+{	
+	cout<<"-------------------------Latching Data to Servo-Node --------------------------------------"<<endl;
+	Jetson::Dyx servo;
+	servo.cordinator=cordinator;
+	servo.pickUp=pickup;
+	servo.stack=stackBlk;
+
+	servoPub.publish(servo);
+	navFlag=false;
+	enableArmControl=false;
+
+	if(cordinator)
+		cordinator=false;
+	if(stackBlk)
+		stackBlk=false;
+}
+
 
 // Handles the Decryption And Processing of the Message Received
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
-	
-	// ROS_INFO("I heard: [%s]", msg->data.c_str());
+	// Check for Arm Signals
+	if(enableArmControl)
+	{
+		navFlag=false;
+		handleArmSignal();
+	}
+
 	string m;
 	m=msg->data.c_str();
 	botData bt;
@@ -65,19 +89,17 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	cout<<"Digi-Counter:"<<state.digiCounter<<endl;
 	cout<<"Game State:"<<itr<<endl;
 
-
-	// Print the Delay Iterations
-	if(stopFlag)
-		cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
-	cout<<"--------------------------------------------------------"<<endl;
-
-
-	// Print the Nav Flag
-
 	// Process Only After The Servo-Node had Completed Processing
-		if(navFlag) 			
-		{
-			mainLoop(bt,storage,motor);
+	if(navFlag) 			
+	{
+
+		// Print the Delay Iterations
+		if(stopFlag)
+			cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
+		cout<<"--------------------------------------------------------"<<endl;
+
+	
+		mainLoop(bt,storage,motor);
 		// Process_data and then enable the Publish Flag
 		
 			std_msgs::String msg;
@@ -85,33 +107,16 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			msg.data = motor.encrypt_message();
 			atmegaPub.publish(msg);
 
-		}
-		else
-		{
-			cout<<"Processing ARm !!!!!"<<endl;
-		}
-
-		if(cordinator | pickup | stackBlock)
-		{	
-			cout<<"-------------------------Latching Data to Servo-Node --------------------------------------"<<endl;
-			Jetson::Dyx servo;
-			servo.cordinator=cordinator;
-			servo.pickUp=pickup;
-			servo.stack=stackBlock;
-
-			cordinator=false;
-			pickup=false;
-			stackBlock=false;
-
-			servoPub.publish(servo);
-			navFlag=false;
-		}
-
-
-		// Handle the Preseve History Calls
+				// Handle the Preseve History Calls
 		if(!bt.preserveHistoryF)
 			storage.copyFront(bt);
 		if(!bt.preserveHistoryB)
 			storage.copyBack(bt);
+	}
+	else
+	{
+		cout<<"Processing Arm !!!!!"<<endl;
+	}
+
 
 }

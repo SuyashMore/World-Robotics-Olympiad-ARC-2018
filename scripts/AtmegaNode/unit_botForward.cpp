@@ -8,11 +8,9 @@ Motor motor;
 ros::Publisher atmegaPub ;	
 
 
-void inputCallback(const std_msgs::String::ConstPtr& msg);
-
 int main(int argc,char **argv)
 {
-	ros::init(argc,argv,"Atmega_listener");
+	ros::init(argc,argv,"debug_Node_Motor");
 
 	ros::NodeHandle n;
 

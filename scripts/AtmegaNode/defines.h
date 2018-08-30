@@ -11,7 +11,7 @@ using namespace std;
 
 
 // PWM Settings
-#define FORWARD_MOTION_PWM 150
+#define FORWARD_MOTION_PWM 250
 #define SPOT_LEFT_PWM 100
 
 // Delays(ms)
@@ -23,15 +23,15 @@ using namespace std;
 
 
 // PWM MAP VARs
-#define F_MOTOR_MAP_INLOW  0
+#define F_MOTOR_MAP_INLOW  250
 #define F_MOTOR_MAP_INHIGH 3500
 #define F_MOTOR_MAP_OUTLOW 80
-#define F_MOTOR_MAP_OUTHIGH 140
+#define F_MOTOR_MAP_OUTHIGH 200
 
-#define B_MOTOR_MAP_INLOW  0
+#define B_MOTOR_MAP_INLOW  250
 #define B_MOTOR_MAP_INHIGH 3500
 #define B_MOTOR_MAP_OUTLOW 80
-#define B_MOTOR_MAP_OUTHIGH 140
+#define B_MOTOR_MAP_OUTHIGH 200
 
 // TOF Params(cm)
 #define TOF_ERROR_THRESH 10

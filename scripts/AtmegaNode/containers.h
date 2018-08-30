@@ -125,13 +125,13 @@ struct botData
 
 			index = message.find(_3_MESSAGE)+1;
 			length = message.find(_4_MESSAGE) - index;
-			errorFront = stoi( message.substr( index,length) ) - 100 -7+12;
+			errorFront = stoi( message.substr( index,length) ) ;
 
 			// //Extract the Back Error
 
 			index = message.find(_4_MESSAGE)+1;
 			length = message.find(_5_MESSAGE) - index;
-			errorBack = stoi( message.substr(index,length)) - 100 - 1-5;
+			errorBack = stoi( message.substr(index,length)) ;
 
 			// //Extract the Left Digi-Data
 
@@ -367,9 +367,9 @@ struct Motor
 
 	void spot_Left()
 	{
-	  direction[MOTOR_FRONT] = false;
-	  direction[MOTOR_RIGHT] = false;
-	  direction[MOTOR_BACK] = false;
+	  direction[MOTOR_FRONT] = true;
+	  direction[MOTOR_RIGHT] = true;
+	  direction[MOTOR_BACK] = true;
 	  direction[MOTOR_LEFT] = false;
 	}
 
@@ -391,7 +391,7 @@ struct Motor
 	  direction[MOTOR_FRONT] = false;
 	  direction[MOTOR_RIGHT] = false;
 	  direction[MOTOR_BACK] = false;
-	  direction[MOTOR_LEFT] = false;
+	  direction[MOTOR_LEFT] = true;
 	}
 	void strafe_Right()
 	{
@@ -451,3 +451,7 @@ struct gameState
 	}
   
 };
+
+
+
+

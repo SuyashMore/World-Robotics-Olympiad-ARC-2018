@@ -5,19 +5,19 @@
 
 void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
 {
- 	  bool preserveHistoryF =false;
+ 	bool preserveHistoryF =false;
   	bool preserveHistoryB = false;
 
   	int frontpwm=0;
   	int backpwm=0;
 
   	
- 	  double weightedSumFront = 0;
- 	  double weightedSumBack = 0; 
- 	  double sumfront = 0; 
+ 	 double weightedSumFront = 0;
+ 	 double weightedSumBack = 0; 
+ 	 double sumfront = 0; 
   	double sumback = 0;
 
-    int fronterror = newSensor.errorFront;
+    int fronterror = -newSensor.errorFront;
     int backerror = newSensor.errorBack;
 
     int signedErrorF = fronterror;
@@ -28,9 +28,9 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
       newSensor.preserveHistoryF = true;
       // Maximize Error with History-Direction
       if (oldSensor.lsaFront[0])
-        signedErrorF = -22; 
+        signedErrorF = 3500; 
       else if (oldSensor.lsaFront[7])
-        signedErrorF = 22;  
+        signedErrorF = -3500;  
     }
 
     if (newSensor.isBackAllWhite())
@@ -38,30 +38,33 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
         newSensor.preserveHistoryB=true;
         // Maximize Error with History-Direction
         if (oldSensor.lsaBack[0])
-          signedErrorB = 26;
+          signedErrorB = 3500;
         else if (oldSensor.lsaBack[7])
-          signedErrorB = -26;
+          signedErrorB = -3500;
     }
 
-    if (signedErrorF < 0)
-    {	// left
-      frontpwm = abs(signedErrorF);
-      motor.direction[MOTOR_FRONT] = true;
+    if (signedErrorF >0 )
+    {
+    	//shifted right - > Move Left
+      	frontpwm = abs(signedErrorF);
+      	motor.direction[MOTOR_FRONT] = true;
     }
     else 
-    {	//right
-      frontpwm = abs(signedErrorF);
-      motor.direction[MOTOR_FRONT] = false;
+    {	
+      	// shifted left - > Move Right
+      	frontpwm = abs(signedErrorF);
+      	motor.direction[MOTOR_FRONT] = false;
     }
     
-    if (signedErrorB < 0)
-    {	//left
-      backpwm = abs(signedErrorB);
-      motor.direction[MOTOR_BACK] = true;
-    }
-    else {	//right
+    if (signedErrorB > 0)
+    {	//Shifted Right -> Move Left
       backpwm = abs(signedErrorB);
       motor.direction[MOTOR_BACK] = false;
+    }
+    else {	
+    	//Shifted Left - > Move Right
+      backpwm = abs(signedErrorB);
+      motor.direction[MOTOR_BACK] = true;
     }
     
     motor.PWM[MOTOR_FRONT] = Vmap(frontpwm, F_MOTOR_MAP_INLOW, F_MOTOR_MAP_INHIGH, F_MOTOR_MAP_OUTLOW, F_MOTOR_MAP_OUTHIGH);

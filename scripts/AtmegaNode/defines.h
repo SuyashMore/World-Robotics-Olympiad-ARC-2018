@@ -24,14 +24,14 @@ using namespace std;
 
 // PWM MAP VARs
 #define F_MOTOR_MAP_INLOW  0
-#define F_MOTOR_MAP_INHIGH 22
-#define F_MOTOR_MAP_OUTLOW 70
-#define F_MOTOR_MAP_OUTHIGH 97
+#define F_MOTOR_MAP_INHIGH 3500
+#define F_MOTOR_MAP_OUTLOW 80
+#define F_MOTOR_MAP_OUTHIGH 140
 
 #define B_MOTOR_MAP_INLOW  0
-#define B_MOTOR_MAP_INHIGH 26
-#define B_MOTOR_MAP_OUTLOW 70
-#define B_MOTOR_MAP_OUTHIGH 97
+#define B_MOTOR_MAP_INHIGH 3500
+#define B_MOTOR_MAP_OUTLOW 80
+#define B_MOTOR_MAP_OUTHIGH 140
 
 // TOF Params(cm)
 #define TOF_ERROR_THRESH 10
@@ -59,6 +59,11 @@ using namespace std;
 
 
 //Atmega-Input Message : D1010P111a222b333c444d
+// (Front View of Each Motor:- 
+				// 1 (front motor):(clock)/(anti-clock) 
+				// 2  (right motor):(clock)/(anti-clock) 
+				// 3  (back motor):(clock)/(anti-clock) 
+				// 4  (left motor):(anti-clock)/(clock) 
 #define _OUTM_DIR "D"
 #define _OUTM_PWM "P"
 #define _OUT_DELAY "m"

@@ -99,7 +99,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"--------------------------------------------------------"<<endl;
 
 	
-		mainLoop(bt,storage,motor);
+		followLine(bt,storage,motor);
 		// Process_data and then enable the Publish Flag
 		
 		std_msgs::String msg;

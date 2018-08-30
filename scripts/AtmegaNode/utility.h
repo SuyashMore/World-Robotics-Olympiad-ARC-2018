@@ -1,5 +1,8 @@
 #pragma once
 
+bool navFlag = true;
+
+
 double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh)
 {
 	if(input <= inLow)
@@ -67,4 +70,3 @@ void move2standard()
   pickup=true; 
 }
 
-bool navFlag = true;

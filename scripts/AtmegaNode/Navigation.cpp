@@ -40,12 +40,14 @@ void navigate(botData& newSensor,botData& oldSensor,Motor& motor)
       {
         state.executeStep1=false;
         state.executeStep3=true;
+        motor.bot_Stop();
+        stopFlag=true;
       }
   }
 
   	// Step 3(no Step 2):
   		// Go Forward To Stacking Form Unless the TOF-Reading is Received
-	if (state.executeStep3)
+	else if (state.executeStep3)
    	{
       itr = 3;
       if(newSensor.tofFlag==false)
@@ -54,11 +56,12 @@ void navigate(botData& newSensor,botData& oldSensor,Motor& motor)
         {
           motor.bot_Stop();
           state.executeStep3=false;
+          state.executeStep4=true;
         }
 
    	}
     // Send Signal to Stack the Block
-    if(state.executeStep4)
+  else if(state.executeStep4)
     {
       itr=4;
       stackBlock();
@@ -66,14 +69,14 @@ void navigate(botData& newSensor,botData& oldSensor,Motor& motor)
       state.executeStep5=true;
     }
     // Bot-Stop after Executing All the Steps
-    if(state.executeStep5)
+  else if(state.executeStep5)
     {
       itr=5;
       motor.bot_Stop();
       state.executeStep5=false;
       state.executeStep6=true;
     }
-    else if(state.executeStep6)
+  else if(state.executeStep6)
     {
       if(newSensor.tofFront < 400)
       {
@@ -110,6 +113,8 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       {
         state.executeStep1=false;
         state.executeStep3=true;
+        motor.bot_Stop();
+        stopFlag=true;
       }
   }
 
@@ -118,7 +123,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       // Go Forward Until digi-Count == 4 and Turn Left
   if (state.executeStep3)
     {
-        if(state.digiCounter<4)
+        if(state.digiCounter<3)
         {
           itr = 3;
           followLine(newSensor,oldSensor,motor);
@@ -183,7 +188,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
     // Step 5:
         // Strafe Left Until the Bot is Back on Line
 
-    if(state.executeStep5)
+    else if(state.executeStep5)
     {
       if(!newSensor.isFrontTurnComplete())
       {
@@ -205,7 +210,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
     // Step 6:
         // Bot Reverse Until Junction Counter == 1 and then Spot-Right
-    if(state.executeStep6)
+    else if(state.executeStep6)
     {
       if(state.digiCounter<1)
         motor.bot_Backward_withPWM(100);
@@ -232,7 +237,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
     // Step 7:
         // Bot Forward Until Reached at and Desired Distance from the Stacking Form
-    if(state.executeStep7)
+    else if(state.executeStep7)
     {
 
       if(newSensor.tofFlag==false)
@@ -248,7 +253,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         }
     }
     // Bot-Stop
-    if(state.executeStep8)
+    else if(state.executeStep8)
     {
       itr=15;
       motor.bot_Stop();
@@ -278,7 +283,7 @@ void mainLoop(botData& newSensor,botData& oldSensor,Motor& motor)
   if(!stopFlag)
     {
             // navigates from gome 2 stack the block with the block in Arm
-      followLine(newSensor,oldSensor,motor);
+      navigate2(newSensor,oldSensor,motor);
       
             // Navigates from home 2 pickup the block and Stack
       // navigate2(newSensor,oldSensor,motor);

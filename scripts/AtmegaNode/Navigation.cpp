@@ -10,6 +10,7 @@ int itr = 0;
 
 
 bool temp =true;
+bool temp2=true;
 
 int strafeItr=0;
 int maxStrafeItr = 40;
@@ -127,7 +128,13 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         {
           itr = 3;
           followLine(newSensor,oldSensor,motor);
-        }  
+        }
+        else if(temp2)
+        {
+          temp2=false;
+          motor.bot_Stop();
+          stopFlag=true;
+        }
         else if(newSensor.isFrontTurnComplete() && temp)
         {
 
@@ -162,7 +169,8 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         itr=7;
         if(strafeItr  <= int((maxStrafeItr)/2)    )
         {
-          motor.bot_Forward_withPWM(100);
+          motor.bot_Forward_withPWM(120);
+          processPID(newSensor,oldSensor,motor);
         }
         else
         {
@@ -213,7 +221,9 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
     else if(state.executeStep6)
     {
       if(state.digiCounter<1)
-        motor.bot_Backward_withPWM(100);
+        {motor.bot_Backward_withPWM(100);
+        processPID(newSensor,oldSensor,motor);}
+
       else
       {
           if(newSensor.isFrontTurnComplete() && temp)

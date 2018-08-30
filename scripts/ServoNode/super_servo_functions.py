@@ -70,12 +70,12 @@ def processIK(x,y,z):
 
 def cordinatorEnable():
     setSpeed(7,100)
-    setAngle(7,480)
+    setAngle(7,450)
     
 
 def cordinatorDisable():
     setSpeed(7,100)
-    setAngle(7,185)
+    setAngle(7,180)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):
@@ -121,6 +121,7 @@ def stackBlock():
     SL1 = 1
     SL2 = 1
     SL3 = 2
+    SLS=2
     init()
     enableAll()
     setSpeedAll(50)
@@ -175,7 +176,7 @@ def move2standard():
 
 
 def pickupXYZ():
-    FINAL_X = 11
+    FINAL_X = 10.5
     FINAL_Y = -7
     INITITALZ = -9
     FINAL_Z = -12.5
@@ -184,6 +185,8 @@ def pickupXYZ():
     SL3 = 1.0
     SL2 = 0.8
     SL1 = 0.15
+    SLY = 3
+    SLS=2
 
     ID_4_ANGLE = 22
 
@@ -244,27 +247,27 @@ def pickupXYZ():
     move2pos(FINAL_X,FINAL_Y,FINAL_Z)
     setTransformedAngle(4,ID_4_ANGLE)
 
+    time.sleep(SL3)
+
     # raw_input("Press Any Key to Enable Grip")
     gripEnable()
     time.sleep(SL3)
 
-    raw_input("Press Any Key to Pickup the Block")
+    time.sleep(SLY)
     # mov2angle(0,-90,90,0,0) 19,0,-6
-    move2pos(FINAL_X+2,FINAL_Y/3,-6)
+    move2pos(FINAL_X+3,FINAL_Y,-12)
+    time.sleep(SLS)
+    move2pos(FINAL_X+4,FINAL_Y/2,-9)
+    time.sleep(SLS)
+    move2pos(FINAL_X+5,FINAL_Y/2,-4)
+    time.sleep(SLS)
+    move2pos(FINAL_X+6,FINAL_Y/3,0)
     time.sleep(SL1)
-    move2pos(FINAL_X+2,FINAL_Y/2,-4)
-    time.sleep(SL1)
-    move2pos(FINAL_X+2.5,FINAL_Y/2,-2)
-    time.sleep(SL1)
-    move2pos(FINAL_X+2.5,FINAL_Y/3,0)
-    time.sleep(SL1)
-    move2pos(FINAL_X+2.5,0,2)
+    move2pos(FINAL_X+6.5,0,2)
     time.sleep(SL1)
 
-    move2angle(0,-20,0,-90,0)
+    move2standard()
 
-    raw_input("Press Any Key to Release the Block")
-    gripDisable()
 
 
 

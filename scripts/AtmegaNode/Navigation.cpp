@@ -14,7 +14,7 @@ bool temp =true;
 bool temp2=true;
 
 int strafeItr=0;
-int maxStrafeItr = 40;
+int maxStrafeItr = 60;
 
 
 bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor);
@@ -157,7 +157,6 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
           state.executeStep4=true;
           enableCordinator();
       }
-
     }
 
     // Step 4:
@@ -188,7 +187,6 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         stopFlag=true;
         pickupBlock();
         state.executeStep5=true;
-        pickup=true;
       }
 
     }

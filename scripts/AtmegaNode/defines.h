@@ -15,7 +15,7 @@ using namespace std;
 #define SPOT_LEFT_PWM 100
 
 // Delays(ms)
-#define DELAY_BOT_TURN 1000
+#define DELAY_BOT_TURN 1001
 
 // Flag Params
 #define TOF_FLAG_MIN_THRESH 20

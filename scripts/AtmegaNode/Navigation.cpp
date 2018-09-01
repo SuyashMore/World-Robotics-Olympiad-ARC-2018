@@ -210,7 +210,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         // Reset the Digi-Counter
         state.digiCounter=0;
         stopFlag=true;
-        temp =false;
+        temp =true;
         disableCordinator();
       }
     }
@@ -228,7 +228,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
       else
       {
-        
+
           if(newSensor.isFrontTurnComplete() && temp)
           {
             itr=12;

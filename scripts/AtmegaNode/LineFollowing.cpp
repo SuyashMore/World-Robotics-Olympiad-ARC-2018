@@ -10,7 +10,7 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
 
   	int frontpwm=0;
   	int backpwm=0;
-
+    float kd = 1.5;
   	
  	 double weightedSumFront = 0;
  	 double weightedSumBack = 0; 
@@ -19,6 +19,8 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
 
     int fronterror = -newSensor.errorFront;
     int backerror = newSensor.errorBack;
+    int fronterrorprevious = -oldSensor.errorFront;
+    int backerrorprevious = oldSensor.errorBack;
 
     int signedErrorF = fronterror;
     int signedErrorB = backerror;
@@ -66,6 +68,8 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
       backpwm = abs(signedErrorB);
       motor.direction[MOTOR_BACK] = true;
     }
+    frontpwm -= (fronterrorprevious - fronterror)*kd;
+    backpwm -= (backerrorprevious - backerror)*kd;
     
     motor.PWM[MOTOR_FRONT] = Vmap(frontpwm, F_MOTOR_MAP_INLOW, F_MOTOR_MAP_INHIGH, F_MOTOR_MAP_OUTLOW, F_MOTOR_MAP_OUTHIGH);
     motor.PWM[MOTOR_BACK] = Vmap(backpwm, B_MOTOR_MAP_INLOW, B_MOTOR_MAP_INHIGH, B_MOTOR_MAP_OUTLOW, B_MOTOR_MAP_OUTHIGH);

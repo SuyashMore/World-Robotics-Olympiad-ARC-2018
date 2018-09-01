@@ -1,12 +1,12 @@
-ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
+#ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
-#ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
+ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
 
-#DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/eshita/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+#DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
 # DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
@@ -40,7 +40,7 @@ def transform2ServoAngles(angle,angleIndex):
     0
 
     if angleIndex == 0:
-        CompoundAngle= (((angle+175+15+155-17) / (SERVO_RES) * (3/2))+177)
+        CompoundAngle= (((angle+175+15+155-17+9) / (SERVO_RES) * (3/2))+177)
     if angleIndex == 1:
         CompoundAngle= (((angle+ 70 + 35 -17-3-2) / (SERVO_RES)*2)+196 )                    #Reduction in Gear Ratio
     if angleIndex == 2:
@@ -55,7 +55,7 @@ def transform2ServoAngles(angle,angleIndex):
 
 def transform2StandardAngles(angle,angleIndex):
     if angleIndex == 0:
-        return ((((((angle - 177 ) * SERVO_RES ) * (1) )))  / (3/2)) -15  -175 -155 + 17
+        return ((((((angle - 177 ) * SERVO_RES ) * (1) )))  / (3/2)) -15  -175 -155 + 17-9
     if angleIndex == 1:
         return ((((angle - 196 ) * SERVO_RES ) * (1) ))         / 2 - 70 - 35 +17+3+2#Reduction in Gear Ratio
     elif angleIndex == 2:

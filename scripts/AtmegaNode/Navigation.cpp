@@ -260,24 +260,29 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
           itr=14;
           motor.bot_Stop();
           stopFlag=true;
+
+          state.digiCounter=0;
+
           state.executeStep7=false;
           state.executeStep8=true;
           stackBlock();
         }
     }
-    // Bot-Stop
+    //Step:8 ----> Bot-Stop
     else if(state.executeStep8)
     {
       itr=15;
       motor.bot_Stop();
       stopFlag=true;
+
       state.executeStep8=false;
       state.executeStep9=true;
     }
+    // Step:9 ------>Return back to the Junction
 
     else if(state.executeStep9)
     {
-      if(newSensor.tofFront < 400)
+      if(state.digiCounter<2)
       {
         itr=16;
         followLineBackpwm(newSensor,oldSensor,motor,80);
@@ -286,6 +291,52 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       {
         itr=17;
         motor.bot_Stop();
+        state.executeStep9=false;
+        state.executeStep10=true;
+      }
+    }
+    else if(state.executeStep10)
+    {
+      if(!newSensor.isFrontAllBlack())
+      {
+        followLineBackpwm(newSensor,oldSensor,motor,80);
+      }
+      else
+      {
+        state.executeStep10=false;
+        state.executeStep11=true;
+      }
+    }
+    else if(state.executeStep11)
+    {
+      if(newSensor.isFrontAllBlack())
+      {
+        followLine(newSensor,oldSensor,motor);
+      }
+      else
+      {
+        stopFlag=true;
+        state.executeStep11=false;
+        state.executeStep12=true;
+        state.digiCounter=0;
+      }
+    }
+    else if(state.executeStep12)
+    {
+      if(state.digiCounter<2)
+      {
+        motor.strafe_Left_withPWM(100);
+      }
+      else
+      {
+        if(newSensor.digiLeft==1)
+        {
+          motor.strafe_Right_withPWM(80);
+        }
+        else
+        {
+          motor.bot_Stop();
+        }
       }
     }
 

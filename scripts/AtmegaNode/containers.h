@@ -167,6 +167,13 @@ struct botData
 	bool isFrontAllWhite()
 	{
 		for(bool x:lsaFront)
+			if(x)
+				return (!x);
+		return true;
+	}
+	bool isFrontAllBlack()
+	{
+		for(bool x:lsaFront)
 			if(!x)
 				return x;
 		return true;
@@ -176,7 +183,7 @@ struct botData
 	{
 		for(bool x:lsaFront)
 			if(x)
-				return x;
+				return (!x);
 		return false;
 	}
 
@@ -184,8 +191,8 @@ struct botData
 	bool isBackAllWhite()
 	{
 		for(bool x:lsaBack)
-			if(!x)
-				return x;
+			if(x)
+				return (!x);
 		return true;
 	}
 
@@ -193,7 +200,7 @@ struct botData
 	{
 		for(bool x:lsaBack)
 			if(x)
-				return x;
+				return (!x);
 		return false;
 	}
 
@@ -442,6 +449,14 @@ struct gameState
   bool executeStep7=false;
   bool executeStep8=false;
   bool executeStep9=false;
+  bool executeStep10=false;
+  bool executeStep11=false;
+  bool executeStep12=false;
+  bool executeStep13=false;
+  bool executeStep14=false;
+  bool executeStep15=false;
+  bool executeStep16=false;
+  bool executeStep17=false;
   
 
   void updateDigiCounter(botData& newSensor,botData& oldSensor,Motor& motor)
@@ -451,7 +466,3 @@ struct gameState
 	}
   
 };
-
-
-
-

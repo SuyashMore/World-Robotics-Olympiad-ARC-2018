@@ -271,6 +271,8 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       itr=15;
       motor.bot_Stop();
       stopFlag=true;
+      state.executeStep8=false;
+      state.executeStep9=true;
     }
 
     else if(state.executeStep9)

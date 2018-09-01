@@ -51,7 +51,7 @@ void enableCordinator()
 void disableCordinator()
 {
   enableArmControl=true;
-  pickup=true;
+  cordinator=false;
 }
 void pickupBlock()
 {
@@ -67,6 +67,6 @@ void stackBlock()
 void move2standard()
 {
   enableArmControl=true;
-  pickup=true; 
+  pickup=false; 
 }
 

@@ -1,4 +1,3 @@
-
 import servo_functions as servos
 import constants
 import fk3 as fk
@@ -71,12 +70,12 @@ def processIK(x,y,z):
 
 def cordinatorEnable():
     setSpeed(7,100)
-    setAngle(7,450)
+    setAngle(7,467)
     
 
 def cordinatorDisable():
     setSpeed(7,100)
-    setAngle(7,215)
+    setAngle(7,197)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):
@@ -177,19 +176,20 @@ def move2standard():
 
 
 def pickupXYZ():
-    FINAL_X = 10.5
-    FINAL_Y = -7
+    FINAL_X = 8.4
+    FINAL_Y = -8.6
     INITITALZ = -9
-    FINAL_Z = -12.5
+    FINAL_Z = -13.5
 
     SL4 = 2
     SL3 = 1.0
     SL2 = 0.8
-    SL1 = 0.15
+    SL1 = 0.45
     SLY = 3
     SLS=2
+    SLE =5
 
-    ID_4_ANGLE = 22
+    # ID_4_ANGLE = 22
 
     init()
     enableAll()
@@ -200,53 +200,36 @@ def pickupXYZ():
 
     setSpeedAll(100)
 
-    move2pos(17,-2,-2)
-    setTransformedAngle(4,ID_4_ANGLE)
-    time.sleep(SL4)
-
-
-    move2pos(14,-5,-5)
-    setTransformedAngle(4,ID_4_ANGLE)
-    time.sleep(SL3)
-
-    move2pos(12,-7,-7)
-    setTransformedAngle(4,ID_4_ANGLE)
-    time.sleep(SL2)
-
-    move2pos(11,-7,-8.5)
-    setTransformedAngle(4,ID_4_ANGLE)
-    time.sleep(SL2)
-
     move2pos(FINAL_X,FINAL_Y,-9)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
     setSpeedAll(140)
 
-    time.sleep(SL1)
+    time.sleep(SLE)
     
     move2pos(FINAL_X,FINAL_Y,-9.5)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
     time.sleep(SL1)
 
 
     move2pos(FINAL_X,FINAL_Y,-10)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
     time.sleep(SL1)
 
 
     move2pos(FINAL_X,FINAL_Y,-11)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
     time.sleep(SL1)
 
     move2pos(FINAL_X,FINAL_Y,-11.5)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
     time.sleep(SL1)
 
     move2pos(FINAL_X,FINAL_Y,-12)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
     time.sleep(SL1)
 
     move2pos(FINAL_X,FINAL_Y,FINAL_Z)
-    setTransformedAngle(4,ID_4_ANGLE)
+    #setTransformedAngle(4,ID_4_ANGLE)
 
     time.sleep(SL3)
 

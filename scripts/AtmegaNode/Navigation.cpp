@@ -4,6 +4,7 @@
 #include "LineFollowing.cpp"
 
 
+
 // Create An Global Instance of the gameState Object
 gameState state;
 int itr = 0;
@@ -103,12 +104,12 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       if(state.digiCounter<1)
       {   
           itr=1;
-          motor.strafe_Right_withPWM(150);
+          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
       }
       else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
       {
           itr=2;
-          motor.strafe_Right_withPWM(150);
+          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
       }
       else if(newSensor.isFrontTurnComplete())
       {
@@ -187,6 +188,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         stopFlag=true;
         pickupBlock();
         state.executeStep5=true;
+        pickup=true;
       }
 
     }

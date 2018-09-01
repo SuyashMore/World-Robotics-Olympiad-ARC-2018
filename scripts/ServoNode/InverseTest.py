@@ -18,7 +18,7 @@ if __name__=="__main__":
             a = raw_input("Enter Any Key to Move to Angles ")
 
             super.move2angle(a0,a1,a2,a3,a4)
-            # super.setTransformedAngle(4,15)
+            super.setTransformedAngle(4,30)
 
         else:
             pass

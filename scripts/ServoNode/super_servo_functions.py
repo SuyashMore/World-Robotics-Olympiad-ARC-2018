@@ -1,3 +1,4 @@
+
 import servo_functions as servos
 import constants
 import fk3 as fk
@@ -75,7 +76,7 @@ def cordinatorEnable():
 
 def cordinatorDisable():
     setSpeed(7,100)
-    setAngle(7,180)
+    setAngle(7,215)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):

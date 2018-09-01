@@ -64,8 +64,8 @@ void handleArmSignal()
 	navFlag=false;
 	enableArmControl=false;
 
-	if(cordinator)
-		cordinator=false;
+	if(pickup)
+		pickup=false;
 	if(stackBlk)
 		stackBlk=false;
 }

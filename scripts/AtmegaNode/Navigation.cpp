@@ -209,6 +209,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         state.executeStep6=true;
         // Reset the Digi-Counter
         state.digiCounter=0;
+        stopFlag=true;
         temp =false;
         disableCordinator();
       }

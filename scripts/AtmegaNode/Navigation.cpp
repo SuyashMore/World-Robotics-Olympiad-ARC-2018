@@ -221,11 +221,14 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
     else if(state.executeStep6)
     {
       if(state.digiCounter<1)
-        {motor.bot_Backward_withPWM(100);
-        processPID(newSensor,oldSensor,motor);}
+        {
+          itr=11;
+          followLineBackpwm(newSensor,oldSensor,motor,100);
+      }
 
       else
       {
+        
           if(newSensor.isFrontTurnComplete() && temp)
           {
             itr=12;

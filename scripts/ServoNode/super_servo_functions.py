@@ -70,12 +70,12 @@ def processIK(x,y,z):
 
 def cordinatorEnable():
     setSpeed(7,100)
-    setAngle(7,467)
+    setAngle(7,450)
     
 
 def cordinatorDisable():
     setSpeed(7,100)
-    setAngle(7,197)
+    setAngle(7,215)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):

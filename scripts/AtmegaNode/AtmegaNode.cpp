@@ -1,4 +1,5 @@
 #include "ros/ros.h"
+#include<chrono>
 
 #include "Navigation.cpp"
 
@@ -25,6 +26,9 @@ void inputCallback(const std_msgs::String::ConstPtr& msg);
 
 ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
+
+
+	auto begin = std::chrono::steady_clock::now();
 
 int main(int argc,char **argv)
 {
@@ -70,15 +74,29 @@ void handleArmSignal()
 		stackBlk=false;
 }
 
+int cbr=0;
+int cbrate=0;
 
 // Handles the Decryption And Processing of the Message Received
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
+	
+	auto present  = std::chrono::steady_clock::now();
 	// Check for Arm Signals
 	if(enableArmControl)
 	{
 		navFlag=false;
 		handleArmSignal();
+	}
+	cbr++;
+	if((std::chrono::duration_cast<std::chrono::microseconds>(present-begin).count()) >=1000000)
+	{
+		if(cbr!=0)
+			cbrate=cbr;
+		cbr=0;
+
+	 begin  = std::chrono::steady_clock::now();
+		
 	}
 
 	string m;
@@ -88,6 +106,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	bt.printData();
 	cout<<"Digi-Counter:"<<state.digiCounter<<endl;
 	cout<<"Game State:"<<itr<<endl;
+	cout<<"Callback-Rate"<<cbrate<<endl;
 
 	// Process Only After The Servo-Node had Completed Processing
 	if(navFlag) 			

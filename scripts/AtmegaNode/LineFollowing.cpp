@@ -10,7 +10,7 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
 
   	int frontpwm=0;
   	int backpwm=0;
-    float kd = 1.5;
+    float kd =1.5; 
   	
  	 double weightedSumFront = 0;
  	 double weightedSumBack = 0; 

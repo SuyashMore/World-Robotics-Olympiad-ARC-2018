@@ -23,14 +23,14 @@ using namespace std;
 
 
 // PWM MAP VARs
-#define F_MOTOR_MAP_INLOW  250
+#define F_MOTOR_MAP_INLOW 0
 #define F_MOTOR_MAP_INHIGH 3500
-#define F_MOTOR_MAP_OUTLOW 70
+#define F_MOTOR_MAP_OUTLOW 70 
 #define F_MOTOR_MAP_OUTHIGH 160
 
-#define B_MOTOR_MAP_INLOW  250
+#define B_MOTOR_MAP_INLOW  0
 #define B_MOTOR_MAP_INHIGH 3500
-#define B_MOTOR_MAP_OUTLOW 60
+#define B_MOTOR_MAP_OUTLOW 50
 #define B_MOTOR_MAP_OUTHIGH 160
 
 // TOF Params(cm)

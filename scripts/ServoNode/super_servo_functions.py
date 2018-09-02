@@ -200,10 +200,23 @@ def pickupXYZ():
 
     setSpeedAll(100)
 
-    move2pos(FINAL_X,FINAL_Y,-9)
+    move2pos(FINAL_X,FINAL_Y,-7.5)
 
     time.sleep(SLE)
-    
+
+
+    move2pos(FINAL_X,FINAL_Y,-8)
+    time.sleep(SL4)
+    move2pos(FINAL_X,FINAL_Y,-8.3)
+
+    time.sleep(SL1)
+    move2pos(FINAL_X,FINAL_Y,-8.6)
+
+    time.sleep(SL1)
+    move2pos(FINAL_X,FINAL_Y,-8.9)
+
+    time.sleep(SL1)
+
     move2pos(FINAL_X,FINAL_Y,-9.5)
     #setTransformedAngle(4,ID_4_ANGLE)
     time.sleep(SL1)

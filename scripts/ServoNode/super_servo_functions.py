@@ -176,8 +176,8 @@ def move2standard():
 
 
 def pickupXYZ():
-    FINAL_X = 8.7
-    FINAL_Y = -8.6
+    FINAL_X = 7.5
+    FINAL_Y = -9
     INITITALZ = -9
     FINAL_Z = -13.5
 

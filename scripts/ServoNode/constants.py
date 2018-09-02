@@ -1,6 +1,6 @@
-#ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
+ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
-ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
+# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
 

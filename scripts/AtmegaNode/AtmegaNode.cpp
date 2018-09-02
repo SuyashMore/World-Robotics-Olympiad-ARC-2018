@@ -1,5 +1,4 @@
 #include "ros/ros.h"
-#include<chrono>
 
 #include "Navigation.cpp"
 
@@ -28,7 +27,6 @@ ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
 
 
-	auto begin = std::chrono::steady_clock::now();
 
 int main(int argc,char **argv)
 {
@@ -81,22 +79,11 @@ int cbrate=0;
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
 	
-	auto present  = std::chrono::steady_clock::now();
 	// Check for Arm Signals
 	if(enableArmControl)
 	{
 		navFlag=false;
 		handleArmSignal();
-	}
-	cbr++;
-	if((std::chrono::duration_cast<std::chrono::microseconds>(present-begin).count()) >=1000000)
-	{
-		if(cbr!=0)
-			cbrate=cbr;
-		cbr=0;
-
-	 begin  = std::chrono::steady_clock::now();
-		
 	}
 
 	string m;

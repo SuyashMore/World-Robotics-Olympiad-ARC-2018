@@ -70,6 +70,7 @@ void processPID(botData& newSensor,botData& oldSensor,Motor& motor)
     }
     frontpwm -= (fronterrorprevious - fronterror)*kd;
     backpwm -= (backerrorprevious - backerror)*kd;
+	cout<<"Front Error:"<<fronterror<<",Previous Front Error:"<<fronterrorprevious<<endl;
     
     motor.PWM[MOTOR_FRONT] = Vmap(frontpwm, F_MOTOR_MAP_INLOW, F_MOTOR_MAP_INHIGH, F_MOTOR_MAP_OUTLOW, F_MOTOR_MAP_OUTHIGH);
     motor.PWM[MOTOR_BACK] = Vmap(backpwm, B_MOTOR_MAP_INLOW, B_MOTOR_MAP_INHIGH, B_MOTOR_MAP_OUTLOW, B_MOTOR_MAP_OUTHIGH);

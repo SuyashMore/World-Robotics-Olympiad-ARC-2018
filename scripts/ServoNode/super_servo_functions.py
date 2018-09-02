@@ -176,9 +176,9 @@ def move2standard():
 
 
 def pickupXYZ():
-    FINAL_X = 7.5
-    FINAL_Y = -9
-    INITITALZ = -9
+    FINAL_X = 9.3
+    FINAL_Y = -10.5
+    INITITALZ = -8
     FINAL_Z = -13.5
 
     SL4 = 2
@@ -201,8 +201,6 @@ def pickupXYZ():
     setSpeedAll(100)
 
     move2pos(FINAL_X,FINAL_Y,-9)
-    #setTransformedAngle(4,ID_4_ANGLE)
-    setSpeedAll(140)
 
     time.sleep(SLE)
     

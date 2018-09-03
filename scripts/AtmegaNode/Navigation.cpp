@@ -266,7 +266,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
       if(newSensor.tofFlag==false)
           followLine(newSensor,oldSensor,motor);
-      else if(balanceWithTOF(300,newSensor,motor) && processPID(newSensor,oldSensor,motor))
+      else if(balanceWithTOF(250,newSensor,motor) && processPID(newSensor,oldSensor,motor))
         {
           itr=14;
           motor.bot_Stop();

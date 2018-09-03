@@ -269,7 +269,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
             processPID(newSensor,oldSensor,motor);
             motor.bot_Forward_withPWMm(100);
           }
-      else if(balanceWithTOF(220,newSensor,motor) && processPID(newSensor,oldSensor,motor))
+      else if(balanceWithTOF(190,newSensor,motor) && processPID(newSensor,oldSensor,motor))
         {
           itr=14;
           motor.bot_Stop();

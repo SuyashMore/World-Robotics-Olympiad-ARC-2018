@@ -17,7 +17,7 @@ int strafeItr=0;
 int maxStrafeItr = 190;
 
 int tfi=0;
-int maxTf = 120;
+int maxTf = 40;
 
 
 
@@ -273,7 +273,8 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
             processPID(newSensor,oldSensor,motor);
             motor.bot_Forward_withPWMm(150);
           }
-      else if(balanceWithTOF(190,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+      else if(balanceWithTOF(180,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+
         {
           tfi++;
           cout<<"Balancing with TOF"<<endl;
@@ -289,6 +290,10 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
             state.executeStep8=true;
             stackBlock();
           }
+	  else
+	  {
+		K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+	  }
         }
     }
     //Step:8 ----> Bot-Stop
@@ -395,11 +400,11 @@ bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor)
   {
     if(delta>0)
     {
-      motor.bot_Backward_withPWMm(150);
+      motor.bot_Backward_withPWMm(90);
     }
     else
     {
-      motor.bot_Forward_withPWMm(150);
+      motor.bot_Forward_withPWMm(90);
     }
     return false;
   }

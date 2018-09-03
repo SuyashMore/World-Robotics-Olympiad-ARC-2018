@@ -19,7 +19,7 @@ using namespace std;
 
 // Flag Params
 #define TOF_FLAG_MIN_THRESH 20
-#define TOF_FLAG_MAX_THRESH 300
+#define TOF_FLAG_MAX_THRESH 210
 
 
 // PWM MAP VARs

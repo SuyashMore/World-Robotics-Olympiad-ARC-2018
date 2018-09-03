@@ -273,7 +273,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
             processPID(newSensor,oldSensor,motor);
             motor.bot_Forward_withPWMm(150);
           }
-      else if(balanceWithTOF(180,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+      else if(balanceWithTOF(170,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
 
         {
           tfi++;

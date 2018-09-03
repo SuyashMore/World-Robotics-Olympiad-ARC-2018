@@ -290,13 +290,19 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
     else if (state.executeStep75)
     {
-      tfi++;
-      if(tfi<maxTf)
-      {
+        cout<<"TFI:="<<tfi<<endl;
         K_processPID(newSensor,oldSensor,motor,105,80,0.11);
         motor.bot_Forward_withPWMm(0);
-      }
-      else
+        if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
+        {
+          tfi++;
+        }
+        else
+        {
+          tfi=0;
+        }
+      
+      if(tfi >=LF_MAX)
       {
         motor.bot_Stop();
         stopFlag=true;

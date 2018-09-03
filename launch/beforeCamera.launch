@@ -1,0 +1,16 @@
+<launch>
+   
+  <node name ="serial_node" pkg = "rosserial_python"  type="serial_node.py"  output="screen" >
+   <param name="port" value="/dev/ttyUSB0"/>
+   <param name="baud" value="57600" />
+  </node>
+
+
+
+  <node name = "Atmega_listener" pkg = "Jetson" type = "AtmegaNode.cpp" output="screen" >  
+  </node>
+  <node name = "Dynamixel_listener" pkg = "Jetson" type = "DynamixelNode.py" output="screen"></node>
+
+  
+
+</launch>

@@ -206,7 +206,7 @@ struct botData
 
 	bool isFrontTurnComplete()
 	{
-  		if ((lsaFront[2] || lsaFront[3] || lsaFront[4] || lsaFront[5] || lsaFront[6]))
+  		if (lsaFront[3] || lsaFront[4] || lsaFront[5])
     		return true;
   		else
     		return false;

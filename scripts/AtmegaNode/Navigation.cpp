@@ -104,12 +104,12 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       if(state.digiCounter<1)
       {   
           itr=1;
-          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
+          motor.strafe_Right_withPWM(12);
       }
       else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
       {
           itr=2;
-          motor.strafe_Right_withPWM(FORWARD_MOTION_PWM);
+          motor.strafe_Right_withPWM(120);
       }
       else if(newSensor.isFrontTurnComplete())
       {

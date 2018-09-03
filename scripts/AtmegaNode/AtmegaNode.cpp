@@ -32,7 +32,7 @@ int main(int argc,char **argv)
 {
 	ros::init(argc,argv,"Atmega_listener");
 	ros::NodeHandle n;
-	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",1,inputCallback);
+	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
 
 

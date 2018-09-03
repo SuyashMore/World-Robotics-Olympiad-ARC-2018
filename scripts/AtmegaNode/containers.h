@@ -212,6 +212,14 @@ struct botData
 		return false;
 	}
 
+	bool isBackAnyBlack()
+	{
+		for(bool x:lsaBack)
+			if(x)
+				return (x);
+		return false;
+	}
+
 	bool isFrontTurnComplete()
 	{
   		if (lsaFront[3] || lsaFront[4] || lsaFront[5])

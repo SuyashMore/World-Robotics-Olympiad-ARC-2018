@@ -14,7 +14,7 @@ bool temp =true;
 bool temp2=true;
 
 int strafeItr=0;
-int maxStrafeItr = 60;
+int maxStrafeItr = 150;
 
 
 bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor);
@@ -172,7 +172,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
           motor.bot_Forward_withPWM(100);
           processPID(newSensor,oldSensor,motor);
         }
-        else if(trafeItr  <= int((maxStrafeItr)*2/3 )
+        else if(strafeItr  <= int((maxStrafeItr)*2/3 ))
         {
           motor.strafe_Right_withPWM(100);
         }

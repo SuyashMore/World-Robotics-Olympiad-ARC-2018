@@ -192,6 +192,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         stopFlag=true;
         pickupBlock();
         state.executeStep5=true;
+        temp=true;
       }
 
     }
@@ -202,7 +203,13 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
     else if(state.executeStep5)
     {
-      if(!newSensor.isFrontAnyBlack() || !newSensor.isBackAnyBlack())
+      if(temp)
+      {
+        disableCordinator();
+        temp=false;  
+      }
+      
+      if(!newSensor.isFrontTurnComplete())
       {
         itr=9;
         motor.strafe_Left_withPWM(90);
@@ -216,7 +223,6 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         state.digiCounter=0;
         stopFlag=true;
         temp =true;
-        disableCordinator();
       }
     }
 

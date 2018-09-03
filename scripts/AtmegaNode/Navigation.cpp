@@ -234,7 +234,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       if(state.digiCounter<1)
         {
           itr=11;
-          followLineBackpwm(newSensor,oldSensor,motor,100);
+          followLineBackpwm(newSensor,oldSensor,motor,150);
       }
 
       else
@@ -267,7 +267,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       if(newSensor.tofFlag==false)
           {
             processPID(newSensor,oldSensor,motor);
-            motor.bot_Forward_withPWMm(100);
+            motor.bot_Forward_withPWMm(150);
           }
       else if(balanceWithTOF(190,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
         {
@@ -386,11 +386,11 @@ bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor)
   {
     if(delta>0)
     {
-      motor.bot_Backward_withPWMm(BALANCE_WITH_TOF_PWM);
+      motor.bot_Backward_withPWMm(150);
     }
     else
     {
-      motor.bot_Forward_withPWMm(BALANCE_WITH_TOF_PWM);
+      motor.bot_Forward_withPWMm(150);
     }
     return false;
   }

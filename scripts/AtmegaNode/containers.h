@@ -184,6 +184,14 @@ struct botData
 		for(bool x:lsaFront)
 			if(x)
 				return (!x);
+		return true;
+	}
+
+	bool isFrontAnyBlack()
+	{
+		for(bool x:lsaFront)
+			if(x)
+				return (x);
 		return false;
 	}
 

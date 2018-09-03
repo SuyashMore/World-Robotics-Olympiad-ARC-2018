@@ -202,7 +202,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
     else if(state.executeStep5)
     {
-      if(!newSensor.isFrontTurnComplete())
+      if(!newSensor.isFrontAnyBlack())
       {
         itr=9;
         motor.strafe_Left_withPWM(100);
@@ -260,7 +260,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
       if(newSensor.tofFlag==false)
           followLine(newSensor,oldSensor,motor);
-      else if(balanceWithTOF(220,newSensor,motor) && followLine(newSensor,oldSensor,motor))
+      else if(balanceWithTOF(300,newSensor,motor) && followLine(newSensor,oldSensor,motor))
         {
           itr=14;
           motor.bot_Stop();

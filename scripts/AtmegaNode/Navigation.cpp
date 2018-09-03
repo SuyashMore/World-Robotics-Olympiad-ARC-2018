@@ -16,6 +16,10 @@ bool temp2=true;
 int strafeItr=0;
 int maxStrafeItr = 190;
 
+int tfi=0;
+int maxTf = 120;
+
+
 
 bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor);
 
@@ -271,15 +275,20 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
           }
       else if(balanceWithTOF(190,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
         {
-          itr=14;
-          motor.bot_Stop();
-          stopFlag=true;
+          tfi++;
+          cout<<"Balancing with TOF"<<endl;
+          if(tfi>=maxTf)
+          {
+            itr=14;
+            motor.bot_Stop();
+            stopFlag=true;
 
-          state.digiCounter=0;
+            state.digiCounter=0;
 
-          state.executeStep7=false;
-          state.executeStep8=true;
-          stackBlock();
+            state.executeStep7=false;
+            state.executeStep8=true;
+            stackBlock();
+          }
         }
     }
     //Step:8 ----> Bot-Stop

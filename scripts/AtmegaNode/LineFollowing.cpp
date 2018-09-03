@@ -158,10 +158,10 @@ bool K_processPID(botData& newSensor,botData& oldSensor,Motor& motor,float outH,
     return true;   
 }
 
-bool K_followLine(botData& newSensor,botData& oldSensor,Motor& motor,float outH,float outLow,float Kd)
+bool K_followLine(botData& newSensor,botData& oldSensor,Motor& motor,float outH,float outLow,float Kd,float Velocity)
 {
   K_processPID(newSensor,oldSensor,motor,outH,outLow,Kd);
-  motor.bot_Forward_withPWMm(FORWARD_MOTION_PWM);
+  motor.bot_Forward_withPWMm(Velocity;);
   return true; 
 }
 

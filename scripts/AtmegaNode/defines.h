@@ -34,7 +34,7 @@ using namespace std;
 #define B_MOTOR_MAP_OUTHIGH 160
 
 // TOF Params(cm)
-#define TOF_ERROR_THRESH 20
+#define TOF_ERROR_THRESH 8
 #define BALANCE_WITH_TOF_PWM 100
 
 // UNIT TEST PWM

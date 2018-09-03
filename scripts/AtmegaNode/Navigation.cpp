@@ -277,24 +277,33 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
         {
           tfi++;
+          itr=14;
           cout<<"Balancing with TOF"<<endl;
           if(tfi>=maxTf)
           {
-            itr=14;
-            motor.bot_Stop();
-            stopFlag=true;
-
-            state.digiCounter=0;
-
             state.executeStep7=false;
-            state.executeStep8=true;
-            stackBlock();
+            state.executeStep75=true;
+            tfi=0;
           }
-	  else
-	  {
-		K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-	  }
         }
+    }
+
+    else if (state.executeStep75)
+    {
+      tfi++;
+      if(tfi<maxTf)
+      {
+        K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+        motor.bot_Forward_withPWMm(0);
+      }
+      else
+      {
+        motor.bot_Stop();
+        stopFlag=true;
+        state.digiCounter=0;
+        state.executeStep75=false;
+        state.executeStep8=true;
+      }
     }
     //Step:8 ----> Bot-Stop
     else if(state.executeStep8)

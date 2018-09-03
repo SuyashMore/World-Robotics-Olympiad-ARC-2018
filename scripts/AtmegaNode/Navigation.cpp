@@ -303,6 +303,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         state.digiCounter=0;
         state.executeStep75=false;
         state.executeStep8=true;
+        stackBlock();
       }
     }
     //Step:8 ----> Bot-Stop

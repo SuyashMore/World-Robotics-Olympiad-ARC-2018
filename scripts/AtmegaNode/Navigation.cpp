@@ -167,15 +167,20 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
       if(strafeItr<=maxStrafeItr)
       {
         itr=7;
-        if(strafeItr  <= int((maxStrafeItr)/2)    )
+        if(strafeItr  <= int((maxStrafeItr)/3)    )
         {
-          motor.bot_Forward_withPWM(120);
+          motor.bot_Forward_withPWM(100);
           processPID(newSensor,oldSensor,motor);
         }
-        else
+        else if(trafeItr  <= int((maxStrafeItr)*2/3 )
         {
           motor.strafe_Right_withPWM(100);
         }
+        else
+        {
+          motor.bot_Forward_withPWM(100);
+        }
+
         strafeItr++;
       }
       

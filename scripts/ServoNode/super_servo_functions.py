@@ -176,8 +176,8 @@ def move2standard():
 
 
 def pickupXYZ():
-    FINAL_X = 8
-    FINAL_Y = -8.3
+    FINAL_X = 9.8
+    FINAL_Y = -6.8
     INITITALZ = -9
     FINAL_Z = -13.5
 
@@ -194,7 +194,6 @@ def pickupXYZ():
     init()
     enableAll()
     
-
     gripDisable()
     # raw_input("Press  Any Key to Pickup")
 
@@ -247,41 +246,28 @@ def pickupXYZ():
     # time.sleep(SL3)
 
     # raw_input("Press Any Key to Enable Grip")
-    move2pos( 9,-8.3,-9)
+    move2pos( 10,-7,-9)
     time.sleep(SLY)
     
 
-    move2pos( 8.5,-8.3,-9)
+    move2pos( 10,-7,-9.5)
     time.sleep(SLY)
    
-    move2pos( 8.4,-8.3,-9.4)
+    move2pos( 9.6,-7,-10)
     time.sleep(SLY)
 
-    move2pos( 8.4,-8.3,-9.5)
-    time.sleep(SLY)
-   
-    move2pos( 8.4,-8.0,-9.5)
-    time.sleep(SLY)
-
-    move2pos( 8.4,-8.3,-9.5)
-    time.sleep(SLY)
-
-    move2pos( 8.5,-8.3,-10)
+    move2pos( 9.6,-7,-10.5)
     time.sleep(SLY)
     
-
-    move2pos( 8.2,-8.3,-10.5)
+    move2pos( 9.6,-7,-11)
     time.sleep(SLY)
     
-    move2pos( 8.2,-8.3,-11)
-    time.sleep(SLY)
-    
-    move2pos( 8.2,-8.3,-11.5)
+    move2pos( 9.6,-7,-11.5)
     time.sleep(SLY)
     
 
     
-    move2pos(8.2,-8.3,-13.5)
+    move2pos(9.6,-7,-13.5)
     time.sleep(SLY)
 
 

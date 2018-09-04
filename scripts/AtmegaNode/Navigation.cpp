@@ -293,13 +293,14 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         cout<<"TFI:="<<tfi<<endl;
         K_processPID(newSensor,oldSensor,motor,105,80,0.11);
         motor.bot_Forward_withPWMm(0);
-        if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
+       if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
         {
           tfi++;
         }
         else
         {
           tfi=0;
+	  cout<<"Resetting"<<endl;
         }
       
       if(tfi >=LF_MAX)

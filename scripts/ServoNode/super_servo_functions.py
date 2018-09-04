@@ -116,7 +116,7 @@ def gripDisable():
     setTransformedAngle(5,constants.GRIPCLOSE)
     
 
-def stackBlock():
+def stackBlockOld():
     #Sleep Constants
     SL1 = 1
     SL2 = 1
@@ -148,6 +148,47 @@ def stackBlock():
     time.sleep(SL3)
     gripDisable()
     time.sleep(SL3)
+    setTransformedAngle(1,12) 
+
+    # raw_input("Take the Bot Back ! ")
+
+    setTransformedAngle(1,12)
+    time.sleep(SL1)
+    setTransformedAngle(2,50)
+    time.sleep(SL1)
+    setTransformedAngle(1,12)
+    time.sleep(SL1)
+    setTransformedAngle(2,46)
+    time.sleep(SL1)
+    setTransformedAngle(1,12)
+    time.sleep(SL1)
+    setTransformedAngle(2,45)
+    time.sleep(SL1)
+    setTransformedAngle(1,16)
+    time.sleep(SL1)
+
+def stackBlock():
+    #Sleep Constants
+    SL1 = 0.7
+    SL2 = 1
+    SL3 = 3.5
+    SLS=2
+    init()
+    enableAll()
+    setSpeedAll(150)
+
+    # raw_input("Press Any Key to Enable Grip")
+    gripEnable()   
+
+    # raw_input("Press Any Key to Begin Motion")
+
+
+    setTransformedAngle(3,-140)
+    setTransformedAngle(1,10)
+    setTransformedAngle(2,60)
+    time.sleep(SL3)
+    gripDisable()
+    time.sleep(SL2)
     setTransformedAngle(1,12) 
 
     # raw_input("Take the Bot Back ! ")

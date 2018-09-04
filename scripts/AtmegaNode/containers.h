@@ -462,6 +462,8 @@ struct gameState
   bool executeStep6=false;
   bool executeStep7=false;
   bool executeStep75=false;
+  bool executeStep76=false;
+  bool executeStep77=false;
   bool executeStep8=false;
   bool executeStep9=false;
   bool executeStep10=false;

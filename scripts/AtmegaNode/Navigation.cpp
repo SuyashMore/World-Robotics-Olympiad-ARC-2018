@@ -19,6 +19,9 @@ int maxStrafeItr = 190;
 int tfi=0;
 int maxTf = 40;
 
+int xitr = 0;
+int itBF = 30;
+
 
 
 bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor);
@@ -309,10 +312,34 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         stopFlag=true;
         state.digiCounter=0;
         state.executeStep75=false;
-        state.executeStep8=true;
+        state.executeStep76=true;
         stackBlock();
       }
     }
+
+    else if(state.executeStep76)
+    {
+      if(xitr<= (itBF/2))
+      {
+        motor.bot_Backward_withPWM(80);
+        if(xitr==itBF/2)
+        {
+          motor.bot_Stop();
+          stopFlag=true;
+        }
+      }
+      else
+      {
+        motor.bot_Forward_withPWM(80);
+      }
+      xitr++;
+      if(xitr>itBF)
+      {
+        state.executeStep76=false;
+        state.executeStep8=true;
+      }
+    }
+
     //Step:8 ----> Bot-Stop
     else if(state.executeStep8)
     {

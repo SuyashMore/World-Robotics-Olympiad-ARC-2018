@@ -35,7 +35,7 @@ struct botData
 		std::cout<<"# errorBack:"<<errorBack<<std::endl;
 
 		std::cout<<"Tof Front:"<<tofFront<<std::endl;
-		// std::cout<<"Tof Back:"<<tofBack<<std::endl;
+		 std::cout<<"Tof Back:"<<tofBack<<std::endl;
 		std::cout<<"digiLeft:"<<digiLeft<<std::endl;
 		// std::cout<<"digiRight:"<<digiRight<<std::endl;
 	}

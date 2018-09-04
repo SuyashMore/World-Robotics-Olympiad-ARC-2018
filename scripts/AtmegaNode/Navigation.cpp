@@ -20,7 +20,7 @@ int tfi=0;
 int maxTf = 40;
 
 int xitr = 0;
-int itBF = 30;
+int itBF = 120;
 
 
 

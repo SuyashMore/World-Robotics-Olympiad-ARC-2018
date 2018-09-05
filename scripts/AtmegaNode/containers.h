@@ -452,11 +452,15 @@ struct gameState
   int reading_tof_digital=0;
   int reading_tof_analog=0;
 
+  int currentStepIndex=1;
+
   bool executeStep1=true;
   bool executeStep2=true;
   int step2Counter=0;
 
   bool executeStep3=false;
+  bool executeStep35=false;
+  bool executeStep36=false;
   bool executeStep4=false;
   bool executeStep5=false;
   bool executeStep6=false;

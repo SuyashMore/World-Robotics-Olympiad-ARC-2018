@@ -1,6 +1,6 @@
 #include "ros/ros.h"
 
-#include "Navigation.cpp"
+#include "NavigationMaster.cpp"
 
 // include Messages
 #include "std_msgs/String.h"

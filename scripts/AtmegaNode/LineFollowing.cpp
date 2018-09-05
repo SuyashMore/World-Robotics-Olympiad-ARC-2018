@@ -172,6 +172,13 @@ bool followLine(botData& newSensor,botData& oldSensor,Motor& motor)
    return true;
 }
 
+bool followLineBack(botData& newSensor,botData& oldSensor,Motor& motor)
+{ 
+	processPID(newSensor,oldSensor,motor);
+   	motor.bot_Backward_withPWMm(FORWARD_MOTION_PWM);
+   	return true;
+}
+
 bool followLineBackpwm(botData& newSensor,botData& oldSensor,Motor& motor,int pwm = 100)
 {
   processPID(newSensor,oldSensor,motor); 

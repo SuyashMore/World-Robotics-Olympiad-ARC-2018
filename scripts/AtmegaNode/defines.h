@@ -34,8 +34,23 @@ using namespace std;
 #define B_MOTOR_MAP_OUTLOW 50
 #define B_MOTOR_MAP_OUTHIGH 160
 
+#define STRAFE_RIGHT_2_MAIN_LINE_PWM 160
+#define STRAFE_PICKUP 100
+#define SPOT_ROTATE_PWM 100
+#define FOLLOW_LINE_BACK_PWM 150
+
+// Iterator Limits
+#define PICKUP_1_ITR_MAX 30
+#define PICKUP_2_ITR_MAX 30
+#define PICKUP_3_ITR_MAX 30
+
+// Stacking Params
+#define TOF_FRONT_BALANCE_DISTANCE 170
+#define PULL_AND_PUSH_ITR 60
+
 // TOF Params(cm)
 #define TOF_ERROR_THRESH 8
+#define TOF_ERROR_THRESH_SIDE 8
 #define BALANCE_WITH_TOF_PWM 100
 
 // UNIT TEST PWM

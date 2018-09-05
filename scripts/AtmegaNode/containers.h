@@ -12,7 +12,7 @@ struct botData
 	int errorFront=0;
 	int errorBack=0;
 	int tofFront=0;
-	int tofBack=0;
+	int tofSide=0;
 	bool digiLeft=0;
 	bool digiRight=0;
 	bool preserveHistoryF = false;
@@ -35,7 +35,7 @@ struct botData
 		std::cout<<"# errorBack:"<<errorBack<<std::endl;
 
 		std::cout<<"Tof Front:"<<tofFront<<std::endl;
-		 std::cout<<"Tof Back:"<<tofBack<<std::endl;
+		 std::cout<<"Tof Side:"<<tofSide<<std::endl;
 		std::cout<<"digiLeft:"<<digiLeft<<std::endl;
 		// std::cout<<"digiRight:"<<digiRight<<std::endl;
 	}
@@ -51,7 +51,7 @@ struct botData
 		errorFront = b.errorFront;
 		errorBack=b.errorBack;
 		tofFront=b.tofFront;
-		tofBack=b.tofBack;
+		tofSide=b.tofSide;
 		digiLeft=b.digiLeft;
 		digiRight=b.digiRight;
 		preserveHistoryF=b.preserveHistoryF;
@@ -68,7 +68,7 @@ struct botData
 		errorFront = b.errorFront;
 		errorBack=b.errorBack;
 		tofFront=b.tofFront;
-		tofBack=b.tofBack;
+		tofSide=b.tofSide;
 		digiLeft=b.digiLeft;
 		digiRight=b.digiRight;
 		preserveHistoryF=b.preserveHistoryF;
@@ -85,7 +85,7 @@ struct botData
 		errorFront = 0;
 		errorBack=0;
 		tofFront=0;
-		tofBack=0;
+		tofSide=0;
 		digiLeft=0;
 		digiRight=0;
 		preserveHistoryF=false;
@@ -161,7 +161,7 @@ struct botData
 			index = message.find(_8_MESSAGE)+1;
 			length = message.find(_9_MESSAGE_END) - index;
 			
-			tofBack = stoi( message.substr(index,length));
+			tofSide = stoi( message.substr(index,length));
 		}
 
 	bool isFrontAllWhite()

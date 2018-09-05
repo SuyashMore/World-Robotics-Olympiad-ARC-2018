@@ -319,9 +319,9 @@ def pickupXYZ():
     time.sleep(SL3)
 
     # mov2angle(0,-90,90,0,0) 19,0,-6
-    move2pos(FINAL_X+3,FINAL_Y,-12)
+    move2pos(FINAL_X+5,FINAL_Y,-12)
     time.sleep(SLS)
-    move2pos(FINAL_X+4,FINAL_Y/2,-9)
+    move2pos(FINAL_X+5,FINAL_Y/2,-9)
     time.sleep(SLS)
     move2pos(FINAL_X+5,FINAL_Y/2,-4)
     time.sleep(SLS)

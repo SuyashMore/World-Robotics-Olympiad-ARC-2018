@@ -4,7 +4,6 @@
 #include "LineFollowing.cpp"
 
 
-
 // Create An Global Instance of the gameState Object
 gameState state;
 int itr = 0;
@@ -125,7 +124,7 @@ int temp01=true;
 int miniEx01=1;
 int strafeItr01=0;
 int strafeMode=1;
-bool nav_Rotate_n_Pickup_block_from_MainJunction_Supply_and_return(botData& newSensor,botData& oldSensor,Motor& motor)
+bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	// Mini - Step 1 : Handle Rotation and Enable 90 degrees
 	if(miniEx01==1)
@@ -208,13 +207,12 @@ bool nav_Rotate_n_Pickup_block_from_MainJunction_Supply_and_return(botData& newS
       
       	if(!newSensor.isFrontTurnComplete())
       	{
-        	motor.strafe_Left_withPWM(90);
+        	motor.strafe_Left_withPWM(STRAFE_PICKUP);
       	}
       	else
       	{
 	        // Reset the Digi-Counter
 	        state.digiCounter=0;
-	        stopFlag=true;
 	        temp01 =true;
 
 	        miniEx01 = 4;
@@ -243,9 +241,8 @@ bool nav_Rotate_n_Pickup_block_from_MainJunction_Supply_and_return(botData& newS
           	{
           		miniEx01=1;
 
-          		miniEx01=1;
-				strafeItr01=0;
-				strafeMode=1;
+				      strafeItr01=0;
+				      strafeMode=1;
             	return true;
           	}
       	}	
@@ -255,11 +252,12 @@ bool nav_Rotate_n_Pickup_block_from_MainJunction_Supply_and_return(botData& newS
 
 }
 
+
 // Stack Block at Horizontal Distance From the Wall
 int temp02=true;
 int miniEx02=1;
 int q=0;
-bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,Motor& motor )
+bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor )
 {
 
 	if(miniEx02==1)   			//Reach at an Balancing Distance from the TOF and Balance
@@ -323,7 +321,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
       	{
         	motor.bot_Forward_withPWM(80);
       	}
-      	qr++;
+      	q++;
       	if(q>PULL_AND_PUSH_ITR)
       	{
         	miniEx02=5;
@@ -348,6 +346,208 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 
 	return false;
 }
+
+
+int miniEx03=1;
+int temp03=true;
+int strafeItr03=0;
+int strafeMode3=1;
+bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& motor)
+{
+	if(miniEx03==1)    //Step 1: Spot Right
+	{
+		if(newSensor.isFrontTurnComplete() && temp03)
+		{
+			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+		}
+		else if(!newSensor.isFrontTurnComplete())
+		{
+			temp03=false;
+      motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+		}
+		else
+		{
+			miniEx03=2;
+		}
+	}
+	else if(miniEx03==2) //Step 2: Go Forward Till TOF Sensor shows Infinity
+	{
+		if(newSensor.tofSide>TOF_SIDE_DISTANCE || newSensor.tofSide<=0)
+		{
+			followLine(newSensor,oldSensor,motor);
+		}
+		else
+		{
+			motor.bot_Stop();
+			stopFlag=true;
+			miniEx03=3;
+			temp03=true;
+		}
+	}
+	else if(miniEx03==3)         //Step 3: Spot Rotate Left till Perpendicular to the Line
+	{
+		if(newSensor.isFrontTurnComplete() && temp03)
+		{
+			motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+		  state.digiCounter=0;
+    }
+
+		else if(!newSensor.isFrontTurnComplete() && state.digiCounter<1)
+		{
+			temp03=false;
+      motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+		}
+		else
+		{
+			motor.bot_Stop();
+			miniEx03=4;
+		}
+	}
+	else if(miniEx03==4)         //Step 4: Strafe Forward and Pickup the Block
+	{
+		if(strafeMode3 == 1)			//Strafe Forward
+  		{
+  			if(strafeItr03  <= PICKUP_1_ITR_MAX)
+	        {
+	          motor.bot_Forward_withPWM(STRAFE_PICKUP);
+	          processPID(newSensor,oldSensor,motor);
+	        }
+	        else
+	        	{strafeMode3=2;
+	        	strafeItr03=0;}
+  		}
+  		else if(strafeMode3 == 2)	//Strafe Right
+  		{
+  			if(strafeItr03  <=  PICKUP_2_ITR_MAX)
+	        {
+	          motor.strafe_Right_withPWM(STRAFE_PICKUP);
+	        }
+	        else
+	        	{strafeMode3=3;
+	        	strafeItr03=0;}
+  		}
+  		else if(strafeMode3 == 3)	//Strafe Forward
+  		{	
+  			if(strafeItr03  <=  PICKUP_3_ITR_MAX)
+	        {
+	          motor.bot_Forward_withPWM(STRAFE_PICKUP);
+	        }
+	        else
+	        {
+	        	strafeItr03=0;
+	        	strafeMode3=4;
+	        }
+
+  		}
+  		else if(strafeMode3 == 4)
+  		{
+  			motor.bot_Stop();
+	        stopFlag=true;
+	        pickupBlock();
+
+	        miniEx03 = 5;
+	        temp03=true;
+	        state.digiCounter=0;
+  		}
+
+  		strafeItr03++;
+	}
+	else if(miniEx03==5)         //Step 5: Strafe Back on the Line
+	{
+		if(state.digiCounter<1)
+		{
+			motor.bot_Backward_withPWM(100);
+		}
+		else if(newSensor.isFrontTurnComplete())
+		{
+			motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+		}
+		else 
+		{
+			state.digiCounter=0;
+			miniEx03=6;
+		}
+	}
+
+	else if(miniEx03==6)         //Step 6 : Return Back to the Main Junction and Spot Rotate-Right
+	{
+		if(state.digiCounter<1)
+		{
+			followLine(newSensor,oldSensor,motor);
+		}
+		else if(newSensor.isFrontTurnComplete() && temp03)
+		{
+			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+		}
+		else if(!newSensor.isFrontTurnComplete())
+		{
+			temp03=false;
+			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+		}
+		else
+		{
+			temp03=true;
+			strafeItr02=0;
+			strafeMode2=1;
+			miniEx03=1;
+			return true;
+		}
+	}
+	return false;
+
+}
+
+
+int miniEx04=1;
+int temp04=true;
+int strafeItr04=0;
+int strafeMode4=1;
+bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor& motor)
+{
+	if(miniEx04==1)
+	{
+		if(newSensor.isFrontTurnComplete() && temp04)
+		{
+			motor.spot_Right_withPWM(SPOT_LEFT_PWM);
+		}
+		else if(!newSensor.isFrontTurnComplete())
+		{
+			temp04=false;
+			motor.spot_Right_withPWM(SPOT_LEFT_PWM);
+		}
+		else
+		{
+			miniEx04=2;
+			temp04=false;
+		}
+
+	}
+	else if(miniEx04 == 2)
+	{
+		if(newSensor.tofFront < DELIVERY_CHUTE_STOP_DISTANCE)
+		{
+			followLine(newSensor,oldSensor,motor);
+		}
+		else if(balanceWithTOF(DELIVERY_CHUTE_STOP_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+		{
+			motor.bot_Stop();
+			stopFlag=true;
+			miniEx04=3;
+			enableCordinator();
+		}
+	}
+	else if(miniEx04 == 3)
+	{
+		// Add Delay
+		miniEx04=4;
+	}
+	else if(miniEx04 == 4)
+	{
+		
+	}
+}
+
+
 
 // Navigates to Pickup the Block from Supply Line
 void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
@@ -665,6 +865,7 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
 
 }
 
+// Navigates to Pickup the Block from White Spaces
 void navigate3(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	state.updateDigiCounter(newSensor,oldSensor,motor);
@@ -736,7 +937,7 @@ void navigate3(botData& newSensor,botData& oldSensor,Motor& motor)
     else if(state.executeStep35)
     {
     	
-    	if(state.tofSide > 140 && temp)
+    	if(newSensor.tofSide > 140 && temp)
     	{
     		followLine(newSensor,oldSensor,motor);
     	}
@@ -1018,16 +1219,15 @@ void navigate3(botData& newSensor,botData& oldSensor,Motor& motor)
 }
 
 
-
 void mainLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 {
   if(!stopFlag)
     {
-            // navigates from gome 2 stack the block with the block in Arm
+            // navigates from home 2 stack the block with the block in Arm
       navigate2(newSensor,oldSensor,motor);
       
             // Navigates from home 2 pickup the block and Stack
-      // navigate2(newSensor,oldSensor,motor);
+      // navigate2 (newSensor,oldSensor,motor);
     }
   else
     {

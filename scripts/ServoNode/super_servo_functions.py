@@ -212,25 +212,28 @@ def move2standard():
     init()
 
     enableAll()
+    setSpeedAll(150)    
 
     move2angle(0,-90,90,0,0)
 
 
 def pickupXYZ():
-    FINAL_X = 9.8
-    FINAL_Y = -6.8
+    FINAL_X = 12
+    FINAL_Y = -8.5
     INITITALZ = -9
     FINAL_Z = -13.5
 
-    SL4 = 2
+    SL4 = 0.4
     SL3 = 1.0
-    SL2 = 0.8
-    SL1 = 0.45
-    SLY = 1
-    SLS=2
+    SL2 = 0.1
+    SL1 = 0.15
+    SLY = 1.6
+    SLS=0.4
+    # SLS=1.1
     SLE =5
 
-    
+
+    cordinatorDisable()
 
     init()
     enableAll()
@@ -238,78 +241,38 @@ def pickupXYZ():
     gripDisable()
     # raw_input("Press  Any Key to Pickup")
 
-    setSpeedAll(100)
-
-    # move2pos(FINAL_X+1,FINAL_Y,-8.5)
-
-    # time.sleep(SLE)
-    # move2pos(FINAL_X,FINAL_Y,-8.8)
-
-    # time.sleep(SLE)
-    # move2pos(FINAL_X,FINAL_Y,-9)
-    # time.sleep(SLE)
-    
-    # move2pos(FINAL_X,FINAL_Y,-9.2)
-    # time.sleep(SLE)
-    
-    # setTransformedAngle(5,29)
-    # time.sleep(SL1)
-
-    # move2pos(FINAL_X,FINAL_Y,-9.5)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-    # time.sleep(SL1)
+    setSpeedAll(300)
 
 
-    # move2pos(FINAL_X,FINAL_Y,-9.8)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-    # time.sleep(SL1)
 
-
-    # move2pos(FINAL_X,FINAL_Y,-10)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-    # time.sleep(SL1)
-
-    # move2pos(FINAL_X,FINAL_Y,-11)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-    # time.sleep(SL1)
-
-    # move2pos(FINAL_X,FINAL_Y,-11.5)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-    # time.sleep(SL1)
-
-    # move2pos(FINAL_X,FINAL_Y,-11.5)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-    # time.sleep(SL1)
-
-    # move2pos(FINAL_X,FINAL_Y,FINAL_Z)
-    # #setTransformedAngle(4,ID_4_ANGLE)
-
-    # time.sleep(SL3)
-
-    # raw_input("Press Any Key to Enable Grip")
-    move2pos( 10,-7,-9)
+    move2pos( FINAL_X,FINAL_Y,-8.5)
     time.sleep(SLY)
+
+    raw_input("")
+
+    move2pos( FINAL_X,FINAL_Y,-9)
+    time.sleep(SL1)
     
 
-    move2pos( 10,-7,-9.5)
-    time.sleep(SLY)
+    move2pos( FINAL_X,FINAL_Y,-9.5)
+    time.sleep(SL1)
    
-    move2pos( 9.6,-7,-10)
-    time.sleep(SLY)
+    move2pos( FINAL_X,FINAL_Y,-10)
+    time.sleep(SL1)
 
-    move2pos( 9.6,-7,-10.5)
-    time.sleep(SLY)
+    move2pos( FINAL_X,FINAL_Y,-10.5)
+    time.sleep(SL1)
     
-    move2pos( 9.6,-7,-11)
-    time.sleep(SLY)
+    move2pos( FINAL_X,FINAL_Y,-11)
+    time.sleep(SL1)
     
-    move2pos( 9.6,-7,-11.5)
-    time.sleep(SLY)
+    move2pos( FINAL_X,FINAL_Y,-11.5)
+    time.sleep(SL1)
     
 
     
-    move2pos(9.6,-7,-13.5)
-    time.sleep(SLY)
+    move2pos(9.6,FINAL_Y,-13.5)
+    time.sleep(SL1)
 
 
 
@@ -317,6 +280,8 @@ def pickupXYZ():
     # time.sleep(SLE)
     gripEnable()
     time.sleep(SL3)
+
+    setSpeedAll(150)
 
     # mov2angle(0,-90,90,0,0) 19,0,-6
     move2pos(FINAL_X+5,FINAL_Y,-12)
@@ -329,6 +294,9 @@ def pickupXYZ():
     time.sleep(SL1)
     move2pos(FINAL_X+6.5,0,2)
     time.sleep(SL1)
+
+    move2angle(0,-45,0,-45,0)
+    time.sleep(SL4)
 
     move2standard()
 

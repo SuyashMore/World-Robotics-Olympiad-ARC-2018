@@ -48,6 +48,10 @@ using namespace std;
 #define TOF_FRONT_BALANCE_DISTANCE 170
 #define PULL_AND_PUSH_ITR 60
 
+// Block Params
+#define TOF_SIDE_DISTANCE 120
+#define DELIVERY_CHUTE_STOP_DISTANCE 200
+
 // TOF Params(cm)
 #define TOF_ERROR_THRESH 8
 #define TOF_ERROR_THRESH_SIDE 8
@@ -55,6 +59,24 @@ using namespace std;
 
 // UNIT TEST PWM
 #define UNIT_PWM  200
+
+// Block Shape And Color
+#define COLOR_RED 		1
+#define COLOR_BLUE 		2
+#define COLOR_GREEN 	3
+#define COLOR_YELLOW 	4
+#define COLOR_VIOLET 	5
+#define COLOR_ORANGE 	6
+
+// int FRAME[6][7] = {
+// 	{ }, 
+// 	{ },
+// 	{ },
+// 	{ },
+// 	{ },
+// 	{ }
+// }
+
 
 // Atmega-Output Message : f0000000b00000000w00s00l0r0t000y000e
 #define _1_MESSAGE 'f'
@@ -83,3 +105,4 @@ using namespace std;
 #define _OUTM_DIR "D"
 #define _OUTM_PWM "P"
 #define _OUT_DELAY "m"
+

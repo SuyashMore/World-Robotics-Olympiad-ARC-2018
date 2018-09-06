@@ -487,8 +487,8 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		else
 		{
 			temp03=true;
-			strafeItr02=0;
-			strafeMode2=1;
+			strafeItr03=0;
+			strafeMode3=1;
 			miniEx03=1;
 			return true;
 		}

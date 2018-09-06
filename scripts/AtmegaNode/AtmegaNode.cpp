@@ -4,6 +4,8 @@
 
 // include Messages
 #include "std_msgs/String.h"
+#include "std_msgs/Int16.h"
+
 #include "Jetson/ControlSignal.h"
 #include "Jetson/CtrlSigResponse.h"
 
@@ -22,6 +24,7 @@ Motor motor;
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
+void LidarCallBack(const std_msgs::Int16::ConstPtr& msg);
 
 ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
@@ -34,6 +37,7 @@ int main(int argc,char **argv)
 	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
+	ros::Subscriber lidarSub = n.subscribe("LIDAR_Data",100,LidarCallBack);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
@@ -124,6 +128,10 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	{
 		cout<<"Processing Arm !!!!!"<<endl;
 	}
-
-
 }
+void LidarCallBack(const std_msgs::Int16::ConstPtr& msg)
+{
+	Lidar = msg->data;
+}
+
+

@@ -4,6 +4,8 @@
 #include "utility.h"
 
 
+int Lidar=0;
+
 
 struct botData
 {
@@ -161,7 +163,7 @@ struct botData
 			index = message.find(_8_MESSAGE)+1;
 			length = message.find(_9_MESSAGE_END) - index;
 			
-			tofSide = stoi( message.substr(index,length));
+			tofSide = Lidar;
 		}
 
 	bool isFrontAllWhite()

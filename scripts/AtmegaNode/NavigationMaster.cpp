@@ -2,6 +2,10 @@
 
 #include "Navigation.cpp"
 
+
+// //Modify This Variable for Debugging Purpose
+// state.currentStepIndex=0;		
+
 void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(state.currentStepIndex == 1)		//Navigate to Main Line 

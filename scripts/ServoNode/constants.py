@@ -1,8 +1,11 @@
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
-ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
+ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
+
+ttyUSB_LIDAR = "/dev/ttyUSB1"
+LIDAR_BAUD = 115200
 
 DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/eshita/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"

@@ -233,8 +233,6 @@ def pickupXYZ():
     SLE =5
 
 
-    cordinatorDisable()
-
     init()
     enableAll()
     
@@ -248,7 +246,7 @@ def pickupXYZ():
     move2pos( FINAL_X,FINAL_Y,-8.5)
     time.sleep(SLY)
 
-    raw_input("")
+    
 
     move2pos( FINAL_X,FINAL_Y,-9)
     time.sleep(SL1)

@@ -33,7 +33,7 @@ using namespace std;
 
 #define B_MOTOR_MAP_INLOW  0
 #define B_MOTOR_MAP_INHIGH 3500
-#define B_MOTOR_MAP_OUTLOW 50
+#define B_MOTOR_MAP_OUTLOW 70
 #define B_MOTOR_MAP_OUTHIGH 160
 
 #define STRAFE_RIGHT_2_MAIN_LINE_PWM 160
@@ -47,8 +47,8 @@ using namespace std;
 #define PICKUP_3_ITR_MAX 30
 
 // Stacking Params
-#define TOF_FRONT_BALANCE_DISTANCE 170
-#define PULL_AND_PUSH_ITR 60
+#define TOF_FRONT_BALANCE_DISTANCE 180
+#define PULL_AND_PUSH_ITR 90
 
 // Block Params
 #define TOF_SIDE_DISTANCE 120

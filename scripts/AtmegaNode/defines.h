@@ -43,6 +43,7 @@ using namespace std;
 
 // Iterator Limits
 #define PICKUP_1_ITR_MAX 30
+#define PICKUP_1_ITR_MAX_2 80
 #define PICKUP_2_ITR_MAX 30
 #define PICKUP_3_ITR_MAX 30
 

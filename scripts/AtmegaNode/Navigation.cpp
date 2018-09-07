@@ -16,7 +16,7 @@ int strafeItr=0;
 int maxStrafeItr = 190;
 
 int tfi=0;
-int maxTf = 40;
+int maxTf = 20;
 
 int xitr = 0;
 int itBF = 120;
@@ -325,10 +325,10 @@ bool nav_PickupBlock_from__SupplyLine2(botData& newSensor,botData& oldSensor,Mot
     else if(miniEx01==2)
     {
 
-        if(strafeMode == 1)         //Strafe Forward
+      if(strafeMode == 1)         //Strafe Forward
         {
         cout<<"Currently Executing: Strafe Forward"<<endl;
-            if(strafeItr01  <= PICKUP_1_ITR_MAX)
+            if(strafeItr01  <= PICKUP_1_ITR_MAX_2)
             {
               motor.bot_Forward_withPWM(STRAFE_PICKUP);
               processPID(newSensor,oldSensor,motor);
@@ -447,13 +447,13 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 
 	if(miniEx02==1)   			//Reach at an Balancing Distance from the TOF and Balance
 	{
-		if(newSensor.tofFlag==false)
+		if(newSensor.tofFront>TOF_FRONT_BALANCE_DISTANCE)
         {
             cout<<"Currently Executing: Going Forward Till TOF Flag"<<endl;
     			processPID(newSensor,oldSensor,motor);
-    			motor.bot_Forward_withPWMm(150);
+    			motor.bot_Forward_withPWMm(200);
         }
-     	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+     	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor))
 		{
 			q++;
 			cout<<"Currently Executing: Balancing With TOF"<<endl;
@@ -1451,11 +1451,11 @@ bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor)
   {
     if(delta>0)
     {
-      motor.bot_Backward_withPWMm(90);
+      motor.bot_Backward_withPWMm(80);
     }
     else
     {
-      motor.bot_Forward_withPWMm(90);
+      motor.bot_Forward_withPWMm(80);
     }
     return false;
   }

@@ -52,14 +52,17 @@ bool nav_2_MainLine(botData& newSensor,botData& oldSensor,Motor& motor)
 
 	if(state.digiCounter<1)
       {   
+        cout<<"Currently Executing: Strafe Right"<<endl;
           motor.strafe_Right_withPWM(STRAFE_RIGHT_2_MAIN_LINE_PWM);
       }
       else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
       {
+        cout<<"Currently Executing: Strafe Right"<<endl;
           motor.strafe_Right_withPWM(STRAFE_RIGHT_2_MAIN_LINE_PWM);
       }
       else if(newSensor.isFrontTurnComplete())
       {
+        cout<<"Currently Executing: Bot Stop"<<endl;
         motor.bot_Stop();
         return true;
       }
@@ -100,6 +103,7 @@ bool nav_goForward_1_Junction(botData& newSensor,botData& oldSensor,Motor& motor
 
 	if(state.digiCounter<1)
 	{
+    cout<<"Currently Executing: Follow Line"<<endl;
           followLine(newSensor,oldSensor,motor);
 	}
 	else
@@ -126,6 +130,7 @@ bool nav_goBackward_1_Junction(botData& newSensor,botData& oldSensor,Motor& moto
 
 	if(state.digiCounter<1)
 	{
+    cout<<"Currently Executing: Follow Line Back"<<endl;
           followLineBack(newSensor,oldSensor,motor);
 	}
 	else
@@ -151,15 +156,18 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
 	{
 		if(newSensor.isFrontTurnComplete() && temp01)
         {
+          cout<<"Currently Executing: Spot Left"<<endl;
           motor.spot_Left_withPWM(SPOT_LEFT_PWM);
         }
         else if(!newSensor.isFrontTurnComplete())
         {
+          cout<<"Currently Executing: Spot Left"<<endl;
           temp01 = false;
           motor.spot_Left_withPWM(SPOT_LEFT_PWM);
         }
         else
         {
+          cout<<"Currently Executing: Bot Stop-Enabling Cordinator"<<endl;
           motor.bot_Stop();
           stopFlag=true;
           enableCordinator();
@@ -169,8 +177,10 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
   	//  Mini - Step 2 : Strafe Forward , Right , Forward and Pickup the Block
   	else if(miniEx01==2)
   	{
+
   		if(strafeMode == 1)			//Strafe Forward
   		{
+        cout<<"Currently Executing: Strafe Forward"<<endl;
   			if(strafeItr01  <= PICKUP_1_ITR_MAX)
 	        {
 	          motor.bot_Forward_withPWM(STRAFE_PICKUP);
@@ -182,6 +192,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
   		}
   		else if(strafeMode == 2)	//Strafe Right
   		{
+        cout<<"Currently Executing: Strafe Right"<<endl;
   			if(strafeItr01  <=  PICKUP_2_ITR_MAX)
 	        {
 	          motor.strafe_Right_withPWM(STRAFE_PICKUP);
@@ -192,6 +203,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
   		}
   		else if(strafeMode == 3)	//Strafe Forward
   		{	
+        cout<<"Currently Executing: Strafe Forward"<<endl;
   			if(strafeItr01  <=  PICKUP_3_ITR_MAX)
 	        {
 	          motor.bot_Forward_withPWM(STRAFE_PICKUP);
@@ -205,6 +217,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
   		}
   		else if(strafeMode == 4)
   		{
+        cout<<"Currently Executing: Bot Stop(Pickup)"<<endl;
   			motor.bot_Stop();
 	        stopFlag=true;
 	        pickupBlock();
@@ -227,6 +240,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
       
       	if(!newSensor.isFrontTurnComplete())
       	{
+          cout<<"Currently Executing: Strafe Left(Till Back on Line)"<<endl;
         	motor.strafe_Left_withPWM(STRAFE_PICKUP);
       	}
       	else
@@ -242,12 +256,15 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
   	// Mini - Step 4 : GO Back with Follow Line and the Spot Rotate Right
   	else if(miniEx01==4)
   	{
+
   		if(state.digiCounter<1)
         {
+          cout<<"Currently Executing: Follow Line Back"<<endl;
           followLineBackpwm(newSensor,oldSensor,motor,FOLLOW_LINE_BACK_PWM);
       	}
       	else
       	{
+          cout<<"Currently Executing: Spot Right "<<endl;
         	if(newSensor.isFrontTurnComplete() && temp01)
         	{
             	motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
@@ -284,13 +301,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	{
 		if(newSensor.tofFlag==false)
         {
-			processPID(newSensor,oldSensor,motor);
-			motor.bot_Forward_withPWMm(150);
+            cout<<"Currently Executing: Going Forward Till TOF Flag"<<endl;
+    			processPID(newSensor,oldSensor,motor);
+    			motor.bot_Forward_withPWMm(150);
         }
      	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
 		{
 			q++;
-			cout<<"Balancing with TOF"<<endl;
+			cout<<"Currently Executing: Balancing With TOF"<<endl;
 			if(q>=maxTf)
 			{
 			q=0;
@@ -300,6 +318,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	}
 	else if(miniEx02==2)		// Align the Bot with Line
 	{
+        cout<<"Currently Executing: Correcting with Line"<<endl;
         K_processPID(newSensor,oldSensor,motor,105,80,0.11);
         motor.bot_Forward_withPWMm(0);
        if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
@@ -323,14 +342,16 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	}
 	else if(miniEx02==3)		//Add Aligning with the Wall
 	{
-    if(!balanceSideAt(targetDistance,newSensor,motor))
-    {
-      miniEx02=4;
-      stackBlock();
+        cout<<"Currently Executing: Balancing Side"<<endl;
+        if(!balanceSideAt(targetDistance,newSensor,motor))
+        {
+          miniEx02=4;
+          stackBlock();
+        }
     }
-	}
 	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
 	{
+        cout<<"Currently Executing: Bot Back and Push"<<endl;
 		if(q<= (PULL_AND_PUSH_ITR/2))
       	{
 	        motor.bot_Backward_withPWM(80);
@@ -352,6 +373,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	}
 	else if(miniEx02==5)		//Return Back to the Junction
 	{
+        cout<<"Currently Executing: follow Line Back"<<endl;
 		if(state.digiCounter<2)
       	{
         	followLineBackpwm(newSensor,oldSensor,motor,80);
@@ -395,7 +417,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 	}
 	else if(miniEx03==2) //Step 2: Go Forward Till TOF Sensor shows Infinity
 	{
-		if(newSensor.tofSide>TOF_SIDE_DISTANCE || newSensor.tofSide<=0)
+		if(newSensor.tofSide>TOF_SIDE_DISTANCE)
 		{
 			followLine(newSensor,oldSensor,motor);
 		}

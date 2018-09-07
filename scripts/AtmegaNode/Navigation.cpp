@@ -52,18 +52,19 @@ bool nav_2_MainLine(botData& newSensor,botData& oldSensor,Motor& motor)
 
 	if(state.digiCounter<1)
       {   
-        cout<<"Currently Executing: Strafe Right"<<endl;
+        cout<<"Currently Executing: Strafe Right 1"<<endl;
           motor.strafe_Right_withPWM(STRAFE_RIGHT_2_MAIN_LINE_PWM);
       }
       else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
       {
-        cout<<"Currently Executing: Strafe Right"<<endl;
+        cout<<"Currently Executing: Strafe Right 2"<<endl;
           motor.strafe_Right_withPWM(STRAFE_RIGHT_2_MAIN_LINE_PWM);
       }
       else if(newSensor.isFrontTurnComplete())
       {
         cout<<"Currently Executing: Bot Stop"<<endl;
         motor.bot_Stop();
+	stopFlag=true;
         return true;
       }
 

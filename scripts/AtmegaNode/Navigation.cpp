@@ -110,6 +110,7 @@ bool nav_goForward_1_Junction(botData& newSensor,botData& oldSensor,Motor& motor
 	else
 	{
 		temp3=true;
+        state.digiCounter=0;
 		return true;
 	}
 	return false;
@@ -137,6 +138,7 @@ bool nav_goBackward_1_Junction(botData& newSensor,botData& oldSensor,Motor& moto
 	else
 	{
 		temp4=true;
+        state.digiCounter=0;
 		return true;
 	}
 	return false;

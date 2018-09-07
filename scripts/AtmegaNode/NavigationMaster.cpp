@@ -61,7 +61,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==7)
 	{
 		cout<<"Navigation Step:"<<6<<endl;
-		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
+		if(nav_PickupBlock_from__SupplyLine2(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}

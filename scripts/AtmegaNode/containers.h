@@ -227,6 +227,13 @@ struct botData
   		else
     		return false;
 	}
+	bool isBackTurnComplete()
+	{
+  		if (lsaBack[3] || lsaBack[4] || lsaBack[5])
+    		return true;
+  		else
+    		return false;
+	}
 
 	void enable_monitor_Back()
 	{

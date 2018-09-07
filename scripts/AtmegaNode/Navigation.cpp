@@ -152,6 +152,8 @@ int strafeItr01=0;
 int strafeMode=1;
 bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Motor& motor)
 {
+    state.updateDigiCounter(newSensor,oldSensor,motor);
+    motor.reset(); 
 	// Mini - Step 1 : Handle Rotation and Enable 90 degrees
 	if(miniEx01==1)
 	{
@@ -297,6 +299,8 @@ int miniEx02=1;
 int q=0;
 bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor )
 {
+    state.updateDigiCounter(newSensor,oldSensor,motor);
+    motor.reset(); 
 
 	if(miniEx02==1)   			//Reach at an Balancing Distance from the TOF and Balance
 	{
@@ -400,6 +404,8 @@ int strafeItr03=0;
 int strafeMode3=1;
 bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& motor)
 {
+    state.updateDigiCounter(newSensor,oldSensor,motor);
+    motor.reset(); 
 	if(miniEx03==1)    //Step 1: Spot Right
 	{
 		if(newSensor.isFrontTurnComplete() && temp03)
@@ -550,6 +556,8 @@ int strafeItr04=0;
 int strafeMode4=1;
 bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor& motor)
 {
+    state.updateDigiCounter(newSensor,oldSensor,motor);
+    motor.reset(); 
 	if(miniEx04==1)
 	{
 		if(newSensor.isFrontTurnComplete() && temp04)

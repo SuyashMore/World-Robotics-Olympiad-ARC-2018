@@ -375,14 +375,15 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
       	if(q>PULL_AND_PUSH_ITR)
       	{
         	miniEx02=5;
+            state.digiCounter=0;
       	}
 	}
 	else if(miniEx02==5)		//Return Back to the Junction
 	{
         cout<<"Currently Executing: follow Line Back"<<endl;
-		if(state.digiCounter<2)
+		if(state.digiCounter<1)
       	{
-        	followLineBackpwm(newSensor,oldSensor,motor,80);
+        	followLineBackpwm(newSensor,oldSensor,motor,120);
       	}
       	else 
       	{

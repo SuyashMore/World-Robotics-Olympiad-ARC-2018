@@ -59,11 +59,11 @@ def setAngles(a0,a1,a2,a3,a4):
     tfa3=constants.transform2ServoAngles(a3,3)
     tfa4=constants.transform2ServoAngles(a4,4)
     
-    setAngle(constants.servoIDArm[0],tfa0)
-    setAngle(constants.servoIDArm[1],tfa1)
-    setAngle(constants.servoIDArm[2],tfa2)
-    setAngle(constants.servoIDArm[3],tfa3)
     setAngle(constants.servoIDArm[4],tfa4)
+    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[2],tfa2)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[0],tfa0)
 
 def processIK(x,y,z):
     return ik.process(x,y,z)
@@ -214,19 +214,19 @@ def move2standard():
     enableAll()
     setSpeedAll(150)    
 
-    move2angle(0,-90,90,0,0)
-
+   # move2angle(0,-90,90,0,0)   
+    move2angle(0,-90,90,0,10)
 
 def pickupXYZ():
-    FINAL_X = 12
-    FINAL_Y = -8.5
-    INITITALZ = -9
+    FINAL_X = 11.6
+    FINAL_Y = -7.6
+    INITITALZ = -8.5
     FINAL_Z = -13.5
 
     SL4 = 0.4
     SL3 = 1.0
     SL2 = 0.1
-    SL1 = 0.15
+    SL1 = 0.0 # WAS 0.15 AND CHANGED TO 0
     SLY = 1.6
     SLS=0.4
     # SLS=1.1
@@ -246,32 +246,44 @@ def pickupXYZ():
     move2pos( FINAL_X,FINAL_Y,-8.5)
     time.sleep(SLY)
 
+    setSpeedAll(50)                            # ADDED TODAY 
+
+    # move2pos( FINAL_X,FINAL_Y,-9)
+    # time.sleep(SL1)
     
 
-    move2pos( FINAL_X,FINAL_Y,-9)
-    time.sleep(SL1)
-    
-
-    move2pos( FINAL_X,FINAL_Y,-9.5)
-    time.sleep(SL1)
+    # move2pos( FINAL_X,FINAL_Y,-9.5)
+    # time.sleep(SL1)
    
-    move2pos( FINAL_X,FINAL_Y,-10)
-    time.sleep(SL1)
+    # move2pos( FINAL_X,FINAL_Y,-10)
+    # time.sleep(SL1)
 
-    move2pos( FINAL_X,FINAL_Y,-10.5)
-    time.sleep(SL1)
+    # move2pos( FINAL_X,FINAL_Y,-10.5)
+    # time.sleep(SL1)
     
-    move2pos( FINAL_X,FINAL_Y,-11)
-    time.sleep(SL1)
+    # move2pos( FINAL_X,FINAL_Y,-11)
+    # time.sleep(SL1)
     
-    move2pos( FINAL_X,FINAL_Y,-11.5)
-    time.sleep(SL1)
+    # move2pos( FINAL_X,FINAL_Y,-11.5)
+    # time.sleep(SL1)
     
+    # move2pos( FINAL_X,FINAL_Y,-12)
+    # time.sleep(SL1)
+    
+    # move2pos( FINAL_X,FINAL_Y,-12.5)
+    # time.sleep(SL1)
+    
+    # move2pos( FINAL_X,FINAL_Y,-13)
+    # time.sleep(SL1)
 
-    
-    move2pos(9.6,FINAL_Y,-13.5)
-    time.sleep(SL1)
+    # move2pos(FINAL_X,FINAL_Y,-13.5)
+    # time.sleep(SL3)
 
+    for i in range(-34,-50,-1):
+        move2pos( FINAL_X,FINAL_Y,((float)(i))/4)
+        # time.sleep(SL1)
+
+    time.sleep(SL3-SL1)
 
 
 
@@ -282,15 +294,15 @@ def pickupXYZ():
     setSpeedAll(150)
 
     # mov2angle(0,-90,90,0,0) 19,0,-6
-    move2pos(FINAL_X+5,FINAL_Y,-12)
+    move2pos(FINAL_X+7,FINAL_Y,-9)
     time.sleep(SLS)
-    move2pos(FINAL_X+5,FINAL_Y/2,-9)
+    move2pos(FINAL_X+7,FINAL_Y/2,-7)
     time.sleep(SLS)
-    move2pos(FINAL_X+5,FINAL_Y/2,-4)
+    move2pos(FINAL_X+7,FINAL_Y/2,-2)
     time.sleep(SLS)
-    move2pos(FINAL_X+6,FINAL_Y/3,0)
+    move2pos(FINAL_X+6.5,FINAL_Y/3,0)
     time.sleep(SL1)
-    move2pos(FINAL_X+6.5,0,2)
+    move2pos(FINAL_X+6,0,2)
     time.sleep(SL1)
 
     move2angle(0,-45,0,-45,0)

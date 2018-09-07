@@ -51,27 +51,31 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 			state.currentStepIndex++;
 		}
 	}
-	else if(state.currentStepIndex==5)
+	else
 	{
-		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
+		motor.bot_Stop();
 	}
-	else if(state.currentStepIndex==6)
-	{
-		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
-	}
-	else if(state.currentStepIndex==7)
-	{
-		if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
-	}
+	// else if(state.currentStepIndex==5)
+	// {
+	// 	if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
+	// 	{
+	// 		state.currentStepIndex++;
+	// 	}
+	// }
+	// else if(state.currentStepIndex==6)
+	// {
+	// 	if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
+	// 	{
+	// 		state.currentStepIndex++;
+	// 	}
+	// }
+	// else if(state.currentStepIndex==7)
+	// {
+	// 	if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
+	// 	{
+	// 		state.currentStepIndex++;
+	// 	}
+	// }
 
 }
 

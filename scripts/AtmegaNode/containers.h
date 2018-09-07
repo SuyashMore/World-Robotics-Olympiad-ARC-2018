@@ -3,7 +3,6 @@
 #include "defines.h"
 #include "utility.h"
 
-
 int Lidar=0;
 
 
@@ -20,7 +19,6 @@ struct botData
 	bool preserveHistoryF = false;
 	bool preserveHistoryB = false;
 	bool tofFlag = false;
-
 	bool BackMonitorFlag = true;
 	bool BackFlag = false;
 
@@ -467,6 +465,7 @@ struct gameState
   bool executeStep5=false;
   bool executeStep6=false;
   bool executeStep7=false;
+  bool executeStep74=false;
   bool executeStep75=false;
   bool executeStep76=false;
   bool executeStep77=false;
@@ -480,6 +479,7 @@ struct gameState
   bool executeStep15=false;
   bool executeStep16=false;
   bool executeStep17=false;
+
   
 
   void updateDigiCounter(botData& newSensor,botData& oldSensor,Motor& motor)

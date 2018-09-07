@@ -1,6 +1,5 @@
 #include "ros/ros.h"
 
-
 #include "NavigationMaster.cpp"
 
 // include Messages
@@ -12,6 +11,7 @@
 
 #include "Jetson/Dyx.h"
 #include "Jetson/bot.h"
+
 
 // Flag to Control the Output for the Motor
 bool shouldPublish =false;

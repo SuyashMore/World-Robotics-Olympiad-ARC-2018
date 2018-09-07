@@ -22,6 +22,26 @@ int xitr = 0;
 int itBF = 120;
 
 
+bool balanceSideAt(float targetDistance,botData& newSensor,Motor& motor)
+{
+ float delta = targetDistance-newSensor.tofSide;
+
+  if(abs(delta) > TOF_ERROR_THRESH_SIDE)
+  {
+    if(delta>0)
+    {
+      motor.strafe_Right_withPWM(90);
+    }
+    else
+    {
+      motor.strafe_Left_withPWM(90);
+    }
+    return false;
+  }
+  return true; 
+
+
+}
 
 bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor);
 
@@ -303,8 +323,11 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	}
 	else if(miniEx02==3)		//Add Aligning with the Wall
 	{
-		miniEx02=4;
-		stackBlock();
+    if(!balanceSideAt(targetDistance,newSensor,motor))
+    {
+      miniEx02=4;
+      stackBlock();
+    }
 	}
 	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
 	{
@@ -763,11 +786,16 @@ void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
         stopFlag=true;
         state.digiCounter=0;
         state.executeStep75=false;
-        state.executeStep76=true;
+        state.executeStep74=true;
         stackBlock();
       }
     }
-
+        else if (state.executeStep74)
+          if(balanceSideAt(60,newSensor,motor))
+        {
+            state.executeStep74=false;
+            state.executeStep76=true;
+        }
     else if(state.executeStep76)
     {
       if(xitr<= (itBF/2))
@@ -1258,23 +1286,3 @@ bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor)
   return true;
 }
 
-bool balanceSideAt(float targetDistance,botData& newSensor,Motor& motor)
-{
- float delta = targetDistance-newSensor.tofSide;
-
-  if(abs(delta) > TOF_ERROR_THRESH_SIDE)
-  {
-    if(delta>0)
-    {
-      motor.strafe_Right_withPWM(90);
-    }
-    else
-    {
-      motor.strafe_Left_withPWM(90);
-    }
-    return false;
-  }
-  return true; 
-
-
-}

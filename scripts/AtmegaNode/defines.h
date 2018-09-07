@@ -22,6 +22,9 @@ using namespace std;
 #define TOF_FLAG_MIN_THRESH 20
 #define TOF_FLAG_MAX_THRESH 210
 
+// lidar parameter
+#
+
 
 // PWM MAP VARs
 #define F_MOTOR_MAP_INLOW 0

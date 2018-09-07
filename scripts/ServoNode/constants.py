@@ -1,7 +1,7 @@
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
-ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
+ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB4"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
 
 ttyUSB_LIDAR = "/dev/ttyUSB2"

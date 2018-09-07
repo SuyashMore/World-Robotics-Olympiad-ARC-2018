@@ -55,10 +55,12 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 		if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
+			stopFlag=true;
 		}
 	}
 	else if(state.currentStepIndex==7)
 	{
+		cout<<"Navigation Step:"<<6<<endl;
 		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
@@ -66,6 +68,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	}
 	else if(state.currentStepIndex==8)
 	{
+		cout<<"Navigation Step:"<<8<<endl;
 		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
@@ -73,6 +76,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	}
 	else if(state.currentStepIndex==9)
 	{
+		cout<<"Navigation Step:"<<9<<endl;
 		if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
@@ -80,6 +84,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	}
 	else if(state.currentStepIndex==10)
 	{
+		cout<<"Navigation Step:"<<10<<endl;
 		if(nav_Pickup_from_Delivery_chute(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;

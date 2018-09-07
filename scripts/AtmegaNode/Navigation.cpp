@@ -282,7 +282,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
           	else
           	{
           		miniEx01=1;
-
+                        temp01=true;
 				      strafeItr01=0;
 				      strafeMode=1;
             	return true;

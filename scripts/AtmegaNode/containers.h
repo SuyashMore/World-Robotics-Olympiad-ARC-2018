@@ -489,3 +489,16 @@ struct gameState
 	}
   
 };
+
+
+struct Blocks
+{
+	int Location[6];
+	void placeBlocks(int a,int b,int c,int d,int e,int f)
+	{
+		for(int i=0;i<6;i++)
+		{
+			Location[i]=a;
+		}
+	}
+};

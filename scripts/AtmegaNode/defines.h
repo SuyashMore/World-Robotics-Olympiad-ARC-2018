@@ -23,7 +23,6 @@ using namespace std;
 #define TOF_FLAG_MAX_THRESH 210
 
 // lidar parameter
-#
 
 
 // PWM MAP VARs
@@ -64,6 +63,7 @@ using namespace std;
 #define UNIT_PWM  200
 
 // Block Shape And Color
+#define COLOR_NULL 		0
 #define COLOR_RED 		1
 #define COLOR_BLUE 		2
 #define COLOR_GREEN 	3
@@ -71,14 +71,16 @@ using namespace std;
 #define COLOR_VIOLET 	5
 #define COLOR_ORANGE 	6
 
-// int FRAME[6][7] = {
-// 	{ }, 
-// 	{ },
-// 	{ },
-// 	{ },
-// 	{ },
-// 	{ }
-// }
+int TETRASTACK_ORDER[6][4] = 
+{	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
+	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE },  		//COLOR_RED
+	{COLOR_ORANGE , COLOR_BLUE ,COLOR_ORANGE , COLOR_VIOLET }, 		//COLOR_BLUE
+	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE},   		//COLOR_GREEN
+	{COLOR_BLUE , COLOR_BLUE , COLOR_YELLOW ,COLOR_NULL },			//COLOR_YELLOW
+	{COLOR_YELLOW , COLOR_BLUE , COLOR_VIOLET , COLOR_YELLOW },		//COLOR_VIOLET
+	{COLOR_BLUE , COLOR_YELLOW , COLOR_VIOLET , COLOR_YELLOW }		//COLOR_ORANGE
+};
+
 
 
 // Atmega-Output Message : f0000000b00000000w00s00l0r0t000y000e

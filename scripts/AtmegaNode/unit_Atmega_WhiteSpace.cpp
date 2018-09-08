@@ -80,7 +80,7 @@ void stackBlock_withPID(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(state.currentStepIndex==1)		//Stack the Block
 	{
 		cout<<"Navigation Step:"<<1<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
+		if(nav_Pickup_from_WhiteSpace(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -99,7 +99,7 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(!stopFlag)
     {
             // navigates from gome 2 stack the block with the block in Arm
-      nav_Pickup_from_WhiteSpace(newSensor,oldSensor,motor);
+      stackBlock_withPID(newSensor,oldSensor,motor);
       
             // Navigates from home 2 pickup the block and Stack
       // navigate2(newSensor,oldSensor,motor);

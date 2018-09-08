@@ -759,13 +759,10 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 		{
 			followLine(newSensor,oldSensor,motor);
 		}
-		else if(balanceWithTOF(DELIVERY_CHUTE_STOP_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,80,70,0))
-		{
-			motor.bot_Stop();
-			stopFlag=true;
-			miniEx04=3;
-			enableCordinator();
-		}
+    else
+    {
+      miniEx04=3;
+    }
 	}
 	else if(miniEx04 == 3)
 	{

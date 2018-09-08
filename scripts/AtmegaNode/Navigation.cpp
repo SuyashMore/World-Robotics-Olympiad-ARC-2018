@@ -149,6 +149,7 @@ bool nav_goBackward_1_Junction(botData& newSensor,botData& oldSensor,Motor& moto
 
 // Pickup From Supply Line
 int temp01=true;
+int tempturn=false;
 int miniEx01=1;
 int strafeItr01=0;
 int strafeMode=1;
@@ -168,8 +169,14 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
         {
           cout<<"Currently Executing: Spot Left"<<endl;
           temp01 = false;
+	  tempturn=true;
           motor.spot_Left_withPWM(SPOT_LEFT_PWM);
         }
+	else if(!newSensor.isBackTurnComplete() && tempturn)
+	{
+		motor.spot_Left();
+		motor.setPWMof(MOTOR_LEFT,120);
+	}
         else
         {
           cout<<"Currently Executing: Bot Stop-Enabling Cordinator"<<endl;
@@ -453,7 +460,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
     			processPID(newSensor,oldSensor,motor);
     			motor.bot_Forward_withPWMm(200);
         }
-     	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor))
+     	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
 		{
 			q++;
 			cout<<"Currently Executing: Balancing With TOF"<<endl;
@@ -467,8 +474,8 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	else if(miniEx02==2)		// Align the Bot with Line
 	{
         cout<<"Currently Executing: Correcting with Line"<<endl;
+	motor.bot_Forward_withPWMm(0);
         K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-        motor.bot_Forward_withPWMm(0);
        if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
         {
           q++;

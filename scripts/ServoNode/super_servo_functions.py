@@ -59,11 +59,11 @@ def setAngles(a0,a1,a2,a3,a4):
     tfa3=constants.transform2ServoAngles(a3,3)
     tfa4=constants.transform2ServoAngles(a4,4)
     
-    setAngle(constants.servoIDArm[4],tfa4)
-    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[0],tfa4)
+    setAngle(constants.servoIDArm[1],tfa3)
     setAngle(constants.servoIDArm[2],tfa2)
-    setAngle(constants.servoIDArm[1],tfa1)
-    setAngle(constants.servoIDArm[0],tfa0)
+    setAngle(constants.servoIDArm[3],tfa1)
+    setAngle(constants.servoIDArm[4],tfa0)
 
 def processIK(x,y,z):
     return ik.process(x,y,z)

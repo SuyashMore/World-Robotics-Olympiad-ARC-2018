@@ -867,6 +867,7 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
         return true;
       }
   }
+  return false;
   
 }
 

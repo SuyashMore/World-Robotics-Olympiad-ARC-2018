@@ -462,17 +462,21 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
                 K_processPID(newSensor,oldSensor,motor,105,80,0.11);
     			motor.bot_Forward_withPWMm(140);
         }
-     	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
-		{
-			q++;
-			cout<<"Currently Executing: Balancing With TOF"<<endl;
-			if(q>=maxTf)
-			{
-			q=0;
-			miniEx02=2;	
-			}
-		}
-
+  //    	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+		// {
+		// 	q++;
+		// 	cout<<"Currently Executing: Balancing With TOF"<<endl;
+		// 	if(q>=maxTf)
+		// 	{
+		// 	q=0;
+		// 	miniEx02=2;	
+		// 	}
+		// }
+        else if(abs(newSensor.tofFront -TOF_FRONT_BALANCE_DISTANCE ) <=12)
+        {
+            K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+            motor.bot_Backward_withPWMm(140);   
+        }
         else
         {
             miniEx02=2;

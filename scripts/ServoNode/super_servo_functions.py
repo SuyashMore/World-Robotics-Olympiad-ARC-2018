@@ -59,11 +59,11 @@ def setAngles(a0,a1,a2,a3,a4):
     tfa3=constants.transform2ServoAngles(a3,3)
     tfa4=constants.transform2ServoAngles(a4,4)
     
-    setAngle(constants.servoIDArm[0],tfa4)
-    setAngle(constants.servoIDArm[1],tfa3)
+    setAngle(constants.servoIDArm[4],tfa4)
+    setAngle(constants.servoIDArm[3],tfa3)
     setAngle(constants.servoIDArm[2],tfa2)
-    setAngle(constants.servoIDArm[3],tfa1)
-    setAngle(constants.servoIDArm[4],tfa0)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[0],tfa0)
 
 def processIK(x,y,z):
     return ik.process(x,y,z)
@@ -196,7 +196,7 @@ def stackBlock():
     setTransformedAngle(1,12)
     time.sleep(SL1)
     setTransformedAngle(2,50)
-    time.sleep(SL1)
+    time.sleep(SL1) 
     setTransformedAngle(1,12)
     time.sleep(SL1)
     setTransformedAngle(2,46)
@@ -215,14 +215,14 @@ def move2standard():
     setSpeedAll(150)    
 
    # move2angle(0,-90,90,0,0)   
-    move2angle(0,-90,90,0,10)
+    move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X = 11.6
-    FINAL_Y = -8.4
-    INITITALZ = -8.5
+    FINAL_X =9.8700596687381434
+    FINAL_Y =  -7.9926167264261485
+    INITIAL_Z =  -8.7000000000000348
     FINAL_Z = -13.5
-
+        
     SL4 = 0.4
     SL3 = 1.0
     SL2 = 0.1
@@ -239,11 +239,11 @@ def pickupXYZ():
     gripDisable()
     # raw_input("Press  Any Key to Pickup")
 
-    setSpeedAll(300)
+    setSpeedAll(250)
 
 
 
-    move2pos( FINAL_X,FINAL_Y,-8.5)
+    move2pos( FINAL_X,FINAL_Y, INITIAL_Z)
     time.sleep(SLY)
 
     setSpeedAll(50)                            # ADDED TODAY 
@@ -279,15 +279,11 @@ def pickupXYZ():
     # move2pos(FINAL_X,FINAL_Y,-13.5)
     # time.sleep(SL3)
 
-    for i in range(-34,-50,-1):
-        move2pos( FINAL_X,FINAL_Y,((float)(i))/4)
-        # time.sleep(SL1)
+    while INITIAL_Z <FINAL_Z :
+        move2pos( FINAL_X,FINAL_Y,INITIAL_Z )
+        INITIAL_Z =INITIAL_Z+1
+        time.sleep(1)
 
-    time.sleep(SL3-SL1)
-
-
-
-    # time.sleep(SLE)
     gripEnable()
     time.sleep(SL3)
 

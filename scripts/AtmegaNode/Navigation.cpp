@@ -735,7 +735,7 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 		{
 			followLine(newSensor,oldSensor,motor);
 		}
-		else if(balanceWithTOF(DELIVERY_CHUTE_STOP_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,80,70,0.11))
+		else if(balanceWithTOF(DELIVERY_CHUTE_STOP_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,80,70,0))
 		{
 			motor.bot_Stop();
 			stopFlag=true;
@@ -1459,11 +1459,11 @@ bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor)
   {
     if(delta>0)
     {
-      motor.bot_Backward_withPWMm(80);
+      motor.bot_Backward_withPWMm(BALANCE_WITH_TOF_PWM);
     }
     else
     {
-      motor.bot_Forward_withPWMm(80);
+      motor.bot_Forward_withPWMm(BALANCE_WITH_TOF_PWM);
     }
     return false;
   }

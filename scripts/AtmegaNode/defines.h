@@ -9,7 +9,7 @@ using namespace std;
 // Ros Spin Rate (spins/second)
 #define ROS_LOOP_RATE 40
 #define LF_THRESH 400
-#define LF_MAX 7
+#define LF_MAX 4
 
 // PWM Settings
 #define FORWARD_MOTION_PWM 200
@@ -56,9 +56,9 @@ using namespace std;
 #define DELIVERY_CHUTE_STOP_DISTANCE 200
 
 // TOF Params(cm)
-#define TOF_ERROR_THRESH 8
+#define TOF_ERROR_THRESH 12
 #define TOF_ERROR_THRESH_SIDE 8
-#define BALANCE_WITH_TOF_PWM 100
+#define BALANCE_WITH_TOF_PWM 80
 
 // UNIT TEST PWM
 #define UNIT_PWM  200

@@ -630,7 +630,6 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
   			if(strafeItr03  <= PICKUP_1_ITR_MAX)
 	        {
 	          motor.bot_Forward_withPWM(STRAFE_PICKUP);
-	          processPID(newSensor,oldSensor,motor);
 	        }
 	        else
 	        	{strafeMode3=2;

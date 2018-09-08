@@ -479,7 +479,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         }
         else
         {
-            miniEx02=2;
+            // miniEx02=2;
         }
 	}
 	else if(miniEx02==2)		// Align the Bot with Line

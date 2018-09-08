@@ -875,7 +875,7 @@ void mainLoop(botData& newSensor,botData& oldSensor,Motor& motor)
   if(!stopFlag)
     {
             // navigates from home 2 stack the block with the block in Arm
-      navigate2(newSensor,oldSensor,motor);
+      // navigate2(newSensor,oldSensor,motor);
       
             // Navigates from home 2 pickup the block and Stack
       // navigate2 (newSensor,oldSensor,motor);

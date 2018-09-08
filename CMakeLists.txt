@@ -200,10 +200,11 @@ target_link_libraries(unit_Arm_std_w_cord ${catkin_LIBRARIES} )
 add_executable(unit_Atmega_Linefollow scripts/AtmegaNode/unit_LineFollowing.cpp)
 add_executable(unit_Atmega_Stack scripts/AtmegaNode/unit_Atmega_Stack.cpp)
 add_executable(unit_Atmega_WhiteSpace scripts/AtmegaNode/unit_Atmega_WhiteSpace.cpp)
+add_executable(unit_Atmega_DeliveryChute scripts/AtmegaNode/unit_Atmega_DeliveryChute.cpp)
 
 target_link_libraries(unit_Atmega_Linefollow ${catkin_LIBRARIES} )
 target_link_libraries(unit_Atmega_Stack ${catkin_LIBRARIES} )
-target_link_libraries(unit_Atmega_WhiteSpace ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_DeliveryChute ${catkin_LIBRARIES} )
 
 
 ## Rename C++ executable without prefix

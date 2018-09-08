@@ -472,7 +472,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 		// 	miniEx02=2;	
 		// 	}
 		// }
-        else if(abs(newSensor.tofFront -TOF_FRONT_BALANCE_DISTANCE ) <=5)
+        else if(abs(newSensor.tofFront -TOF_FRONT_BALANCE_DISTANCE ) >=5)
         {
             K_processPID(newSensor,oldSensor,motor,105,80,0.11);
             motor.bot_Backward_withPWMm(140);   

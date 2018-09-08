@@ -99,6 +99,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"--------------------------------------------------------"<<endl;
 
 		followLine(bt,storage,motor);
+		navFlag=false;
 		//K_followLine(bt,storage,motor,105,80,0.11,150);
 		// Process_data and then enable the Publish Flag
 		

@@ -565,6 +565,7 @@ int miniEx03=1;
 int temp03=true;
 int strafeItr03=0;
 int strafeMode3=1;
+int u=0;
 bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& motor)
 {
     state.updateDigiCounter(newSensor,oldSensor,motor);
@@ -587,7 +588,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 	}
 	else if(miniEx03==2) //Step 2: Go Forward Till TOF Sensor shows Infinity
 	{
-		if(newSensor.tofSide>TOF_SIDE_DISTANCE)
+		if(u<70)
 		{
 			followLine(newSensor,oldSensor,motor);
 		}
@@ -596,8 +597,10 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 			motor.bot_Stop();
 			stopFlag=true;
 			miniEx03=3;
+      u=0;
 			temp03=true;
 		}
+    u++;
 	}
 	else if(miniEx03==3)         //Step 3: Spot Rotate Left till Perpendicular to the Line
 	{

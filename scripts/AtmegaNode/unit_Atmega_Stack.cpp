@@ -142,7 +142,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"--------------------------------------------------------"<<endl;
 
 		masterLoopStack(bt,storage,motor);
-		navFlag=false;
+		navFlag=true;
 		// Process_data and then enable the Publish Flag
 		
 		std_msgs::String msg;

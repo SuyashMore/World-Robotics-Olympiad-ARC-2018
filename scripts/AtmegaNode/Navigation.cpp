@@ -455,12 +455,12 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 
 	if(miniEx02==1)   			//Reach at an Balancing Distance from the TOF and Balance
 	{
-		if(newSensor.tofFront>(TOF_FRONT_BALANCE_DISTANCE+5))
+		if(newSensor.tofFront>(TOF_FRONT_BALANCE_DISTANCE+10))
         {
             cout<<"Currently Executing: Going Forward Till TOF Flag"<<endl;
     			// processPID(newSensor,oldSensor,motor);
-                K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-    			motor.bot_Forward_withPWMm(140);
+                K_processPID(newSensor,oldSensor,motor,110,80,0.11);
+    			motor.bot_Forward_withPWMm(160);
         }
   //    	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
 		// {
@@ -472,10 +472,10 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 		// 	miniEx02=2;	
 		// 	}
 		// }
-        else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-5))
+        else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-10))
         {
-            K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-            motor.bot_Backward_withPWMm(140);   
+            K_processPID(newSensor,oldSensor,motor,110,80,0.11);
+            motor.bot_Backward_withPWMm(160);   
         }
         else
         {

@@ -459,8 +459,8 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         {
             cout<<"Currently Executing: Going Forward Till TOF Flag"<<endl;
     			// processPID(newSensor,oldSensor,motor);
-                K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-    			motor.bot_Forward_withPWMm(160);
+                K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+    			motor.bot_Forward_withPWMm(10);
         }
   //    	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
 		// {
@@ -474,8 +474,8 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 		// }
         else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-10))
         {
-            K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-            motor.bot_Backward_withPWMm(160);   
+            K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+            motor.bot_Backward_withPWMm(140);   
         }
         else
         {

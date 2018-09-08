@@ -198,7 +198,10 @@ target_link_libraries(unit_Arm_std_w_cord ${catkin_LIBRARIES} )
 
 # Atmega-Node Unit Tests
 add_executable(unit_Atmega_Linefollow scripts/AtmegaNode/unit_LineFollowing.cpp)
+add_executable(unit_Atmega_Stack scripts/AtmegaNode/unit_Atmega_Stack.cpp)
+
 target_link_libraries(unit_Atmega_Linefollow ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_Stack ${catkin_LIBRARIES} )
 
 
 ## Rename C++ executable without prefix

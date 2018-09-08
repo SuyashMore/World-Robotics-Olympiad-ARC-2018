@@ -708,10 +708,19 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		{
 			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
 		}
-		else if(!newSensor.isFrontTurnComplete())
+		else if(!newSensor.isFrontTurnComplete() || !newSensor.isBackTurnComplete())
 		{
 			temp03=false;
-			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+      if(!newSensor.isFrontTurnComplete())
+			{
+        motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+      }
+      else if(!newSensor.isBackTurnComplete())
+      {
+        motor.setPWM_all(0);
+        motor.spot_Right();
+        motor.setPWMof(MOTOR_BACK,120);
+      }
 		}
 		else
 		{

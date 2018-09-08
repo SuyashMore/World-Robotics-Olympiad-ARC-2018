@@ -765,23 +765,23 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 	}
 	else if(miniEx04 == 2)
 	{
-    if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE)*1.2)
+    if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE)*1.5)
     {
       followLine(newSensor,oldSensor,motor);
     }
-    else if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE+TOF_ERROR_THRESH))
+    else if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE+20))
     {
       cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
       // processPID(newSensor,oldSensor,motor);
       K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-      motor.bot_Forward_withPWMm(140);
+      motor.bot_Forward_withPWMm(120);
       r=0;   
     }
-    else if(newSensor.tofFront<(DELIVERY_CHUTE_STOP_DISTANCE-TOF_ERROR_THRESH))
+    else if(newSensor.tofFront<(DELIVERY_CHUTE_STOP_DISTANCE-20))
     {
       cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
       K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-      motor.bot_Backward_withPWMm(140);   
+      motor.bot_Backward_withPWMm(120);   
       r=0;
     }
     else

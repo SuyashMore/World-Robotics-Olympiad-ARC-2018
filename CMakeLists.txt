@@ -204,6 +204,7 @@ add_executable(unit_Atmega_DeliveryChute scripts/AtmegaNode/unit_Atmega_Delivery
 
 target_link_libraries(unit_Atmega_Linefollow ${catkin_LIBRARIES} )
 target_link_libraries(unit_Atmega_Stack ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_WhiteSpace ${catkin_LIBRARIES} )
 target_link_libraries(unit_Atmega_DeliveryChute ${catkin_LIBRARIES} )
 
 

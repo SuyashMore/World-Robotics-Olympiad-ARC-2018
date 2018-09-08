@@ -764,7 +764,7 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 	}
 	else if(miniEx04 == 2)
 	{
-		if(newSensor.tofFront < DELIVERY_CHUTE_STOP_DISTANCE)
+		if(newSensor.tofFront > DELIVERY_CHUTE_STOP_DISTANCE)
 		{
 			followLine(newSensor,oldSensor,motor);
 		}

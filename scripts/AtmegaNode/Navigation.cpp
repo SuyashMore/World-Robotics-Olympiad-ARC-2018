@@ -458,19 +458,25 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 		if(newSensor.tofFront>TOF_FRONT_BALANCE_DISTANCE)
         {
             cout<<"Currently Executing: Going Forward Till TOF Flag"<<endl;
-    			processPID(newSensor,oldSensor,motor);
-    			motor.bot_Forward_withPWMm(200);
+    			// processPID(newSensor,oldSensor,motor);
+                K_processPID(newSensor,oldSensor,motor,80,60,0);
+    			motor.bot_Forward_withPWMm(90);
         }
-     	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
-		{
-			q++;
-			cout<<"Currently Executing: Balancing With TOF"<<endl;
-			if(q>=maxTf)
-			{
-			q=0;
-			miniEx02=2;	
-			}
-		}
+  //    	else if(balanceWithTOF(TOF_FRONT_BALANCE_DISTANCE,newSensor,motor)&& K_processPID(newSensor,oldSensor,motor,105,80,0.11))
+		// {
+		// 	q++;
+		// 	cout<<"Currently Executing: Balancing With TOF"<<endl;
+		// 	if(q>=maxTf)
+		// 	{
+		// 	q=0;
+		// 	miniEx02=2;	
+		// 	}
+		// }
+
+        else
+        {
+            miniEx02=2;
+        }
 	}
 	else if(miniEx02==2)		// Align the Bot with Line
 	{

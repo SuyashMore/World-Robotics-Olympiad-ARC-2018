@@ -599,6 +599,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 			miniEx03=3;
       u=0;
 			temp03=true;
+      state.digiCounter=0;
 		}
     u++;
 	}
@@ -610,7 +611,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		  state.digiCounter=0;
     }
 
-		else if(!newSensor.isFrontTurnComplete() && state.digiCounter<1)
+		else if(state.digiCounter<1)
 		{
 			temp03=false;
       motor.spot_Left_withPWM(SPOT_LEFT_PWM);

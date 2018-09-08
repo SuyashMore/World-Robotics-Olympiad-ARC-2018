@@ -769,19 +769,19 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
     {
       followLine(newSensor,oldSensor,motor);
     }
-    else if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE+20))
+    else if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE+30))
     {
       cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
       // processPID(newSensor,oldSensor,motor);
-      K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-      motor.bot_Forward_withPWMm(120);
+      K_processPID(newSensor,oldSensor,motor,95,80,0.11);
+      motor.bot_Forward_withPWMm(100);
       r=0;   
     }
-    else if(newSensor.tofFront<(DELIVERY_CHUTE_STOP_DISTANCE-20))
+    else if(newSensor.tofFront<(DELIVERY_CHUTE_STOP_DISTANCE-30))
     {
       cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
-      K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-      motor.bot_Backward_withPWMm(120);   
+      K_processPID(newSensor,oldSensor,motor,95,80,0.11);
+      motor.bot_Backward_withPWMm(101);   
       r=0;
     }
     else
@@ -804,7 +804,7 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 	{
 		if(strafeMode4==1)
     {
-      if(strafeItr04 <= 3 * PICKUP_1_ITR_MAX)
+      if(strafeItr04 <= 2 * PICKUP_1_ITR_MAX)
       {
         motor.strafe_Right_withPWM(STRAFE_PICKUP);
       }
@@ -816,7 +816,7 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
     }
     else if(strafeMode4 == 2)
     {
-      if(strafeItr04 <=  PICKUP_2_ITR_MAX/2)
+      if(strafeItr04 <=  2*PICKUP_2_ITR_MAX/2)
       {
         motor.bot_Forward_withPWM(STRAFE_PICKUP);
       }
@@ -864,19 +864,19 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
       }
       else if(newSensor.isFrontTurnComplete() && temp03)
       {
-        motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+        motor.spot_Left_withPWM(SPOT_ROTATE_PWM);
       }
       else if(!newSensor.isFrontTurnComplete() || !newSensor.isBackTurnComplete())
       {
         temp03=false;
         if(!newSensor.isFrontTurnComplete())
         {
-          motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+          motor.spot_Left_withPWM(SPOT_ROTATE_PWM);
         }
         else if(!newSensor.isBackTurnComplete())
         {
           motor.setPWM_all(0);
-          motor.spot_Left();
+          motor.spot_Right();
           motor.setPWMof(MOTOR_BACK,120);
         }
       }

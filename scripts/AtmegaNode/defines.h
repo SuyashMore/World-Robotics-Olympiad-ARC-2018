@@ -16,7 +16,7 @@ using namespace std;
 #define SPOT_LEFT_PWM 100
 
 // Delays(ms)
-#define DELAY_BOT_TURN 1000
+#define DELAY_BOT_TURN 1001
 
 // Flag Params
 #define TOF_FLAG_MIN_THRESH 20
@@ -56,7 +56,7 @@ using namespace std;
 #define DELIVERY_CHUTE_STOP_DISTANCE 200
 
 // TOF Params(cm)
-#define TOF_ERROR_THRESH 12
+#define TOF_ERROR_THRESH 10
 #define TOF_ERROR_THRESH_SIDE 8
 #define BALANCE_WITH_TOF_PWM 140
 

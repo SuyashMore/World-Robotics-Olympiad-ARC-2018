@@ -169,13 +169,14 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
         {
           cout<<"Currently Executing: Spot Left"<<endl;
           temp01 = false;
-	  tempturn=true;
+	   tempturn=true;
           motor.spot_Left_withPWM(SPOT_LEFT_PWM);
         }
 	else if(!newSensor.isBackTurnComplete() && tempturn)
 	{
-		motor.spot_Left();
-		motor.setPWMof(MOTOR_LEFT,120);
+        motor.setPWM_all(0);
+		motor.spot_Right();
+		motor.setPWMof(MOTOR_BACK,120);
 	}
         else
         {
@@ -1458,11 +1459,11 @@ bool balanceWithTOF(float targetDistance,botData& newSensor,Motor& motor)
   {
     if(delta>0)
     {
-      motor.bot_Backward_withPWMm(80);
+      motor.bot_Backward_withPWMm(120);
     }
     else
     {
-      motor.bot_Forward_withPWMm(80);
+      motor.bot_Forward_withPWMm(120);
     }
     return false;
   }

@@ -176,7 +176,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
 	{
         motor.setPWM_all(0);
 		motor.spot_Right();
-		motor.setPWMof(MOTOR_BACK,120);
+		motor.setPWMof(MOTOR_BACK,170);
 	}
         else
         {

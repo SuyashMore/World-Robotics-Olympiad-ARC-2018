@@ -740,6 +740,7 @@ int miniEx04=1;
 int temp04=true;
 int strafeItr04=0;
 int strafeMode4=1;
+int r=0;
 bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor& motor)
 {
     state.updateDigiCounter(newSensor,oldSensor,motor);
@@ -764,14 +765,35 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 	}
 	else if(miniEx04 == 2)
 	{
-		if(newSensor.tofFront > DELIVERY_CHUTE_STOP_DISTANCE)
-		{
-			followLine(newSensor,oldSensor,motor);
-		}
+    if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE)*1.2)
+    {
+      followLine(newSensor,oldSensor,motor);
+    }
+    else if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE+TOF_ERROR_THRESH))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
+      // processPID(newSensor,oldSensor,motor);
+      K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+      motor.bot_Forward_withPWMm(140);
+      r=0;   
+    }
+    else if(newSensor.tofFront<(DELIVERY_CHUTE_STOP_DISTANCE-TOF_ERROR_THRESH))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
+      K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+      motor.bot_Backward_withPWMm(140);   
+      r=0;
+    }
     else
     {
-      miniEx04=3;
+     r++;
     }
+    if(r>10)
+    {
+      miniEx04=3;
+      r=0;
+    }
+
 	}
 	else if(miniEx04 == 3)
 	{

@@ -683,7 +683,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
       {
         motor.spot_Left_withPWM(SPOT_LEFT_PWM);
       }
-      else if(!newSensor.isBackTurnComplete)
+      else if(!newSensor.isBackTurnComplete())
       {
         motor.setPWM_all(0);
         motor.spot_Right();

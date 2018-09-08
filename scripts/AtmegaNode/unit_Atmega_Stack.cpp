@@ -117,12 +117,12 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 // Handles the Decryption And Processing of the Message Received
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
-	// Check for Arm Signals
-	if(enableArmControl)
-	{
-		navFlag=false;
-		handleArmSignal();
-	}
+	// // Check for Arm Signals
+	// if(enableArmControl)
+	// {
+	// 	navFlag=false;
+	// 	handleArmSignal();
+	// }
 
 	string m;
 	m=msg->data.c_str();
@@ -142,7 +142,6 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"--------------------------------------------------------"<<endl;
 
 		masterLoopStack(bt,storage,motor);
-		navFlag=true;
 		// Process_data and then enable the Publish Flag
 		
 		std_msgs::String msg;
@@ -155,6 +154,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			storage.copyFront(bt);
 		if(!bt.preserveHistoryB)
 			storage.copyBack(bt);
+		navFlag=true;
 	}
 	else
 	{

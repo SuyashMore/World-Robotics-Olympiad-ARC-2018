@@ -8,8 +8,8 @@ using namespace std;
 
 // Ros Spin Rate (spins/second)
 #define ROS_LOOP_RATE 40
-#define LF_THRESH 300
-#define LF_MAX 15
+#define LF_THRESH 500
+#define LF_MAX 7
 
 // PWM Settings
 #define FORWARD_MOTION_PWM 200

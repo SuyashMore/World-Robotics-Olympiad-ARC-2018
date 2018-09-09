@@ -448,7 +448,7 @@ bool nav_PickupBlock_from__SupplyLine2(botData& newSensor,botData& oldSensor,Mot
 int temp02=true;
 int miniEx02=1;
 int q=0;
-int direction = 0; //Stores the Direction Variable to Return Back on the Line
+int direction = DIR_NULL; //Stores the Direction Variable to Return Back on the Line
 bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor )
 {
     state.updateDigiCounter(newSensor,oldSensor,motor);
@@ -564,12 +564,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         	miniEx02=5;
             state.digiCounter=0;
             temp02=true;
+            stopFlag=true;
       	}
 	}
 	else if(miniEx02==5)		//Return Back to the Junction
 	{
       if(!newSensor.isFrontTurnComplete() && temp02)
       {
+        cout<<"Getting Back on Line"<<endl;
         if(direction==DIR_LEFT)
         {
           motor.strafe_Right_withPWM(100);
@@ -582,25 +584,28 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
       else if(temp02)
       {
         temp02=false;
+        miniEx02=6;
         state.digiCounterR=0;
       }
 
-        cout<<"Currently Executing: follow Line Back"<<endl;
-		if(state.digiCounterR<1)
-      	{
-        	followLineBackpwm(newSensor,oldSensor,motor,120);
-      	}
-      	else 
-      	{
-        	motor.bot_Stop();
-        	temp02=true;
-        	miniEx02=1;
-        	q=0;
-          direction=DIR_NULL;
-        	return true;
-      	}
-
 	}
+  else if(miniEx02==6)
+  {
+    cout<<"Currently Executing: follow Line Back"<<endl;
+    if(state.digiCounterR<1)
+        {
+          followLineBackpwm(newSensor,oldSensor,motor,120);
+        }
+        else 
+        {
+          motor.bot_Stop();
+          temp02=true;
+          miniEx02=1;
+          q=0;
+          direction=DIR_NULL;
+          return true;
+        }
+  }
 
 	return false;
 }

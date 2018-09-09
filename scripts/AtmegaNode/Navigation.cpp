@@ -549,12 +549,12 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           cout<<"Currently Executing: Bot Back and Push"<<endl;
           if(d<15)
           {
-            strafe_Left_withPWM(80);
+            motor.strafe_Left_withPWM(80);
             d++;
           }
           else if(d<20)
           {
-            strafe_Right_withPWM(80);
+            motor.strafe_Right_withPWM(80);
             d++;
           }
   		    else if(q<= (PULL_AND_PUSH_ITR/2))

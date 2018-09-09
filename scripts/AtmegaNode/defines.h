@@ -36,6 +36,7 @@ using namespace std;
 #define DIR_LEFT 1
 #define DIR_RIGHT 2
 #define DIR_NULL 0
+#define t 0
 
 
 // PWM MAP VARs

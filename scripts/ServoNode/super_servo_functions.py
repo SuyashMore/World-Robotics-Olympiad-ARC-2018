@@ -114,7 +114,11 @@ def gripEnable():
 def gripDisable():
     setSpeed(constants.servoIDArm[5],constants.servoGripperSpeed)
     setTransformedAngle(5,constants.GRIPCLOSE)
-    
+
+def disableTorque():
+    disableAll()
+    disable(7)
+
 
 def stackBlockOld():
     #Sleep Constants

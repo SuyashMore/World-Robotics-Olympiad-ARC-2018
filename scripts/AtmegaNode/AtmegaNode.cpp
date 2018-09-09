@@ -96,9 +96,8 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	botData bt;
 	bt.decrpty_message(m);
 	bt.printData();
-	cout<<"Digi-Counter:"<<state.digiCounter<<endl;
+	state.printData();
 	cout<<"Game State:"<<itr<<endl;
-	cout<<"Callback-Rate"<<cbrate<<endl;
 
 	// Process Only After The Servo-Node had Completed Processing
 	if(navFlag) 			

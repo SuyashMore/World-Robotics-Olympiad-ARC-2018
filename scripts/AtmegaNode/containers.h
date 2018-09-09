@@ -453,6 +453,7 @@ struct Motor
 struct gameState
 {
   int digiCounter=0;
+  int digiCounterR=0;
   int r=0;
   int t=0;
   int reading_tof_digital=0;
@@ -486,7 +487,11 @@ struct gameState
   bool executeStep16=false;
   bool executeStep17=false;
 
-  
+  void printData()
+  {
+  	cout<<"digiCounter Left : "<<digiCounter<<endl;
+  	cout<<"digiCounter Right :"<<digiCounterR<<endl;
+  }
 
   void updateDigiCounter(botData& newSensor,botData& oldSensor,Motor& motor)
 	{

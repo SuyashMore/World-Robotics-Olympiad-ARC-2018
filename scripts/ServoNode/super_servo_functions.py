@@ -54,16 +54,16 @@ def getAngleTransformed(index):#(0-360)
 def setAngles(a0,a1,a2,a3,a4):
 
     tfa0=constants.transform2ServoAngles(a0,0)
-    tfa1=constants.transform2ServoAngles(a1,1)
+    tfa1=constants.transform2ServoAngles(a1-2,1)
     tfa2=constants.transform2ServoAngles(a2,2)
-    tfa3=constants.transform2ServoAngles(a3,3)
-    tfa4=constants.transform2ServoAngles(a4,4)
+    tfa3=constants.transform2ServoAngles(a3,3)  
+    tfa4=constants.transform2ServoAngles(a4+2,4)
     
-    setAngle(constants.servoIDArm[4],tfa4)
-    setAngle(constants.servoIDArm[3],tfa3)
-    setAngle(constants.servoIDArm[2],tfa2)
-    setAngle(constants.servoIDArm[1],tfa1)
     setAngle(constants.servoIDArm[0],tfa0)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[2],tfa2)
+    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[4],tfa4)
 
 def processIK(x,y,z):
     return ik.process(x,y,z)
@@ -222,10 +222,10 @@ def move2standard():
     move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X =9.8700596687381434
-    FINAL_Y =  -7.9926167264261485
-    INITIAL_Z =  -8.7000000000000348
-    FINAL_Z = -13.5
+    FINAL_X =10.6
+    FINAL_Y = -9
+    INITIAL_Z = -8.9
+    FINAL_Z = -13
         
     SL4 = 0.4
     SL3 = 1.0
@@ -245,48 +245,75 @@ def pickupXYZ():
 
     setSpeedAll(250)
 
+    # move2angle(-39,-16,123,-103,30)    similar to below co-ordinate
+    
+    # move2pos(8.8438761521539782,-7.161629699568385,-9.105261027785847)
+    # time.sleep(SLY)
+
+    # move2pos(9,-6.5,-9)
+    # time.sleep(SLY)
+    
+    # move2pos(9,-7,-9)
+    # time.sleep(SLY)
+   
+    # move2pos(9.5,-7,-9)
+    # time.sleep(SLY)
+    
+    # move2pos(9.7,-7,-9)
+    # time.sleep(SLY)
 
 
-    move2pos( FINAL_X,FINAL_Y, INITIAL_Z)
+    # move2pos(9.7,-7.5,-9)
+    # time.sleep(SLY)
+
+    # move2pos(9.7,-7.5,-9)
+    # time.sleep(SLY)
+
+
+    # move2pos(9.8,-7.6,-9)
+    # time.sleep(SLY)
+
+    # move2pos(9.8,-7.5,-9)
+    # time.sleep(SLY)
+
+    # move2pos(9.9,-7.5,-9)
+    # time.sleep(SLY)
+
+    # move2pos(9.9,-7.8,-9.5)
+    # time.sleep(SLY)
+
+    # move2pos(9.9,-7.8,-9.9)
+    # time.sleep(SLY)
+
+   
+    # move2pos(9.9,-7.8,-12)
+    # time.sleep(SLY)
+     # p = INITIAL_
+     # Z
+    # while p >FINAL_Z :    
+    #     move2pos(8.7,-6.4,p)
+    #     setAngle(17,600)
+    #     p=p-0.2
+
+    
+    move2pos(FINAL_X,FINAL_Y,-8.9)
     time.sleep(SLY)
 
-    setSpeedAll(50)                            # ADDED TODAY 
+    move2pos(FINAL_X,FINAL_Y,-8.9)
+    time.sleep(SLY)
+    set
+    setSpeedAll(150)
+    for i in range (-89,-130,-3):
+        move2pos(FINAL_X,-9,((float)(i)/10))
+        time.sleep(SL2)
 
-    # move2pos( FINAL_X,FINAL_Y,-9)
-    # time.sleep(SL1)
-    
 
-    # move2pos( FINAL_X,FINAL_Y,-9.5)
-    # time.sleep(SL1)
-   
-    # move2pos( FINAL_X,FINAL_Y,-10)
-    # time.sleep(SL1)
-
-    # move2pos( FINAL_X,FINAL_Y,-10.5)
-    # time.sleep(SL1)
-    
-    # move2pos( FINAL_X,FINAL_Y,-11)
-    # time.sleep(SL1)
-    
-    # move2pos( FINAL_X,FINAL_Y,-11.5)
-    # time.sleep(SL1)
-    
-    # move2pos( FINAL_X,FINAL_Y,-12)
-    # time.sleep(SL1)
-    
-    # move2pos( FINAL_X,FINAL_Y,-12.5)
-    # time.sleep(SL1)
-    
-    # move2pos( FINAL_X,FINAL_Y,-13)
-    # time.sleep(SL1)
-
-    # move2pos(FINAL_X,FINAL_Y,-13.5)
     # time.sleep(SL3)
-    p = INITIAL_Z
-    while p >FINAL_Z :
-        move2pos( FINAL_X,FINAL_Y,p )
-        p =p-1
-        time.sleep(1)
+    move2pos(FINAL_X,FINAL_Y,-13)
+    time.sleep(SLY)
+    
+
+    
 
     gripEnable()
     time.sleep(SL3)

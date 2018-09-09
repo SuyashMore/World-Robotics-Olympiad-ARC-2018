@@ -37,7 +37,7 @@ struct botData
 		std::cout<<"Tof Front:"<<tofFront<<std::endl;
 		 std::cout<<"Tof Side:"<<tofSide<<std::endl;
 		std::cout<<"digiLeft:"<<digiLeft<<std::endl;
-		// std::cout<<"digiRight:"<<digiRight<<std::endl;
+		std::cout<<"digiRight:"<<digiRight<<std::endl;
 	}
 
 	void copyFront(botData& b)
@@ -491,6 +491,8 @@ struct gameState
   void updateDigiCounter(botData& newSensor,botData& oldSensor,Motor& motor)
 	{
 	  if ( newSensor.digiLeft == 1 && oldSensor.digiLeft == 0)
+	  		digiCounter++;
+	  if(newSensor.digiRight == 1 && oldSensor.digiRight == 0)
 	  		digiCounter++;
 	}
   

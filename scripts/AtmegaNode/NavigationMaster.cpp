@@ -93,7 +93,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==5)		//Stack the Block
 	{
 		cout<<"Navigation Step:"<<5<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(574,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -127,18 +127,19 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==9)
 	{
 		cout<<"Navigation Step:"<<9<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(717,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
 	}
 	else if(state.currentStepIndex==10)
 	{
-		cout<<"Navigation Step:"<<10<<endl;
-		if(nav_Pickup_from_Delivery_chute(newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
+		// cout<<"Navigation Step:"<<10<<endl;
+		// if(nav_Pickup_from_Delivery_chute(newSensor,oldSensor,motor))
+		// {
+		// 	state.currentStepIndex++;
+		// }
+		motor.bot_Stop();
 	}
 
 }
@@ -148,7 +149,7 @@ void masterLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(!stopFlag)
     {
             // navigates from gome 2 stack the block with the block in Arm
-      stackBlockAtleft(newSensor,oldSensor,motor);
+      nav_Complete_1_Row(newSensor,oldSensor,motor);
       
             // Navigates from home 2 pickup the block and Stack
       // navigate2(newSensor,oldSensor,motor);

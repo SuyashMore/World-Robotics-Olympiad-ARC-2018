@@ -1,5 +1,5 @@
-ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
-# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
+# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
+ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB5"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB6"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB4"
@@ -9,8 +9,8 @@ LIDAR_BAUD = 115200
 
 # DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/eshita/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
-# DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+DXL_LIB_PATH = "/home/pratik/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
 ENABLE_DEBUG_MESSAGES = True
@@ -47,9 +47,13 @@ def transform2ServoAngles(angle,angleIndex):
     if angleIndex == 1:
         CompoundAngle= (((angle+ 70 + 35 -17-3-2) / (SERVO_RES))*2)+196+10         #Reduction in Gear Ratio
     if angleIndex == 2:
-        CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20
+        CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20+7
     if angleIndex == 3:
+<<<<<<< HEAD
+        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5-20
+=======
         CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569
+>>>>>>> refs/remotes/origin/master
     if angleIndex == 4:
         CompoundAngle= (((angle+14) / (SERVO_RES))) + 461
     if angleIndex == 5:
@@ -63,10 +67,10 @@ def transform2StandardAngles(angle,angleIndex):
         return (((((angle - 196 ) * SERVO_RES ) * (1) ))/ 2) - 70 - 35 +17+3+2-10#Reduction in Gear Ratio
     elif angleIndex == 2:
         max_Val = 170
-        temp = ((((angle-497)*SERVO_RES) ) * (1) +88 ) + 8 -10-4 + 7 - 5+20
+        temp = ((((angle-497)*SERVO_RES) ) * (1) +88 ) + 8 -10-4 + 7 - 5+20+10
         return temp
     elif angleIndex == 3:
-        return (((angle -569)*SERVO_RES) ) * (-1) - 8 + 5 +20-40+17 - 3+5
+        return (((angle -569)*SERVO_RES) ) * (-1) - 8 + 5 +20-40+17 - 3+5+50
     elif angleIndex == 4:
         return (((angle - 461)*SERVO_RES) ) -14
     elif angleIndex == 5:

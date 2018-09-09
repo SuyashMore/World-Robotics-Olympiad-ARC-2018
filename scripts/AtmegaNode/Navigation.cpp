@@ -489,7 +489,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	{
           cout<<"Currently Executing: Correcting with Line"<<endl;
   	motor.bot_Forward_withPWMm(0);
-      K_processPID(newSensor,oldSensor,motor,90,80,0.5);
+      K_processPID(newSensor,oldSensor,motor,100,90,0.5);
      if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
       {
         q++;
@@ -547,14 +547,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<15)
+          if(d<20)
           {
-            motor.strafe_Left_withPWM(80);
+            motor.strafe_Left_withPWM(110);
             d++;
           }
-          else if(d<20)
+          else if(d<40)
           {
-            motor.strafe_Right_withPWM(80);
+            motor.strafe_Right_withPWM(110);
             d++;
           }
   		    else if(q<= (PULL_AND_PUSH_ITR/2))

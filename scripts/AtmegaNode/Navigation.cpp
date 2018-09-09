@@ -449,6 +449,7 @@ bool nav_PickupBlock_from__SupplyLine2(botData& newSensor,botData& oldSensor,Mot
 int temp02=true;
 int miniEx02=1;
 int q=0;
+itn d=0;
 int direction = DIR_NULL; //Stores the Direction Variable to Return Back on the Line
 bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor )
 {
@@ -546,7 +547,17 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-  		if(q<= (PULL_AND_PUSH_ITR/2))
+          if(d<15)
+          {
+            strafe_Left_withPWM(80);
+            d++;
+          }
+          else if(d<20)
+          {
+            strafe_Right_withPWM(80);
+            d++;
+          }
+  		    else if(q<= (PULL_AND_PUSH_ITR/2))
         	{
   	        motor.bot_Backward_withPWM(80);
   	        if(q==PULL_AND_PUSH_ITR/2)
@@ -587,13 +598,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           temp02=false;
           miniEx02=6;
           state.digiCounterR=0;
+          state.digiCounter=0;
         }
 
   	}
     else if(miniEx02==6)
     {
       cout<<"Currently Executing: follow Line Back"<<endl;
-      if(state.digiCounterR<1)
+      if(state.digiCounter<1)
           {
             followLineBackpwm(newSensor,oldSensor,motor,120);
           }
@@ -603,6 +615,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
             temp02=true;
             miniEx02=1;
             q=0;
+            d=0;
             direction=DIR_NULL;
             return true;
           }

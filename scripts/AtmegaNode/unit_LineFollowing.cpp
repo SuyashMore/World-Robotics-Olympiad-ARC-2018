@@ -94,7 +94,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	if(navFlag) 			
 	{
 
-		// Print the Delay Iterations
+		// Print the Delay IWterations
 		if(stopFlag)
 			cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
 		cout<<"--------------------------------------------------------"<<endl;

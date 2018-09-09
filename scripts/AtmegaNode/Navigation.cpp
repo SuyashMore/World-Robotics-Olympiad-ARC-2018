@@ -128,9 +128,10 @@ bool nav_goBackward_1_Junction(botData& newSensor,botData& oldSensor,Motor& moto
 	{
 		temp4=false;
 		state.digiCounter=0;
+    state.digiCounterR=0;
 	}
 
-	if(state.digiCounter<1)
+	if(state.digiCounterR<1)
 	{
     cout<<"Currently Executing: Follow Line Back"<<endl;
           followLineBack(newSensor,oldSensor,motor);
@@ -138,7 +139,7 @@ bool nav_goBackward_1_Junction(botData& newSensor,botData& oldSensor,Motor& moto
 	else
 	{
 		temp4=true;
-        state.digiCounter=0;
+    state.digiCounterR=0;
 		return true;
 	}
 	return false;
@@ -155,8 +156,8 @@ int strafeItr01=0;
 int strafeMode=1;
 bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Motor& motor)
 {
-    state.updateDigiCounter(newSensor,oldSensor,motor);
-    motor.reset(); 
+  state.updateDigiCounter(newSensor,oldSensor,motor);
+  motor.reset(); 
 	// Mini - Step 1 : Handle Rotation and Enable 90 degrees
 	if(miniEx01==1)
 	{
@@ -538,7 +539,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           {
               q=0;
               miniEx02=4;
-              // stackBlock();
+              stackBlock();
               stopFlag=true;
           }
       }
@@ -793,8 +794,8 @@ int strafeMode4=1;
 int r=0;
 bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor& motor)
 {
-    state.updateDigiCounter(newSensor,oldSensor,motor);
-    motor.reset(); 
+  state.updateDigiCounter(newSensor,oldSensor,motor);
+  motor.reset(); 
 	if(miniEx04==1)
 	{
 		if(newSensor.isFrontTurnComplete() && temp04)

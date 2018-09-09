@@ -461,15 +461,15 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           {
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
-              K_processPID(newSensor,oldSensor,motor,120,80,0.11);
-  			motor.bot_Forward_withPWMm(140);
+              K_processPID(newSensor,oldSensor,motor,90,80,0.11);
+  			motor.bot_Forward_withPWMm(100);
               q=0;   
           }
           else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-TOF_ERROR_THRESH))
           {
               cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
-              K_processPID(newSensor,oldSensor,motor,120,80,0.11);
-              motor.bot_Backward_withPWMm(140);   
+              K_processPID(newSensor,oldSensor,motor,90,80,0.11);
+              motor.bot_Backward_withPWMm(100);   
               q=0;
           }
           else

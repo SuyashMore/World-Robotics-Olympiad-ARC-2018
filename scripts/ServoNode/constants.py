@@ -49,7 +49,7 @@ def transform2ServoAngles(angle,angleIndex):
     if angleIndex == 2:
         CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20
     if angleIndex == 3:
-        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5
+        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569
     if angleIndex == 4:
         CompoundAngle= (((angle+14) / (SERVO_RES))) + 461
     if angleIndex == 5:

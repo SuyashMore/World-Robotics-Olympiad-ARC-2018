@@ -565,6 +565,7 @@ int miniEx03=1;
 int temp03=true;
 int strafeItr03=0;
 int strafeMode3=1;
+int u=0;
 bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& motor)
 {
     state.updateDigiCounter(newSensor,oldSensor,motor);
@@ -587,7 +588,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 	}
 	else if(miniEx03==2) //Step 2: Go Forward Till TOF Sensor shows Infinity
 	{
-		if(newSensor.tofSide>TOF_SIDE_DISTANCE)
+		if(u<70)
 		{
 			followLine(newSensor,oldSensor,motor);
 		}
@@ -596,8 +597,11 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 			motor.bot_Stop();
 			stopFlag=true;
 			miniEx03=3;
+      u=0;
 			temp03=true;
+      state.digiCounter=0;
 		}
+    u++;
 	}
 	else if(miniEx03==3)         //Step 3: Spot Rotate Left till Perpendicular to the Line
 	{
@@ -607,7 +611,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		  state.digiCounter=0;
     }
 
-		else if(!newSensor.isFrontTurnComplete() && state.digiCounter<1)
+		else if(state.digiCounter<1)
 		{
 			temp03=false;
       motor.spot_Left_withPWM(SPOT_LEFT_PWM);
@@ -615,6 +619,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		else
 		{
 			motor.bot_Stop();
+      stopFlag=true;
 			miniEx03=4;
 		}
 	}
@@ -625,7 +630,6 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
   			if(strafeItr03  <= PICKUP_1_ITR_MAX)
 	        {
 	          motor.bot_Forward_withPWM(STRAFE_PICKUP);
-	          processPID(newSensor,oldSensor,motor);
 	        }
 	        else
 	        	{strafeMode3=2;
@@ -673,9 +677,19 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		{
 			motor.bot_Backward_withPWM(100);
 		}
-		else if(newSensor.isFrontTurnComplete())
+		else if(!newSensor.isFrontTurnComplete() || !newSensor.isBackTurnComplete())
 		{
-			motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+      if(!newSensor.isFrontTurnComplete())
+      {
+        motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+      }
+      else if(!newSensor.isBackTurnComplete())
+      {
+        motor.setPWM_all(0);
+        motor.spot_Right();
+        motor.setPWMof(MOTOR_BACK,120);
+      }
+			
 		}
 		else 
 		{
@@ -694,10 +708,19 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		{
 			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
 		}
-		else if(!newSensor.isFrontTurnComplete())
+		else if(!newSensor.isFrontTurnComplete() || !newSensor.isBackTurnComplete())
 		{
 			temp03=false;
-			motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+      if(!newSensor.isFrontTurnComplete())
+			{
+        motor.spot_Right_withPWM(SPOT_ROTATE_PWM);
+      }
+      else if(!newSensor.isBackTurnComplete())
+      {
+        motor.setPWM_all(0);
+        motor.spot_Left();
+        motor.setPWMof(MOTOR_BACK,120);
+      }
 		}
 		else
 		{
@@ -717,6 +740,7 @@ int miniEx04=1;
 int temp04=true;
 int strafeItr04=0;
 int strafeMode4=1;
+int r=0;
 bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor& motor)
 {
     state.updateDigiCounter(newSensor,oldSensor,motor);
@@ -741,712 +765,140 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 	}
 	else if(miniEx04 == 2)
 	{
-		if(newSensor.tofFront < DELIVERY_CHUTE_STOP_DISTANCE)
-		{
-			followLine(newSensor,oldSensor,motor);
-		}
-		else if(balanceWithTOF(DELIVERY_CHUTE_STOP_DISTANCE,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,80,70,0))
-		{
-			motor.bot_Stop();
-			stopFlag=true;
-			miniEx04=3;
-			enableCordinator();
-		}
+    if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE)*1.5)
+    {
+      followLine(newSensor,oldSensor,motor);
+    }
+    else if(newSensor.tofFront>(DELIVERY_CHUTE_STOP_DISTANCE+30))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
+      // processPID(newSensor,oldSensor,motor);
+      K_processPID(newSensor,oldSensor,motor,95,80,0.11);
+      motor.bot_Forward_withPWMm(100);
+      r=0;   
+    }
+    else if(newSensor.tofFront<(DELIVERY_CHUTE_STOP_DISTANCE-30))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
+      K_processPID(newSensor,oldSensor,motor,95,80,0.11);
+      motor.bot_Backward_withPWMm(101);   
+      r=0;
+    }
+    else
+    {
+     r++;
+    }
+    if(r>10)
+    {
+      miniEx04=3;
+      r=0;
+    }
+
 	}
 	else if(miniEx04 == 3)
 	{
-		// Add Delay
+    stopFlag=true;
 		miniEx04=4;
 	}
 	else if(miniEx04 == 4)
 	{
-		
+		if(strafeMode4==1)
+    {
+      if(strafeItr04 <= 2 * PICKUP_1_ITR_MAX)
+      {
+        motor.strafe_Right_withPWM(STRAFE_PICKUP);
+      }
+      else
+      {
+        strafeMode4++;
+        strafeItr04=0;
+      }
+    }
+    else if(strafeMode4 == 2)
+    {
+      if(strafeItr04 <=  2*PICKUP_2_ITR_MAX/2)
+      {
+        motor.bot_Forward_withPWM(STRAFE_PICKUP);
+      }
+      else
+      {
+        strafeMode4++;
+        strafeItr04=0;
+      }
+
+    }
+    else if(strafeMode4==3)
+    {
+      if(strafeItr04 <=PICKUP_3_ITR_MAX)
+      {
+        motor.strafe_Right_withPWM(STRAFE_PICKUP);
+      }
+      else
+      {
+        strafeMode4++;
+      }
+
+    }
+    else if(strafeMode4==4)
+    {
+      miniEx04=5;
+    }
+    strafeItr04++;
 	}
-}
-
-
-
-// Navigates to Pickup the Block from Supply Line
-void navigate2(botData& newSensor,botData& oldSensor,Motor& motor)
-{
-  state.updateDigiCounter(newSensor,oldSensor,motor);
-  motor.reset();
-
-  // Step 1 :
-      // Go Forward until the Bot has Not Reached To the Starting Line (Passed 2 Lines)
-  if(state.executeStep1)
+  else if(miniEx04==5)
+  {
+    if(!newSensor.isFrontTurnComplete())
+    {
+      motor.strafe_Left_withPWM(STRAFE_PICKUP);
+    }
+    else{
+      state.digiCounter=0;
+      miniEx04=6;
+    }
+  }
+  else if(miniEx04==6)
   {
       if(state.digiCounter<1)
-      {   
-          itr=1;
-          motor.strafe_Right_withPWM(160);
-      }
-      else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
       {
-          itr=2;
-          motor.strafe_Right_withPWM(160);
+        followLineBack(newSensor,oldSensor,motor);
       }
-      else if(newSensor.isFrontTurnComplete())
+      else if(newSensor.isFrontTurnComplete() && temp03)
       {
-        state.executeStep1=false;
-        state.executeStep3=true;
-        motor.bot_Stop();
-        stopFlag=true;
+        motor.spot_Left_withPWM(SPOT_ROTATE_PWM);
+      }
+      else if(!newSensor.isFrontTurnComplete() || !newSensor.isBackTurnComplete())
+      {
+        temp03=false;
+        if(!newSensor.isFrontTurnComplete())
+        {
+          motor.spot_Left_withPWM(SPOT_ROTATE_PWM);
+        }
+        else if(!newSensor.isBackTurnComplete())
+        {
+          motor.setPWM_all(0);
+          motor.spot_Right();
+          motor.setPWMof(MOTOR_BACK,120);
+        }
+      }
+      else
+      {
+        temp04=true;
+        strafeItr04=0;
+        strafeMode4=1;
+        miniEx04=1;
+        return true;
       }
   }
-
-
-    // Step 3:
-      // Go Forward Until digi-Count == 4 and Turn Left
-  if (state.executeStep3)
-    {
-        if(state.digiCounter<3)
-        {
-          itr = 3;
-          followLine(newSensor,oldSensor,motor);
-        }
-        else if(temp2)
-        {
-          temp2=false;
-          motor.bot_Stop();
-          stopFlag=true;
-        }
-        else if(newSensor.isFrontTurnComplete() && temp)
-        {
-
-          itr=4;
-          motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-        }
-        else if(!newSensor.isFrontTurnComplete())
-        {
-          temp = false;
-          itr=5;
-          motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-        }
-        else
-        {
-          itr=6;
-          motor.bot_Stop();
-          stopFlag=true;
-          state.executeStep3=false;
-          state.executeStep4=true;
-          enableCordinator();
-      }
-    }
-
-    // Step 4:
-      // Go Forward for few Seconds and Strafe Right for few Iterations
-
-    else if(state.executeStep4)
-    {
-      if(strafeItr<=maxStrafeItr)
-      {
-        itr=7;
-        if(strafeItr  <= int((maxStrafeItr)/3)    )
-        {
-          motor.bot_Forward_withPWM(100);
-          processPID(newSensor,oldSensor,motor);
-        }
-        else if(strafeItr  <= int((maxStrafeItr)*2/3 ))
-        {
-          motor.strafe_Right_withPWM(100);
-        }
-        else
-        {
-          motor.bot_Forward_withPWM(100);
-        }
-
-        strafeItr++;
-      }
-      
-      if(strafeItr > maxStrafeItr)
-      {
-        state.executeStep4=false;
-        itr=8;
-        motor.bot_Stop();
-        stopFlag=true;
-        pickupBlock();
-        state.executeStep5=true;
-        temp=true;
-      }
-
-    }
-
-
-    // Step 5:
-        // Strafe Left Until the Bot is Back on Line
-
-    else if(state.executeStep5)
-    {
-      if(temp)
-      {
-        disableCordinator();
-        temp=false;  
-      }
-      
-      if(!newSensor.isFrontTurnComplete())
-      {
-        itr=9;
-        motor.strafe_Left_withPWM(90);
-      }
-      else
-      {
-        itr=10;
-        state.executeStep5=false;
-        state.executeStep6=true;
-        // Reset the Digi-Counter
-        state.digiCounter=0;
-        stopFlag=true;
-        temp =true;
-      }
-    }
-
-
-    // Step 6:
-        // Bot Reverse Until Junction Counter == 1 and then Spot-Right
-    else if(state.executeStep6)
-    {
-      if(state.digiCounter<1)
-        {
-          itr=11;
-          followLineBackpwm(newSensor,oldSensor,motor,150);
-      }
-
-      else
-      {
-
-          if(newSensor.isFrontTurnComplete() && temp)
-          {
-            itr=12;
-            motor.spot_Right_withPWM(100);
-          }
-          else if(!newSensor.isFrontTurnComplete())
-          {
-            itr=13;
-            temp=false;
-           motor.spot_Right_withPWM(100); 
-          }
-          else
-          {
-            state.executeStep6=false;
-            state.executeStep7=true;
-          }
-      }
-    }
-
-    // Step 7:
-        // Bot Forward Until Reached at and Desired Distance from the Stacking Form
-    else if(state.executeStep7)
-    {
-
-      if(newSensor.tofFlag==false)
-          {
-            processPID(newSensor,oldSensor,motor);
-            motor.bot_Forward_withPWMm(150);
-          }
-      else if(balanceWithTOF(170,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
-
-        {
-          tfi++;
-          itr=14;
-          cout<<"Balancing with TOF"<<endl;
-          if(tfi>=maxTf)
-          {
-            state.executeStep7=false;
-            state.executeStep75=true;
-            tfi=0;
-          }
-        }
-    }
-
-    else if (state.executeStep75)
-    {
-        cout<<"TFI:="<<tfi<<endl;
-        K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-        motor.bot_Forward_withPWMm(0);
-       if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
-        {
-          tfi++;
-        }
-        else
-        {
-          tfi=0;
-	  cout<<"Resetting"<<endl;
-        }
-      
-      if(tfi >=LF_MAX)
-      {
-        motor.bot_Stop();
-        stopFlag=true;
-        state.digiCounter=0;
-        state.executeStep75=false;
-        state.executeStep74=true;
-        stackBlock();
-      }
-    }
-        else if (state.executeStep74)
-          if(balanceSideAt(60,newSensor,motor))
-        {
-            state.executeStep74=false;
-            state.executeStep76=true;
-        }
-    else if(state.executeStep76)
-    {
-      if(xitr<= (itBF/2))
-      {
-        motor.bot_Backward_withPWM(80);
-        if(xitr==itBF/2)
-        {
-          motor.bot_Stop();
-          stopFlag=true;
-        }
-      }
-      else
-      {
-        motor.bot_Forward_withPWM(80);
-      }
-      xitr++;
-      if(xitr>itBF)
-      {
-        state.executeStep76=false;
-        state.executeStep8=true;
-      }
-    }
-
-    //Step:8 ----> Bot-Stop
-    else if(state.executeStep8)
-    {
-      itr=15;
-      motor.bot_Stop();
-      stopFlag=true;
-
-      state.executeStep8=false;
-      state.executeStep9=true;
-    }
-    // Step:9 ------>Return back to the Junction
-
-    else if(state.executeStep9)
-    {
-      if(state.digiCounter<2)
-      {
-        itr=16;
-        followLineBackpwm(newSensor,oldSensor,motor,80);
-      }
-      else 
-      {
-        itr=17;
-        motor.bot_Stop();
-        state.executeStep9=false;
-        state.executeStep10=true;
-      }
-    }
-    else if(state.executeStep10)
-    {
-      if(!newSensor.isFrontAllBlack())
-      {
-        followLineBackpwm(newSensor,oldSensor,motor,80);
-      }
-      else
-      {
-        state.executeStep10=false;
-        state.executeStep11=true;
-      }
-    }
-    else if(state.executeStep11)
-    {
-      if(newSensor.isFrontAllBlack())
-      {
-        followLine(newSensor,oldSensor,motor);
-      }
-      else
-      {
-        stopFlag=true;
-        state.executeStep11=false;
-        state.executeStep12=true;
-        state.digiCounter=0;
-      }
-    }
-    else if(state.executeStep12)
-    {
-      if(state.digiCounter<2)
-      {
-        motor.strafe_Left_withPWM(100);
-      }
-      else
-      {
-        if(newSensor.digiLeft==1)
-        {
-          motor.strafe_Right_withPWM(80);
-        }
-        else
-        {
-          motor.bot_Stop();
-        }
-      }
-    }
-
+  return false;
+  
 }
-
-// Navigates to Pickup the Block from White Spaces
-void navigate3(botData& newSensor,botData& oldSensor,Motor& motor)
-{
-	state.updateDigiCounter(newSensor,oldSensor,motor);
-  motor.reset();
-
-  // Step 1 :
-      // Go Forward until the Bot has Not Reached To the Starting Line (Passed 2 Lines)
-  if(state.executeStep1)
-  {
-      if(state.digiCounter<1)
-      {   
-          itr=1;
-          motor.strafe_Right_withPWM(160);
-      }
-      else if(state.digiCounter==1 && !newSensor.isFrontTurnComplete())
-      {
-          itr=2;
-          motor.strafe_Right_withPWM(160);
-      }
-      else if(newSensor.isFrontTurnComplete())
-      {
-        state.executeStep1=false;
-        state.executeStep3=true;
-        motor.bot_Stop();
-        stopFlag=true;
-      }
-  }
-
-
-    // Step 3:
-      // Go Forward Until digi-Count == 4 and Turn Right
-  if (state.executeStep3)
-    {
-        if(state.digiCounter<3)
-        {
-          itr = 3;
-          followLine(newSensor,oldSensor,motor);
-        }
-        else if(temp2)
-        {
-          temp2=false;
-          motor.bot_Stop();
-          stopFlag=true;
-        }
-        else if(newSensor.isFrontTurnComplete() && temp)
-        {
-
-          itr=4;
-          motor.spot_Right_withPWM(SPOT_LEFT_PWM);
-        }
-        else if(!newSensor.isFrontTurnComplete())
-        {
-          temp = false;
-          itr=5;
-          motor.spot_Right_withPWM(SPOT_LEFT_PWM);
-        }
-        else
-        {
-          itr=6;
-          motor.bot_Stop();
-          stopFlag=true;
-          state.executeStep3=false;
-          state.executeStep35=true;
-          temp=true;
-          temp2=true;
-      }
-    }
-
-    else if(state.executeStep35)
-    {
-    	
-    	if(newSensor.tofSide > 140 && temp)
-    	{
-    		followLine(newSensor,oldSensor,motor);
-    	}
-    	else if(temp)
-    	{
-    		stopFlag=true;
-    		temp=false;
-    	}
-    	else if(newSensor.isFrontTurnComplete() && temp2)
-    	{
-    		state.digiCounter=0;
-    		motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-    	}
-    	else if(state.digiCounter<1)
-    	{
-    		temp2=false;
-    		motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-    	}
-    	else
-    	{
-    		motor.bot_Stop();
-    		stopFlag=true;
-    		state.executeStep35=false;
-    		state.executeStep4=true;
-    	}
-    }
-
-    // Step 4:
-      // Go Forward for few Seconds and Strafe Right for few Iterations
-
-    else if(state.executeStep4)
-    {
-      if(strafeItr<=maxStrafeItr)
-      {
-        itr=7;
-        if(strafeItr  <= int((maxStrafeItr)/3)    )
-        {
-          motor.bot_Forward_withPWM(100);
-          processPID(newSensor,oldSensor,motor);
-        }
-        else if(strafeItr  <= int((maxStrafeItr)*2/3 ))
-        {
-          motor.strafe_Right_withPWM(100);
-        }
-        else
-        {
-          motor.bot_Forward_withPWM(100);
-        }
-
-        strafeItr++;
-      }
-      
-      if(strafeItr > maxStrafeItr)
-      {
-        state.executeStep4=false;
-        itr=8;
-        motor.bot_Stop();
-        stopFlag=true;
-        pickupBlock();
-        state.executeStep5=true;
-        temp=true;
-        state.digiCounter=0;
-      }
-
-    }
-
-
-    // Step 5:
-        // Strafe Left Until the Bot is Back on Line
-
-    else if(state.executeStep5)
-    {
-      if(temp)
-      {
-        disableCordinator();
-        temp=false;  
-      }
-      
-      if(state.digiCounter<1)
-      {
-        itr=9;
-        motor.bot_Backward_withPWMm(100);
-      }
-      else if(!newSensor.isFrontTurnComplete())
-      {
-      	motor.spot_Left_withPWM(100);
-      }
-      else
-      {
-      	itr=10;
-        state.executeStep5=false;
-        state.executeStep6=true;
-        // Reset the Digi-Counter
-        state.digiCounter=0;
-        stopFlag=true;
-        temp =true;
-      }
-    }
-
-
-    // Step 6:
-        // Bot Reverse Until Junction Counter == 1 and then Spot-Right
-    else if(state.executeStep6)
-    {
-      if(state.digiCounter<1)
-        {
-          itr=11;
-          followLine(newSensor,oldSensor,motor);
-      }
-
-      else
-      {
-          if(newSensor.isFrontTurnComplete() && temp)
-          {
-            itr=12;
-            motor.spot_Right_withPWM(100);
-          }
-          else if(!newSensor.isFrontTurnComplete())
-          {
-            itr=13;
-            temp=false;
-           motor.spot_Right_withPWM(100); 
-          }
-          else
-          {
-            state.executeStep6=false;
-            state.executeStep7=true;
-          }
-      }
-    }
-
-    // Step 7:
-        // Bot Forward Until Reached at and Desired Distance from the Stacking Form
-    else if(state.executeStep7)
-    {
-
-      if(newSensor.tofFlag==false)
-          {
-            processPID(newSensor,oldSensor,motor);
-            motor.bot_Forward_withPWMm(150);
-          }
-      else if(balanceWithTOF(170,newSensor,motor) && K_processPID(newSensor,oldSensor,motor,105,80,0.11))
-
-        {
-          tfi++;
-          itr=14;
-          cout<<"Balancing with TOF"<<endl;
-          if(tfi>=maxTf)
-          {
-            state.executeStep7=false;
-            state.executeStep75=true;
-            tfi=0;
-          }
-        }
-    }
-
-    else if (state.executeStep75)
-    {
-        cout<<"TFI:="<<tfi<<endl;
-        K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-        motor.bot_Forward_withPWMm(0);
-       if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
-        {
-          tfi++;
-        }
-        else
-        {
-          tfi=0;
-	  cout<<"Resetting"<<endl;
-        }
-      
-      if(tfi >=LF_MAX)
-      {
-        motor.bot_Stop();
-        stopFlag=true;
-        state.digiCounter=0;
-        state.executeStep75=false;
-        state.executeStep76=true;
-        stackBlock();
-      }
-    }
-
-    else if(state.executeStep76)
-    {
-      if(xitr<= (itBF/2))
-      {
-        motor.bot_Backward_withPWM(80);
-        if(xitr==itBF/2)
-        {
-          motor.bot_Stop();
-          stopFlag=true;
-        }
-      }
-      else
-      {
-        motor.bot_Forward_withPWM(80);
-      }
-      xitr++;
-      if(xitr>itBF)
-      {
-        state.executeStep76=false;
-        state.executeStep8=true;
-      }
-    }
-
-    //Step:8 ----> Bot-Stop
-    else if(state.executeStep8)
-    {
-      itr=15;
-      motor.bot_Stop();
-      stopFlag=true;
-
-      state.executeStep8=false;
-      state.executeStep9=true;
-    }
-    // Step:9 ------>Return back to the Junction
-
-    else if(state.executeStep9)
-    {
-      if(state.digiCounter<2)
-      {
-        itr=16;
-        followLineBackpwm(newSensor,oldSensor,motor,80);
-      }
-      else 
-      {
-        itr=17;
-        motor.bot_Stop();
-        state.executeStep9=false;
-        state.executeStep10=true;
-      }
-    }
-    else if(state.executeStep10)
-    {
-      if(!newSensor.isFrontAllBlack())
-      {
-        followLineBackpwm(newSensor,oldSensor,motor,80);
-      }
-      else
-      {
-        state.executeStep10=false;
-        state.executeStep11=true;
-      }
-    }
-    else if(state.executeStep11)
-    {
-      if(newSensor.isFrontAllBlack())
-      {
-        followLine(newSensor,oldSensor,motor);
-      }
-      else
-      {
-        stopFlag=true;
-        state.executeStep11=false;
-        state.executeStep12=true;
-        state.digiCounter=0;
-      }
-    }
-    else if(state.executeStep12)
-    {
-      if(state.digiCounter<2)
-      {
-        motor.strafe_Left_withPWM(100);
-      }
-      else
-      {
-        if(newSensor.digiLeft==1)
-        {
-          motor.strafe_Right_withPWM(80);
-        }
-        else
-        {
-          motor.bot_Stop();
-        }
-      }
-    }
-
-
-}
-
 
 void mainLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 {
   if(!stopFlag)
     {
             // navigates from home 2 stack the block with the block in Arm
-      navigate2(newSensor,oldSensor,motor);
+      // navigate2(newSensor,oldSensor,motor);
       
             // Navigates from home 2 pickup the block and Stack
       // navigate2 (newSensor,oldSensor,motor);

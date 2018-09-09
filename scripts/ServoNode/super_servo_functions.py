@@ -282,10 +282,10 @@ def pickupXYZ():
 
     # move2pos(FINAL_X,FINAL_Y,-13.5)
     # time.sleep(SL3)
-
-    while INITIAL_Z <FINAL_Z :
-        move2pos( FINAL_X,FINAL_Y,INITIAL_Z )
-        INITIAL_Z =INITIAL_Z+1
+    p = INITIAL_Z
+    while p >FINAL_Z :
+        move2pos( FINAL_X,FINAL_Y,p )
+        p =p-1
         time.sleep(1)
 
     gripEnable()

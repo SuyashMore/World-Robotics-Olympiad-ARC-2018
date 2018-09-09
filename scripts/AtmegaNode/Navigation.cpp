@@ -520,7 +520,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         if(abs(newSensor.tofSide - targetDistance) <=8)
         {
             motor.bot_Stop();
-            moto.setPWM_all(0);
+            motor.setPWM_all(0);
             q++;
         }
         if(q>=12)

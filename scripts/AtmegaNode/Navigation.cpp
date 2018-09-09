@@ -486,29 +486,30 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 	{
         cout<<"Currently Executing: Correcting with Line"<<endl;
 	motor.bot_Forward_withPWMm(0);
-        K_processPID(newSensor,oldSensor,motor,105,80,0.11);
-       if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
-        {
-          q++;
-        }
-        else
-        {
-          q=0;
-	  cout<<"Resetting"<<endl;
-        }
+    K_processPID(newSensor,oldSensor,motor,105,80,0.11);
+   if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
+    {
+      q++;
+    }
+    else
+    {
+      q=0;
+  cout<<"Resetting"<<endl;
+    }
       
-      if(q >=LF_MAX)
-      {
-        motor.bot_Stop();
-        stopFlag=true;
-        state.digiCounter=0;
-        miniEx02=3;
-        q=0;
-        stackBlock();
-      }	
+    if(q >=LF_MAX)
+    {
+      motor.bot_Stop();
+      stopFlag=true;
+      state.digiCounter=0;
+      miniEx02=3;
+      q=0;
+      stopFlag=true;
+    }	
 	}
 	else if(miniEx02==3)		//Add Aligning with the Wall
 	{
+       cout<<"Currently Executing: Correcting with Side"<<endl;
         if(newSensor.tofSide > targetDistance)
         {
             motor.strafe_Left_withPWM(100);
@@ -527,6 +528,8 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         {
             q=0;
             miniEx02=4;
+            // stackBlock();
+            stopFlag=true;
         }
     }
 	else if(miniEx02==4)		// Pull out the Arm and Push the Block in

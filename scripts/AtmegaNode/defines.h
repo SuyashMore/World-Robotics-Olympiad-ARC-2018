@@ -22,7 +22,20 @@ using namespace std;
 #define TOF_FLAG_MIN_THRESH 20
 #define TOF_FLAG_MAX_THRESH 210
 
-// lidar parameter
+// Side TOF PARAMS
+
+#define SIDE_MIDDLE 615
+#define SIDE_1 503
+#define SIDE_2 551
+#define SIDE_3 600
+#define SIDE_4 659
+#define SIDE_5 700
+#define SIDE_6 740
+#define SIDE_7 791
+
+#define DIR_LEFT 1
+#define DIR_RIGHT 2
+#define DIR_NULL 0
 
 
 // PWM MAP VARs

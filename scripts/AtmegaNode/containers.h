@@ -160,8 +160,7 @@ struct botData
 
 			index = message.find(_8_MESSAGE)+1;
 			length = message.find(_9_MESSAGE_END) - index;
-			
-			tofSide = Lidar;
+			tofSide = stoi( message.substr(index,length));
 		}
 
 	bool isFrontAllWhite()

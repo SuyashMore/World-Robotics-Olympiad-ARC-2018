@@ -502,19 +502,32 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         motor.bot_Stop();
         stopFlag=true;
         state.digiCounter=0;
-        miniEx02=4;
+        miniEx02=3;
         q=0;
         stackBlock();
       }	
 	}
 	else if(miniEx02==3)		//Add Aligning with the Wall
 	{
-        // cout<<"Currently Executing: Balancing Side"<<endl;
-        // if(!balanceSideAt(targetDistance,newSensor,motor))
-        // {
-        //   miniEx02=4;
-        //   stackBlock();
-        // }
+        if(newSensor.tofSide > targetDistance)
+        {
+            motor.strafe_Left_withPWM(100);
+        }
+        else if(newSensor.tofSide < targetDistance)
+        {
+            motor.strafe_Right_withPWM(100);
+        }
+        if(abs(newSensor.tofSide - targetDistance) <=8)
+        {
+            motor.bot_Stop();
+            moto.setPWM_all(0);
+            q++;
+        }
+        if(q>=12)
+        {
+            q=0;
+            miniEx02=4;
+        }
     }
 	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
 	{

@@ -80,7 +80,7 @@ void stackBlock_withPID(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(state.currentStepIndex==1)		//Stack the Block
 	{
 		cout<<"Navigation Step:"<<1<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(150,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(503,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -117,12 +117,12 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 // Handles the Decryption And Processing of the Message Received
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
-	// // Check for Arm Signals
-	// if(enableArmControl)
-	// {
-	// 	navFlag=false;
-	// 	handleArmSignal();
-	// }
+	// Check for Arm Signals
+	if(enableArmControl)
+	{
+		navFlag=false;
+		handleArmSignal();
+	}
 
 	string m;
 	m=msg->data.c_str();
@@ -154,7 +154,6 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			storage.copyFront(bt);
 		if(!bt.preserveHistoryB)
 			storage.copyBack(bt);
-		navFlag=true;
 	}
 	else
 	{

@@ -500,7 +500,7 @@ struct gameState
 	  if ( newSensor.digiLeft == 1 && oldSensor.digiLeft == 0)
 	  		digiCounter++;
 	  if(newSensor.digiRight == 1 && oldSensor.digiRight == 0)
-	  		digiCounter++;
+	  		digiCounterR++;
 	}
   
 };

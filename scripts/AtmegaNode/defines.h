@@ -8,7 +8,7 @@ using namespace std;
 
 // Ros Spin Rate (spins/second)
 #define ROS_LOOP_RATE 40
-#define LF_THRESH 500
+#define LF_THRESH 600
 #define LF_MAX 7
 
 // PWM Settings
@@ -62,7 +62,7 @@ using namespace std;
 
 // Stacking Params
 #define TOF_FRONT_BALANCE_DISTANCE 180
-#define PULL_AND_PUSH_ITR 90
+#define PULL_AND_PUSH_ITR 140
 
 // Block Params
 #define TOF_SIDE_DISTANCE 120

@@ -348,7 +348,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
       cout<<"Front Error is :"<<frontError;
       cout<<"historyError is ::"<<historyError;
       if(!correctionPassed)
-      { if(frontError > 20)
+      { if(frontError > 5)
         {
           correctionFlag=true;
         }
@@ -369,10 +369,6 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           }
           if(abs(newSensor.tofSide - targetDistance) <=8)
           {
-
-              motor.bot_Stop();
-              motor.setPWM_all(0);
-              q++;
               if(correctionFlag)
               {
                 q=0;
@@ -381,6 +377,9 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               }
               else
               {
+                motor.bot_Stop();
+              motor.setPWM_all(0);
+              q++;
                 fmodx=0;
               }
           }

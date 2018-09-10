@@ -440,15 +440,16 @@ struct Motor
 	void strafe_Right_withPWM(int pwm)
 	{
 	  strafe_Right();
-	  int x = pwm + fmodx;
-	  int y = pwm+bmodx;
+	  
 	  setPWM_ofEach(x,0,y,0);	
 	}
 
 	void strafe_Left_withPWM(int pwm)
 	{
 	  strafe_Left();
-	  setPWM_ofEach(pwm-10,0,pwm,0);	
+	  int x = pwm + fmodx;
+	  int y = pwm+bmodx;
+	  setPWM_ofEach(x,0,y,0);	
 	}
 
 };

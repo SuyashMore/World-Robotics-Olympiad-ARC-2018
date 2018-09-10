@@ -389,12 +389,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
 
           if(correctionFlag)
           {
-            q=0;
-            cout<<"Modifying Front PWM"<<endl;
-            bmodx = 30;
+              q=0;
+              cout<<"Modifying Front PWM"<<endl;
+              bmodx = 30;
+            }
+                motor.strafe_Right_withPWM(90);
           }
-              motor.strafe_Right_withPWM(90);
-          }
+          fmodx=0;
+          bmodx=0;
           // if(frontError- historyError < 0)
           // {
           //   correctionFlag=false;

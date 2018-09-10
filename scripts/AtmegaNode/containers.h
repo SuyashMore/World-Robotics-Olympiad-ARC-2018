@@ -3,8 +3,8 @@
 #include "defines.h"
 #include "utility.h"
 
-int fmod = 0;
-int bmod = 0;
+int fmodx = 0;
+int bmodx = 0;
 
 struct botData
 {
@@ -440,7 +440,9 @@ struct Motor
 	void strafe_Right_withPWM(int pwm)
 	{
 	  strafe_Right();
-	  setPWM_ofEach(pwm + fmod,0,pwm + bmod,0);	
+	  int x = pwm + fmodx;
+	  int y = pwm+bmodx;
+	  setPWM_ofEach(x,0,y,0);	
 	}
 
 	void strafe_Left_withPWM(int pwm)

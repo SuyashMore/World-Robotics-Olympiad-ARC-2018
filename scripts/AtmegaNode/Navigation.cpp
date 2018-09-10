@@ -282,14 +282,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-  			motor.bot_Forward_withPWMm(130);
+  			motor.bot_Forward_withPWMm(160);
               q=0;   
           }
           else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-TOF_ERROR_THRESH))
           {
               cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-              motor.bot_Backward_withPWMm(130);   
+              motor.bot_Backward_withPWMm(160);   
               q=0;
           }
           else
@@ -306,17 +306,17 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	}
   	else if(miniEx02==2)		// Align the Bot with Line
   	{
-          cout<<"Currently Executing: Correcting with Line"<<endl;
-  	motor.bot_Forward_withPWMm(0);
+      cout<<"Currently Executing: Correcting with Line"<<endl;
+  	  motor.bot_Forward_withPWMm(0);
       K_processPID(newSensor,oldSensor,motor,105,90,0.5);
-     if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
+      if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
       {
         q++;
       }
       else
       {
         q=0;
-    cout<<"Resetting"<<endl;
+      cout<<"Resetting"<<endl;
       }
         
       if(q >=LF_MAX)
@@ -366,12 +366,12 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<12)
+          if(d<8)
           {
             motor.strafe_Left_withPWM(110);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<15)
+          else if(d<10)
           {
             motor.strafe_Right_withPWM(110);    //Drag the Block Slightly Right
             d++;
@@ -382,7 +382,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	        if(q==PULL_AND_PUSH_ITR/2)
   	        {
   	          motor.bot_Stop();
-              arm_pushAndPullPosition() ;      //Sets the Arm Sightly Above the Normal Level So that it can Push the Block Back in
+              arm_pushAndPullPosition();      //Sets the Arm Sightly Above the Normal Level So that it can Push the Block Back in
   	          stopFlag=true;
   	        }
         	}

@@ -62,8 +62,8 @@ void handleArmSignal()
 	servo.pickUp=pickup;
 	servo.stack=stackBlk;
 	servo.mode = mode;
-
 	servoPub.publish(servo);
+	
 	if(mode==0)
 	{
 		navFlag=false;
@@ -74,7 +74,7 @@ void handleArmSignal()
 		navFlag=true;
 	}
 	enableArmControl=false;
-
+	
 	if(pickup)
 		pickup=false;
 	if(stackBlk)

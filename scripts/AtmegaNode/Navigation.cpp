@@ -348,7 +348,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
       cout<<"Front Error is :"<<frontError<<endl;
       // cout<<"historyError is ::"<<historyError;
       if(!correctionPassed)
-      { if(frontError > 3)
+      { if(frontError > 9)
         {
           correctionFlag=true;
         }
@@ -380,7 +380,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               {
                 q=0;
                 cout<<"Modifying Front PWM"<<endl;
-                fmodx = 30;
+                fmodx = 25;
               }
               motor.strafe_Left_withPWM(90);
           }
@@ -391,7 +391,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           {
               q=0;
               cout<<"Modifying Front PWM"<<endl;
-              bmodx = 30;
+              fmodx = 30;
             }
                 motor.strafe_Right_withPWM(90);
           }

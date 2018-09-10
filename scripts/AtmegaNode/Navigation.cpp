@@ -370,21 +370,29 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               motor.setPWM_all(0);
               q++;
               fmodx=0;
+              bmodx=0;
           }
+
+
+          if(newSensor.tofSide > targetDistance)
+          {
+              if(correctionFlag)
+              {
+                q=0;
+                cout<<"Modifying Front PWM"<<endl;
+                fmodx = 30;
+              }
+              motor.strafe_Left_withPWM(90);
+          }
+          else if(newSensor.tofSide < targetDistance)
+          {
 
           if(correctionFlag)
           {
             q=0;
             cout<<"Modifying Front PWM"<<endl;
-            fmodx = 30;
+            bmodx = 30;
           }
-          
-          if(newSensor.tofSide > targetDistance)
-          {
-              motor.strafe_Left_withPWM(90);
-          }
-          else if(newSensor.tofSide < targetDistance)
-          {
               motor.strafe_Right_withPWM(90);
           }
           // if(frontError- historyError < 0)

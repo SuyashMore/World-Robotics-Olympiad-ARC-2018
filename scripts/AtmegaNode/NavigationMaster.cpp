@@ -127,7 +127,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==9)
 	{
 		cout<<"Navigation Step:"<<9<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(670,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(720,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}

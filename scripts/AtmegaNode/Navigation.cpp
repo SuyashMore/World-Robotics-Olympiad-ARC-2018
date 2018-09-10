@@ -344,7 +344,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	}
   	else if(miniEx02==3)		//Aligning with the Wall
   	{
-      int frontError = (newSensor.tofFront - TOF_FRONT_BALANCE_DISTANCE);
+      int frontError = abs(newSensor.tofFront - TOF_FRONT_BALANCE_DISTANCE);
       cout<<"Front Error is :"<<frontError<<endl;
       // cout<<"historyError is ::"<<historyError;
       if(!correctionPassed)
@@ -366,20 +366,19 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           
           if(abs(newSensor.tofSide - targetDistance) <=8)
           {
-              if(correctionFlag)
-              {
-                q=0;
-                cout<<"Modifying Front PWM"<<endl;
-                fmodx = 30;
-              }
-              else
-              {
-                motor.bot_Stop();
+              motor.bot_Stop();
               motor.setPWM_all(0);
               q++;
-                fmodx=0;
-              }
+              fmodx=0;
           }
+
+          if(correctionFlag)
+          {
+            q=0;
+            cout<<"Modifying Front PWM"<<endl;
+            fmodx = 30;
+          }
+          
           if(newSensor.tofSide > targetDistance)
           {
               motor.strafe_Left_withPWM(90);

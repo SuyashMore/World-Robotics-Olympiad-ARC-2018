@@ -60,7 +60,7 @@ def callbackD(data):
 			print("Disabling Cordinator !")
 			super.cordinatorEnable()
 	elif mode == 1:
-		pass 			#Add Additional Arm Functions Here
+		super.pickupAndPushPos() 			#Add Additional Arm Functions Here
 
 	msg = bot()
 	msg.nav = True

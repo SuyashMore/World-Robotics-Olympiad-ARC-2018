@@ -88,7 +88,7 @@ void stackBlock_withPID(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(state.currentStepIndex==1)		//Stack the Block
 	{
 		cout<<"Navigation Step:"<<1<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(SIDE_7,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(545,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}

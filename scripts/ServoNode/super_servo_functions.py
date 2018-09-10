@@ -171,6 +171,10 @@ def stackBlockOld():
     setTransformedAngle(1,16)
     time.sleep(SL1)
 
+def pickupAndPushPos():
+    move2angle(0,9,50,-145,0)
+
+
 def stackBlock():
     #Sleep Constants
     SL1 = 1

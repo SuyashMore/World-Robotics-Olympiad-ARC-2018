@@ -281,14 +281,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           {
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
-              K_processPID(newSensor,oldSensor,motor,90,80,0.11);
+              K_processPID(newSensor,oldSensor,motor,1100,80,0.11);
   			motor.bot_Forward_withPWMm(100);
               q=0;   
           }
           else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-TOF_ERROR_THRESH))
           {
               cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
-              K_processPID(newSensor,oldSensor,motor,90,80,0.11);
+              K_processPID(newSensor,oldSensor,motor,110,80,0.11);
               motor.bot_Backward_withPWMm(100);   
               q=0;
           }
@@ -308,7 +308,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	{
           cout<<"Currently Executing: Correcting with Line"<<endl;
   	motor.bot_Forward_withPWMm(0);
-      K_processPID(newSensor,oldSensor,motor,100,90,0.5);
+      K_processPID(newSensor,oldSensor,motor,105,90,0.5);
      if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
       {
         q++;
@@ -343,11 +343,11 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
          cout<<"Currently Executing: Correcting with Side"<<endl;
           if(newSensor.tofSide > targetDistance)
           {
-              motor.strafe_Left_withPWM(110);
+              motor.strafe_Left_withPWM(120);
           }
           else if(newSensor.tofSide < targetDistance)
           {
-              motor.strafe_Right_withPWM(110);
+              motor.strafe_Right_withPWM(120);
           }
           if(abs(newSensor.tofSide - targetDistance) <=8)
           {
@@ -366,19 +366,19 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<20)
+          if(d<30)
           {
             motor.strafe_Left_withPWM(110);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<25)
+          else if(d<45)
           {
             motor.strafe_Right_withPWM(110);    //Drag the Block Slightly Right
             d++;
           }
   		    else if(q<= (PULL_AND_PUSH_ITR/2))    //Move the Bot Backward 
         	{
-  	        motor.bot_Backward_withPWM(80);
+  	        motor.bot_Backward_withPWM(100);
   	        if(q==PULL_AND_PUSH_ITR/2)
   	        {
   	          motor.bot_Stop();
@@ -388,7 +388,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         	}
         	else
         	{
-          	motor.bot_Forward_withPWM(80);
+          	motor.bot_Forward_withPWM(100);
         	}
         	q++;
         	if(q>PULL_AND_PUSH_ITR)
@@ -427,7 +427,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
       cout<<"Currently Executing: follow Line Back"<<endl;
       if(state.digiCounter<1)
           {
-            followLineBackpwm(newSensor,oldSensor,motor,120);
+            followLineBackpwm(newSensor,oldSensor,motor,140);
           }
           else 
           {

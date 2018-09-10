@@ -270,8 +270,6 @@ int miniEx02=1;
 int miniTemp = 0;
 int q=0;
 int d=0;
-bool correctionFlag = false;
-bool correctionPassed = false;
 int historyError = 0;
 int direction = DIR_NULL; //Stores the Direction Variable to Return Back on the Line
 bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor,int slideDir = DIR_NULL )
@@ -286,14 +284,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-  			motor.bot_Forward_withPWMm(130);
+  			motor.bot_Forward_withPWMm(160);
               q=0;   
           }
           else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-TOF_ERROR_THRESH))
           {
               cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-              motor.bot_Backward_withPWMm(130);   
+              motor.bot_Backward_withPWMm(160);   
               q=0;
           }
           else
@@ -344,70 +342,23 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	}
   	else if(miniEx02==3)		//Aligning with the Wall
   	{
-      int frontError = abs(newSensor.tofFront - TOF_FRONT_BALANCE_DISTANCE);
-      cout<<"Front Error is :"<<frontError<<endl;
-      // cout<<"historyError is ::"<<historyError;
-      if(!correctionPassed)
-      { if(frontError > 9)
-        {
-          correctionFlag=true;
-        }
-        else
-        {
-          correctionFlag=false;
-        }
-      }
-      else 
-      {
-        correctionFlag=false;
-      }
 
          cout<<"Currently Executing: Correcting with Side"<<endl;
-          
-          if(abs(newSensor.tofSide - targetDistance) <=8)
-          {
-              motor.bot_Stop();
-              motor.setPWM_all(0);
-              q++;
-              fmodx=0;
-              bmodx=0;
-          }
-
-
           if(newSensor.tofSide > targetDistance)
           {
-              if(correctionFlag)
-              {
-                q=0;
-                cout<<"Modifying Front PWM"<<endl;
-                motor.strafe_Left_withPWM(100);
-              }
-              else
-              {
-                motor.strafe_Left_withPWM(100);
-              }
-              
+              motor.strafe_Left_withPWM(130);
           }
           else if(newSensor.tofSide < targetDistance)
           {
-
-          if(correctionFlag)
-          {
-              q=0;
-              cout<<"Modifying Front PWM"<<endl;
-              // fmodx = 35;
-            }
-                motor.strafe_Right_withPWM(100);
+              motor.strafe_Right_withPWM(130);
           }
-          fmodx=0;
-          bmodx=0;
-          // if(frontError- historyError < 0)
-          // {
-          //   correctionFlag=false;
-          //   correctionPassed=true;
-          // }
+          if(abs(newSensor.tofSide - targetDistance) <=8)
+          {
 
-          historyError = frontError;
+              motor.bot_Stop();
+              motor.setPWM_all(0);
+              q++;
+          }
           if(q>=24)
           {
               q=0;
@@ -419,12 +370,12 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<6)
+          if(d<17)
           {
             motor.strafe_Left_withPWM(140);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<7)
+          else if(d<20)
           {
             motor.strafe_Right_withPWM(99);    //Drag the Block Slightly Right
             d++;

@@ -35,6 +35,7 @@ using namespace std;
 #define SIDE_5 700
 #define SIDE_6 740
 #define SIDE_7 791
+#define SIDE_8 840
 
 #define DIR_LEFT 1
 #define DIR_RIGHT 2
@@ -105,7 +106,7 @@ int maxNav = 0;
 #define MAX_BLOCKS 4
 int TETRASTACK_ORDER[6][4] = 
 {	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
-	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE },  		//COLOR_RED
+	{COLOR_BLUE , COLOR_YELLOW , COLOR_ORANGE , COLOR_BLUE },  		//COLOR_RED
 	{COLOR_ORANGE , COLOR_BLUE ,COLOR_ORANGE , COLOR_VIOLET }, 		//COLOR_BLUE
 	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE},   		//COLOR_GREEN
 	{COLOR_BLUE , COLOR_BLUE , COLOR_YELLOW ,COLOR_NULL },			//COLOR_YELLOW
@@ -116,12 +117,35 @@ int TETRASTACK_ORDER[6][4] =
 int hx_ORDER[6][4] = 
 {
 	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
-	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE },  		//COLOR_RED
-	{COLOR_ORANGE , COLOR_BLUE ,COLOR_ORANGE , COLOR_VIOLET }, 		//COLOR_BLUE
-	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE},   		//COLOR_GREEN
-	{COLOR_BLUE , COLOR_BLUE , COLOR_YELLOW ,COLOR_NULL },			//COLOR_YELLOW
-	{COLOR_YELLOW , COLOR_BLUE , COLOR_VIOLET , COLOR_YELLOW },		//COLOR_VIOLET
-	{COLOR_BLUE , COLOR_YELLOW , COLOR_VIOLET , COLOR_YELLOW }		//COLOR_ORANGE	
+	{ SIDE_3, SIDE_1 , SIDE_3 , SIDE_8 },  		//COLOR_RED
+	{SIDE_2 , SIDE_5 ,SIDE_3 , SIDE_6 }, 		//COLOR_BLUE
+	{SIDE_3 , SIDE_7 , SIDE_4 , SIDE_1},   		//COLOR_GREEN
+	{SIDE_3 , SIDE_7 , SIDE_3 ,COLOR_NULL },			//COLOR_YELLOW
+	{SIDE_3 , SIDE_1 , SIDE_3 , SIDE_6 },		//COLOR_VIOLET
+	{SIDE_7 , SIDE_7 , SIDE_7 , SIDE_7 }		//COLOR_ORANGE	
+};
+
+int floor_ORDER[6][4] = 
+{
+	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
+	{ 1, 1 , 2, 2},  		//COLOR_RED
+	{1 ,1 ,2 ,2 }, 		//COLOR_BLUE
+	{1 , 1 , 2 , 2},   		//COLOR_GREEN
+	{1 , 1 , 2 ,COLOR_NULL },			//COLOR_YELLOW
+	{1, 1 , 2 , 2 },		//COLOR_VIOLET
+	{SIDE_7 , SIDE_7 , SIDE_7 , SIDE_7 }		//COLOR_ORANGE	
+
+};
+
+int orienatation_ORDER[6][4] = 
+{
+	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
+	{ 1, 1 , 2, 2},  		//COLOR_RED
+	{1 ,1 ,2 ,2 }, 		//COLOR_BLUE
+	{1 , 1 , 2 , 2},   		//COLOR_GREEN
+	{1 , 1 , 2 ,COLOR_NULL },			//COLOR_YELLOW
+	{1, 1 , 2 , 2 },		//COLOR_VIOLET
+	{SIDE_7 , SIDE_7 , SIDE_7 , SIDE_7 }		//COLOR_ORANGE	
 };
 
 

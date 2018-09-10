@@ -5,7 +5,7 @@ from Jetson.msg import Angles
 from Jetson.msg import Position
 from Jetson.msg import ControlSignal
 from Jetson.msg import CtrlSigResponse
-from Jetson.msg import Dyx
+from Jetson.msg import Dyx2
 from Jetson.msg import bot
 import time
 
@@ -72,7 +72,7 @@ def listener():
 	rospy.init_node("Dynamixel_listener",anonymous=True)
 	rospy.Subscriber("Servo_Angles",Angles,callbackAngle)
 	rospy.Subscriber("Servo_Position",Position,callbackPos)
-	rospy.Subscriber("Dyx",Dyx,callbackD)
+	rospy.Subscriber("Dyx",Dyx2,callbackD)
 
 	while not rospy.is_shutdown():
 		rospy.spin()

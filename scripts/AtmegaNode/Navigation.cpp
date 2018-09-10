@@ -366,19 +366,19 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<8)
+          if(d<12)
           {
             motor.strafe_Left_withPWM(110);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<9)
+          else if(d<13)
           {
             motor.strafe_Right_withPWM(99);    //Drag the Block Slightly Right
             d++;
           }
   		    else if(q<= (PULL_AND_PUSH_ITR/2))    //Move the Bot Backward 
         	{
-  	        motor.bot_Backward_withPWM(130);
+  	        motor.bot_Backward_withPWM(100);
   	        if(q==PULL_AND_PUSH_ITR/2)
   	        {
   	          motor.bot_Stop();
@@ -388,7 +388,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         	}
         	else
         	{
-          	motor.bot_Forward_withPWM(130);
+          	motor.bot_Forward_withPWM(100);
         	}
         	q++;
         	if(q>PULL_AND_PUSH_ITR)
@@ -402,7 +402,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	}
   	else if(miniEx02==5)		//Return Back to the Junction
   	{
-      if(q<5)
+      if(q<3)
       {
         motor.bot_Backward_withPWM(120);
         q++;

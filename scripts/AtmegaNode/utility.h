@@ -76,6 +76,7 @@ void move2standard()
 
 void arm_pushAndPullPosition()
 {
+	enableArmControl=true;
 	mode = 1;
 }
 

@@ -345,8 +345,10 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==3)		//Aligning with the Wall
   	{
       int frontError = abs(newSensor.tofFront - TOF_FRONT_BALANCE_DISTANCE);
+      cout<<"Front Error is :"<<frontError;
+      cout<<"historyError is ::"<<historyError;
       if(!correctionPassed)
-      { if(frontError > 10)
+      { if(frontError > 20)
         {
           correctionFlag=true;
         }

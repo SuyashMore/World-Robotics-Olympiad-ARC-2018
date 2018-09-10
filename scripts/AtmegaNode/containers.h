@@ -130,7 +130,7 @@ struct botData
 			length = message.find(_5_MESSAGE) - index;
 			// errorBack = stoi( message.substr(index,length)) ;
 			// Jugaad
-			errorBack = stoi( message.substr(index,length)) - 800 ;
+			errorBack = stoi( message.substr(index,length)) ;
 
 			// //Extract the Left Digi-Data
 

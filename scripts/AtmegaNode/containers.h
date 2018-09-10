@@ -3,6 +3,9 @@
 #include "defines.h"
 #include "utility.h"
 
+int fmod = 0;
+int bmod = 0;
+
 struct botData
 {
 	bool lsaFront[8];
@@ -437,7 +440,7 @@ struct Motor
 	void strafe_Right_withPWM(int pwm)
 	{
 	  strafe_Right();
-	  setPWM_ofEach(pwm,0,pwm,0);	
+	  setPWM_ofEach(pwm + fmod,0,pwm + bmod,0);	
 	}
 
 	void strafe_Left_withPWM(int pwm)
@@ -475,3 +478,5 @@ struct gameState
 	}
   
 };
+
+

@@ -267,8 +267,12 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
 // Stack Block at Horizontal Distance From the Wall
 int temp02=true;
 int miniEx02=1;
+int miniTemp = 0;
 int q=0;
 int d=0;
+bool correctionFlag = false;
+bool correctionPassed = false;
+int historyError = 0;
 int direction = DIR_NULL; //Stores the Direction Variable to Return Back on the Line
 bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor,int slideDir = DIR_NULL )
 {
@@ -340,6 +344,18 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	}
   	else if(miniEx02==3)		//Aligning with the Wall
   	{
+      int frontError = abs(newSensor.tofFront - TOF_FRONT_BALANCE_DISTANCE);
+      if(!correctionPassed)
+      { if(frontError > 10)
+        {
+          correctionFlag=true;
+        }
+      }
+      else 
+      {
+        correctionFlag=false;
+      }
+
          cout<<"Currently Executing: Correcting with Side"<<endl;
           if(newSensor.tofSide > targetDistance)
           {
@@ -351,10 +367,25 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           }
           if(abs(newSensor.tofSide - targetDistance) <=8)
           {
+
               motor.bot_Stop();
               motor.setPWM_all(0);
               q++;
+              if(correctionFlag)
+              {
+                q=0;
+                cout<<"Modifying Front PWM"<<endl;
+                fmod = 10;
+              }
           }
+          
+          if(frontError- historyError < 0)
+          {
+            correctionFlag=false;
+            correctionPassed=true;
+          }
+
+          historyError = frontError;
           if(q>=24)
           {
               q=0;
@@ -362,7 +393,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               stackBlock();
               stopFlag=true;
           }
-      }
+    }
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;

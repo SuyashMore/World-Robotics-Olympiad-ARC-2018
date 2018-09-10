@@ -439,7 +439,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
             q=0;
             d=0;
             direction=DIR_NULL;
-            sttate.digiCounterR=0;
+            state.digiCounterR=0;
             return true;
           }
     }

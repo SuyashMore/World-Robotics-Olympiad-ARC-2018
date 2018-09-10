@@ -77,7 +77,12 @@ void move2standard()
   mode=0;
 }
 
-void generateNavMap()
+void arm_pushAndPullPosition()
+{
+	mode = 1;
+}
+
+void fillNavMap()
 {
 	int judgePiece = BlockColor[0];
 	int requiredBlockIndex = 0;

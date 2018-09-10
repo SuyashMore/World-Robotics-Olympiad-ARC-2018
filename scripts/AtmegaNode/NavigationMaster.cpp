@@ -111,7 +111,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==7)
 	{
 		cout<<"Navigation Step:"<<6<<endl;
-		if(nav_PickupBlock_from__SupplyLine2(newSensor,oldSensor,motor))
+		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -148,16 +148,12 @@ void masterLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(!stopFlag)
     {
-            // navigates from gome 2 stack the block with the block in Arm
       nav_Complete_1_Row(newSensor,oldSensor,motor);
-      
-            // Navigates from home 2 pickup the block and Stack
-      // navigate2(newSensor,oldSensor,motor);
     }
   else
     {
       motor.bot_Stop();
-      // Loop through Stop for Certain Iterations
-      handle_delay();
+      handle_delay();		// Loop through Stop for Certain Iterations
     }
 }
+

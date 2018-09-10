@@ -20,12 +20,9 @@ bool shouldPublish =false;
 botData storage; //Used to Store History Data
 Motor motor; 
 
-
-	
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
-void LidarCallBack(const std_msgs::Int16::ConstPtr& msg);
 
 ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
@@ -37,7 +34,6 @@ int main(int argc,char **argv)
 	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
-	ros::Subscriber lidarSub = n.subscribe("LIDAR_Data",100,LidarCallBack);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
@@ -85,9 +81,6 @@ void handleArmSignal()
 		stackBlk=false;
 }
 
-int cbr=0;
-int cbrate=0;
-
 // Handles the Decryption And Processing of the Message Received
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
@@ -117,12 +110,10 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"--------------------------------------------------------"<<endl;
 
 	
-		// mainLoop(bt,storage,motor);
 		masterLoop(bt,storage,motor);
-		// Process_data and then enable the Publish Flag
 		
+		// Publish Motor Data Back to the Atmega Node
 		std_msgs::String msg;
-			
 		msg.data = motor.encrypt_message();
 		atmegaPub.publish(msg);
 
@@ -136,10 +127,6 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	{
 		cout<<"Processing Arm !!!!!"<<endl;
 	}
-}
-void LidarCallBack(const std_msgs::Int16::ConstPtr& msg)
-{
-	Lidar = msg->data;
 }
 
 

@@ -6,8 +6,6 @@
 #include "Jetson/Dyx2.h"
 
 
-
-
 ros::Publisher atmegaPub ;	
 
 int main(int argc,char **argv)

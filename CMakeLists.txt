@@ -58,6 +58,7 @@ add_message_files(
   Dyx.msg
   Dyx2.msg
   bot.msg
+  BlockData.msg
 )
 
 ## Generate services in the 'srv' folder

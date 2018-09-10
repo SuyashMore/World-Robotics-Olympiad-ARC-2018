@@ -83,7 +83,7 @@ void handleArmSignal()
 // //Modify This Variable for Debugging Purpose
 // state.currentStepIndex=0;		
 
-void stackBlock_withPID(botData& newSensor,botData& oldSensor,Motor& motor)
+void pickup_DeliveryChute(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(state.currentStepIndex==1)		//Stack the Block
 	{
@@ -106,17 +106,12 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(!stopFlag)
     {
-            // navigates from gome 2 stack the block with the block in Arm
-      stackBlock_withPID(newSensor,oldSensor,motor);
-      
-            // Navigates from home 2 pickup the block and Stack
-      // navigate2(newSensor,oldSensor,motor);
+      pickup_DeliveryChute(newSensor,oldSensor,motor);
     }
   else
     {
       motor.bot_Stop();
-      // Loop through Stop for Certain Iterations
-      handle_delay();
+      handle_delay();	// Loop through Stop for Certain Iterations
     }
 }
 
@@ -126,11 +121,11 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
 	// // Check for Arm Signals
-	// if(enableArmControl)
-	// {
-	// 	navFlag=false;
-	// 	handleArmSignal();
-	// }
+	if(enableArmControl)
+	{
+		navFlag=false;
+		handleArmSignal();
+	}
 
 	string m;
 	m=msg->data.c_str();
@@ -162,7 +157,6 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			storage.copyFront(bt);
 		if(!bt.preserveHistoryB)
 			storage.copyBack(bt);
-		navFlag=true;
 	}
 	else
 	{

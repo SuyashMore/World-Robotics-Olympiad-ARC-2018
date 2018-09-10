@@ -24,6 +24,9 @@ using namespace std;
 
 // Side TOF PARAMS
 
+#define WHITE_SPACE_BLOCK_DIST 240
+#define WHITE_SPACE_ERROR_THRESH 50
+
 #define SIDE_MIDDLE 615
 #define SIDE_1 503
 #define SIDE_2 551

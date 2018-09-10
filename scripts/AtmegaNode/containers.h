@@ -3,9 +3,6 @@
 #include "defines.h"
 #include "utility.h"
 
-int Lidar=0;
-
-
 struct botData
 {
 	bool lsaFront[8];
@@ -456,38 +453,12 @@ struct gameState
 {
   int digiCounter=0;
   int digiCounterR=0;
-  int r=0;
-  int t=0;
+
   int reading_tof_digital=0;
   int reading_tof_analog=0;
 
   int currentStepIndex=1;
-
-  bool executeStep1=true;
-  bool executeStep2=true;
   int step2Counter=0;
-
-  bool executeStep3=false;
-  bool executeStep35=false;
-  bool executeStep36=false;
-  bool executeStep4=false;
-  bool executeStep5=false;
-  bool executeStep6=false;
-  bool executeStep7=false;
-  bool executeStep74=false;
-  bool executeStep75=false;
-  bool executeStep76=false;
-  bool executeStep77=false;
-  bool executeStep8=false;
-  bool executeStep9=false;
-  bool executeStep10=false;
-  bool executeStep11=false;
-  bool executeStep12=false;
-  bool executeStep13=false;
-  bool executeStep14=false;
-  bool executeStep15=false;
-  bool executeStep16=false;
-  bool executeStep17=false;
 
   void printData()
   {
@@ -503,17 +474,4 @@ struct gameState
 	  		digiCounterR++;
 	}
   
-};
-
-
-struct Blocks
-{
-	int Location[6];
-	void placeBlocks(int a,int b,int c,int d,int e,int f)
-	{
-		for(int i=0;i<6;i++)
-		{
-			Location[i]=a;
-		}
-	}
 };

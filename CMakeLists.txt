@@ -56,6 +56,7 @@ add_message_files(
   ControlSignal.msg
   CtrlSigResponse.msg
   Dyx.msg
+  Dyx2.msg
   bot.msg
 )
 

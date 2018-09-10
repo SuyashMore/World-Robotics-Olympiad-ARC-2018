@@ -366,12 +366,12 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<8)
+          if(d<17)
           {
             motor.strafe_Left_withPWM(140);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<13)
+          else if(d<20)
           {
             motor.strafe_Right_withPWM(99);    //Drag the Block Slightly Right
             d++;

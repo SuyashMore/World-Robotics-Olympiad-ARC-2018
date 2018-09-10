@@ -93,7 +93,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==5)		//Stack the Block
 	{
 		cout<<"Navigation Step:"<<5<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(574,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(555,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -127,7 +127,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==9)
 	{
 		cout<<"Navigation Step:"<<9<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(717,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(720,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -148,7 +148,7 @@ void masterLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(!stopFlag)
     {
-      stackBlockAtleft(newSensor,oldSensor,motor);
+      nav_Complete_1_Row(newSensor,oldSensor,motor);
     }
   else
     {

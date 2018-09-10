@@ -397,10 +397,17 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               state.digiCounter=0;
               temp02=true;
               stopFlag=true;
+              q=0;
         	}
   	}
   	else if(miniEx02==5)		//Return Back to the Junction
   	{
+      if(q<5)
+      {
+        motor.bot_Backward_withPWM(120);
+        q++;
+      }
+
         if(!newSensor.isFrontTurnComplete() && temp02)
         {
           cout<<"Getting Back on Line"<<endl;
@@ -419,6 +426,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           miniEx02=6;
           state.digiCounterR=0;
           state.digiCounter=0;
+          q=0;
         }
 
   	}

@@ -384,7 +384,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               }
               else
               {
-
+                motor.strafe_Left_withPWM(100);
               }
               
           }
@@ -397,7 +397,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               cout<<"Modifying Front PWM"<<endl;
               // fmodx = 35;
             }
-                motor.strafe_Right_withPWM(90);
+                motor.strafe_Right_withPWM(100);
           }
           fmodx=0;
           bmodx=0;

@@ -446,7 +446,7 @@ struct Motor
 	void strafe_Left_withPWM(int pwm)
 	{
 	  strafe_Left();
-	  setPWM_ofEach(pwm,0,pwm,0);	
+	  setPWM_ofEach(pwm-10,0,pwm,0);	
 	}
 
 };

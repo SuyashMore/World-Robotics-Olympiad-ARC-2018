@@ -371,9 +371,9 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
             motor.strafe_Left_withPWM(110);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<10)
+          else if(d<9)
           {
-            motor.strafe_Right_withPWM(110);    //Drag the Block Slightly Right
+            motor.strafe_Right_withPWM(99);    //Drag the Block Slightly Right
             d++;
           }
   		    else if(q<= (PULL_AND_PUSH_ITR/2))    //Move the Bot Backward 

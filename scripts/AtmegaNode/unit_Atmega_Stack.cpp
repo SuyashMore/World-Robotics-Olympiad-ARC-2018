@@ -167,7 +167,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"Processing Arm !!!!!"<<endl;
 		std_msgs::String msg;
 		motor.bot_Stop();
-		motorsetPWM_all(0);
+		motor.setPWM_all(0);
 		msg.data = motor.encrypt_message();
 		atmegaPub.publish(msg);		
 	}

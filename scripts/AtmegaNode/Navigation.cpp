@@ -380,7 +380,8 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               {
                 q=0;
                 cout<<"Modifying Front PWM"<<endl;
-                motor.strafe_Left_withPWM(250);
+                fmodx = 500;
+                motor.strafe_Left_withPWM(100);
               }
               else
               {
@@ -419,12 +420,12 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	else if(miniEx02==4)		// Pull out the Arm and Push the Block in
   	{
           cout<<"Currently Executing: Bot Back and Push"<<endl;
-          if(d<17)
+          if(d<6)
           {
             motor.strafe_Left_withPWM(140);     //Drag the Block Left Inside the Stacking Form 
             d++;
           }
-          else if(d<20)
+          else if(d<7)
           {
             motor.strafe_Right_withPWM(99);    //Drag the Block Slightly Right
             d++;

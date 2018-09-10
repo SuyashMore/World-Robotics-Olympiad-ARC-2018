@@ -380,7 +380,6 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               {
                 q=0;
                 cout<<"Modifying Front PWM"<<endl;
-                fmodx = 500;
                 motor.strafe_Left_withPWM(100);
               }
               else

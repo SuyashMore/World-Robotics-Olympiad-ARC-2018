@@ -1,8 +1,5 @@
 #pragma once
 
-bool navFlag = true;
-
-
 double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh)
 {
 	if(input <= inLow)
@@ -13,7 +10,7 @@ double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh
 	return (outLow + input * (outHigh-outLow)/(inHigh-inLow));
 }
 
-
+bool navFlag = true;
 bool stopFlag = false;
 int stopFlagIterations = 0;
 int maxStopFlagItr = 70;

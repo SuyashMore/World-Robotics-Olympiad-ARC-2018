@@ -270,7 +270,7 @@ int miniEx02=1;
 int q=0;
 int d=0;
 int direction = DIR_NULL; //Stores the Direction Variable to Return Back on the Line
-bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor )
+bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSensor,botData& oldSensor,Motor& motor,int slideDir = DIR_NULL )
 {
     state.updateDigiCounter(newSensor,oldSensor,motor);
     motor.reset(); 

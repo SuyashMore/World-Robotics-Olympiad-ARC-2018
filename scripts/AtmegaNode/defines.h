@@ -28,14 +28,14 @@ using namespace std;
 #define WHITE_SPACE_ERROR_THRESH 50
 
 #define SIDE_MIDDLE 615
-#define SIDE_1 503
-#define SIDE_2 551
-#define SIDE_3 600
-#define SIDE_4 659
-#define SIDE_5 700
-#define SIDE_6 740
-#define SIDE_7 791
-#define SIDE_8 840
+#define SIDE_1 458
+#define SIDE_2 506
+#define SIDE_3 548
+#define SIDE_4 590
+#define SIDE_5 640
+#define SIDE_6 681
+#define SIDE_7 744
+#define SIDE_8 755
 
 #define DIR_LEFT 1
 #define DIR_RIGHT 2

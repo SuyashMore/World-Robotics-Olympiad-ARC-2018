@@ -37,36 +37,73 @@ bool cordinator=false;
 bool pickup=false;
 bool stackBlk=false;
 bool enableArmControl=false;
+int mode=0;
 
 void enableArm()
 {
   enableArmControl=true;
+  mode=0;
 }
 
 void enableCordinator()
 {
   enableArmControl=true;
   cordinator=true;
+  mode=0;
 }
 void disableCordinator()
 {
   enableArmControl=true;
   cordinator=false;
+  mode=0;
 }
 void pickupBlock()
 {
   enableCordinator();
   enableArmControl=true;
   pickup=true;
+  mode=0;
 }
 void stackBlock()
 {
   enableArmControl=true;
   stackBlk=true;
+  mode=0;
 }
 void move2standard()
 {
   enableArmControl=true;
   pickup=false; 
+  mode=0;
 }
 
+void generateNavMap()
+{
+	int judgePiece = BlockColor[0];
+	int requiredBlockIndex = 0;
+	int navIndex = 0;
+	bool foundColor=false;
+	//Perform Linear Search for Each Required Color on the Map
+	while (requiredBlockIndex < MAX_BLOCKS)
+	{
+		int nextRequiredColor = TETRASTACK_ORDER[judgePiece][requiredBlockIndex];
+	  	for(int i=1;i<6;i++)
+	  	{
+	    	if(nextRequiredColor == BlockColor[i])
+	    	{
+	      	NavigationOrder[navIndex] = i;
+	      	navIndex++;
+	      	BlockColor[i] = COLOR_NULL;
+	      	foundColor=true;
+	      	break;
+	    	}
+	  	}
+	  	if(!foundColor)
+	  	{
+	    	NavigationOrder[navIndex] = CHUTE;
+	    	navIndex++;
+	  	}
+	  	foundColor=false;
+	  	requiredBlockIndex++;
+	}
+}

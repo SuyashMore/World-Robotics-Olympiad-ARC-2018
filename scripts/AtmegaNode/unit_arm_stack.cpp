@@ -3,7 +3,7 @@
 
 #include "Navigation.cpp"
 
-#include "Jetson/Dyx.h"
+#include "Jetson/Dyx2.h"
 
 
 
@@ -15,14 +15,15 @@ int main(int argc,char **argv)
 
 	ros::NodeHandle n;
 
-	atmegaPub = n.advertise<Jetson::Dyx>("Dyx",100);
+	atmegaPub = n.advertise<Jetson::Dyx2>("Dyx",100);
 	
 	usleep(1000000);
 	
-		Jetson::Dyx msg;
+		Jetson::Dyx2 msg;
 		msg.cordinator=false;
 		msg.pickUp=false;
 		msg.stack=true;
+		msg.mode=mode;
 		atmegaPub.publish(msg);
 	
 		ros::spinOnce()	;

@@ -35,28 +35,33 @@ def callbackD(data):
 	pickup = data.pickUp
 	stack = data.stack
 	cordinator = data.cordinator
+	mode = data.mode
 	print(data)
 
-	if(pickup):
-		print("Picking Up the Block")
-		super.cordinatorDisable()
-		super.pickupXYZ()
+	if(mode ==0):
+		if(pickup):
+			print("Picking Up the Block")
+			super.cordinatorDisable()
+			super.pickupXYZ()
 
-	if(stack):
-		print("Stacking Block")
-		super.stackBlock()
+		if(stack):
+			print("Stacking Block")
+			super.stackBlock()
 
-	if (not pickup and not stack):
-		print("Moving to Standard Position")
-		super.move2standard()
+		if (not pickup and not stack):
+			print("Moving to Standard Position")
+			super.move2standard()
 
 
-	if(cordinator):
-		print("Enabling Cordinator !")
-		super.cordinatorDisable()
-	else:
-		print("Disabling Cordinator !")
-		super.cordinatorEnable()
+		if(cordinator):
+			print("Enabling Cordinator !")
+			super.cordinatorDisable()
+		else:
+			print("Disabling Cordinator !")
+			super.cordinatorEnable()
+	elif mode == 1:
+		pass 			#Add Additional Arm Functions Here
+
 	msg = bot()
 	msg.nav = True
 	pub.publish(msg)

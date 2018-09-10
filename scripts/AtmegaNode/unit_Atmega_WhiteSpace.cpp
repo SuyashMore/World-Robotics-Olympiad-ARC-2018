@@ -7,7 +7,7 @@
 #include "Jetson/ControlSignal.h"
 #include "Jetson/CtrlSigResponse.h"
 
-#include "Jetson/Dyx.h"
+#include "Jetson/Dyx2.h"
 #include "Jetson/bot.h"
 
 // Flag to Control the Output for the Motor
@@ -35,7 +35,7 @@ int main(int argc,char **argv)
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
-	servoPub = n.advertise<Jetson::Dyx>("Dyx",100);
+	servoPub = n.advertise<Jetson::Dyx2>("Dyx",100);
 	
 	ros::spin();
 
@@ -51,25 +51,32 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 }
 
 
-
 void handleArmSignal()
 {	
 	cout<<"-------------------------Latching Data to Servo-Node --------------------------------------"<<endl;
-	Jetson::Dyx servo;
+	Jetson::Dyx2 servo;
 	servo.cordinator=cordinator;
 	servo.pickUp=pickup;
 	servo.stack=stackBlk;
+	servo.mode = mode;
 
 	servoPub.publish(servo);
-	navFlag=false;
+	if(mode==0)
+	{
+		navFlag=false;
+	}
+	else
+	{
+		mode=0;
+		navFlag=true;
+	}
 	enableArmControl=false;
 
-	if(cordinator)
-		cordinator=false;
+	if(pickup)
+		pickup=false;
 	if(stackBlk)
 		stackBlk=false;
 }
-
 
 
 // //Modify This Variable for Debugging Purpose

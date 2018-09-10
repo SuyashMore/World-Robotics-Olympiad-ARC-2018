@@ -77,14 +77,29 @@ using namespace std;
 #define UNIT_PWM  200
 
 // Block Shape And Color
-#define COLOR_NULL 		0
-#define COLOR_RED 		1
-#define COLOR_BLUE 		2
-#define COLOR_GREEN 	3
-#define COLOR_YELLOW 	4
-#define COLOR_VIOLET 	5
-#define COLOR_ORANGE 	6
+#define COLOR_NULL 		6
+#define COLOR_RED 		0
+#define COLOR_BLUE 		1
+#define COLOR_GREEN 	2
+#define COLOR_YELLOW 	3
+#define COLOR_VIOLET 	4
+#define COLOR_ORANGE    5
 
+#define JUDGEPART 0
+#define SUPPLY1 1
+#define SUPPLY2 2
+#define WHITE1 3
+#define WHITE2 4
+#define WHITE3 5
+#define CHUTE 6
+
+
+int BlockColor[6];    // Judge , Supply1 ,supply 2, white 1,white 2,white 3
+int NavigationOrder[20];
+int currentNavI=0;
+int maxNav = 0;
+
+#define MAX_BLOCKS 4
 int TETRASTACK_ORDER[6][4] = 
 {	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
 	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE },  		//COLOR_RED

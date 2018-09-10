@@ -281,7 +281,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           {
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
-              K_processPID(newSensor,oldSensor,motor,1100,80,0.11);
+              K_processPID(newSensor,oldSensor,motor,110,80,0.11);
   			motor.bot_Forward_withPWMm(100);
               q=0;   
           }

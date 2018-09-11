@@ -35,11 +35,11 @@ using namespace std;
 #define SIDE_MIDDLE 615
 #define SIDE_1 410
 #define SIDE_2 506
-#define SIDE_3 548
+#define SIDE_3 510
 #define SIDE_4 590
 #define SIDE_5 640
 #define SIDE_6 681
-#define SIDE_7 744
+#define SIDE_7 686
 #define SIDE_8 755
 
 #define DIR_LEFT 1

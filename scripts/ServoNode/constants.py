@@ -4,18 +4,9 @@
 ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB4"
 
-<<<<<<< HEAD
-ttyUSB_LIDAR = "/dev/ttyUSB0"
-LIDAR_BAUD = 115200
-
-DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-#DXL_LIB_PATH = "/home/eshita/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
-=======
 # DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
->>>>>>> refs/remotes/origin/master
 # DXL_LIB_PATH = "/home/pratik/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False

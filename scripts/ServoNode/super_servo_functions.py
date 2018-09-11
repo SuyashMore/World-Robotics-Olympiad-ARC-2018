@@ -174,7 +174,7 @@ def stackBlockOld():
     time.sleep(SL1)
 
 def pickupAndPushPos():
-    move2angle(0,12,50,-145,0)
+    move2angle(0,12,45,-140,0)
 
 
 def stackBlock():

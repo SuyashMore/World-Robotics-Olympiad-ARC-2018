@@ -284,14 +284,14 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-  			motor.bot_Forward_withPWMm(160);
+  			motor.bot_Forward_withPWMm(140);
               q=0;   
           }
           else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-TOF_ERROR_THRESH))
           {
               cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-              motor.bot_Backward_withPWMm(160);   
+              motor.bot_Backward_withPWMm(140);   
               q=0;
           }
           else
@@ -346,11 +346,11 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
          cout<<"Currently Executing: Correcting with Side"<<endl;
           if(newSensor.tofSide > targetDistance)
           {
-              motor.strafe_Left_withPWM(130);
+              motor.strafe_Left_withPWM(110);
           }
           else if(newSensor.tofSide < targetDistance)
           {
-              motor.strafe_Right_withPWM(130);
+              motor.strafe_Right_withPWM(110);
           }
           if(abs(newSensor.tofSide - targetDistance) <=8)
           {

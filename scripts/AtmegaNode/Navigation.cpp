@@ -781,7 +781,7 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
 int miniEx05=0;
 bool temp05=true;
 bool tempturn5=false;
-bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)
+bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home Position from the Junction behind Main Junction
 {
   state.updateDigiCounter(newSensor,oldSensor,motor);
   motor.reset(); 

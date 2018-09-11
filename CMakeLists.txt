@@ -189,6 +189,7 @@ add_executable(unit_Arm_pickup scripts/AtmegaNode/unit_arm_pickup.cpp)
 add_executable(unit_Arm_stack scripts/AtmegaNode/unit_arm_stack.cpp)
 add_executable(unit_Arm_std scripts/AtmegaNode/unit_arm_standard.cpp)
 add_executable(unit_Arm_std_w_cord scripts/AtmegaNode/unit_arm_standard_with_cordinator.cpp)
+add_executable(disableTorques scripts/AtmegaNode/disableTorques.cpp)
 
 target_link_libraries(unit_Arm_Cord_enable ${catkin_LIBRARIES} )
 target_link_libraries(unit_Arm_Cord_disable ${catkin_LIBRARIES} )
@@ -196,6 +197,7 @@ target_link_libraries(unit_Arm_pickup ${catkin_LIBRARIES} )
 target_link_libraries(unit_Arm_stack ${catkin_LIBRARIES} )
 target_link_libraries(unit_Arm_std ${catkin_LIBRARIES} )
 target_link_libraries(unit_Arm_std_w_cord ${catkin_LIBRARIES} )
+target_link_libraries(disableTorques ${catkin_LIBRARIES} )
 
 
 # Atmega-Node Unit Tests

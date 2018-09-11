@@ -61,6 +61,8 @@ def callbackD(data):
 			super.cordinatorEnable()
 	elif mode == 1:
 		super.pickupAndPushPos() 			#Add Additional Arm Functions Here
+	elif mode == 11:
+		super.disableAll()
 
 	msg = bot()
 	msg.nav = True

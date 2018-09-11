@@ -21,8 +21,10 @@ def disable(ID):
     return  servos.disable_bot(ID)
 
 def disableAll():
+    print("Disabling All Torques !!")
     for ids in constants.servoIDArm:
         disable(ids)
+    disable(7)
 
 def setSpeed(ID,Speed): #(0-1023)
     return servos.set_speed(ID,Speed)

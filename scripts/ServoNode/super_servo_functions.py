@@ -231,8 +231,8 @@ def move2standard():
     move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X =9.2
-    FINAL_Y = -8.4
+    FINAL_X =9.3
+    FINAL_Y = -9.8
     INITIAL_Z = -9
     FINAL_Z = -13
         

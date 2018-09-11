@@ -201,6 +201,7 @@ def stackBlock():
     time.sleep(SL3)
 
 
+
     setTransformedAngle(2,30)
     time.sleep(SL3)
 
@@ -250,60 +251,8 @@ def pickupXYZ():
     enableAll()
     
     gripDisable()
-    # raw_input("Press  Any Key to Pickup")
 
     setSpeedAll(250)
-
-    # move2angle(-39,-16,123,-103,30)    similar to below co-ordinate
-    
-    # move2pos(8.8438761521539782,-7.161629699568385,-9.105261027785847)
-    # time.sleep(SLY)
-
-    # move2pos(9,-6.5,-9)
-    # time.sleep(SLY)
-    
-    # move2pos(9,-7,-9)
-    # time.sleep(SLY)
-   
-    # move2pos(9.5,-7,-9)
-    # time.sleep(SLY)
-    
-    # move2pos(9.7,-7,-9)
-    # time.sleep(SLY)
-
-
-    # move2pos(9.7,-7.5,-9)
-    # time.sleep(SLY)
-
-    # move2pos(9.7,-7.5,-9)
-    # time.sleep(SLY)
-
-
-    # move2pos(9.8,-7.6,-9)
-    # time.sleep(SLY)
-
-    # move2pos(9.8,-7.5,-9)
-    # time.sleep(SLY)
-
-    # move2pos(9.9,-7.5,-9)
-    # time.sleep(SLY)
-
-    # move2pos(9.9,-7.8,-9.5)
-    # time.sleep(SLY)
-
-    # move2pos(9.9,-7.8,-9.9)
-    # time.sleep(SLY)
-
-   
-    # move2pos(9.9,-7.8,-12)
-    # time.sleep(SLY)
-     # p = INITIAL_
-     # Z
-    # while p >FINAL_Z :    
-    #     move2pos(8.7,-6.4,p)
-    #     setAngle(17,600)
-    #     p=p-0.2
-
     
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     time.sleep(SLY)
@@ -312,14 +261,6 @@ def pickupXYZ():
     setTransformedAngle(4,35)
     time.sleep(SLY)
 
-
-
-    # setTransformedAngle(4,35)
-    # time.sleep(SLY)
-
-    # move2pos(FINAL_X,FINAL_Y,-8.9)
-    # time.sleep(SLY)
-    
     setSpeedAll(150)
     for i in range (-90,-131,-3):
         move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
@@ -327,9 +268,6 @@ def pickupXYZ():
         time.sleep(SL2-0.1)
 
 
-    # time.sleep(SL3)
-    # move2pos(FINAL_X,FINAL_Y,-13)
-    # time.sleep(SLY)
     time.sleep(1)
 
     

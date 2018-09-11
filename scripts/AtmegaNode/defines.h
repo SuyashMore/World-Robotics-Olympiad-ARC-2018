@@ -35,7 +35,7 @@ using namespace std;
 #define SIDE_MIDDLE 615
 #define SIDE_1 410
 #define SIDE_2 460
-#define SIDE_3 530
+#define SIDE_3 550
 #define SIDE_4 560
 #define SIDE_5 610
 #define SIDE_6 660

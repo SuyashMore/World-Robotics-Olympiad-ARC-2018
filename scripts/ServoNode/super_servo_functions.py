@@ -210,10 +210,14 @@ def stackBlock():
 
     # raw_input("Take the Bot Back ! ")
 
-    move2angle(0,20,50,-145,0)
+    move2angle(0,20,20,-140,0)
     time.sleep(SL3)
     gripDisable()
     time.sleep(SL2)
+
+    setTransformedAngle(2,45)
+    time.sleep(SL3)
+
    
 
 def move2standard():
@@ -226,12 +230,13 @@ def move2standard():
     move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X =9.5
-    FINAL_Y = -9
-    INITIAL_Z = -9.6
+    FINAL_X =9.2
+    FINAL_Y = -8.4
+    INITIAL_Z = -9
     FINAL_Z = -13
         
     SL4 = 0.4
+
     SL3 = 1.0
     SL2 = 0.3
     SL1 = 0.5 # WAS 0.15 AND CHANGED TO 0
@@ -303,13 +308,23 @@ def pickupXYZ():
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     time.sleep(SLY)
 
+
+    setTransformedAngle(4,35)
+    time.sleep(SLY)
+
+
+
+    # setTransformedAngle(4,35)
+    # time.sleep(SLY)
+
     # move2pos(FINAL_X,FINAL_Y,-8.9)
     # time.sleep(SLY)
     
     setSpeedAll(150)
-    for i in range (-98,-131,-3):
-        move2pos(FINAL_X,-9,((float)(i)/10))
-        time.sleep(SL2)
+    for i in range (-90,-131,-3):
+        move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
+        setTransformedAngle(4,35)
+        time.sleep(SL2-0.1)
 
 
     # time.sleep(SL3)

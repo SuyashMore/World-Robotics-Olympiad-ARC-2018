@@ -70,7 +70,7 @@ using namespace std;
 #define PICKUP_3_ITR_MAX 30
 
 // Stacking Params
-#define TOF_FRONT_BALANCE_DISTANCE 180
+#define TOF_FRONT_BALANCE_DISTANCE 190
 #define PULL_AND_PUSH_ITR 140
 
 // Block Params

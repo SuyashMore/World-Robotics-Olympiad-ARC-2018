@@ -15,6 +15,11 @@ using namespace std;
 #define FORWARD_MOTION_PWM 200
 #define SPOT_LEFT_PWM 100
 
+// Home Position Params
+#define HOME_FRONT_X 20
+#define HOME_SIDE_X 20
+#define HOME_ERROR_THRESH 8
+
 // Delays(ms)
 #define DELAY_BOT_TURN 1001
 

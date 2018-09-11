@@ -778,3 +778,100 @@ bool nav_Pickup_from_Delivery_chute(botData& newSensor,botData& oldSensor,Motor&
   
 }
 
+int miniEx05=0;
+bool temp05=true;
+bool tempturn5=false;
+bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)
+{
+  state.updateDigiCounter(newSensor,oldSensor,motor);
+  motor.reset(); 
+  // Mini - Step 1 : Handle Rotation and Enable 90 degrees
+  if(miniEx05==1)
+  {
+    if(newSensor.isFrontTurnComplete() && temp01)
+      {
+        cout<<"Currently Executing: Spot Left"<<endl;
+        motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+      }
+      else if(!newSensor.isFrontTurnComplete())
+      {
+        cout<<"Currently Executing: Spot Left"<<endl;
+        temp05 = false;
+        tempturn5=true;
+        motor.spot_Left_withPWM(SPOT_LEFT_PWM);
+      }
+     else if(!newSensor.isBackTurnComplete() && tempturn5)
+      {
+        motor.setPWM_all(0);
+        motor.spot_Right();
+        motor.setPWMof(MOTOR_BACK,170);
+      }
+      else
+      {
+        motor.bot_Stop();
+        stopFlag=true;
+        miniEx05=2;
+    }
+  }
+  else if(miniEx05==2)      //Mini Step 2 :Balance with Front Wall
+  {
+    if(newSensor.tofFront > (HOME_FRONT_X+HOME_ERROR_THRESH))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
+      // processPID(newSensor,oldSensor,motor);
+      K_processPID(newSensor,oldSensor,motor,110,80,0.11);
+      motor.bot_Forward_withPWMm(140);
+      q=0;   
+    }
+    else if(newSensor.tofFront<(HOME_FRONT_X-HOME_ERROR_THRESH))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
+      K_processPID(newSensor,oldSensor,motor,110,80,0.11);
+      motor.bot_Backward_withPWMm(140);   
+      q=0;
+    }
+    else
+    {
+      q++;
+      motor.bot_Stop();
+    }
+
+    if(q>=12)
+    {
+      q=0;
+      miniEx05=3;
+    }
+  }
+  else if(miniEx05=3)       //Mini Step 3 : Balance With Side Wall
+  {
+  	if(newSensor.tofSide > (HOME_SIDE_X+HOME_ERROR_THRESH))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
+      motor.strafe_Left_withPWM(140);
+      q=0;   
+    }
+    else if(newSensor.tofFront<(HOME_SIDE_X-HOME_ERROR_THRESH))
+    {
+      cout<<"Currently Executing: Going Forward Till TOF:Backward"<<endl;
+      motor.strafe_Right_withPWM(140);   
+      q=0;
+    }
+    else
+    {
+      q++;
+      motor.bot_Stop();
+    }
+
+    if(q>=12)
+    {
+      q=0;
+      miniEx05=4;
+    }	 
+  }
+  if(miniEx05==4)
+  {
+  	return true;
+  }
+  return false;
+}
+

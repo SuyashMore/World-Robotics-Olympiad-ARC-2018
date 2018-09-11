@@ -193,7 +193,7 @@ def stackBlock():
 
     # raw_input("Press Any Key to Begin Motion")
 
-
+    setTransformedAngle(0,-5)
     setTransformedAngle(3,-130)
     time.sleep(SL3)
 
@@ -211,7 +211,7 @@ def stackBlock():
 
     # raw_input("Take the Bot Back ! ")
 
-    move2angle(0,20,20,-140,0)
+    move2angle(-5,20,20,-140,0)
     time.sleep(SL3)
     gripDisable()
     time.sleep(SL2)

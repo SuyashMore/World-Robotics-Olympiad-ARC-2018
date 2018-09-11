@@ -7,9 +7,9 @@ ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 ttyUSB_LIDAR = "/dev/ttyUSB0"
 LIDAR_BAUD = 115200
 
-# DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 #DXL_LIB_PATH = "/home/eshita/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
 # DXL_LIB_PATH = "/home/pratik/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
@@ -49,9 +49,9 @@ def transform2ServoAngles(angle,angleIndex):
     if angleIndex == 2:
         CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20+7
     if angleIndex == 3:
-        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5-20
+        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5-20+20
     if angleIndex == 4:
-        CompoundAngle= (((angle+14) / (SERVO_RES))) + 461
+        CompoundAngle= (((angle+14) / (SERVO_RES))) + 461-20
     if angleIndex == 5:
         CompoundAngle= ((angle / (SERVO_RES)))
     return (int(CompoundAngle)%1023)
@@ -66,9 +66,9 @@ def transform2StandardAngles(angle,angleIndex):
         temp = ((((angle-497)*SERVO_RES) ) * (1) +88 ) + 8 -10-4 + 7 - 5+20+10
         return temp
     elif angleIndex == 3:
-        return (((angle -569)*SERVO_RES) ) * (-1) - 8 + 5 +20-40+17 - 3+5+50
+        return (((angle -569)*SERVO_RES) ) * (-1) - 8 + 5 +20-40+17 - 3+5+50-20
     elif angleIndex == 4:
-        return (((angle - 461)*SERVO_RES) ) -14
+        return (((angle - 461)*SERVO_RES) ) -14+20
     elif angleIndex == 5:
         return (((angle)*SERVO_RES) )
 

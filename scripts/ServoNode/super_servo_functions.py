@@ -224,15 +224,15 @@ def move2standard():
     move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X =10.6
+    FINAL_X =9.5
     FINAL_Y = -9
-    INITIAL_Z = -8.9
+    INITIAL_Z = -9.6
     FINAL_Z = -13
         
     SL4 = 0.4
     SL3 = 1.0
-    SL2 = 0.1
-    SL1 = 0.0 # WAS 0.15 AND CHANGED TO 0
+    SL2 = 0.3
+    SL1 = 0.5 # WAS 0.15 AND CHANGED TO 0
     SLY = 1.6
     SLS=0.4
     # SLS=1.1
@@ -298,22 +298,22 @@ def pickupXYZ():
     #     p=p-0.2
 
     
-    move2pos(FINAL_X,FINAL_Y,-8.9)
+    move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     time.sleep(SLY)
 
-    move2pos(FINAL_X,FINAL_Y,-8.9)
-    time.sleep(SLY)
-    set
+    # move2pos(FINAL_X,FINAL_Y,-8.9)
+    # time.sleep(SLY)
+    
     setSpeedAll(150)
-    for i in range (-89,-130,-3):
+    for i in range (-98,-131,-3):
         move2pos(FINAL_X,-9,((float)(i)/10))
         time.sleep(SL2)
 
 
     # time.sleep(SL3)
-    move2pos(FINAL_X,FINAL_Y,-13)
-    time.sleep(SLY)
-    
+    # move2pos(FINAL_X,FINAL_Y,-13)
+    # time.sleep(SLY)
+    time.sleep(1)
 
     
 

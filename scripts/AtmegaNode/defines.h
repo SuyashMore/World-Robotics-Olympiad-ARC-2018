@@ -34,13 +34,13 @@ using namespace std;
 
 #define SIDE_MIDDLE 615
 #define SIDE_1 410
-#define SIDE_2 506
+#define SIDE_2 460
 #define SIDE_3 510
-#define SIDE_4 590
-#define SIDE_5 640
-#define SIDE_6 681
-#define SIDE_7 686
-#define SIDE_8 755
+#define SIDE_4 560
+#define SIDE_5 610
+#define SIDE_6 660
+#define SIDE_7 690
+#define SIDE_8 690
 
 #define DIR_LEFT 1
 #define DIR_RIGHT 2
@@ -142,7 +142,7 @@ int floor_ORDER[6][4] =
 
 };
 
-int orienatation_ORDER[6][4] = 
+int orienatation_ORDER[6][4] = 			//to Modify
 {
 	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
 	{ 1, 1 , 2, 2},  		//COLOR_RED

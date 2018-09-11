@@ -134,12 +134,17 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	}
 	else if(state.currentStepIndex==10)
 	{
-		// cout<<"Navigation Step:"<<10<<endl;
-		// if(nav_Pickup_from_Delivery_chute(newSensor,oldSensor,motor))
-		// {
-		// 	state.currentStepIndex++;
-		// }
+		cout<<"Navigation Step:"<<10<<endl;
+		if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
+		{
+			state.currentStepIndex++;
+		}
+		
+	}
+	else if(state.currentStepIndex==11)
+	{
 		motor.bot_Stop();
+		
 	}
 
 }

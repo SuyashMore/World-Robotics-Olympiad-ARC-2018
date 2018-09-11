@@ -28,7 +28,7 @@ using namespace std;
 #define WHITE_SPACE_ERROR_THRESH 50
 
 #define SIDE_MIDDLE 615
-#define SIDE_1 458
+#define SIDE_1 420
 #define SIDE_2 506
 #define SIDE_3 548
 #define SIDE_4 590

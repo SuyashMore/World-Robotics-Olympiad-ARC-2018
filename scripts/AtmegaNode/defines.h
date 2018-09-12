@@ -16,8 +16,8 @@ using namespace std;
 #define SPOT_LEFT_PWM 100
 
 // Home Position Params
-#define HOME_FRONT_X 20
-#define HOME_SIDE_X 20
+#define HOME_FRONT_X 40
+#define HOME_SIDE_X 40
 #define HOME_ERROR_THRESH 8
 
 // Delays(ms)

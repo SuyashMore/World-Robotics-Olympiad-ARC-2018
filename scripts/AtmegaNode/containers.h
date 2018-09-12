@@ -21,6 +21,8 @@ struct botData
 	bool tofFlag = false;
 	bool BackMonitorFlag = true;
 	bool BackFlag = false;
+	bool bumpFront = false;
+	bool bumpSide = false;
 
 
 	void printData()
@@ -38,6 +40,9 @@ struct botData
 		 std::cout<<"Tof Side:"<<tofSide<<std::endl;
 		std::cout<<"digiLeft:"<<digiLeft<<std::endl;
 		std::cout<<"digiRight:"<<digiRight<<std::endl;
+		std::cout<<"bumpFront:"<<bumpFront<<std::endl;
+		std::cout<<"bumpSide:"<<bumpSide<<std::endl;
+
 	}
 
 	void copyFront(botData& b)
@@ -163,6 +168,16 @@ struct botData
 			index = message.find(_8_MESSAGE)+1;
 			length = message.find(_9_MESSAGE_END) - index;
 			tofSide = stoi( message.substr(index,length));
+
+			// Extract the Front Bump Switch Data
+			index = message.find('e')+1;
+			length = 1;
+			bumpFront = stoi( message.substr(index,length));
+
+			// Extract the Side Bump Switch Data
+			index = message.find('f')+1;
+			length = 1;
+			bumpSide = stoi( message.substr(index,length));
 		}
 
 	bool isFrontAllWhite()

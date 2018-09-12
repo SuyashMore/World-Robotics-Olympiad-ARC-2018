@@ -213,6 +213,25 @@ target_link_libraries(unit_Atmega_WhiteSpace ${catkin_LIBRARIES} )
 target_link_libraries(unit_Atmega_DeliveryChute ${catkin_LIBRARIES} )
 target_link_libraries(unit_Atmega_goHome ${catkin_LIBRARIES} )
 
+#Stacking Unit Tests
+add_executable(unit_Stack_1 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_2 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_3 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_4 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_5 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_6 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_7 scripts/AtmegaNode/unit_Stack_1.cpp)
+
+target_link_libraries(unit_Stack_1 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_2 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_3 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_4 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_5 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_6 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_7 ${catkin_LIBRARIES} )
+
+
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

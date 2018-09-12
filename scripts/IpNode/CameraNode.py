@@ -15,7 +15,7 @@ def callbackD(data):
 	mode = data.mode
 	print(data)
 
-	msg = bot()
+	msg = BlockData()
 	# msg.nav = True
 	pub.publish(msg)
 
@@ -23,7 +23,7 @@ def callbackD(data):
 
 def listener():
 	rospy.init_node("CamNode",anonymous=True)
-	rospy.Subscriber("camTopic",Angles,callbackAngle)
+	rospy.Subscriber("camTopic",BlockData,callbackD)
 
 	while not rospy.is_shutdown():
 		rospy.spin()

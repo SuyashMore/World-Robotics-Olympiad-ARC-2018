@@ -56,7 +56,7 @@ def process(x,y,z):
 		q4=q234-q2-q3
 
 		# q5=math.pi*(math.log(math.sqrt(w4*w4+w5*w5+w6*w6)))
-		q5 = -q1
+		q5 = 20
 
 		q1=q1*(180/math.pi)
 		q2=q2*(180/math.pi)

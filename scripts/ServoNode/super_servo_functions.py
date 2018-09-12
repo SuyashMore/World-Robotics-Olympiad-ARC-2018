@@ -53,19 +53,37 @@ def getAngleTransformed(index):#(0-360)
     return constants.transform2StandardAngles(getAngle(constants.servoIDArm[index]),index)
 
 
+def setAngles_for_pickup(a0,a1,a2,a3,a4):
+
+    tfa0=constants.transform2ServoAngles(a0,0)
+    tfa1=constants.transform2ServoAngles(a1,1)
+    tfa2=constants.transform2ServoAngles(a2,2)
+    tfa3=constants.transform2ServoAngles(a3,3)  
+    tfa4=constants.transform2ServoAngles(25,4)
+    
+    setAngle(constants.servoIDArm[4],tfa4)
+    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[2],tfa2)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[0],tfa0)
+    print("Servo Angles Written Are :",tfa0,tfa1,tfa2,tfa3,tfa4)
+
+
+
 def setAngles(a0,a1,a2,a3,a4):
 
     tfa0=constants.transform2ServoAngles(a0,0)
-    tfa1=constants.transform2ServoAngles(a1-2,1)
+    tfa1=constants.transform2ServoAngles(a1,1)
     tfa2=constants.transform2ServoAngles(a2,2)
     tfa3=constants.transform2ServoAngles(a3,3)  
-    tfa4=constants.transform2ServoAngles(a4+2,4)
+    tfa4=constants.transform2ServoAngles(a4,4)
     
-    setAngle(constants.servoIDArm[0],tfa0)
-    setAngle(constants.servoIDArm[1],tfa1)
-    setAngle(constants.servoIDArm[2],tfa2)
-    setAngle(constants.servoIDArm[3],tfa3)
     setAngle(constants.servoIDArm[4],tfa4)
+    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[2],tfa2)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[0],tfa0)
+    print("Servo Angles Written Are :",tfa0,tfa1,tfa2,tfa3,tfa4)
 
 def processIK(x,y,z):
     return ik.process(x,y,z)
@@ -84,7 +102,7 @@ def move2pos(x,y,z):
     a0,a1,a2,a3,a4,isPossible = ik.process(x,y,z)
 
     if isPossible==True:
-        setAngles(a0,a1,a2,a3,a4)       
+        setAngles_for_pickup(a0,a1,a2,a3,a4)       
     else:
         pass
 
@@ -96,6 +114,13 @@ def processFK(a0,a1,a2,a3,a4):
 def move2angle(a0,a1,a2,a3,a4):
     fk.process(a0,a1,a2,a3,a4)
     setAngles(a0,a1,a2,a3,a4)
+
+def move2angleS(a0,a1,a2,a3,a4):
+    setAngle(8,a0)
+    setAngle(9,a1)
+    setAngle(12,a2)
+    setAngle(15,a3)
+    setAngle(17,a4)    
 
 
 #Hard-Coded Standard Position for Arm
@@ -110,71 +135,85 @@ def setPickupPosition():
 
 def gripEnable():
     setSpeed(constants.servoIDArm[5],constants.servoGripperSpeed)
-    setTransformedAngle(5,constants.GRIPOPEN)
+    setAngle(5,constants.GRIPOPEN)
     
 
 def gripDisable():
     setSpeed(constants.servoIDArm[5],constants.servoGripperSpeed)
-    setTransformedAngle(5,constants.GRIPCLOSE)
+    setAngle(5,constants.GRIPCLOSE)
 
 def disableTorque():
     disableAll()
     disable(7)
 
-
-def stackBlockOld():
     #Sleep Constants
-    SL1 = 2
-    SL2 = 1
-    SL3 = 2
-    SLS=2
-    init()
-    enableAll()
-    setSpeedAll(50)
+    # SL1 = 2
+    # SL2 = 1
+    # SL3 = 2
+    # SLS=2
+    # init()
+    # enableAll()
+    # setSpeedAll(50)
 
-    # raw_input("Press Any Key to Enable Grip")
-    gripEnable()   
+    # # raw_input("Press Any Key to Enable Grip")
+    # gripEnable()   
 
     # raw_input("Press Any Key to Begin Motion")
 
 
-    setTransformedAngle(3,-10)
-    time.sleep(SL2)
-    setTransformedAngle(1,-10)
-    time.sleep(SL2)
-    setTransformedAngle(2,60)
-    time.sleep(SL1)
-    setTransformedAngle(1,10)
-    time.sleep(SL1)
-    setTransformedAngle(2,55)
-    time.sleep(SL1)
-    setTransformedAngle(1,10)
-    time.sleep(SL1)
-    setTransformedAngle(2,60)
-    time.sleep(SL3)
-    gripDisable()
-    time.sleep(SL3)
-    setTransformedAngle(1,12) 
+    # setTransformedAngle(3,-10)
+    # time.sleep(SL2)
+    # setTransformedAngle(1,-10)
+    # time.sleep(SL2)
+    # setTransformedAngle(2,60)
+    # time.sleep(SL1)
+    # setTransformedAngle(1,10)
+    # time.sleep(SL1)
+    # setTransformedAngle(2,55)
+    # time.sleep(SL1)
+    # setTransformedAngle(1,10)
+    # time.sleep(SL1)
+    # setTransformedAngle(2,60)
+    # time.sleep(SL3)
+    # gripDisable()
+    # time.sleep(SL3)
+    # setTransformedAngle(1,12) 
 
-    # raw_input("Take the Bot Back ! ")
+    # # raw_input("Take the Bot Back ! ")
 
-    setTransformedAngle(1,12)
-    time.sleep(SL1)
-    setTransformedAngle(2,50)
-    time.sleep(SL1)
-    setTransformedAngle(1,12)
-    time.sleep(SL1)
-    setTransformedAngle(2,46)
-    time.sleep(SL1)
-    setTransformedAngle(1,12)
-    time.sleep(SL1)
-    setTransformedAngle(2,45)
-    time.sleep(SL1)
-    setTransformedAngle(1,16)
-    time.sleep(SL1)
+    # setTransformedAngle(1,12)
+    # time.sleep(SL1)
+    # setTransformedAngle(2,50)
+    # time.sleep(SL1)
+    # setTransformedAngle(1,12)
+    # time.sleep(SL1)
+    # setTransformedAngle(2,46)
+    # time.sleep(SL1)
+    # setTransformedAngle(1,12)
+    # time.sleep(SL1)
+    # setTransformedAngle(2,45)
+    # time.sleep(SL1)
+    # setTransformedAngle(1,16)
+    # time.sleep(SL1)
+    # move2angleS(270,644,514,772,499)
+    # time.sleep(SL1)
+    
+    # move2angleS(269,994,272,400,500)
+    # time.sleep(SL1)
+
+    # move2angleS(270,984,320,400,497)
+    # time.sleep(SL1)
+
+    # move2angleS(258,1006,291,400,483)
+    # time.sleep(SL1)
+
+    
+    # move2angleS()
+    # time.sleep(SL1)
 
 def pickupAndPushPos():
-    move2angle(0,15,45,-140,0)
+    move2angleS(267,1023,271,400,492)
+    time.sleep(SL1)
 
 
 def stackBlock():
@@ -187,11 +226,11 @@ def stackBlock():
     enableAll()
     setSpeedAll(150)
 
-    # raw_input("Press Any Key to Enable Grip")
+    # # raw_input("Press Any Key to Enable Grip")
     gripEnable()   
     time.sleep(2)
 
-    # raw_input("Press Any Key to Begin Motion")
+    raw_input("Press Any Key to Begin Motion")
 
     setTransformedAngle(0,-5)
     setTransformedAngle(3,-130)
@@ -219,8 +258,37 @@ def stackBlock():
     setTransformedAngle(2,45)
     time.sleep(SL3)
 
-   
+    time.sleep(SL1)
+    move2angleS(270,644,514,772,499)
+    time.sleep(SL1)
+    
+     # time.sleep(SL1)
+    # move2angleS(270,644,514,772,499)
+    # time.sleep(SL1)
+    
+    # move2angleS(269,994,272,400,500)
+    # time.sleep(SL1)
 
+    # move2angleS(270,984,320,400,497)
+    # time.sleep(SL1)
+
+    # move2angleS(258,1006,291,400,483)
+    # time.sleep(SL1)
+
+    
+    # move2angleS()
+    # time.sleep(SL1)
+
+    # move2angleS(269,994,272,400,500)
+    # time.sleep(SL1)
+
+    # move2angleS(270,984,320,400,497)
+    # time.sleep(SL1)
+
+    # move2angleS(258,1006,291,400,483)
+    # time.sleep(SL1)
+
+    
 def move2standard():
     init()
 
@@ -231,17 +299,17 @@ def move2standard():
     move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X =9.3
-    FINAL_Y = -9.8
-    INITIAL_Z = -9
-    FINAL_Z = -13
+    FINAL_X =12
+    FINAL_Y = -8.2
+    INITIAL_Z = -6.2
+    FINAL_Z = -11
         
     SL4 = 0.4
 
     SL3 = 1.0
-    SL2 = 0.3
+    SL2 = 0.2
     SL1 = 0.5 # WAS 0.15 AND CHANGED TO 0
-    SLY = 1.6
+    SLY = 0.5
     SLS=0.4
     # SLS=1.1
     SLE =5
@@ -252,23 +320,25 @@ def pickupXYZ():
     
     gripDisable()
 
-    setSpeedAll(250)
-    
+    setSpeedAll(150)
+
+    move2pos(12,-8.2,-6.5)
+    time.sleep(SLY)
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     time.sleep(SLY)
 
-
-    setTransformedAngle(4,35)
+    setTransformedAngle(4,20)
     time.sleep(SLY)
 
-    setSpeedAll(150)
-    for i in range (-90,-131,-3):
+    setSpeedAll(250)
+    for i in range (-65,-110,-1):
         move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
-        setTransformedAngle(4,35)
-        time.sleep(SL2-0.1)
+        # time.sleep(SL2-0.2)
+        time.sleep(SL2)
 
 
-    time.sleep(1)
+
+   # time.sleep(1)
 
     
 

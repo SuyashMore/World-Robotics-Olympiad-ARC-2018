@@ -1,12 +1,12 @@
-# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
-#ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB4"
+# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB3"
+# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB9"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB6"
 ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
-# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB4"
+# ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB1"
 
-DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+# DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
 # DXL_LIB_PATH = "/home/pratik/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
@@ -40,15 +40,15 @@ def transform2ServoAngles(angle,angleIndex):
     0
 
     if angleIndex == 0:
-        CompoundAngle= (((angle+175+15+155-17+9) / (SERVO_RES) * (3/2))+177)
+        CompoundAngle= (((angle+175+15+155-17+9) / (SERVO_RES) * (3/2))+177-50)
     if angleIndex == 1:
         CompoundAngle= (((angle+ 70 + 35 -17-3-2) / (SERVO_RES))*2)+196+10         #Reduction in Gear Ratio
     if angleIndex == 2:
-        CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20+7
+        CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20+7-10
     if angleIndex == 3:
-        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5-20+20
+        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5-20+20-50
     if angleIndex == 4:
-        CompoundAngle= (((angle+14) / (SERVO_RES))) + 461-20
+        CompoundAngle= (((angle+14) / (SERVO_RES))) + 461-20-15+30
     if angleIndex == 5:
         CompoundAngle= ((angle / (SERVO_RES)))
     return (int(CompoundAngle)%1023)
@@ -72,12 +72,12 @@ def transform2StandardAngles(angle,angleIndex):
 
 
 #Gripper Angles
-GRIPCLOSE = 70
-GRIPOPEN = 240
+GRIPCLOSE = 0
+GRIPOPEN = 600
 
 #Unique IDs for Each Servo
 
-servoIDArm =[8,9,12,15,17,16]    #in ascending order from the bottom most Servo
+servoIDArm =[8,9,6,13,17,5]    #in ascending order from the bottom most Servo
 
 
 

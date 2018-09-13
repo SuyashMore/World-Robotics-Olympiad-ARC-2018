@@ -1,2 +1,0 @@
-string address
-bool acknowledge

@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-
+ID=1
 L=[]
 dic={4:0, 6:0, 8:0}
 dic2={'I':0, 'L':0, 'J':0, 'O':0, 'Z':0, 'S':0}
@@ -38,14 +38,14 @@ class BlockRecognition:
         # T_SHAPE = 2
 
         # Defining the lower and upper limits for the 3 colors upon calibration
-        LOWER_RED = np.array([0.0, 170.0, 61.0])
-        UPPER_RED = np.array([5.0, 230.0, 311.0])
+        LOWER_RED = np.array([1.0, 175.0, -4.0]) #  [0.0, 170.0, 61.0]
+        UPPER_RED = np.array([7.0, 255.0, 256.0])   #  [5.0, 230.0, 311.0]
         LOWER_YELLOW = np.array([20.0, 178.0, 59.0])     #[21.0, 126.0, 0.0]
         UPPER_YELLOW = np.array([26.0, 258.0, 279.0])   #[29.0, 226.0, 234.0]
         LOWER_BLUE = np.array([94.0, 23.0, -8.0])          #[95.0, 80.0, 9.0]
         UPPER_BLUE = np.array([100.0, 143.0, 252.0])       #[103.0, 140.0, 229.0]
-        LOWER_ORANGE = np.array([9.0, 275.0, 282.0])   #[8.0, 143.0, 59.0]
-        UPPER_ORANGE = np.array([10.0, 223.0, 309.0]) #[9.0, 275.0, 282.0] #[10.0, 223.0, 309.0]
+        LOWER_ORANGE = np.array([5.0, 148.0, 66.0])   #[8.0, 143.0, 59.0]
+        UPPER_ORANGE = np.array([11.0, 228.0, 326.0]) #[9.0, 275.0, 282.0] #[10.0, 223.0, 309.0]
         LOWER_GREEN = np.array([46.0, 121.0, 4.0])#[40.0, 160.0, 49.0])
         UPPER_GREEN = np.array([48.0, 281.0, 216.0])#[47.0, 260.0, 199.0])
         LOWER_PURPLE = np.array([140, 100, 100])
@@ -98,7 +98,7 @@ class BlockRecognition:
             #print(frame.shape)
             # Blurring the frame to be ready for color filtering and edge detection
             original = frame
-            cv.imshow("Plain",original)
+            # cv.imshow("Plain",original)
             # height    width
             part1 = original[self.li1:self.li2, self.li3:self.li4]
             # part1 = original[120:310, 100:380]
@@ -142,8 +142,8 @@ class BlockRecognition:
             #Orange
             hsvO = cv.cvtColor(original, cv.COLOR_BGR2HSV)
             hsvO = cv.GaussianBlur(hsvO, (15, 15), 1)
-            hsvO = cv.dilate(hsvO, np.ones((15, 15), np.uint8), 5)
-            hsvO = cv.erode(hsvO, np.ones((16, 16), np.uint8), 3)
+            hsvO = cv.dilate(hsvO, np.ones((3, 3), np.uint8), 1)
+            hsvO = cv.erode(hsvO, np.ones((3, 3), np.uint8), 3)
             mask_orange = cv.inRange(hsvO, LOWER_ORANGE, UPPER_ORANGE)
             #cv.imshow("Orange", mask_orange)
 
@@ -163,14 +163,14 @@ class BlockRecognition:
             mask_violet = cv.inRange(hsvV, LOWER_VIOLET, UPPER_VIOLET)
             #cv.imshow("Green", mask_green)
 
-            imstack = np.hstack(imstack,mask_yellow )
-            imstack = np.hstack(imstack, mask_blue  )
-            imstack = np.hstack(imstack, mask_violet)
-            imstack = np.hstack(imstack, mask_green )
-            imstack = np.hstack(imstack, mask_orange)
-            imstack = np.hstack(imstack, mask_red   )
-
-            cv.imshow("stack",imstack)
+            # imstack = np.hstack(imstack,mask_yellow )
+            # imstack = np.hstack(imstack, mask_blue  )
+            # imstack = np.hstack(imstack, mask_violet)
+            # imstack = np.hstack(imstack, mask_green )
+            # imstack = np.hstack(imstack, mask_orange)
+            # imstack = np.hstack(imstack, mask_red   )
+            #
+            # cv.imshow("stack",imstack)
 
             dic3['O'] = np.sum(mask_yellow == 255)
             dic3['I'] = np.sum(mask_blue == 255)

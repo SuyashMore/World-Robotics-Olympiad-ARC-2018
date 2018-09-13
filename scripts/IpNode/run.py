@@ -6,8 +6,8 @@ Lxx1=[3000,3000,3000,3000,3000,2000]
 Lxx2=[1500,1900,1000,1300,700,1200]
 Lxx3=[400,700,400,600,300,1000]
 
-br1 = BlockRecognition(ID,l1=230, l2=480, l3=200, l4=640, Lxx=Lxx1)
-br2 = BlockRecognition(ID,l1=120, l2=230, l3=100, l4=540, Lxx=Lxx2)
+br1 = BlockRecognition(ID,l1=230, l2=480, l3=300, l4=640, Lxx=Lxx1)
+br2 = BlockRecognition(ID,l1=150, l2=250, l3=200, l4=400, Lxx=Lxx2)
 br3 = BlockRecognition(ID,l1=0, l2=120, l3=280, l4=450, Lxx=Lxx3)
 
 brr1=br1.run()

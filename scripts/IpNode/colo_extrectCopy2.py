@@ -109,7 +109,7 @@ while (True):
     ok, frame = cap.read()
     original=frame
     #frame = frame[200:480, 0:640]
-    frame = frame[0:150,0:500]
+    frame = frame[230:480,300:640]
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     hsv = cv2.GaussianBlur(hsv, (15, 15), 1)

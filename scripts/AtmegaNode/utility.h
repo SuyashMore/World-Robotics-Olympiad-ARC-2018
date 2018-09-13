@@ -81,10 +81,11 @@ void arm_pushAndPullPosition()
 	mode = 1;
 }
 
+int requiredBlockIndex = 0;
 void fillNavMap()
 {
 	int judgePiece = BlockColor[0];
-	int requiredBlockIndex = 0;
+	
 	int navIndex = 0;
 	bool foundColor=false;
 	//Perform Linear Search for Each Required Color on the Map
@@ -110,4 +111,5 @@ void fillNavMap()
 	  	foundColor=false;
 	  	requiredBlockIndex++;
 	}
+	requiredBlockIndex=0;
 }

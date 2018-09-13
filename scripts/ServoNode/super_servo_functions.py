@@ -294,7 +294,7 @@ def move2standard_norm():
     enableAll()
     setSpeedAll(150)    
 
-   move2angle(0,-90,90,0,0) 
+    move2angle(0,-90,90,0,0) 
 
     
 def move2standard():

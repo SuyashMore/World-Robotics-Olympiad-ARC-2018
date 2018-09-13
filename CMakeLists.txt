@@ -158,77 +158,79 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/Jetson_node.cpp)
 
 
-# add_executable(AtmegaNode scripts/AtmegaNode/AtmegaNode.cpp)
-# target_link_libraries(AtmegaNode ${catkin_LIBRARIES} )
 
 
-# # Motor Unit Tests
-# add_executable(unit_Motor_Fwd scripts/AtmegaNode/unit_botForward.cpp)
-# add_executable(unit_Motor_Bck scripts/AtmegaNode/unit_botBackward.cpp)
-# add_executable(unit_Motor_SLeft scripts/AtmegaNode/unit_botSpot_Left.cpp)
-# add_executable(unit_Motor_SRight scripts/AtmegaNode/unit_botSpot_Right.cpp)
-# add_executable(unit_Motor_SfLeft scripts/AtmegaNode/unit_botStrafe_Left.cpp)
-# add_executable(unit_Motor_SfRight scripts/AtmegaNode/unit_botStrafe_Right.cpp)
-
-# target_link_libraries(unit_Motor_Fwd ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Motor_Bck ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Motor_SLeft ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Motor_SRight ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Motor_SfLeft ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Motor_SfRight ${catkin_LIBRARIES} )
-
-# # Arm Unit Tests on ROS
-
-# add_executable(unit_Arm_Cord_disable scripts/AtmegaNode/unit_arm_cordinator_disable.cpp)
-# add_executable(unit_Arm_Cord_enable scripts/AtmegaNode/unit_arm_cordinator_enable.cpp)
-# add_executable(unit_Arm_pickup scripts/AtmegaNode/unit_arm_pickup.cpp)
-# add_executable(unit_Arm_stack scripts/AtmegaNode/unit_arm_stack.cpp)
-# add_executable(unit_Arm_std scripts/AtmegaNode/unit_arm_standard.cpp)
-# add_executable(unit_Arm_std_w_cord scripts/AtmegaNode/unit_arm_standard_with_cordinator.cpp)
-# add_executable(disableTorques scripts/AtmegaNode/disableTorques.cpp)
-
-# target_link_libraries(unit_Arm_Cord_enable ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Arm_Cord_disable ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Arm_pickup ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Arm_stack ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Arm_std ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Arm_std_w_cord ${catkin_LIBRARIES} )
-# target_link_libraries(disableTorques ${catkin_LIBRARIES} )
+add_executable(AtmegaNode scripts/AtmegaNode/AtmegaNode.cpp)
+target_link_libraries(AtmegaNode ${catkin_LIBRARIES} )
 
 
-# # Atmega-Node Unit Tests
-# add_executable(unit_Atmega_Linefollow scripts/AtmegaNode/unit_LineFollowing.cpp)
-# add_executable(unit_Atmega_Stack scripts/AtmegaNode/unit_Atmega_Stack.cpp)
-# add_executable(unit_Atmega_WhiteSpace scripts/AtmegaNode/unit_Atmega_WhiteSpace.cpp)
-# add_executable(unit_Atmega_DeliveryChute scripts/AtmegaNode/unit_Atmega_DeliveryChute.cpp)
-# add_executable(unit_Atmega_goHome scripts/AtmegaNode/unit_Atmega_goHome.cpp)
+# Motor Unit Tests
+add_executable(unit_Motor_Fwd scripts/AtmegaNode/unit_botForward.cpp)
+add_executable(unit_Motor_Bck scripts/AtmegaNode/unit_botBackward.cpp)
+add_executable(unit_Motor_SLeft scripts/AtmegaNode/unit_botSpot_Left.cpp)
+add_executable(unit_Motor_SRight scripts/AtmegaNode/unit_botSpot_Right.cpp)
+add_executable(unit_Motor_SfLeft scripts/AtmegaNode/unit_botStrafe_Left.cpp)
+add_executable(unit_Motor_SfRight scripts/AtmegaNode/unit_botStrafe_Right.cpp)
 
-# target_link_libraries(unit_Atmega_Linefollow ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Atmega_Stack ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Atmega_WhiteSpace ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Atmega_DeliveryChute ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Atmega_goHome ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_Fwd ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_Bck ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SLeft ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SRight ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SfLeft ${catkin_LIBRARIES} )
+target_link_libraries(unit_Motor_SfRight ${catkin_LIBRARIES} )
 
-# #Stacking Unit Tests
-# add_executable(unit_Stack_1 scripts/AtmegaNode/unit_Stack_1.cpp)
-# add_executable(unit_Stack_2 scripts/AtmegaNode/unit_Stack_2.cpp)
-# add_executable(unit_Stack_3 scripts/AtmegaNode/unit_Stack_3.cpp)
-# add_executable(unit_Stack_4 scripts/AtmegaNode/unit_Stack_4.cpp)
-# add_executable(unit_Stack_5 scripts/AtmegaNode/unit_Stack_5.cpp)
-# add_executable(unit_Stack_6 scripts/AtmegaNode/unit_Stack_6.cpp)
-# add_executable(unit_Stack_7 scripts/AtmegaNode/unit_Stack_7.cpp)
+# Arm Unit Tests on ROS
 
-# target_link_libraries(unit_Stack_1 ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Stack_2 ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Stack_3 ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Stack_4 ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Stack_5 ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Stack_6 ${catkin_LIBRARIES} )
-# target_link_libraries(unit_Stack_7 ${catkin_LIBRARIES} )
+add_executable(unit_Arm_Cord_disable scripts/AtmegaNode/unit_arm_cordinator_disable.cpp)
+add_executable(unit_Arm_Cord_enable scripts/AtmegaNode/unit_arm_cordinator_enable.cpp)
+add_executable(unit_Arm_pickup scripts/AtmegaNode/unit_arm_pickup.cpp)
+add_executable(unit_Arm_stack scripts/AtmegaNode/unit_arm_stack.cpp)
+add_executable(unit_Arm_std scripts/AtmegaNode/unit_arm_standard.cpp)
+add_executable(unit_Arm_std_w_cord scripts/AtmegaNode/unit_arm_standard_with_cordinator.cpp)
+add_executable(disableTorques scripts/AtmegaNode/disableTorques.cpp)
 
-# # Camera Unit Tests
-# add_executable(unit_Cam_1 scripts/AtmegaNode/getBlockData.cpp)
-# target_link_libraries(unit_Cam_1 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_Cord_enable ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_Cord_disable ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_pickup ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_stack ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_std ${catkin_LIBRARIES} )
+target_link_libraries(unit_Arm_std_w_cord ${catkin_LIBRARIES} )
+target_link_libraries(disableTorques ${catkin_LIBRARIES} )
+
+
+# Atmega-Node Unit Tests
+add_executable(unit_Atmega_Linefollow scripts/AtmegaNode/unit_LineFollowing.cpp)
+add_executable(unit_Atmega_Stack scripts/AtmegaNode/unit_Atmega_Stack.cpp)
+add_executable(unit_Atmega_WhiteSpace scripts/AtmegaNode/unit_Atmega_WhiteSpace.cpp)
+add_executable(unit_Atmega_DeliveryChute scripts/AtmegaNode/unit_Atmega_DeliveryChute.cpp)
+add_executable(unit_Atmega_goHome scripts/AtmegaNode/unit_Atmega_goHome.cpp)
+
+target_link_libraries(unit_Atmega_Linefollow ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_Stack ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_WhiteSpace ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_DeliveryChute ${catkin_LIBRARIES} )
+target_link_libraries(unit_Atmega_goHome ${catkin_LIBRARIES} )
+
+#Stacking Unit Tests
+add_executable(unit_Stack_1 scripts/AtmegaNode/unit_Stack_1.cpp)
+add_executable(unit_Stack_2 scripts/AtmegaNode/unit_Stack_2.cpp)
+add_executable(unit_Stack_3 scripts/AtmegaNode/unit_Stack_3.cpp)
+add_executable(unit_Stack_4 scripts/AtmegaNode/unit_Stack_4.cpp)
+add_executable(unit_Stack_5 scripts/AtmegaNode/unit_Stack_5.cpp)
+add_executable(unit_Stack_6 scripts/AtmegaNode/unit_Stack_6.cpp)
+add_executable(unit_Stack_7 scripts/AtmegaNode/unit_Stack_7.cpp)
+
+target_link_libraries(unit_Stack_1 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_2 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_3 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_4 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_5 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_6 ${catkin_LIBRARIES} )
+target_link_libraries(unit_Stack_7 ${catkin_LIBRARIES} )
+
+# Camera Unit Tests
+add_executable(unit_Cam_1 scripts/AtmegaNode/getBlockData.cpp)
+target_link_libraries(unit_Cam_1 ${catkin_LIBRARIES} )
 
 
 

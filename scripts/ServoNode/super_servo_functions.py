@@ -66,6 +66,7 @@ def setAngles_for_pickup(a0,a1,a2,a3,a4):
     setAngle(constants.servoIDArm[2],tfa2)
     setAngle(constants.servoIDArm[1],tfa1)
     setAngle(constants.servoIDArm[0],tfa0)
+    print("Servo Angles Written Are Norm:",a0,a1,a2,a3,a4)
     print("Servo Angles Written Are :",tfa0,tfa1,tfa2,tfa3,tfa4)
 
 
@@ -301,17 +302,57 @@ def move2standard():
     init()
 
     enableAll()
-    setSpeedAll(150)    
+    setSpeedAll(100)    
 
    # move2angle(0,-90,90,0,0)   
     # move2angle(0,-90,90,0,0)
     FINAL_X =11
     FINAL_Y = -8.9
     INITIAL_Z = -6
-    move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
+    move2angle(-36,-31,112,-82,30)
+    setTransformedAngle(4,29)
     
-
 def pickupXYZ():
+    
+    init()
+    enableAll()
+    gripDisable()
+    setSpeedAll(250)
+    move2standard()
+    time.sleep(0.2)
+    c2 = 112
+    c1 = -31
+    itr = 0
+    while itr<16:
+        setTransformedAngle(2,c2)
+        setTransformedAngle(1,c1)
+        if(itr <=6):
+            time.sleep(0.7)
+        else:
+            time.sleep(0.2)
+        itr+=1
+        c2 -= 1
+        c1 +=1.5
+    gripEnable()
+    time.sleep(1.4)
+
+    setSpeedAll(80)
+    
+    setTransformedAngle(1,-70)
+    time.sleep(0.3)
+    setTransformedAngle(2,80)
+    setTransformedAngle(0,0)
+    setTransformedAngle(4,0)
+    time.sleep(0.4)
+    setTransformedAngle(3,-10)
+    
+    time.sleep(2)
+
+
+    # move2standard_norm()
+
+
+def oldpickupXYZ():
     FINAL_X =11
     FINAL_Y = -8.9
     INITIAL_Z = -6.5

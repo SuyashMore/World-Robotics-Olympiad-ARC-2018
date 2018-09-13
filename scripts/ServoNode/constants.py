@@ -6,8 +6,8 @@ ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 
 # DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
-# DXL_LIB_PATH = "/home/pratik/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+DXL_LIB_PATH = "/home/pratik/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
 ENABLE_DEBUG_MESSAGES = True
@@ -40,32 +40,32 @@ def transform2ServoAngles(angle,angleIndex):
     0
 
     if angleIndex == 0:
-        CompoundAngle= (((angle+175+15+155-17+9) / (SERVO_RES) * (3/2))+177-50)
+        CompoundAngle= (((angle+325) / (SERVO_RES) * (3/2))+177)
     if angleIndex == 1:
-        CompoundAngle= (((angle+ 70 + 35 -17-3-2) / (SERVO_RES))*2)+196+10         #Reduction in Gear Ratio
+        CompoundAngle= (((angle + 82) / (SERVO_RES))*2)+196        #Reduction in Gear Ratio
     if angleIndex == 2:
-        CompoundAngle= (((angle-88 -8+10+4-7+5) / (SERVO_RES))+497 )-20+7-10
+        CompoundAngle= (((angle-88+2) / (SERVO_RES))+497)
     if angleIndex == 3:
-        CompoundAngle= (((angle+8 -5-20+40-17 + 3) / (-SERVO_RES))) + 569-5-20+20-50
+        CompoundAngle= (((angle +28) / (-SERVO_RES))) + 569
     if angleIndex == 4:
-        CompoundAngle= (((angle+14) / (SERVO_RES))) + 461-20-15+30
+        CompoundAngle= (((angle+11) / (SERVO_RES))) + 461
     if angleIndex == 5:
         CompoundAngle= ((angle / (SERVO_RES)))
     return (int(CompoundAngle)%1023)
 
 def transform2StandardAngles(angle,angleIndex):
     if angleIndex == 0:
-        return ((((((angle - 177 ) * SERVO_RES ) * (1) )))  / (3/2)) -15  -175 -155 + 17-9
+        return ((((((angle - 177 ) * SERVO_RES ) * (1) )))  / (3/2)) -325
     if angleIndex == 1:
-        return (((((angle - 196 ) * SERVO_RES ) * (1) ))/ 2) - 70 - 35 +17+3+2-10#Reduction in Gear Ratio
+        return (((((angle - 196 ) * SERVO_RES ) * (1) ))/ 2) -82 #Reduction in Gear Ratio
     elif angleIndex == 2:
         max_Val = 170
-        temp = ((((angle-497)*SERVO_RES) ) * (1) +88 ) + 8 -10-4 + 7 - 5+20+10
+        temp = (((angle-497)*SERVO_RES) ) * (1) +88-2
         return temp
     elif angleIndex == 3:
-        return (((angle -569)*SERVO_RES) ) * (-1) - 8 + 5 +20-40+17 - 3+5+50-20
+        return (((angle -569)*SERVO_RES) ) * (-1) -28
     elif angleIndex == 4:
-        return (((angle - 461)*SERVO_RES) ) -14+20
+        return (((angle - 461)*SERVO_RES) ) -11
     elif angleIndex == 5:
         return (((angle)*SERVO_RES) )
 

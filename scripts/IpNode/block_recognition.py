@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-ID=0
+ID=1
 L=[]
 dic={4:0, 6:0, 8:0}
 dic2={'I':0, 'L':0, 'J':0, 'O':0, 'Z':0, 'S':0}
@@ -95,6 +95,7 @@ class BlockRecognition:
 
         while True:
             _, frame = vid.read()
+	    print("Collecting Frames")
             # Blurring the frame to be ready for color filtering and edge detection
             original = frame
             # cv.imshow("Plain",original)

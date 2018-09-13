@@ -108,7 +108,7 @@ int NavigationOrder[20];
 int currentNavI=0;
 int maxNav = 0;
 
-#define MAX_BLOCKS 4
+#define MAX_BLOCKS 2
 int TETRASTACK_ORDER[6][4] = 
 {	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
 	{COLOR_BLUE , COLOR_YELLOW , COLOR_ORANGE , COLOR_BLUE },  		//COLOR_RED

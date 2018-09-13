@@ -109,6 +109,7 @@ void fillNavMap()
 	    	navIndex++;
 	  	}
 	  	foundColor=false;
+			NavigationOrder[navIndex++]=JUDGEPART;
 	  	requiredBlockIndex++;
 	}
 	requiredBlockIndex=0;

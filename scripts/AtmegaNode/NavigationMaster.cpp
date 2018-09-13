@@ -9,35 +9,47 @@
 int currentNavStep = 0;
 int Target_Location=0;
 int navIterator=0;
+int currentBlockColor = 0;
 bool NavLogic(botData& newSensor,botData& oldSensor,Motor& motor)
 {
-	if(NavigationOrder[currentNavStep] == SUPPLY1)
+	if(NavigationOrder[currentNavStep] == SUPPLY2)
 	{
-		return nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+		bool ret = nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+		if(ret)
+		{
+			currentBlockColor= BlockColor[2];
+			navIterator++;
+		}
+			
+		return ret;
 	}
-	else if(NavigationOrder[currentNavStep] == SUPPLY2)
+	else if(NavigationOrder[currentNavStep] == SUPPLY1)
 	{
-			if(navIterator==1)
+		if(navIterator==1)
+		{
+			bool ret = nav_goBackward_1_Junction(newSensor,oldSensor,motor);
+			if(ret)
+				navIterator++;
+			return ret;
+		}
+		else if(navIterator==2)
+		{
+			bool ret = nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+			if(ret)
 			{
-				bool ret = nav_goBackward_1_Junction(newSensor,oldSensor,motor);
-				if(ret)
-					navIterator++;
-				return ret;
+				currentBlockColor= BlockColor[1];
+				navIterator++;
 			}
-			else if(navIterator==2)
-			{
-				bool ret = nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
-				if(ret)
-					navIterator++;
-				return ret;
-			}
-			else if(navIterator==3)
-			{
-				bool ret = nav_goForward_1_Junction(newSensor,oldSensor,motor);
-				if(ret)
-					navIterator=0;;
-				return ret;
-			}
+				
+			return ret;
+		}
+		else if(navIterator==3)
+		{
+			bool ret = nav_goForward_1_Junction(newSensor,oldSensor,motor);
+			if(ret)
+				navIterator=0;;
+			return ret;
+		}
 	}
 	else if(NavigationOrder[currentNavStep] == JUDGEPART)
 	{

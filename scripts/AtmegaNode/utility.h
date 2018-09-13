@@ -13,7 +13,7 @@ double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh
 }
 
 bool navFlag = true;
-bool camFlag=true;
+bool camFlag=false;
 bool stopFlag = false;
 int stopFlagIterations = 0;
 int maxStopFlagItr = 70;

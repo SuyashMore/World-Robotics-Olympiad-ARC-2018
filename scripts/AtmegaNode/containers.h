@@ -173,6 +173,7 @@ struct botData
 			index = message.find('e')+1;
 			length = 1;
 			bumpFront = stoi( message.substr(index,length));
+			bumpFront=!bumpFront;
 
 			// Extract the Side Bump Switch Data
 			index = message.find('f')+1;

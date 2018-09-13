@@ -213,7 +213,7 @@ def disableTorque():
     # time.sleep(SL1)
 
 def pickupAndPushPos():
-    move2angle(-5,20,28,-140,0)
+    move2angle(-5,20,32,-140,0)
     time.sleep(1.2)
 
 def stackBlock():
@@ -256,7 +256,7 @@ def stackBlock():
     time.sleep(SL2)
     
 
-    setTransformedAngle(2,28)
+    setTransformedAngle(2,35)
     time.sleep(SL3)
 
     # time.sleep(SL1)
@@ -354,7 +354,7 @@ def newpickupXYZ():
 
 def pickupXYZ():
     FINAL_X =11.3
-    FINAL_Y = -10.2
+    FINAL_Y = -10.5
     INITIAL_Z = -7.5
     FINAL_Z = -11
         

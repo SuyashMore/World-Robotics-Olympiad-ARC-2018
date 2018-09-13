@@ -41,7 +41,7 @@ bool nav_2_MainLine(botData& newSensor,botData& oldSensor,Motor& motor)
       {
         cout<<"Currently Executing: Bot Stop"<<endl;
         motor.bot_Stop();
-	stopFlag=true;
+	     //stopFlag=true;
         return true;
       }
 

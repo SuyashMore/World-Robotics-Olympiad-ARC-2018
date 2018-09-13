@@ -346,11 +346,11 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
          cout<<"Currently Executing: Correcting with Side"<<endl;
           if(newSensor.tofSide > targetDistance)
           {
-              motor.strafe_Left_withPWM(110);
+              motor.strafe_Left_withPWM(90);
           }
           else if(newSensor.tofSide < targetDistance)
           {
-              motor.strafe_Right_withPWM(110);
+              motor.strafe_Right_withPWM(90);
           }
           if(abs(newSensor.tofSide - targetDistance) <=8)
           {

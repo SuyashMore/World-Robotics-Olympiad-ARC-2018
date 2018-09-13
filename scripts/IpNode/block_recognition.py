@@ -67,7 +67,7 @@ class BlockRecognition:
             elif color==VIOLET and dic3['J']>self.Lxxe3:
                 dic2['J']=dic2['J']+1
                 text="J"
-                print("dic3: ",dic3)
+                # print("dic3: ",dic3)
             elif color==BLUE and dic3['I']>self.Lxxe4:
                 dic2['I']=dic2['I']+1
                 text="I"
@@ -192,7 +192,7 @@ class BlockRecognition:
             if cv.waitKey(1) & 0xff == ord('q'):
                 break
             for key,value in dicx.items():
-                print(value)
+                # print(value)
                 if value>150:
                     q=1
                     break

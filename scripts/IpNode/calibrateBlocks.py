@@ -25,9 +25,9 @@ lower_rangeRed = np.array([hR - 3, sR - 40, vR - 130])
 higher_rangeRed = np.array([hR + 3, sR + 40, vR + 130])
 
 
-print(hR, sR, vR)
-print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
-print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
+# print(hR, sR, vR)
+# print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
+# print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
 
 Centeres=[[],[]]
 
@@ -96,9 +96,9 @@ def get_everything(frame, edge):
             cv2.circle(frame, (cX, cY), 7, (238, 130, 238), -1)
             Centeres[i]=[cX,cY]
         except ZeroDivisionError:
-            print("00000000000000000000000000000000000000000000000000000000000000000000000000")
+            # print("00000000000000000000000000000000000000000000000000000000000000000000000000")
         except TypeError:
-            print("Typeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+            # print("Typeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
     return frame,Centeres
 
 
@@ -160,12 +160,12 @@ while (True):
     if cv2.waitKey(1) == 27:
         break
     # cv2.imshow("mask",mask)
-print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
-print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
+# print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
+# print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
 #print(Centeres, end="")
 AllCenteres=[]
 for i in Centeres:
     AllCenteres.append(i)
 # for j in Centeres2:
 #     AllCenteres.append(j)
-print("\t", AllCenteres)
+# print("\t", AllCenteres)

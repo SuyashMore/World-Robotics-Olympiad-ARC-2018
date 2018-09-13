@@ -353,10 +353,9 @@ def newpickupXYZ():
 
 
 def pickupXYZ():
-    FINAL_X =11.8
+    FINAL_X =11.3
     FINAL_Y = -10.2
-    INITIAL_Z = -7
-    .5
+    INITIAL_Z = -7.5
     FINAL_Z = -11
         
     SL4 = 0.4

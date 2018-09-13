@@ -1,7 +1,7 @@
 from block_recognition import BlockRecognition
-from block_recognition2 import BlockRecognition2
-
-#Z6red I4 O1 J3darkblue S5green L2orange
+#from block_recognition2 import BlockRecognition2
+ID =1
+#Z6 I4 O1 J3 S5 L2
 Lxx1=[3000,3000,3000,3000,3000,2000]
 Lxx2=[1500,1900,1000,1300,700,1200]
 Lxx3=[400,700,400,600,300,1000]
@@ -33,13 +33,55 @@ def give_one_letter(brr1,brr2,brr3):
     for x,y in brr3.items():
         if y > max:
             key3=x
-            maxs=y
-    return brr1[key],brr2[key2],brr3[key3]
+            max=y
+
+    if key == 'Z':
+        key = 1
+    elif key == 'I':
+        key = 2
+
+    elif key == 'S':
+        key = 3
+    elif key == 'O':
+        key = 4
+    elif key == 'J':
+        key = 5
+    elif key == 'L':
+        key = 6
 
 
-def getVal1():
-    x,y,z=give_one_letter(brr1,brr2,brr3)
-    return x,y,z
+    if key2 == 'Z':
+        key2 = 1
+    elif key2 == 'I':
+        key2 = 2
+    elif key2 == 'S':
+        key2 = 3
+    elif key2 == 'O':
+        key2 = 4
+    elif key2 == 'J':
+        key2 = 5
+    elif key2 == 'L':
+        key2 = 6
+
+    if key3 == 'Z':
+        key3 = 1
+    elif key3 == 'I':
+        key3 = 2
+    elif key3 == 'S':
+        key3 = 3
+    elif key3 == 'O':
+        key3 = 4
+    elif key3 == 'J':
+        key3 = 5
+    elif key3 == 'L':
+        key3 = 6
+    print("brr1:", key)
+    print("brr2:", key2)
+    print("brr3:", key3)
+    return key,key2,key3
+
+while True:
+        give_one_letter(brr1,brr2,brr3)
 
 # O1 L2 J3 I4 S5 Z6
 # Lxx4=[3000,3000,1000,3000,1300,2000]

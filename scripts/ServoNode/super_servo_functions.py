@@ -59,7 +59,7 @@ def setAngles_for_pickup(a0,a1,a2,a3,a4):
     tfa1=constants.transform2ServoAngles(a1,1)
     tfa2=constants.transform2ServoAngles(a2,2)
     tfa3=constants.transform2ServoAngles(a3,3)  
-    tfa4=constants.transform2ServoAngles(25,4)
+    tfa4=constants.transform2ServoAngles(22,4)
     
     setAngle(constants.servoIDArm[4],tfa4)
     setAngle(constants.servoIDArm[3],tfa3)
@@ -299,20 +299,20 @@ def move2standard():
     move2angle(0,-90,90,0,0)
 
 def pickupXYZ():
-    FINAL_X =12
-    FINAL_Y = -8.2
-    INITIAL_Z = -6.2
+    FINAL_X =11
+    FINAL_Y = -8.9
+    INITIAL_Z = -6.5
     FINAL_Z = -11
         
     SL4 = 0.4
 
     SL3 = 1.0
-    SL2 = 0.2
+    SL2 = 0.01
     SL1 = 0.5 # WAS 0.15 AND CHANGED TO 0
-    SLY = 0.5
+    SLY = 0.1
     SLS=0.4
     # SLS=1.1
-    SLE =5
+    SLE =0.9
 
 
     init()

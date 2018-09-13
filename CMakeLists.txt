@@ -59,6 +59,7 @@ add_message_files(
   Dyx2.msg
   bot.msg
   BlockData.msg
+  toCam.msg
 )
 
 ## Generate services in the 'srv' folder

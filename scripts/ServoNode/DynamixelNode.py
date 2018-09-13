@@ -50,7 +50,7 @@ def callbackD(data):
 
 		if (not pickup and not stack):
 			print("Moving to Standard Position")
-			super.move2standard()
+			super.move2standard_norm()
 
 
 		if(cordinator):

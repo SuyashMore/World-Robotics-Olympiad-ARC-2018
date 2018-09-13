@@ -168,10 +168,6 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 		}
 
 	}
-	else
-	{
-		motor.bot_Stop();
-	}
 	else if(state.currentStepIndex==6)
 	{
 		cout<<"Navigation Step:"<<6<<endl;
@@ -188,6 +184,10 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 		{
 			state.currentStepIndex++;
 		}
+	}
+	else
+	{
+		motor.bot_Stop();
 	}
 	// else if(state.currentStepIndex==8)
 	// {

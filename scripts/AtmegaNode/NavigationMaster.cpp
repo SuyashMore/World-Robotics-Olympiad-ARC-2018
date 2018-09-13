@@ -172,23 +172,23 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	{
 		motor.bot_Stop();
 	}
-	// else if(state.currentStepIndex==6)
-	// {
-	// 	cout<<"Navigation Step:"<<6<<endl;
-	// 	if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
-	// 	{
-	// 		state.currentStepIndex++;
-	// 		stopFlag=true;
-	// 	}
-	// }
-	// else if(state.currentStepIndex==7)
-	// {
-	// 	cout<<"Navigation Step:"<<6<<endl;
-	// 	if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
-	// 	{
-	// 		state.currentStepIndex++;
-	// 	}
-	// }
+	else if(state.currentStepIndex==6)
+	{
+		cout<<"Navigation Step:"<<6<<endl;
+		if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
+		{
+			state.currentStepIndex++;
+			stopFlag=true;
+		}
+	}
+	else if(state.currentStepIndex==7)
+	{
+		cout<<"Navigation Step:"<<6<<endl;
+		if(goHome(newSensor,oldSensor,motor))
+		{
+			state.currentStepIndex++;
+		}
+	}
 	// else if(state.currentStepIndex==8)
 	// {
 	// 	cout<<"Navigation Step:"<<8<<endl;

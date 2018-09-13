@@ -214,7 +214,7 @@ def disableTorque():
 
 def pickupAndPushPos():
     move2angle(-5,20,28,-140,0)
-    time.sleep(SL3)
+    time.sleep(1.2)
 
 def stackBlock():
     #Sleep Constants
@@ -312,7 +312,7 @@ def move2standard():
     move2angle(-36,-31,112,-82,30)
     setTransformedAngle(4,29)
     
-def pickupXYZ():
+def newpickupXYZ():
     
     init()
     enableAll()
@@ -352,7 +352,7 @@ def pickupXYZ():
     # move2standard_norm()
 
 
-def oldpickupXYZ():
+def pickupXYZ():
     FINAL_X =11.8
     FINAL_Y = -10.2
     INITIAL_Z = -7

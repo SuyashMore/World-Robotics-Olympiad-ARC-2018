@@ -307,7 +307,7 @@ def move2standard():
     # move2angle(0,-90,90,0,0)
     FINAL_X =11
     FINAL_Y = -8.9
-    INITIAL_Z = -5.5
+    INITIAL_Z = -6
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     
 

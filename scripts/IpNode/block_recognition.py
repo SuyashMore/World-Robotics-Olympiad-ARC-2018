@@ -95,7 +95,6 @@ class BlockRecognition:
 
         while True:
             _, frame = vid.read()
-            #print(frame.shape)
             # Blurring the frame to be ready for color filtering and edge detection
             original = frame
             # cv.imshow("Plain",original)

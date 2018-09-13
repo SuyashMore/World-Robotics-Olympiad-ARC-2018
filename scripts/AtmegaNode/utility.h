@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ImageProcessing.cpp"
+
 double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh)
 {
 	if(input <= inLow)
@@ -11,6 +13,7 @@ double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh
 }
 
 bool navFlag = true;
+bool camFlag=true;
 bool stopFlag = false;
 int stopFlagIterations = 0;
 int maxStopFlagItr = 70;

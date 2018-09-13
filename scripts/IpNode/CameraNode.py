@@ -2,22 +2,19 @@
 
 import rospy
 import constants
-from Jetson.msg import BlockData
+from Jetson.msg import blkData
 from Jetson.msg import toCam
 from Jetson.msg import bot
 import time
-import run as run 
+import run
 
-pub = rospy.Publisher('blockColors', BlockData, queue_size=10)
+pub = rospy.Publisher('blockColors', blkData, queue_size=10)
 
 def callbackD(data):
 	print("Request Received to the Camera Node for Location:",data)
-	location = data.location
 	#Process the Data depending upon the Location
-	
-	
-	run.getVal1()
-	msg = BlockData()
+	x,y,z=run.give_one_letter()
+	msg = blkData()
 	msg.mode = 1
 	msg.pos1 = x
 	msg.pos2 = y

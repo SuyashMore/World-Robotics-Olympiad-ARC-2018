@@ -1,5 +1,7 @@
 #pragma once
 
+#include "imageProcessing.cpp"
+
 double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh)
 {
 	if(input <= inLow)

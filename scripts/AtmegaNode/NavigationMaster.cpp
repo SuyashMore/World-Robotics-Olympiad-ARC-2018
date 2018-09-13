@@ -6,6 +6,63 @@
 // //Modify This Variable for Debugging Purpose
 // state.currentStepIndex=0;		
 
+int currentNavStep = 0;
+int Target_Location=0;
+int navIterator=0;
+bool NavLogic(botData& newSensor,botData& oldSensor,Motor& motor)
+{
+	if(NavigationOrder[currentNavStep] == SUPPLY1)
+	{
+		return nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+	}
+	else if(NavigationOrder[currentNavStep] == SUPPLY2)
+	{
+			if(navIterator==1)
+			{
+				bool ret = nav_goBackward_1_Junction(newSensor,oldSensor,motor);
+				if(ret)
+					navIterator++;
+				return ret;
+			}
+			else if(navIterator==2)
+			{
+				bool ret = nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+				if(ret)
+					navIterator++;
+				return ret;
+			}
+			else if(navIterator==3)
+			{
+				bool ret = nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+				if(ret)
+					navIterator=0;;
+				return ret;
+			}
+	}
+	else if(NavigationOrder[currentNavStep] == JUDGEPART)
+	{
+		int currentBlockColor = BlockColor[0];
+		int targetHX = hx_ORDER[currentBlockColor][requiredBlockIndex];
+		stack_the_Block_from_MainJunction_at_hx(targetHX,newSensor,oldSensor,motor);
+	}
+	else if(NavigationOrder[currentNavStep] == WHITE1)
+	{
+
+	}
+	else if(NavigationOrder[currentNavStep] == WHITE2)
+	{
+
+	}
+	else if(NavigationOrder[currentNavStep] == WHITE3)
+	{
+
+	}
+	else if(NavigationOrder[currentNavStep] == CHUTE)
+	{
+
+	}
+}
+
 void stackBlockAtleft(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(state.currentStepIndex == 1)		//Navigate to Main Line 

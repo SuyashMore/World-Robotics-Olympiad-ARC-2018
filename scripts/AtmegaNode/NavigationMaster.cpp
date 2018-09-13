@@ -1,6 +1,6 @@
 #pragma once
-
 #include "Navigation.cpp"
+
 
 
 // //Modify This Variable for Debugging Purpose
@@ -33,7 +33,7 @@ bool NavLogic(botData& newSensor,botData& oldSensor,Motor& motor)
 			}
 			else if(navIterator==3)
 			{
-				bool ret = nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor);
+				bool ret = nav_goForward_1_Junction(newSensor,oldSensor,motor);
 				if(ret)
 					navIterator=0;;
 				return ret;

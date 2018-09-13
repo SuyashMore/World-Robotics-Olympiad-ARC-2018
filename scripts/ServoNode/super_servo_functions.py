@@ -289,18 +289,17 @@ def stackBlock():
     # time.sleep(SL1)
 
     
-def move2standard():
+
+
+def move2standard_norm():
     init()
 
     enableAll()
     setSpeedAll(150)    
 
    # move2angle(0,-90,90,0,0)   
-    # move2angle(0,-90,90,0,0)
-    FINAL_X =11
-    FINAL_Y = -8.9
-    INITIAL_Z = -5.5
-    move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
+    move2angle(0,-90,90,0,0)
+
     
 
 def pickupXYZ():
@@ -367,7 +366,7 @@ def pickupXYZ():
     move2angle(0,-45,0,-45,0)
     time.sleep(SL4)
 
-    move2standard()
+    move2standard_norm()
 
 
 

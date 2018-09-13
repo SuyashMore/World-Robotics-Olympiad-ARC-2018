@@ -79,9 +79,9 @@ def give_one_letter():
         key3 = 5
     elif key3 == 'L':
         key3 = 6
-    print("brr1:", key)
-    print("brr2:", key2)
-    print("brr3:", key3)
+    print("Supply 1:", key)
+    print("Supply 2:", key2)
+    print("Judge Piece:", key3)
     return key,key2,key3
 
 if __name__=="__main__":

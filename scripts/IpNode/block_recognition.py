@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-ID=0
+ID=1
 L=[]
 dic={4:0, 6:0, 8:0}
 dic2={'I':0, 'L':0, 'J':0, 'O':0, 'Z':0, 'S':0}
@@ -57,7 +57,7 @@ class BlockRecognition:
 
             height, width, _ = img.shape
             text = ""
-            print("dic33333333333",dic3['S'])
+            # print("dic33333333333",dic3['S'])
             if color==YELLOW and dic3['O']>self.Lxxe1:
                 dic2['O']=dic2['O']+1
                 text="O"
@@ -67,7 +67,7 @@ class BlockRecognition:
             elif color==VIOLET and dic3['J']>self.Lxxe3:
                 dic2['J']=dic2['J']+1
                 text="J"
-                print("dic3: ",dic3)
+                # print("dic3: ",dic3)
             elif color==BLUE and dic3['I']>self.Lxxe4:
                 dic2['I']=dic2['I']+1
                 text="I"
@@ -81,7 +81,7 @@ class BlockRecognition:
             #     print(time.time()-start)
             #     sys.exit()
 
-            print(dic2,dic)
+            # print(dic2,dic)
 
             cv.putText(img, text, (width - 120, height - 24), cv.FONT_HERSHEY_DUPLEX, 2, color, 2, cv.LINE_AA)
             return img,dic2
@@ -95,6 +95,7 @@ class BlockRecognition:
 
         while True:
             _, frame = vid.read()
+	    print("Collecting Frames")
             # Blurring the frame to be ready for color filtering and edge detection
             original = frame
             # cv.imshow("Plain",original)
@@ -191,7 +192,7 @@ class BlockRecognition:
             if cv.waitKey(1) & 0xff == ord('q'):
                 break
             for key,value in dicx.items():
-                print(value)
+                # print(value)
                 if value>150:
                     q=1
                     break

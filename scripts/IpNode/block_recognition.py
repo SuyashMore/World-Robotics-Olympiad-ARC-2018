@@ -57,7 +57,7 @@ class BlockRecognition:
 
             height, width, _ = img.shape
             text = ""
-            print("dic33333333333",dic3['S'])
+            # print("dic33333333333",dic3['S'])
             if color==YELLOW and dic3['O']>self.Lxxe1:
                 dic2['O']=dic2['O']+1
                 text="O"
@@ -81,7 +81,7 @@ class BlockRecognition:
             #     print(time.time()-start)
             #     sys.exit()
 
-            print(dic2,dic)
+            # print(dic2,dic)
 
             cv.putText(img, text, (width - 120, height - 24), cv.FONT_HERSHEY_DUPLEX, 2, color, 2, cv.LINE_AA)
             return img,dic2

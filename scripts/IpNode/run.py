@@ -13,7 +13,10 @@ br3 = BlockRecognition(ID,l1=0, l2=120, l3=280, l4=450, Lxx=Lxx3)
 
 
 
-def give_one_letter(brr1,brr2,brr3):
+def give_one_letter():
+    global br1
+    global br2
+    global br3
     brr1=br1.run()
     brr2=br2.run()
     brr3=br3.run()
@@ -83,7 +86,7 @@ def give_one_letter(brr1,brr2,brr3):
 
 if __name__=="__main__":
     while True:
-            give_one_letter(brr1,brr2,brr3)
+            give_one_letter()
 
 # O1 L2 J3 I4 S5 Z6
 # Lxx4=[3000,3000,1000,3000,1300,2000]

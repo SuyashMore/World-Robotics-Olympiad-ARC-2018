@@ -61,6 +61,7 @@ struct botData
 		digiRight=b.digiRight;
 		preserveHistoryF=b.preserveHistoryF;
 		preserveHistoryB=b.preserveHistoryB;
+		bumpFront=b.bumpFront;
 	}
 	void copyBack(botData& b)
 	{
@@ -78,6 +79,7 @@ struct botData
 		digiRight=b.digiRight;
 		preserveHistoryF=b.preserveHistoryF;
 		preserveHistoryB=b.preserveHistoryB;	
+		bumpFront=b.bumpFront;
 	}
 
 	void initZero()

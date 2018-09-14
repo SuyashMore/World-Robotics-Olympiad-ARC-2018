@@ -414,7 +414,7 @@ def pickupXYZ():
 
 if __name__=="__main__":
     while True:
-         init()
+        init()
         enableAll()
         raw_input("Enable Cord")
         setSpeed(1,100)

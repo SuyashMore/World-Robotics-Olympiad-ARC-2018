@@ -90,11 +90,15 @@ def processIK(x,y,z):
     return ik.process(x,y,z)
 
 def cordinatorEnable():
+    init()
+    enableAll()
     setSpeed(1,100)
     setAngle(1,450)
     
 
 def cordinatorDisable():
+    init()
+    enableAll()
     setSpeed(1,100)
     setAngle(1,215)
 

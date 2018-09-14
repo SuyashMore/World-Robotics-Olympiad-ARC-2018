@@ -85,6 +85,13 @@ void arm_pushAndPullPosition()
 	mode = 1;
 }
 
+void move_Arm_down()
+{
+	disableCordinator();
+	enableArmControl=true;
+	mode = 2;
+}
+
 int requiredBlockIndex = 0;
 void fillNavMap()
 {
@@ -136,7 +143,7 @@ void printNavMap()
 		switch(NavigationOrder[i])
 		{
 			case JUDGEPART:
-				cout<<"Stacking Form"<<endl;
+				// cout<<"Stacking Form"<<endl;
 				break;
 			case SUPPLY1:
 				cout<<"Supply 1"<<endl;

@@ -90,11 +90,15 @@ def processIK(x,y,z):
     return ik.process(x,y,z)
 
 def cordinatorEnable():
+    init()
+    enableAll()
     setSpeed(1,100)
     setAngle(1,450)
     
 
 def cordinatorDisable():
+    init()
+    enableAll()
     setSpeed(1,100)
     setAngle(1,215)
 
@@ -414,7 +418,7 @@ def pickupXYZ():
 
 if __name__=="__main__":
     while True:
-         init()
+        init()
         enableAll()
         raw_input("Enable Cord")
         setSpeed(1,100)

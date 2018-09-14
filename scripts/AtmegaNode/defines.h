@@ -71,7 +71,7 @@ using namespace std;
 
 // Stacking Params
 #define TOF_FRONT_BALANCE_DISTANCE 225
-#define PULL_AND_PUSH_ITR 70
+#define PULL_AND_PUSH_ITR 120
 
 // Block Params
 #define TOF_SIDE_DISTANCE 120

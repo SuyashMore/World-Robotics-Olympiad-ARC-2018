@@ -107,7 +107,9 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
 		cout<<"--------------------------------------------------------"<<endl;
 
-		followLine(bt,storage,motor);
+		//followLine(bt,storage,motor);
+
+	goHome(bt,storage,motor);
 		//K_followLine(bt,storage,motor,105,80,0.11,150);
 		// Process_data and then enable the Publish Flag
 		

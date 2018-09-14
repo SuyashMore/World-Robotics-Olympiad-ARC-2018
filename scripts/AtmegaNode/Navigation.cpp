@@ -135,7 +135,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
         }
 	else if(!newSensor.isBackTurnComplete() && tempturn)
 	{
-        motor.setPWM_all(0);
+    motor.setPWM_all(0);
 		motor.spot_Right();
 		motor.setPWMof(MOTOR_BACK,170);
 	}
@@ -197,7 +197,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
 	        pickupBlock();
 
 	        miniEx01 = 3;
-			temp01=true;
+			    temp01=true;
   		}
 
   		strafeItr01++;

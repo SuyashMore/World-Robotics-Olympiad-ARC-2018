@@ -62,9 +62,10 @@ def process(x,y,z):
 		q2=q2*(180/math.pi)
 		q3=q3*(180/math.pi)
 		q4=q4*(180/math.pi)
-		q5=q5*(180/math.pi)
+		#q5=q5*(180/math.pi)
+		q5=27
 
-		return q1,q2,q3,q4,30,True
+		return q1,q2,q3,q4,q5,True
 
 	else:
 		print("this point is not in range")

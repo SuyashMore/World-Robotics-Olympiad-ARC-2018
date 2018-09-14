@@ -123,8 +123,8 @@ def move2angle(a0,a1,a2,a3,a4):
 def move2angleS(a0,a1,a2,a3,a4):
     setAngle(8,a0)
     setAngle(9,a1)
-    setAngle(12,a2)
-    setAngle(15,a3)
+    setAngle(6,a2)
+    setAngle(13,a3)
     setAngle(17,a4)    
 
 
@@ -215,61 +215,22 @@ def move2standard():
     enableAll()
     setSpeedAll(100)    
 
-    move2angle(-36,-31,112,-82,30)
+    move2angle(-48,-30,110,-82,25)
     setTransformedAngle(4,29)
-    
-def newpickupXYZ():
-    
-    init()
-    enableAll()
-    gripDisable()
-    setSpeedAll(250)
-    move2standard()
-    time.sleep(0.2)
-    c2 = 112
-    c1 = -31
-    itr = 0
-    while itr<16:
-        setTransformedAngle(2,c2)
-        setTransformedAngle(1,c1)
-        if(itr <=6):
-            time.sleep(0.7)
-        else:
-            time.sleep(0.2)
-        itr+=1
-        c2 -= 1
-        c1 +=1.5
-    gripEnable()
-    time.sleep(1.4)
-
-    setSpeedAll(80)
-    
-    setTransformedAngle(1,-70)
-    time.sleep(0.3)
-    setTransformedAngle(2,80)
-    setTransformedAngle(0,0)
-    setTransformedAngle(4,0)
-    time.sleep(0.4)
-    setTransformedAngle(3,-10)
-    
-    time.sleep(2)
-
-
-    # move2standard_norm()
 
 
 def pickupXYZ():
-    FINAL_X =9
-    FINAL_Y = -9
-    INITIAL_Z = -7.8
-    FINAL_Z = -11
+    FINAL_X =9.9
+    FINAL_Y = -12.2
+    INITIAL_Z = -7.0
+    FINAL_Z = -12
         
     SL4 = 0.4
 
     SL3 = 1.0
     SL2 = 0.005
     SL1 = 0.5 # WAS 0.15 AND CHANGED TO 0
-    SLY = 0.1
+    SLY = 0.5
     SLS=0.4
     # SLS=1.1
     SLE =0.9
@@ -280,7 +241,7 @@ def pickupXYZ():
     
     gripDisable()
 
-    setSpeedAll(150)
+    setSpeedAll(100)
 
     # move2pos(12,-8.2,-6.5)
     # time.sleep(SLY)
@@ -292,7 +253,7 @@ def pickupXYZ():
     time.sleep(SLY)
     # raw_input(" ")
     setSpeedAll(250)
-    for i in range (-78,-110,-2):
+    for i in range (-70,-120,-2):
         move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
         # time.sleep(SL2-0.2)
         time.sleep(SL2)
@@ -327,28 +288,6 @@ if __name__=="__main__":
         setSpeed(1,100)
         setAngle(1,450)
 
-
-    # gripEnable()
-    # time.sleep(SL3)
-
-    # setSpeedAll(150)
-
-    # # mov2angle(0,-90,90,0,0) 19,0,-6
-    # move2pos(FINAL_X+7,FINAL_Y,-9)
-    # time.sleep(SLS)
-    # move2pos(FINAL_X+7,FINAL_Y/2,-7)
-    # time.sleep(SLS)
-    # move2pos(FINAL_X+7,FINAL_Y/2,-2)
-    # time.sleep(SLS)
-    # move2pos(FINAL_X+6.5,FINAL_Y/3,0)
-    # time.sleep(SL1)
-    # move2pos(FINAL_X+6,0,2)
-    # time.sleep(SL1)
-
-    # move2angle(0,-45,0,-45,0)
-    # time.sleep(SL4)
-
-    # move2standard_norm()
 
 
 

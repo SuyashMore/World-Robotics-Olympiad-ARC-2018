@@ -4,8 +4,8 @@ if __name__=="__main__":
     super.init()
 
     super.enableAll()
-    super.setSpeedAll(250)
-    # super.move2angle(0,-90,90,0,0)
+    # super.setSpeedAll(250)
+    super.move2angle(-48,-30,110,-82,25)
     super.move2standard()
 
 

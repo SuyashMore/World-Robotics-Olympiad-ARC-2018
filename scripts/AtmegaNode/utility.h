@@ -3,6 +3,8 @@
 #include "ImageProcessing.cpp"
 #include "defines.h"
 
+int bump=0;
+
 double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh)
 {
 	if(input <= inLow)

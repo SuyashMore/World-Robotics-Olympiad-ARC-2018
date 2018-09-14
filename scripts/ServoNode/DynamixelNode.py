@@ -44,7 +44,6 @@ def callbackD(data):
 			super.move2standard()
 			super.pickupXYZ()
 			super.move2standard_norm()
-			super.cordinatorEnable()
 
 		if(stack):
 			print("Stacking Block")

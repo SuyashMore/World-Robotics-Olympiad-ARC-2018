@@ -40,7 +40,7 @@ struct botData
 		 std::cout<<"Tof Side:"<<tofSide<<std::endl;
 		std::cout<<"digiLeft:"<<digiLeft<<std::endl;
 		std::cout<<"digiRight:"<<digiRight<<std::endl;
-		std::cout<<"bumpFront:"<<bump<<std::endl;
+		std::cout<<"bumpFront:"<<bumpFront<<std::endl;
 		std::cout<<"bumpSide:"<<bumpSide<<std::endl;
 
 	}

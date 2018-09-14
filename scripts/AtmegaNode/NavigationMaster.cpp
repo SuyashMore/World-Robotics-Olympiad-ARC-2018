@@ -10,6 +10,7 @@ int currentNavStep = 0;
 int Target_Location=0;
 int navIterator=0;
 int currentBlockColor = 0;
+bool isButtonDataReceived = false;
 bool NavLogic(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(NavigationOrder[currentNavStep] == SUPPLY2)
@@ -222,6 +223,22 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 		
 	// }
 
+}
+
+void allAtmegaNode()
+{
+	if(isButtonDataReceived)
+	{
+		if(!stopFlag)
+	    {
+	      nav_Complete_1_Row(newSensor,oldSensor,motor);
+	    }
+	  	else
+	    {
+	      motor.bot_Stop();
+	      handle_delay();		// Loop through Stop for Certain Iterations
+	    }
+    }	
 }
 
 void masterLoop(botData& newSensor,botData& oldSensor,Motor& motor)

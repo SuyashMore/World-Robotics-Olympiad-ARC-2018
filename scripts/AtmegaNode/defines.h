@@ -81,7 +81,7 @@ using namespace std;
 #define TOF_ERROR_THRESH 10
 #define TOF_ERROR_THRESH_SIDE 8
 #define BALANCE_WITH_TOF_PWM 140
-#define HOME_ULTRA_THRESH 200
+#define HOME_ULTRA_THRESH 250
 
 // UNIT TEST PWM
 #define UNIT_PWM  200

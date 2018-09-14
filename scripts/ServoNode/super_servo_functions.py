@@ -215,14 +215,14 @@ def move2standard():
     enableAll()
     setSpeedAll(100)    
 
-    move2angle(-48,-30,110,-82,25)
+    move2angle(-50,-25,109,-82,25)
     setTransformedAngle(4,29)
 
 
 def pickupXYZ():
-    FINAL_X =9.9
-    FINAL_Y = -12.2
-    INITIAL_Z = -7.0
+    FINAL_X =9.2
+    FINAL_Y = -10
+    INITIAL_Z = -8.2
     FINAL_Z = -12
         
     SL4 = 0.4

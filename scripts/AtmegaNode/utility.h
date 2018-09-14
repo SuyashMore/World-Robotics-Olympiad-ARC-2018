@@ -121,17 +121,17 @@ void fillNavMap()
 		foundColor=false;
 		NavigationOrder[navIndex++]=JUDGEPART;	// Stack the BLOCK After Every Block is Picked Up
 
-		requiredBlockIndex++;
+		requiredBlockIndex+=1;
 	}
 
-	maximum_Blocks_2_pickup = requiredBlockIndex;
+	maximum_Blocks_2_pickup = navIndex;
 	requiredBlockIndex=0;
 }
 
 void printNavMap()
 {
 	cout<<"Pickup Order :"<<endl;
-	for(int i=0;i<=maximum_Blocks_2_pickup;i++)
+	for(int i=0;i<maximum_Blocks_2_pickup;i++)
 	{
 		switch(NavigationOrder[i])
 		{

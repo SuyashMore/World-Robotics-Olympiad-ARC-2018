@@ -81,18 +81,19 @@ using namespace std;
 #define TOF_ERROR_THRESH 10
 #define TOF_ERROR_THRESH_SIDE 8
 #define BALANCE_WITH_TOF_PWM 140
+#define HOME_ULTRA_THRESH 200
 
 // UNIT TEST PWM
 #define UNIT_PWM  200
 
 // Block Shape And Color
-#define COLOR_NULL 		6
-#define COLOR_RED 		0
-#define COLOR_BLUE 		1
-#define COLOR_GREEN 	2
-#define COLOR_YELLOW 	3
-#define COLOR_VIOLET 	4
-#define COLOR_ORANGE    5
+#define COLOR_NULL 		0
+#define COLOR_RED 		1
+#define COLOR_BLUE 		2
+#define COLOR_GREEN 	3
+#define COLOR_YELLOW 	4
+#define COLOR_VIOLET 	5
+#define COLOR_ORANGE    6
 
 #define JUDGEPART 0
 #define SUPPLY1 1
@@ -106,16 +107,17 @@ using namespace std;
 int BlockColor[6];    // Judge , Supply1 ,supply 2, white 1,white 2,white 3
 int NavigationOrder[20];
 int currentNavI=0;
-int maxNav = 0;
+int maximum_Blocks_2_pickup=0;
 
-#define MAX_BLOCKS 2
-int TETRASTACK_ORDER[6][4] = 
+#define MAX_BLOCKS 4
+int TETRASTACK_ORDER[7][4] = 
 {	//Main Color - {1,2,3,4,5,6,..}(Block to be Placed In Order)
+	{COLOR_NULL , COLOR_NULL , COLOR_NULL , COLOR_NULL },  		//COLOR_NULL
 	{COLOR_BLUE , COLOR_YELLOW , COLOR_ORANGE , COLOR_BLUE },  		//COLOR_RED
 	{COLOR_ORANGE , COLOR_BLUE ,COLOR_ORANGE , COLOR_VIOLET }, 		//COLOR_BLUE
-	{COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW , COLOR_BLUE},   		//COLOR_GREEN
+	{COLOR_BLUE , COLOR_YELLOW , COLOR_ORANGE , COLOR_BLUE},   		//COLOR_GREEN
 	{COLOR_BLUE , COLOR_BLUE , COLOR_YELLOW ,COLOR_NULL },			//COLOR_YELLOW
-	{COLOR_YELLOW , COLOR_BLUE , COLOR_VIOLET , COLOR_YELLOW },		//COLOR_VIOLET
+	{COLOR_YELLOW , COLOR_BLUE , COLOR_ORANGE , COLOR_YELLOW },		//COLOR_VIOLET
 	{COLOR_BLUE , COLOR_YELLOW , COLOR_VIOLET , COLOR_YELLOW }		//COLOR_ORANGE
 };
 

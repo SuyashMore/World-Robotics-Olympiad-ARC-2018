@@ -127,7 +127,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	}
 
 	// Process Only After The Servo-Node had Completed Processing
-	if(navFlag) 			
+	if(navFlag && !camFlag)			
 	{
 
 		// Print the Delay Iterations
@@ -149,9 +149,13 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		if(!bt.preserveHistoryB)
 			storage.copyBack(bt);
 	}
-	else
+	else if (!navFlag)
 	{
 		cout<<"Processing Arm !!!!!"<<endl;
+	}
+	else if (camFlag)
+	{
+		cout<<"Processing Camera !!!!!"<<endl;
 	}
 }
 

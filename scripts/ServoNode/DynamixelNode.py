@@ -41,6 +41,7 @@ def callbackD(data):
 	if(mode ==0):
 		if(pickup):
 			print("Picking Up the Block")
+			super.move2standard()
 			super.cordinatorDisable()
 			super.pickupXYZ()
 

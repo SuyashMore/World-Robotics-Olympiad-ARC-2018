@@ -415,9 +415,11 @@ def pickupXYZ():
 if __name__=="__main__":
     while True:
         raw_input("Enable Cord")
-        cordinatorDisable()
+        setSpeed(1,100)
+        setAngle(1,210)
         raw_input("Disable Cord")
-        cordinatorEnable()
+        setSpeed(1,100)
+        setAngle(1,450)
 
 
     # gripEnable()

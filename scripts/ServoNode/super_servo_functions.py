@@ -410,8 +410,15 @@ def pickupXYZ():
     
     time.sleep(2)
     move2standard_norm()
-    cordinatorEnable()
-    
+    cordinatorDisable()
+
+if __name__=="__main__":
+    while True:
+        raw_input("Enable Cord")
+        cordinatorDisable()
+        raw_input("Disable Cord")
+        cordinatorEnable()
+
 
     # gripEnable()
     # time.sleep(SL3)

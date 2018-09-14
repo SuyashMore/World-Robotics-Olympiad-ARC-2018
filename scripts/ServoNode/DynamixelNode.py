@@ -38,30 +38,24 @@ def callbackD(data):
 	mode = data.mode
 	print(data)
 
-	if(mode ==0):
+	if(mode == 0):
 		if(pickup):
 			print("Picking Up the Block")
 			super.move2standard()
 			super.pickupXYZ()
 			super.move2standard_norm()
+			super.cordinatorDisable()
 
-		if(stack):
+		elif(stack):
 			print("Stacking Block")
 			super.stackBlock()
 
-		if (not pickup and not stack):
-			print("Moving to Standard Position")
-			super.move2standard()
-
-
-		if(cordinator):
-			print("Enabling Cordinator !")
-			# super.move2standard()
-			super.cordinatorDisable()
-		else:
-			print("Disabling Cordinator !")
-			super.cordinatorEnable()
-			super.move2standard_norm()
+		elif(cordinator):
+				print("Enabling Cordinator !")
+				super.cordinatorEnable()
+		elif(not cordinator):
+				print("Disabling Cordinator !")
+				super.cordinatorDisable()
 
 	elif mode == 1:
 		super.pickupAndPushPos() 			#Add Additional Arm Functions Here

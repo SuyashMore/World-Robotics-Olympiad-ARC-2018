@@ -50,24 +50,31 @@ void enableCordinator()
 {
   enableArmControl=true;
   cordinator=true;
+  pickup=false;
+  stackBlk=false;
   mode=0;
 }
 void disableCordinator()
 {
   enableArmControl=true;
   cordinator=false;
+  pickup=false;
+  stackBlk=false;
   mode=0;
 }
 void pickupBlock()
 {
-  enableCordinator();
   enableArmControl=true;
+  cordinator=true;
   pickup=true;
+  stackBlk=false;
   mode=0;
 }
 void stackBlock()
 {
   enableArmControl=true;
+  pickup=false;
+  cordinator=false;
   stackBlk=true;
   mode=0;
 }

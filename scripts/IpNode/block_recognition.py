@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-ID=0
+ID=1
 L=[]
 dic={4:0, 6:0, 8:0}
 dic2={'I':0, 'L':0, 'J':0, 'O':0, 'Z':0, 'S':0}
@@ -91,7 +91,7 @@ class BlockRecognition:
             _, frame = vid.read()
             # Blurring the frame to be ready for color filtering and edge detection
             original = frame
-            # cv.imshow("Plain",original)
+            cv.imshow("Plain",original)
             # height    width
             part1 = original[self.li1:self.li2, self.li3:self.li4]
             # part1 = original[120:310, 100:380]
@@ -103,13 +103,13 @@ class BlockRecognition:
             # part3 = original[0:120, 100:380]
             # cv.imshow("Part3", part3)
             #frame = cv.undistort(frame, cameraMatrix=config.cameraMatrix, distCoeffs=config.distortionCoeffs, dst=None, newCameraMatrix=None)
-            frame = cv.GaussianBlur(frame, (25, 25), 2)
-            frame = cv.dilate(frame, np.ones((15, 15), np.uint8))
-            frame = cv.erode(frame, np.ones((15, 15), np.uint8))
+            
+            # frame = cv.dilate(frame, np.ones((15, 15), np.uint8))
+            # frame = cv.erode(frame, np.ones((15, 15), np.uint8))
 
             # Converting the colors from RGB to HSV
             hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-
+            frame = cv.GaussianBlur(hsv, (25, 25), 2)
             #Yellow
             hsvY = cv.cvtColor(original, cv.COLOR_BGR2HSV)
             hsvY = cv.GaussianBlur(hsvY, (15, 15), 2)
@@ -117,74 +117,77 @@ class BlockRecognition:
             #cv.imshow("Yellow", mask_yellow)
 
             #Blue
-            hsvB = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvB = cv.GaussianBlur(hsvB, (15, 15), 2)
-            hsvB = cv.dilate(hsvB, np.ones((15, 15), np.uint8), 5)
-            hsvB = cv.erode(hsvB, np.ones((5, 5), np.uint8), 3)
-            mask_blue = cv.inRange(hsvB, LOWER_BLUE, UPPER_BLUE)
-            #cv.imshow("Blue", mask_blue)
+            # hsvB = cv.cvtColor(original, cv.COLOR_BGR2HSV)
+            # hsvB = cv.GaussianBlur(hsvB, (15, 15), 2)
+            # hsvB = cv.dilate(hsvB, np.ones((15, 15), np.uint8), 5)
+            # hsvB = cv.erode(hsvB, np.ones((5, 5), np.uint8), 3)
+            # mask_blue = cv.inRange(hsvB, LOWER_BLUE, UPPER_BLUE)
+            # #cv.imshow("Blue", mask_blue)
 
-            #Red
-            hsvR = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvR = cv.GaussianBlur(hsvR, (15, 15), 1)
-            hsvR = cv.dilate(hsvR, np.ones((5, 5), np.uint8), 5)
-            hsvR = cv.erode(hsvR, np.ones((8, 8), np.uint8), 2)
-            mask_red = cv.inRange(hsvR, LOWER_RED, UPPER_RED)
-            #cv.imshow("Red", mask_red)
+            # #Red
+            # hsvR = cv.cvtColor(original, cv.COLOR_BGR2HSV)
+            # hsvR = cv.GaussianBlur(hsvR, (15, 15), 1)
+            # hsvR = cv.dilate(hsvR, np.ones((5, 5), np.uint8), 5)
+            # hsvR = cv.erode(hsvR, np.ones((8, 8), np.uint8), 2)
+            # mask_red = cv.inRange(hsvR, LOWER_RED, UPPER_RED)
+            # #cv.imshow("Red", mask_red)
 
-            #Orange
-            hsvO = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvO = cv.GaussianBlur(hsvO, (15, 15), 1)
-            hsvO = cv.dilate(hsvO, np.ones((3, 3), np.uint8), 1)
-            hsvO = cv.erode(hsvO, np.ones((3, 3), np.uint8), 3)
-            mask_orange = cv.inRange(hsvO, LOWER_ORANGE, UPPER_ORANGE)
-            #cv.imshow("Orange", mask_orange)
+            # #Orange
+            # hsvO = cv.cvtColor(original, cv.COLOR_BGR2HSV)
+            # hsvO = cv.GaussianBlur(hsvO, (15, 15), 1)
+            # hsvO = cv.dilate(hsvO, np.ones((3, 3), np.uint8), 1)
+            # hsvO = cv.erode(hsvO, np.ones((3, 3), np.uint8), 3)
+            # mask_orange = cv.inRange(hsvO, LOWER_ORANGE, UPPER_ORANGE)
+            # #cv.imshow("Orange", mask_orange)
 
-            #Green
-            hsvG = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvG = cv.GaussianBlur(hsvG, (15, 15), 1)
-            hsvG = cv.dilate(hsvG, np.ones((15, 15), np.uint8), 5)
-            hsvG = cv.erode(hsvG, np.ones((16, 16), np.uint8), 1)
-            mask_green = cv.inRange(hsvG, LOWER_GREEN, UPPER_GREEN)
-            #cv.imshow("Green", mask_green)
+            # #Green
+            # hsvG = cv.cvtColor(original, cv.COLOR_BGR2HSV)
+            # hsvG = cv.GaussianBlur(hsvG, (15, 15), 1)
+            # hsvG = cv.dilate(hsvG, np.ones((15, 15), np.uint8), 5)
+            # hsvG = cv.erode(hsvG, np.ones((16, 16), np.uint8), 1)
+            # mask_green = cv.inRange(hsvG, LOWER_GREEN, UPPER_GREEN)
+            # #cv.imshow("Green", mask_green)
 
-            #Violet
-            hsvV = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvV = cv.GaussianBlur(hsvV, (15, 15), 1)
-            hsvV = cv.dilate(hsvV, np.ones((15, 15), np.uint8), 5)
-            hsvV = cv.erode(hsvV, np.ones((16, 16), np.uint8), 1)
-            mask_violet = cv.inRange(hsvV, LOWER_VIOLET, UPPER_VIOLET)
-            #cv.imshow("Green", mask_green)
+            # #Violet
+            # hsvV = cv.cvtColor(original, cv.COLOR_BGR2HSV)
+            # hsvV = cv.GaussianBlur(hsvV, (15, 15), 1)
+            # hsvV = cv.dilate(hsvV, np.ones((15, 15), np.uint8), 5)
+            # hsvV = cv.erode(hsvV, np.ones((16, 16), np.uint8), 1)
+            # mask_violet = cv.inRange(hsvV, LOWER_VIOLET, UPPER_VIOLET)
+            # #cv.imshow("Green", mask_green)
 
-            # imstack = np.hstack(imstack,mask_yellow )
-            # imstack = np.hstack(imstack, mask_blue  )
-            # imstack = np.hstack(imstack, mask_violet)
-            # imstack = np.hstack(imstack, mask_green )
-            # imstack = np.hstack(imstack, mask_orange)
-            # imstack = np.hstack(imstack, mask_red   )
-            #
-            # cv.imshow("stack",imstack)
+            # # imstack = np.hstack(imstack,mask_yellow )
+            # # imstack = np.hstack(imstack, mask_blue  )
+            # # imstack = np.hstack(imstack, mask_violet)
+            # # imstack = np.hstack(imstack, mask_green )
+            # # imstack = np.hstack(imstack, mask_orange)
+            # # imstack = np.hstack(imstack, mask_red   )
+            # #
+            # # cv.imshow("stack",imstack)
 
-            dic3['O'] = np.sum(mask_yellow == 255)
-            dic3['I'] = np.sum(mask_blue == 255)
-            dic3['J'] = np.sum(mask_violet == 255)
-            dic3['Z'] = np.sum(mask_red == 255)
-            dic3['S'] = np.sum(mask_green == 255)
-            dic3['L'] = np.sum(mask_orange == 255)
+            # dic3['O'] = np.sum(mask_yellow == 255)
+            # dic3['I'] = np.sum(mask_blue == 255)
+            # dic3['J'] = np.sum(mask_violet == 255)
+            # dic3['Z'] = np.sum(mask_red == 255)
+            # dic3['S'] = np.sum(mask_green == 255)
+            # dic3['L'] = np.sum(mask_orange == 255)
 
-            # Drawing the result on the original image
-            original,dicx = drawResult(RED   ,original.copy())
-            original,dicx = drawResult(YELLOW,original.copy())
-            original,dicx = drawResult(BLUE  ,original.copy())
-            original,dicx = drawResult(GREEN ,original.copy())
-            original,dicx = drawResult(ORANGE,original.copy())
-            original,dicx = drawResult(VIOLET,original.copy())
-            print("dddddddddddddddddddddddddddd",dicx)
+            # # Drawing the result on the original image
+            # original,dicx = drawResult(RED   ,original.copy())
+            # original,dicx = drawResult(YELLOW,original.copy())
+            # original,dicx = drawResult(BLUE  ,original.copy())
+            # original,dicx = drawResult(GREEN ,original.copy())
+            # original,dicx = drawResult(ORANGE,original.copy())
+            # original,dicx = drawResult(VIOLET,original.copy())
+            # print("dddddddddddddddddddddddddddd",dicx)
             # cv.imshow('Original', original)
+
+            cv.imshow("part1",part1)
+            cv.imshow("yellow",mask_yellow)
 
             if cv.waitKey(1) & 0xff == ord('q'):
                 break
-            for key,value in dicx.items():
+            # for key,value in dicx.items():
                 # print(value)
                 if value>150:
                     q=1
@@ -197,7 +200,7 @@ class BlockRecognition:
         # for key,values in sortDic:
         #     Stri=Stri+str(key)
         # print(Stri)
-        return dicx
+        # return dicx
 
         vid.release()
         cv.destroyAllWindows()

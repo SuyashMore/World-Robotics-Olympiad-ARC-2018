@@ -61,7 +61,7 @@ def callbackD(data):
 		else:
 			print("Disabling Cordinator !")
 			super.cordinatorEnable()
-			move2standard_norm()
+			super.move2standard_norm()
 
 	elif mode == 1:
 		super.pickupAndPushPos() 			#Add Additional Arm Functions Here

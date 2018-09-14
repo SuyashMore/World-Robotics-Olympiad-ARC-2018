@@ -153,7 +153,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 
 		//masterLoopStack(bt,storage,motor);
 		
-		goHome(bt,storage,motor);
+		//goHome(bt,storage,motor);
 		// Process_data and then enable the Publish Flag
 		
 		std_msgs::String msg;

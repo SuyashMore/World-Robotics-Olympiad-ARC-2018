@@ -31,21 +31,15 @@ class BlockRecognition:
         ORANGE = (39, 127, 255)
         VIOLET = (63, 2, 7)
 
-        # TRIANGLE = 3
-        # RECTANGLE = 8
-        # Z_SHAPE = 8
-        # L_SHAPE = 6d
-        # T_SHAPE = 2
-
         # Defining the lower and upper limits for the 3 colors upon calibration
         LOWER_RED = np.array([1.0, 175.0, -4.0]) #  [0.0, 170.0, 61.0]
         UPPER_RED = np.array([7.0, 255.0, 256.0])   #  [5.0, 230.0, 311.0]
         LOWER_YELLOW = np.array([20.0, 178.0, 59.0])     #[21.0, 126.0, 0.0]
         UPPER_YELLOW = np.array([26.0, 258.0, 279.0])   #[29.0, 226.0, 234.0]
-        LOWER_BLUE = np.array([94.0, 23.0, -8.0])          #[95.0, 80.0, 9.0]
-        UPPER_BLUE = np.array([100.0, 143.0, 252.0])       #[103.0, 140.0, 229.0]
-        LOWER_ORANGE = np.array([5.0, 148.0, 66.0])   #[8.0, 143.0, 59.0]
-        UPPER_ORANGE = np.array([11.0, 228.0, 326.0]) #[9.0, 275.0, 282.0] #[10.0, 223.0, 309.0]
+        LOWER_BLUE = np.array([91.0, 73.0, 48.0])          #[95.0, 80.0, 9.0]
+        UPPER_BLUE = np.array([99.0, 153.0, 328.0])       #[103.0, 140.0, 229.0]
+        LOWER_ORANGE = np.array([6.0, 166.0, 84.0])   #  [5.0, 148.0, 66.0]
+        UPPER_ORANGE = np.array([12.0, 246.0, 344.0]) # #[11.0, 228.0, 326.0]
         LOWER_GREEN = np.array([46.0, 121.0, 4.0])#[40.0, 160.0, 49.0])
         UPPER_GREEN = np.array([48.0, 281.0, 216.0])#[47.0, 260.0, 199.0])
         LOWER_PURPLE = np.array([140, 100, 100])
@@ -95,7 +89,6 @@ class BlockRecognition:
 
         while True:
             _, frame = vid.read()
-	    print("Collecting Frames")
             # Blurring the frame to be ready for color filtering and edge detection
             original = frame
             # cv.imshow("Plain",original)
@@ -186,7 +179,7 @@ class BlockRecognition:
             original,dicx = drawResult(GREEN ,original.copy())
             original,dicx = drawResult(ORANGE,original.copy())
             original,dicx = drawResult(VIOLET,original.copy())
-            #print("dddddddddddddddddddddddddddd",dicx)
+            print("dddddddddddddddddddddddddddd",dicx)
             # cv.imshow('Original', original)
 
             if cv.waitKey(1) & 0xff == ord('q'):

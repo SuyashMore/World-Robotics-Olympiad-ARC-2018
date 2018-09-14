@@ -1,14 +1,19 @@
 from block_recognition import BlockRecognition
-#from block_recognition2 import BlockRecognition2
+from block_recognition2 import BlockRecognition2
 ID =1
 #Z6 I4 O1 J3 S5 L2
 Lxx1=[3000,3000,3000,3000,3000,2000]
 Lxx2=[1500,1900,1000,1300,700,1200]
 Lxx3=[400,700,400,600,300,1000]
+Lxx4=[3000,3000,1000,3000,1300,2000]
 
 br1 = BlockRecognition(ID,l1=230, l2=480, l3=300, l4=640, Lxx=Lxx1)
-br2 = BlockRecognition(ID,l1=150, l2=250, l3=200, l4=400, Lxx=Lxx2)
-br3 = BlockRecognition(ID,l1=0, l2=120, l3=280, l4=450, Lxx=Lxx3)
+br2 = BlockRecognition(ID,l1=170, l2=250, l3=200, l4=400, Lxx=Lxx2)
+br3 = BlockRecognition(ID,l1=50, l2=170, l3=250, l4=400, Lxx=Lxx3)
+
+# br4 = BlockRecognition2(ID,l1=0, l2=480, l3=0, l4=640, Lxx=Lxx4)
+# def give_all_letters():
+#     global br4
 
 
 def give_one_letter():

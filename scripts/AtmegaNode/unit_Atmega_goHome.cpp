@@ -151,7 +151,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
 		cout<<"--------------------------------------------------------"<<endl;
 
-		goHome(bt,storage,motor);
+		masterLoopStack(bt,storage,motor);
 		
 		//goHome(bt,storage,motor);
 		// Process_data and then enable the Publish Flag

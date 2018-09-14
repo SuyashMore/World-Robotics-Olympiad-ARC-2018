@@ -134,6 +134,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 		if(nav_2_MainLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
+			move_Arm_down();
 		}
 	}
 	else if(state.currentStepIndex == 2)	//Go Forward One Junction

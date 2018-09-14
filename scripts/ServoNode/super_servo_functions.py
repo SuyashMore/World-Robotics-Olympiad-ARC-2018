@@ -354,8 +354,8 @@ def newpickupXYZ():
 
 def pickupXYZ():
     FINAL_X =10.8
-    FINAL_Y = -11
-    INITIAL_Z = -7.5
+    FINAL_Y = -9
+    INITIAL_Z = -7.8
     FINAL_Z = -11
         
     SL4 = 0.4
@@ -376,8 +376,9 @@ def pickupXYZ():
 
     setSpeedAll(150)
 
-    move2pos(12,-8.2,-6.5)
-    time.sleep(SLY)
+    # move2pos(12,-8.2,-6.5)
+    # time.sleep(SLY)
+    
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     time.sleep(SLY)
 
@@ -385,7 +386,7 @@ def pickupXYZ():
     time.sleep(SLY)
     # raw_input(" ")
     setSpeedAll(250)
-    for i in range (-70,-110,-2):
+    for i in range (-78,-110,-2):
         move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
         # time.sleep(SL2-0.2)
         time.sleep(SL2)

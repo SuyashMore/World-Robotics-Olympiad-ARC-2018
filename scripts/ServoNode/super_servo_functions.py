@@ -410,6 +410,7 @@ def pickupXYZ():
     
     time.sleep(2)
     move2standard_norm()
+    cordinatorEnable()
     
 
     # gripEnable()

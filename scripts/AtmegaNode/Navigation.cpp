@@ -208,7 +208,6 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
   	{
   		if(temp01)
       	{
-        	disableCordinator();
         	temp01=false;  
       	}
       

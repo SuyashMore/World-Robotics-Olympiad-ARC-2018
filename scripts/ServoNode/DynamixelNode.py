@@ -56,7 +56,7 @@ def callbackD(data):
 
 		if(cordinator):
 			print("Enabling Cordinator !")
-			super.move2standard()
+			# super.move2standard()
 			super.cordinatorDisable()
 		else:
 			print("Disabling Cordinator !")

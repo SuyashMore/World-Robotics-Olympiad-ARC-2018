@@ -788,6 +788,7 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
   // Mini - Step 1 : Handle Rotation and Enable 90 degrees
   if(miniEx05==1)
   {
+    cout<<"bumpFront"<<newSensor.bumpFront<<endl;
     if(!newSensor.bumpFront)
       {
         cout<<"Currently Executing:Backwards Till Bump"<<endl;

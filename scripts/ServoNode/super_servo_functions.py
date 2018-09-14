@@ -93,14 +93,14 @@ def cordinatorEnable():
     init()
     enableAll()
     setSpeed(1,100)
-    setAngle(1,450)
+    setAngle(1,215)
     
 
 def cordinatorDisable():
     init()
     enableAll()
     setSpeed(1,100)
-    setAngle(1,215)
+    setAngle(1,450)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):
@@ -151,70 +151,6 @@ def disableTorque():
     disableAll()
     disable(7)
 
-    #Sleep Constants
-    # SL1 = 2
-    # SL2 = 1
-    # SL3 = 2
-    # SLS=2
-    # init()
-    # enableAll()
-    # setSpeedAll(50)
-
-    # # raw_input("Press Any Key to Enable Grip")
-    # gripEnable()   
-
-    # raw_input("Press Any Key to Begin Motion")
-
-
-    # setTransformedAngle(3,-10)
-    # time.sleep(SL2)
-    # setTransformedAngle(1,-10)
-    # time.sleep(SL2)
-    # setTransformedAngle(2,60)
-    # time.sleep(SL1)
-    # setTransformedAngle(1,10)
-    # time.sleep(SL1)
-    # setTransformedAngle(2,55)
-    # time.sleep(SL1)
-    # setTransformedAngle(1,10)
-    # time.sleep(SL1)
-    # setTransformedAngle(2,60)
-    # time.sleep(SL3)
-    # gripDisable()
-    # time.sleep(SL3)
-    # setTransformedAngle(1,12) 
-
-    # # raw_input("Take the Bot Back ! ")
-
-    # setTransformedAngle(1,12)
-    # time.sleep(SL1)
-    # setTransformedAngle(2,50)
-    # time.sleep(SL1)
-    # setTransformedAngle(1,12)
-    # time.sleep(SL1)
-    # setTransformedAngle(2,46)
-    # time.sleep(SL1)
-    # setTransformedAngle(1,12)
-    # time.sleep(SL1)
-    # setTransformedAngle(2,45)
-    # time.sleep(SL1)
-    # setTransformedAngle(1,16)
-    # time.sleep(SL1)
-    # move2angleS(270,644,514,772,499)
-    # time.sleep(SL1)
-    
-    # move2angleS(269,994,272,400,500)
-    # time.sleep(SL1)
-
-    # move2angleS(270,984,320,400,497)
-    # time.sleep(SL1)
-
-    # move2angleS(258,1006,291,400,483)
-    # time.sleep(SL1)
-
-    
-    # move2angleS()
-    # time.sleep(SL1)
 
 def pickupAndPushPos():
     move2angle(-5,20,32,-140,0)
@@ -263,36 +199,7 @@ def stackBlock():
     setTransformedAngle(2,35)
     time.sleep(SL3)
 
-    # time.sleep(SL1)
-    # move2angleS(270,644,514,772,499)
-    # time.sleep(SL1)
-    
-     # time.sleep(SL1)
-    # move2angleS(270,644,514,772,499)
-    # time.sleep(SL1)
-    
-    # move2angleS(269,994,272,400,500)
-    # time.sleep(SL1)
-
-    # move2angleS(270,984,320,400,497)
-    # time.sleep(SL1)
-
-    # move2angleS(258,1006,291,400,483)
-    # time.sleep(SL1)
-
-    
-    # move2angleS()
-    # time.sleep(SL1)
-
-    # move2angleS(269,994,272,400,500)
-    # time.sleep(SL1)
-
-    # move2angleS(270,984,320,400,497)
-    # time.sleep(SL1)
-
-    # move2angleS(258,1006,291,400,483)
-    # time.sleep(SL1)
-
+   
 def move2standard_norm():
     init()
 
@@ -308,11 +215,6 @@ def move2standard():
     enableAll()
     setSpeedAll(100)    
 
-   # move2angle(0,-90,90,0,0)   
-    # move2angle(0,-90,90,0,0)
-    FINAL_X =11
-    FINAL_Y = -9.5
-    INITIAL_Z = -6
     move2angle(-36,-31,112,-82,30)
     setTransformedAngle(4,29)
     
@@ -413,8 +315,6 @@ def pickupXYZ():
     setTransformedAngle(3,-10)
     
     time.sleep(2)
-    move2standard_norm()
-    cordinatorEnable()
 
 if __name__=="__main__":
     while True:

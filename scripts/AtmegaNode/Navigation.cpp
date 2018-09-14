@@ -784,6 +784,7 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
 {
   state.updateDigiCounter(newSensor,oldSensor,motor);
   motor.reset(); 
+  printf("miniEx05 %d",miniEx05);
   // Mini - Step 1 : Handle Rotation and Enable 90 degrees
   if(miniEx05==1)
   {
@@ -794,6 +795,7 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
       }
       else
       {
+
         motor.bot_Stop();
         stopFlag=true;
         miniEx05=2;

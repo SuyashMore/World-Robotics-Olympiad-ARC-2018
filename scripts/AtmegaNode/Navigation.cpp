@@ -787,7 +787,6 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
   // Mini - Step 1 : Handle Rotation and Enable 90 degrees
   if(miniEx05==1)
   {
-    cout<<"bumpFront"<<newSensor.bumpFront<<endl;
     if(!newSensor.bumpFront)
       {
         cout<<"Currently Executing:Backwards Till Bump"<<endl;
@@ -806,7 +805,7 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
     if(newSensor.tofSide > HOME_ULTRA_THRESH)
     {
       cout<<"Currently Executing: Going SIDEWAYS Till TOF:SIDE"<<endl;
-      motor.strafe_Left_withPWM(100);
+      motor.strafe_Left_withPWM(130);
       state.digiCounterR=0;
     }
     else if(state.digiCounterR<1)
@@ -818,14 +817,29 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
     else if(newSensor.digiRight)
     {
       cout<<"Currently Executing: Going SIDEWAYS Till TOF:DIGI-RIGHT is HIGH"<<endl;
-      motor.strafe_Left_withPWM(100);
+      motor.strafe_Left_withPWM(90);
     }
     else
     {
       miniEx05=3;
     }
   }
-  else if(miniEx05=3)       //Mini Step 3 : Balance With Side Wall
+  else if(miniEx05==3)
+  {
+    if(!newSensor.bumpFront)
+      {
+        cout<<"Currently Executing:Backwards Till Bump"<<endl;
+        motor.bot_Backward_withPWM(90);
+      }
+      else
+      {
+
+        motor.bot_Stop();
+        stopFlag=true;
+        miniEx05=4;
+    }
+  }
+  else if(miniEx05==4)       //Mini Step 3 : Balance With Side Wall
   {
   	miniEx05=1;
     temp05=true;

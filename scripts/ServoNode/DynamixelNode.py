@@ -42,8 +42,9 @@ def callbackD(data):
 		if(pickup):
 			print("Picking Up the Block")
 			super.move2standard()
-			super.cordinatorDisable()
 			super.pickupXYZ()
+			super.move2standard_norm()
+			super.cordinatorEnable()
 
 		if(stack):
 			print("Stacking Block")
@@ -62,7 +63,7 @@ def callbackD(data):
 			print("Disabling Cordinator !")
 			super.cordinatorEnable()
 			move2standard_norm()
-			
+
 	elif mode == 1:
 		super.pickupAndPushPos() 			#Add Additional Arm Functions Here
 	elif mode == 2:

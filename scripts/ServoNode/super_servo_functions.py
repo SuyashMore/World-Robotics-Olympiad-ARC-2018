@@ -409,6 +409,7 @@ def pickupXYZ():
     setTransformedAngle(3,-10)
     
     time.sleep(2)
+    move2standard_norm()
     
 
     # gripEnable()

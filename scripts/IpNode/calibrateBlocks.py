@@ -21,8 +21,8 @@ redObj = frame_hsv[int(bboxRed[1]):int(bboxRed[1] + bboxRed[3]), int(bboxRed[0])
 
 hR, sR, vR = np.median(redObj[:, :, 0]), np.median(redObj[:, :, 1]), np.median(redObj[:, :, 2])
 
-lower_rangeRed = np.array([hR - 3, sR - 40, vR - 130])
-higher_rangeRed = np.array([hR + 3, sR + 40, vR + 130])
+lower_rangeRed = np.array([hR - 4, sR - 40, vR - 140])
+higher_rangeRed = np.array([hR + 4, sR + 40, vR + 140])
 
 
 # print(hR, sR, vR)
@@ -58,12 +58,12 @@ def get_everything(frame, edge):
         area = cv2.contourArea(contours[i])
         epsilon = 0.01 * cv2.arcLength(contours[i], True)
         approx = cv2.approxPolyDP(contours[i], epsilon, True)
-        if area > maxArea1 and area>500:
+        if area > maxArea1 and area>400:
             maxArea2 = maxArea1
             maxArea1 = area
             c1 = contours[i]
         # less than maxArea1
-        elif area > maxArea2 and area>500:
+        elif area > maxArea2 and area>400:
             maxArea2 = area
             c2 = contours[i]
         # print(approx)
@@ -96,9 +96,9 @@ def get_everything(frame, edge):
             cv2.circle(frame, (cX, cY), 7, (238, 130, 238), -1)
             Centeres[i]=[cX,cY]
         except ZeroDivisionError:
-            # print("00000000000000000000000000000000000000000000000000000000000000000000000000")
+             print("00000000000000000000000000000000000000000000000000000000000000000000000000")
         except TypeError:
-            # print("Typeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+             print("Typeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
     return frame,Centeres
 
 
@@ -108,13 +108,16 @@ while (True):
 
     ok, frame = cap.read()
     original=frame
-    #frame = frame[200:480, 0:640]
+    # frame = frame[200:480, 0:640]
     frame = frame[230:480,300:640]
+    # frame = frame[150:280,200:350]
+    # frame = frame[0:120,280:480]
+    # frame = frame[50:170,250:400]
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     hsv = cv2.GaussianBlur(hsv, (15, 15), 1)
     hsv = cv2.dilate(hsv, np.ones((3, 3), np.uint8), 1)
-    hsv = cv2.erode(hsv, np.ones((3, 3), np.uint8), 3)
+    hsv = cv2.erode(hsv, np.ones((5, 5), np.uint8), 3)
     maskRed = cv2.inRange(hsv, lower_rangeRed, higher_rangeRed)
 
     # hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -160,8 +163,8 @@ while (True):
     if cv2.waitKey(1) == 27:
         break
     # cv2.imshow("mask",mask)
-# print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
-# print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
+print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
+print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
 #print(Centeres, end="")
 AllCenteres=[]
 for i in Centeres:

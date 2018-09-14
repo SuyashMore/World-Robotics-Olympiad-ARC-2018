@@ -90,6 +90,7 @@ def give_one_letter():
 
 if __name__=="__main__":
     while True:
+            print("Going to Process the Frames")
             give_one_letter()
 
 # O1 L2 J3 I4 S5 Z6

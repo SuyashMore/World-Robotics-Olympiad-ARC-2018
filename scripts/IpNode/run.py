@@ -1,6 +1,7 @@
 from block_recognition import BlockRecognition
 from block_recognition2 import BlockRecognition2
-ID =1
+ID =0
+
 #Z6 I4 O1 J3 S5 L2
 Lxx1=[3000,3000,3000,3000,3000,2000]
 Lxx2=[1500,1900,1000,1300,700,1200]

@@ -106,7 +106,10 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(!stopFlag)
     {
             // navigates from gome 2 stack the block with the block in Arm
+	cout<<"Hello"<<endl;
       stackBlock_withPID(newSensor,oldSensor,motor);
+
+
       
             // Navigates from home 2 pickup the block and Stack
       // navigate2(newSensor,oldSensor,motor);
@@ -136,9 +139,9 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	botData bt;
 	bt.decrpty_message(m);
 	bt.printData();
+	cout<<stopFlag<<endl;
 	state.printData();
 	cout<<"Game State:"<<itr<<endl;
-
 	// Process Only After The Servo-Node had Completed Processing
 	if(navFlag) 			
 	{
@@ -148,6 +151,8 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 			cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
 		cout<<"--------------------------------------------------------"<<endl;
 
+		//masterLoopStack(bt,storage,motor);
+		
 		masterLoopStack(bt,storage,motor);
 		// Process_data and then enable the Publish Flag
 		

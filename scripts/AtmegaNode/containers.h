@@ -176,7 +176,7 @@ struct botData
 			length = 1;
 			bumpFront = stoi( message.substr(index,length));
 			bumpFront=!bumpFront;
-			cout<<"bumpFront"<<bumpFront<<endl;
+			
 			// Extract the Side Bump Switch Data
 			index = message.find('f')+1;
 			length = 1;

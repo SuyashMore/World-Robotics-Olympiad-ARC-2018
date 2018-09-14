@@ -357,7 +357,7 @@ def newpickupXYZ():
 
 
 def pickupXYZ():
-    FINAL_X =10.8
+    FINAL_X =9
     FINAL_Y = -9
     INITIAL_Z = -7.8
     FINAL_Z = -11
@@ -414,7 +414,7 @@ def pickupXYZ():
     
     time.sleep(2)
     move2standard_norm()
-    cordinatorDisable()
+    cordinatorEnable()
 
 if __name__=="__main__":
     while True:

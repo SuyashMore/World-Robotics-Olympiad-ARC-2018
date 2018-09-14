@@ -11,8 +11,6 @@ br2 = BlockRecognition(ID,l1=150, l2=250, l3=200, l4=400, Lxx=Lxx2)
 br3 = BlockRecognition(ID,l1=0, l2=120, l3=280, l4=450, Lxx=Lxx3)
 
 
-
-
 def give_one_letter():
     global br1
     global br2

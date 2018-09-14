@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ImageProcessing.cpp"
+#include "defines.h"
 
 double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh)
 {
@@ -87,33 +88,74 @@ void arm_pushAndPullPosition()
 int requiredBlockIndex = 0;
 void fillNavMap()
 {
-	int judgePiece = BlockColor[0];
+	int judgePiece = BlockColor[0];		//Extract the Judge Piece Color and store it in a variable
 	
-	int navIndex = 0;
-	bool foundColor=false;
-	//Perform Linear Search for Each Required Color on the Map
-	while (requiredBlockIndex < MAX_BLOCKS)
+	int navIndex = 0;									//Holds the Maximum Navigation Steps Required for the Entire Game
+
+	bool foundColor=false;						//Flag to Signal if it has found and Color on the Play-Sheet
+
+
+// Perform this Operation for each Required Block
+	while (requiredBlockIndex < MAX_BLOCKS && (TETRASTACK_ORDER[judgePiece][requiredBlockIndex] != COLOR_NULL) )
 	{
-		int nextRequiredColor = TETRASTACK_ORDER[judgePiece][requiredBlockIndex];
-	  	for(int i=1;i<6;i++)
-	  	{
-	    	if(nextRequiredColor == BlockColor[i])
-	    	{
-	      	NavigationOrder[navIndex] = i;
-	      	navIndex++;
-	      	BlockColor[i] = COLOR_NULL;
-	      	foundColor=true;
-	      	break;
-	    	}
-	  	}
-	  	if(!foundColor)
-	  	{
-	    	NavigationOrder[navIndex] = CHUTE;
-	    	navIndex++;
-	  	}
-	  	foundColor=false;
-			NavigationOrder[navIndex++]=JUDGEPART;
-	  	requiredBlockIndex++;
+		int nextRequiredColor = TETRASTACK_ORDER[judgePiece][requiredBlockIndex];		//Collects the Next Required Piece
+			
+		//Perform Linear Search for Each Required Color on the Map on 6 Places
+		for(int i=1;i<6;i++)
+		{
+			if(nextRequiredColor == BlockColor[i]) 		//Checks if the required Color is equal to the Block Color at Various Location on the play-Sheet
+			{
+				NavigationOrder[navIndex++] = i;			// i <- Represents the Location on the Map
+				BlockColor[i] = COLOR_NULL;					//Delete the Block From the Map
+				foundColor=true;										//Enable the found_Color Flag
+				break;															//Break Out of the "FOR" loop once found the Color
+			}
+		}
+
+
+		if(!foundColor)													//If Color is Not Found on the Map,Go for CHUTE
+		{
+			NavigationOrder[navIndex++] = CHUTE;
+		}
+	
+		foundColor=false;
+		NavigationOrder[navIndex++]=JUDGEPART;	// Stack the BLOCK After Every Block is Picked Up
+
+		requiredBlockIndex++;
 	}
+
+	maximum_Blocks_2_pickup = requiredBlockIndex;
 	requiredBlockIndex=0;
+}
+
+void printNavMap()
+{
+	cout<<"Pickup Order :"<<endl;
+	for(int i=0;i<=maximum_Blocks_2_pickup;i++)
+	{
+		switch(NavigationOrder[i])
+		{
+			case JUDGEPART:
+				cout<<"Stacking Form"<<endl;
+				break;
+			case SUPPLY1:
+				cout<<"Supply 1"<<endl;
+				break;
+			case SUPPLY2:
+				cout<<"Supply 2"<<endl;
+				break;
+			case WHITE1:
+				cout<<"White 1"<<endl;
+				break;
+			case WHITE2:
+				cout<<"White 2"<<endl;
+				break;
+			case WHITE3:
+				cout<<"White 3"<<endl;
+				break;
+			case CHUTE:
+				cout<<"Delivery Chute"<<endl;
+				break;
+		}
+	}
 }

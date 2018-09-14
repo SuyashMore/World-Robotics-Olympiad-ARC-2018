@@ -359,7 +359,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               motor.setPWM_all(0);
               q++;
           }
-          if(q>=24)
+          if(q>=15)
           {
               q=0;
               miniEx02=4;

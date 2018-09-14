@@ -57,6 +57,7 @@ bool NavLogic(botData& newSensor,botData& oldSensor,Motor& motor)
 		int targetHX = hx_ORDER[currentBlockColor][requiredBlockIndex];
 		stack_the_Block_from_MainJunction_at_hx(targetHX,newSensor,oldSensor,motor);
 	}
+	
 	else if(NavigationOrder[currentNavStep] == WHITE1)
 	{
 

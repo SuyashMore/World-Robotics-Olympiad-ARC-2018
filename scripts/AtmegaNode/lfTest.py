@@ -1,11 +1,11 @@
 #! /usr/bin/python
 
 import rospy
-from Jetson.msg import Vector5
+from Jetson.msg import Vector5f
 import time
 
 
-pub = rospy.Publisher('slowLf', Vector5, queue_size=10)
+pub = rospy.Publisher('slowLf', Vector5f, queue_size=10)
 
 
 def listener():
@@ -15,12 +15,6 @@ def listener():
 	# a3 = float(raw_input("Enter u:"))
 	# a4 = float(raw_input("Enter v:"))
 
-	msg = Vector5()
-	msg.x=a0
-	msg.y=a1
-	msg.z=a2
-	# msg.u=a3
-	# msg.v=a4
 	rospy.init_node('debug_Lf_talker', anonymous=True)
 	time.sleep(2)
 

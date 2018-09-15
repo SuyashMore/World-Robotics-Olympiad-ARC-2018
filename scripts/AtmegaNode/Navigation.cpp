@@ -283,7 +283,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
               cout<<"Currently Executing: Going Forward Till TOF:Forward"<<endl;
   			// processPID(newSensor,oldSensor,motor);
               K_processPID(newSensor,oldSensor,motor,110,80,0.11);
-  			motor.bot_Forward_withPWMm(140);
+  			      motor.bot_Forward_withPWMm(140);
               q=0;   
           }
           else if(newSensor.tofFront<(TOF_FRONT_BALANCE_DISTANCE-TOF_ERROR_THRESH))
@@ -791,7 +791,9 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
     if(!newSensor.bumpFront)
       {
         cout<<"Currently Executing:Backwards Till Bump"<<endl;
-        followLineBackpwm(newSensor,oldSensor,motor,90);
+        K_processPID(newSensor,oldSensor,motor,100,80,0.05);
+        // followLineBackpwm(newSensor,oldSensor,motor,100);
+        motor.bot_Backward_withPWMm(120);
       }
       else
       {

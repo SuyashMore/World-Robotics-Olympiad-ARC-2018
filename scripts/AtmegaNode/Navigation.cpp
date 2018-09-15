@@ -498,7 +498,8 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		  state.digiCounterR=0;
     }
 
-		else if(state.digiCounterR<1)
+		// else if(state.digiCounterR<1)
+        else if(newSensor.tofFront > 350 )
 		{
 			temp03=false;
       motor.spot_Left_withPWM(SPOT_LEFT_PWM);

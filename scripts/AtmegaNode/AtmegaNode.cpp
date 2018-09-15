@@ -140,8 +140,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 
 	if(isButtonDataReceived)
 	{
-		NavWithButtons();
-
+		printPlaceVector();
 		if(navFlag)			
 		{
 

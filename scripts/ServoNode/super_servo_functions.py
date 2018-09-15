@@ -117,7 +117,7 @@ def cordinatorDisable():
     init()
     enableAll()
     setSpeed(1,100)
-    setAngle(1,450)
+    setAngle(1,480)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):
@@ -170,7 +170,7 @@ def disableTorque():
 
 
 def pickupAndPushPos():
-    move2angle(-5,20,32,-140,0)
+    move2angle(-5,3,32,-140,0)
     time.sleep(1.2)
 
 def stackBlock():

@@ -1,17 +1,17 @@
 import numpy as np
 import cv2 as cv
-
+ID=1
 Letters=[]
-
+Stri = ''
+Strirepeat = ''
+repeat = None
 dic={4:0, 6:0, 8:0}
 dic2={'I':0, 'L':0, 'J':0, 'O':0, 'Z':0, 'S':0}
 dic3={'I':0, 'L':0, 'J':0, 'O':0, 'Z':0, 'S':0}
 class BlockRecognition2:
 
     def __init__(self,ID,l1,l2,l3,l4, Lxx):
-        self.camera_id = ID
-        self.fps = optimal_fps
-
+        self.ID = ID
         self.li1 = l1
         self.li2 = l2
         self.li3 = l3
@@ -49,6 +49,9 @@ class BlockRecognition2:
         UPPER_PURPLE = np.array([160, 255, 255])
         LOWER_VIOLET = np.array([111.0, 50.0, -52.0])#[108.0, 0.0, 40.0])
         UPPER_VIOLET = np.array([117.0, 170.0, 188.0])#[118.0, 172.0, 180.0])
+
+        # def returnglobalvalues():
+        #     return  repeat
 
         def get_everything(frame, edge):
             image, contours, hierarchy = cv.findContours(edge, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
@@ -98,7 +101,7 @@ class BlockRecognition2:
                 except TypeError:
                     # print("Typeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
                     pass
-            if not c2:
+            if len(c2):
                 Num -=1
                 if Centers[0][1] > Centers[1][1]:
                     Centers.pop(1)
@@ -109,10 +112,8 @@ class BlockRecognition2:
             return frame, Centers,Num
 
         def drawResult(color, img):
-
             height, width, _ = img.shape
             text = ""
-            print("dic33333333333",dic3['S'])
             if color==YELLOW and dic3['O']>self.Lxxe1:
                 dic2['O']=dic2['O']+1
                 text="O"
@@ -136,7 +137,7 @@ class BlockRecognition2:
             #     print(time.time()-start)
             #     sys.exit()
 
-            print(dic2,dic)
+            # print(dic2,dic)
 
             cv.putText(img, text, (width - 120, height - 24), cv.FONT_HERSHEY_DUPLEX, 2, color, 2, cv.LINE_AA)
             return img,dic2
@@ -146,13 +147,14 @@ class BlockRecognition2:
 
         # Capturing the video feed
 
-        vid = cv.VideoCapture(2)
+        vid = cv.VideoCapture(ID)
 
         while True:
             _, frame = vid.read()
+            global repeat
             repeat = None
-            Stri = ''
-            Strirepeat = ''
+            global Stri
+            global Strirepeat
 
 #            #print(frame.shape)
 
@@ -161,59 +163,53 @@ class BlockRecognition2:
             original_main=original
             #cv.imshow("Plane",original)
             # height    width
-
-            original= original[150:350, 0:640]
+            part1 = original[self.li1:self.li2, self.li3:self.li4]
             # cv.imshow("Part2", part2)
             # part3 = original[0:120, 100:380]
             # cv.imshow("Part3", part3)
+            original = part1
+            frame = part1
             #frame = cv.undistort(frame, cameraMatrix=config.cameraMatrix, distCoeffs=config.distortionCoeffs, dst=None, newCameraMatrix=None)
             frame = cv.GaussianBlur(frame, (25, 25), 2)
             # frame = cv.dilate(frame, np.ones((15, 15), np.uint8),2)
             # frame = cv.erode(frame, np.ones((15, 15), np.uint8),3)
 
             # Converting the colors from RGB to HSV
-            # hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
+            hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
 
-            #Yellow
-            hsvY = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvY = cv.GaussianBlur(hsvY, (15, 15), 2)
-            mask_yellow = cv.inRange(hsvY, LOWER_YELLOW, UPPER_YELLOW)
+            # Yellow
+            mask_yellow = cv.inRange(hsv, LOWER_YELLOW, UPPER_YELLOW)
+            # cv.imshow("Yellow", mask_yellow)
 
-            #Blue
-            hsvB = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvB = cv.GaussianBlur(hsvB, (15, 15), 2)
-            hsvB = cv.dilate(hsvB, np.ones((15, 15), np.uint8), 5)
-            hsvB = cv.erode(hsvB, np.ones((5, 5), np.uint8), 3)
-            mask_blue = cv.inRange(hsvB, LOWER_BLUE, UPPER_BLUE)
+            # Blue
+            mask_blue = cv.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
+            mask_blue = cv.erode(mask_blue, np.ones((5, 5), np.uint8), 3)
+            mask_blue = cv.dilate(mask_blue, np.ones((15, 15), np.uint8), 5)
+            # cv.imshow("Blue", mask_blue)
 
-            #Red
-            hsvR = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvR = cv.GaussianBlur(hsvR, (15, 15), 1)
-            hsvR = cv.dilate(hsvR, np.ones((5, 5), np.uint8), 5)
-            hsvR = cv.erode(hsvR, np.ones((8, 8), np.uint8), 2)
-            mask_red = cv.inRange(hsvR, LOWER_RED, UPPER_RED)
+            # Red
+            mask_red = cv.inRange(hsv, LOWER_RED, UPPER_RED)
+            mask_red = cv.erode(mask_red, np.ones((8, 8), np.uint8), 2)
+            mask_red = cv.dilate(mask_red, np.ones((5, 5), np.uint8), 5)
+            # cv.imshow("Red", mask_red)
 
-            #Orange
-            hsvO = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvO = cv.GaussianBlur(hsvO, (15, 15), 1)
-            hsvO = cv.dilate(hsvO, np.ones((15, 15), np.uint8), 5)
-            hsvO = cv.erode(hsvO, np.ones((16, 16), np.uint8), 3)
-            mask_orange = cv.inRange(hsvO, LOWER_ORANGE, UPPER_ORANGE)
+            # Orange
+            mask_orange = cv.inRange(hsv, LOWER_ORANGE, UPPER_ORANGE)
+            mask_orange = cv.erode(mask_orange, np.ones((3, 3), np.uint8), 3)
+            mask_orange = cv.dilate(mask_orange, np.ones((3, 3), np.uint8), 1)
+            # cv.imshow("Orange", mask_orange)
 
-            #Green
-            hsvG = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvG = cv.GaussianBlur(hsvG, (15, 15), 1)
-            hsvG = cv.dilate(hsvG, np.ones((15, 15), np.uint8), 5)
-            hsvG = cv.erode(hsvG, np.ones((16, 16), np.uint8), 1)
-            mask_green = cv.inRange(hsvG, LOWER_GREEN, UPPER_GREEN)
+            # Green
+            mask_green = cv.inRange(hsv, LOWER_GREEN, UPPER_GREEN)
+            mask_green = cv.erode(mask_green, np.ones((16, 16), np.uint8), 1)
+            mask_green = cv.dilate(mask_green, np.ones((15, 15), np.uint8), 5)
+            # cv.imshow("Green", mask_green)
 
-
-            # mask_purple = cv.inRange(hsv, LOWER_PURPLE, UPPER_PURPLE)
-            hsvV = cv.cvtColor(original, cv.COLOR_BGR2HSV)
-            hsvV = cv.GaussianBlur(hsvG, (15, 15), 1)
-            hsvV = cv.dilate(hsvG, np.ones((15, 15), np.uint8), 5)
-            hsvV = cv.erode(hsvG, np.ones((16, 16), np.uint8), 1)
-            mask_violet = cv.inRange(hsvV, LOWER_VIOLET, UPPER_VIOLET)
+            # Violet
+            mask_violet = cv.inRange(hsv, LOWER_VIOLET, UPPER_VIOLET)
+            mask_violet = cv.erode(mask_violet, np.ones((16, 16), np.uint8), 1)
+            mask_violet = cv.dilate(mask_violet, np.ones((15, 15), np.uint8), 5)
+            # cv.imshow("Violet", mask_violet)
 
             # Erode
             mask_red = cv.dilate(mask_red, np.ones((5, 5), np.uint8), 6)
@@ -234,7 +230,7 @@ class BlockRecognition2:
             #print("blue!!!!!!!!!!!!", np.sum(mask_blue == 255), "yellow!!!!!!!!!!!!!", np.sum(mask_yellow == 255), "violet!!!!!!!!!!!",np.sum(mask_violet==255))
 
             frameRed, CentersRed,rednum = get_everything(original_main, mask_red)
-            frameGreen, CentersGreen,greennum = get_everything(frameRed, mask_green)
+            frameGreen, CentersGreen,greennum = get_everything(frameGreen, mask_green)
             frameBlue, CentersBlue,bluenum = get_everything(frameGreen, mask_blue)
             frameOrange, CentersOrange,orangenum = get_everything(frameBlue, mask_orange)
             frameViolet, CentersViolet,violetnum = get_everything(frameOrange, mask_violet)
@@ -258,7 +254,7 @@ class BlockRecognition2:
             original,dicx = drawResult(GREEN, original.copy())
             original,dicx = drawResult(ORANGE, original.copy())
             original,dicx = drawResult(VIOLET, original.copy())
-            # print("dddddddddddddddddddddddddddd",dicx)
+            # print("dddddddddddddddddddddddddddd",dicx)+
             cv.imshow('Original', original)
             print("Centers:  B:",CentersBlue,"  G:",CentersGreen,"  O:",CentersOrange,"  R:",CentersRed,"  V:",CentersViolet,"  Y:",CentersYellow)
             # list1 =
@@ -290,10 +286,11 @@ class BlockRecognition2:
                 break
             if q==1:
                 break
+        # returnglobalvalues()
         if repeat:
-            return Strirepeat
+            return repeat,Strirepeat
         elif not repeat:
-            return Stri
+            return repeat,Stri
 
         vid.release()
         cv.destroyAllWindows()

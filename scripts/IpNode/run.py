@@ -1,21 +1,39 @@
 from block_recognition import BlockRecognition
 from block_recognition2 import BlockRecognition2
 ID =0
-
 #Z6 I4 O1 J3 S5 L2
 Lxx1=[3000,3000,3000,3000,3000,2000]
 Lxx2=[1500,1900,1000,1300,700,1200]
 Lxx3=[400,700,400,600,300,1000]
 Lxx4=[3000,3000,1000,3000,1300,2000]
 
-br1 = BlockRecognition(ID,l1=230, l2=480, l3=300, l4=640, Lxx=Lxx1)
-br2 = BlockRecognition(ID,l1=170, l2=250, l3=200, l4=400, Lxx=Lxx2)
-br3 = BlockRecognition(ID,l1=50, l2=170, l3=250, l4=400, Lxx=Lxx3)
+br1 = BlockRecognition(ID,l1=230, l2=560, l3=303, l4=640, Lxx=Lxx1)
+br2 = BlockRecognition(ID,l1=220, l2=430, l3=153, l4=303, Lxx=Lxx2)
+br3 = BlockRecognition(ID,l1=270, l2=550, l3=0, l4=153, Lxx=Lxx3)
+br4 = BlockRecognition2(ID,l1=0, l2=480, l3=0, l4=640, Lxx=Lxx4)
 
-# br4 = BlockRecognition2(ID,l1=0, l2=480, l3=0, l4=640, Lxx=Lxx4)
-# def give_all_letters():
-#     global br4
+def give_3_letters():
+    global br4
+    Num1=None
+    Num2=None
+    Num3=None
 
+
+    repeat,string_val = br4.run()
+
+    if repeat:
+        global Strirepeat
+        Strirepeat= br4.run()
+        Num1 = string_val[0]
+        Num2 = string_val[1]
+        Num3 = 0
+    elif not repeat:
+        global Stri
+        Stri=br4.run()
+        Num1=string_val[0]
+        Num2=string_val[1]
+        Num3=string_val[2]
+    return Num1,Num2,Num3
 
 def give_one_letter():
     global br1
@@ -88,10 +106,14 @@ def give_one_letter():
     print("Judge Piece:", key3)
     return key,key2,key3
 
+def returnkey():
+    return key,key2,key3
+
 if __name__=="__main__":
+
     while True:
-            print("Going to Process the Frames")
             give_one_letter()
+            # give_3_letters()
 
 # O1 L2 J3 I4 S5 Z6
 # Lxx4=[3000,3000,1000,3000,1300,2000]

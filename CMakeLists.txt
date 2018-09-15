@@ -56,6 +56,7 @@ add_message_files(
   blkData.msg
   toCam.msg
   Vector5.msg
+  Vector5f.msg
 )
 
 ## Generate services in the 'srv' folder

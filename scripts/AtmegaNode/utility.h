@@ -181,3 +181,42 @@ void printNavMap()
 		}
 	}
 }
+
+int placeVector[6];
+
+
+int cvt2HX(int num)
+{
+	switch(num)
+	{
+		case 1:
+			return SIDE_1;
+			break;
+		case 2:
+			return SIDE_2;
+			break;
+		case 3:
+			return SIDE_3;
+			break;
+		case 4:
+			return SIDE_4;
+			break;
+		case 5:
+			return SIDE_5;
+			break;
+		case 6:
+			return SIDE_6;
+			break;
+		case 7:
+			return SIDE_7;
+			break;
+		case 8:
+			return SIDE_8;
+			break;
+	}
+}
+
+void handleButtons(int input)
+{
+
+}

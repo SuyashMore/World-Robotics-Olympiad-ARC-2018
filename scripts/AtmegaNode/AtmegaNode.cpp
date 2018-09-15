@@ -27,7 +27,7 @@ void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
 void ipCallback(const Jetson::blkData::ConstPtr& msg);
-void btCallback(const Jetson::Int16::ConstPtr& msg);
+// void btCallback(const Jetson::Int16::ConstPtr& msg);
 
 
 ros::Publisher atmegaPub ;
@@ -42,7 +42,7 @@ int main(int argc,char **argv)
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
 	ros::Subscriber camSub = n.subscribe("blockColors",100,ipCallback);
-	ros::Subscriber buttonSub = n.subscribe("buttons",100,btCallback);
+	// ros::Subscriber buttonSub = n.subscribe("buttons",100,btCallback);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
@@ -62,15 +62,15 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 		navFlag=true;
 }
 
-void btCallback(const Jetson::Int16::ConstPtr& msg)
-{
-	int allButtons = msg->data;
-	BlockColor[0]=msg->pos3;		//Judge piece
-	BlockColor[1]=msg->pos1;		//Supply 1
-	BlockColor[2]=msg->pos2;		//Supply 2
-	isButtonDataReceived=true;
+// void btCallback(const Jetson::Int16::ConstPtr& msg)
+// {
+// 	int allButtons = msg->data;
+// 	BlockColor[0]=msg->pos3;		//Judge piece
+// 	BlockColor[1]=msg->pos1;		//Supply 1
+// 	BlockColor[2]=msg->pos2;		//Supply 2
+// 	isButtonDataReceived=true;
 
-}
+// }
 
 void ipCallback(const Jetson::blkData::ConstPtr& msg)
 {

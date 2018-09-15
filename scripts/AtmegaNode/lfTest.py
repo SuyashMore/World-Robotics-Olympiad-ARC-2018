@@ -11,9 +11,9 @@ import time
 def listener():
 	rospy.init_node('debug_Lf_talker', anonymous=True)
 	pub = rospy.Publisher('slowLf', Vector5f, queue_size=10)
-	a0 = float(input("Enter x:"))
-	a1 = float(input("Enter y:"))
-	a2 = float(input("Enter z:"))
+	a0 = int(raw_input("Enter x:"))
+	a1 = int(raw_input("Enter y:"))
+	a2 = int(raw_input("Enter z:"))
 	# a3 = float(raw_input("Enter u:"))
 	# a4 = float(raw_input("Enter v:"))
 

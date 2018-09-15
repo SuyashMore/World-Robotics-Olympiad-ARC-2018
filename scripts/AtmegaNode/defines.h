@@ -33,13 +33,13 @@ using namespace std;
 #define WHITE_SPACE_ERROR_THRESH 50
 
 #define SIDE_MIDDLE 615
-#define SIDE_1 425 - 10
-#define SIDE_2 490 - 10
-#define SIDE_3 525 - 15
-#define SIDE_4 570 - 10
-#define SIDE_5 630 - 20
-#define SIDE_6 680 - 10
-#define SIDE_7 730 - 10
+#define SIDE_1 425
+#define SIDE_2 480
+#define SIDE_3 517
+#define SIDE_4 562
+#define SIDE_5 612
+#define SIDE_6 654
+#define SIDE_7 706
 #define SIDE_8 770 - 10
 
 #define DIR_LEFT 1
@@ -70,7 +70,7 @@ using namespace std;
 #define PICKUP_3_ITR_MAX 30
 
 // Stacking Params
-#define TOF_FRONT_BALANCE_DISTANCE 225
+#define TOF_FRONT_BALANCE_DISTANCE 235
 #define PULL_AND_PUSH_ITR 120
 
 // Block Params

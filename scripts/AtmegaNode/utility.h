@@ -217,6 +217,8 @@ int cvt2HX(int num)
 	}
 }
 
+bool isButtonDataReceived = false;
+
 void handleButtons(int input)
 {
 

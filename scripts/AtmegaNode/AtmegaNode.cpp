@@ -66,6 +66,7 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 // void btCallback(const Jetson::Int32::ConstPtr& msg)
 // {
 // 		handleButtons(msg->data);
+		isButtonDataReceived=true;
 
 // }
 
@@ -135,37 +136,46 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	// }
 
 	// Process Only After The Servo-Node had Completed Processing
-	// if(navFlag && !camFlag)		
-	if(navFlag)			
+	// if(navFlag && !camFlag)	
+
+	if(isButtonDataReceived)
 	{
 
-		// Print the Delay Iterations
-		if(stopFlag)
-			cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
-		cout<<"--------------------------------------------------------"<<endl;
+		if(navFlag)			
+		{
 
-	
-		masterLoop(bt,storage,motor);
+			// Print the Delay Iterations
+			if(stopFlag)
+				cout<<"Stop Flag -Iterations Remaining :"<<(maxStopFlagItr-stopFlagIterations)<<endl;
+			cout<<"--------------------------------------------------------"<<endl;
+
 		
-		// Publish Motor Data Back to the Atmega Node
-		std_msgs::String msg;
-		msg.data = motor.encrypt_message();
-		atmegaPub.publish(msg);
+			masterLoop(bt,storage,motor);
+			
+			// Publish Motor Data Back to the Atmega Node
+			std_msgs::String msg;
+			msg.data = motor.encrypt_message();
+			atmegaPub.publish(msg);
 
-			// Handle the Preseve History Calls
-		if(!bt.preserveHistoryF)
-			storage.copyFront(bt);
-		if(!bt.preserveHistoryB)
-			storage.copyBack(bt);
+				// Handle the Preseve History Calls
+			if(!bt.preserveHistoryF)
+				storage.copyFront(bt);
+			if(!bt.preserveHistoryB)
+				storage.copyBack(bt);
+		}
+		else if (!navFlag)
+		{
+			cout<<"Processing Arm !!!!!"<<endl;
+		}
+		// else if (camFlag)
+		// {
+		// 	cout<<"Processing Camera !!!!!"<<endl;
+		// }
 	}
-	else if (!navFlag)
+	else
 	{
-		cout<<"Processing Arm !!!!!"<<endl;
+		cout<<"Waiting for Button Input !!"<<endl;
 	}
-	// else if (camFlag)
-	// {
-	// 	cout<<"Processing Camera !!!!!"<<endl;
-	// }
 }
 
 

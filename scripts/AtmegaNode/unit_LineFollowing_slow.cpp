@@ -37,7 +37,7 @@ int main(int argc,char **argv)
 	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
-	ros::Subscriber botDataSub = n.subscribe("slowLf",100,botCallBack);
+	ros::Subscriber lfSub = n.subscribe("slowLf",100,botCallBack);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);

@@ -351,7 +351,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
           {
               motor.strafe_Right_withPWM(90);
           }
-          if(abs(newSensor.tofSide - targetDistance) <=8)
+          if(abs(newSensor.tofSide - targetDistance) <=5)
           {
 
               motor.bot_Stop();

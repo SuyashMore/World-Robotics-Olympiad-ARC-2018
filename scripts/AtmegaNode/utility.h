@@ -221,5 +221,12 @@ bool isButtonDataReceived = false;
 
 void handleButtons(int input)
 {
+	int num =input;
+	placeVector[0] = num %10;
+	num/=10;
+	placeVector[1] = num %10;
+	num/=10;
+	placeVector[2] = num % 10;
+	
 
 }

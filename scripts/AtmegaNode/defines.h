@@ -33,8 +33,8 @@ using namespace std;
 #define WHITE_SPACE_ERROR_THRESH 50
 
 #define SIDE_MIDDLE 615
-#define SIDE_1 430
-#define SIDE_2 460
+#define SIDE_1 425
+#define SIDE_2 490
 #define SIDE_3 560
 #define SIDE_4 560
 #define SIDE_5 610

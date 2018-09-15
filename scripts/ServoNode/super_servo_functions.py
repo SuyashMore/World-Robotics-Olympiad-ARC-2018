@@ -86,6 +86,23 @@ def setAngles(a0,a1,a2,a3,a4):
     setAngle(constants.servoIDArm[0],tfa0)
     print("Servo Angles Written Are :",tfa0,tfa1,tfa2,tfa3,tfa4)
 
+
+def setAngles_rev(a0,a1,a2,a3,a4):
+
+    tfa0=constants.transform2ServoAngles(a0,0)
+    tfa1=constants.transform2ServoAngles(a1,1)
+    tfa2=constants.transform2ServoAngles(a2,2)
+    tfa3=constants.transform2ServoAngles(a3,3)  
+    tfa4=constants.transform2ServoAngles(a4,4)
+    
+    setAngle(constants.servoIDArm[0],tfa0)
+    time.sleep(1.5)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[2],tfa2)
+    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[4],tfa4)
+    print("Servo Angles Written Are :",tfa0,tfa1,tfa2,tfa3,tfa4)
+
 def processIK(x,y,z):
     return ik.process(x,y,z)
 

@@ -5,7 +5,7 @@ from Jetson.msg import Vector5
 import time
 
 
-pub = rospy.Publisher('slowLf', bot, queue_size=10)
+pub = rospy.Publisher('slowLf', Vector5, queue_size=10)
 
 
 def listener():

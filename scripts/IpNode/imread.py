@@ -4,11 +4,13 @@ import numpy as np
 cap = cv2.VideoCapture(0)
 
 while (True):
-    ret, frame = cap.read()
+    # ret, frame = cap.read()
     # frame = cv2.GaussianBlur(frame, (25, 25), 2)
+    frame=cv2.imread("pic.png")
+    cv2.imshow("pic",frame)
     frame_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    cv2.imshow('frame', frame)
+    # cv2.imshow('frame', frame)
     if cv2.waitKey(1) == 27:
         break
 
@@ -23,10 +25,11 @@ hR, sR, vR = np.median(redObj[:, :, 0]), np.median(redObj[:, :, 1]), np.median(r
 
 lower_rangeRed = np.array([hR - 4, sR - 40, vR - 140])
 higher_rangeRed = np.array([hR + 4, sR + 40, vR + 140])
+# cv2.imwrite("pic4.png",frame)
 
-# print(hR, sR, vR)
-# print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
-# print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
+print(hR, sR, vR)
+print([lower_rangeRed[0], lower_rangeRed[1], lower_rangeRed[2]])
+print([higher_rangeRed[0], higher_rangeRed[1], higher_rangeRed[2]])
 
 Centeres=[[],[]]
 

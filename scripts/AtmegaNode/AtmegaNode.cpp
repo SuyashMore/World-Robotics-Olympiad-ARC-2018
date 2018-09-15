@@ -126,6 +126,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	state.printData();
 	cout<<"Game State:"<<itr<<endl;
 
+
 	// if(camFlag)
 	// {
 	// 	navFlag=false;
@@ -139,6 +140,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 
 	if(isButtonDataReceived)
 	{
+		NavWithButtons();
 
 		if(navFlag)			
 		{

@@ -185,6 +185,42 @@ void printNavMap()
 
 int placeVector[6];
 
+int printPlaceVector()
+{
+	cout<<"Placing Blocks at : ";
+	for(int i=0;i<3;i++)
+	{
+		switch(placeVector[i])
+		{
+			case 1:
+				cout<<"1 , ";
+				break;
+			case 2:
+				cout<<"2 , ";
+				break;
+			case 3:
+				cout<<"3 , ";
+				break;
+			case 4:
+				cout<<"4 , ";
+				break;
+			case 5:
+				cout<<"5 , ";
+				break;
+			case 6:
+				cout<<"6 , ";
+				break;
+			case 7:
+				cout<<"7 , ";
+				break;
+			case 8:
+				cout<<"8 , ";
+				break;
+		}
+	}
+	cout<<endl;
+}
+
 
 int cvt2HX(int num)
 {
@@ -227,6 +263,6 @@ void handleButtons(int input)
 	placeVector[1] = num %10;
 	num/=10;
 	placeVector[2] = num % 10;
-	
+
 
 }

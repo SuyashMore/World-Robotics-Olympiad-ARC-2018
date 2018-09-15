@@ -39,6 +39,4 @@ def listener():
 
 
 if __name__ == "__main__":
-	super.init()  #Enable the AX-12 Communication Line 
-	super.enableAll() #Enable Torque Control on All Servo Motors
 	listener()          #Run the Listener Node

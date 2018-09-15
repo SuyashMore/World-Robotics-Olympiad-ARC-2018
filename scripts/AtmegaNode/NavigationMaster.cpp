@@ -216,7 +216,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	}
 	else if(state.currentStepIndex==11)
 	{
-		cout<<"Navigation Step:"<11<<endl;
+		// cout<<"Navigation Step:"<11<<endl;
 		if(goHome(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;

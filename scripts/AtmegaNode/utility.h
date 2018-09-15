@@ -248,7 +248,7 @@ int cvt2HX(int num)
 			return SIDE_7;
 			break;
 		case 8:
-			return SIDE_8;
+			return SIDE_6;
 			break;
 	}
 }

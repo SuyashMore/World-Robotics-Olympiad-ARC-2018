@@ -2,6 +2,7 @@
 
 #include "NavigationMaster.cpp"
 
+
 // include Messages
 #include "std_msgs/String.h"
 #include "std_msgs/Int16.h"
@@ -10,12 +11,6 @@
 #include "Jetson/toCam.h"
 
 
-// Flag to Control the Output for the Motor
-bool shouldPublish =false;
-
-// Global Instance Variables
-botData storage; //Used to Store History Data
-Motor motor; 
 
 void ipCallback(const Jetson::blkData::ConstPtr& msg);
 

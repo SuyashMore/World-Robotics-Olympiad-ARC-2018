@@ -223,7 +223,7 @@ target_link_libraries(unit_Stack_6 ${catkin_LIBRARIES} )
 target_link_libraries(unit_Stack_7 ${catkin_LIBRARIES} )
 
 # Camera Unit Tests
-add_executable(unit_Cam_1 scripts/AtmegaNode/getBlockData.cpp)
+add_executable(unit_Cam_1 scripts/AtmegaNode/ImageProcessing.cpp)
 target_link_libraries(unit_Cam_1 ${catkin_LIBRARIES} )
 
 

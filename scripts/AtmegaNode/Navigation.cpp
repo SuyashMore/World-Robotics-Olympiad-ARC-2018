@@ -495,10 +495,10 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		if(newSensor.isFrontTurnComplete() && temp03)
 		{
 			motor.spot_Left_withPWM(SPOT_LEFT_PWM);
-		  state.digiCounter=0;
+		  state.digiCounterR=0;
     }
 
-		else if(state.digiCounter<1)
+		else if(state.digiCounterR<1)
 		{
 			temp03=false;
       motor.spot_Left_withPWM(SPOT_LEFT_PWM);

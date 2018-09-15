@@ -9,16 +9,21 @@
 
 #include "Jetson/Dyx2.h"
 #include "Jetson/bot.h"
+#include "Jetson/Vector5f.h"
 
 // Flag to Control the Output for the Motor
 bool shouldPublish =false;
+
+int currentDist = SIDE_3;
+
 
 // Global Instance Variables
 botData storage; //Used to Store History Data
 Motor motor; 
 
 
-	
+void Distback(const Jetson::Vector5f::ConstPtr& msg);
+void inputCallback(const std_msgs::String::ConstPtr& msg);
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
@@ -26,12 +31,15 @@ void inputCallback(const std_msgs::String::ConstPtr& msg);
 ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
 
+
+
 int main(int argc,char **argv)
 {
 	ros::init(argc,argv,"Atmega_listener");
 	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
+	ros::Subscriber distSub = n.subscribe("distTopic",100,Distback);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
@@ -50,6 +58,10 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 		navFlag=true;
 }
 
+void Distback(const Jetson::Vector5f::ConstPtr& msg)
+{
+	currentDist = msg->v; 
+}
 
 void handleArmSignal()
 {	
@@ -87,7 +99,7 @@ void stackBlock_withPID(botData& newSensor,botData& oldSensor,Motor& motor)
 	if(state.currentStepIndex==1)		//Stack the Block
 	{
 		cout<<"Navigation Step:"<<1<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(SIDE_3,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(currentDist,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -138,6 +150,7 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	bt.printData();
 	state.printData();
 	cout<<"Game State:"<<itr<<endl;
+	cout<<"Currently Stacking at :"<<currentDist<<endl;
 
 	// Process Only After The Servo-Node had Completed Processing
 	if(navFlag) 			

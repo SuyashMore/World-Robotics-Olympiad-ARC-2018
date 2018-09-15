@@ -71,7 +71,7 @@ int SIDE_8 = 720;
 
 // Stacking Params
 #define TOF_FRONT_BALANCE_DISTANCE 235
-#define PULL_AND_PUSH_ITR 120
+#define PULL_AND_PUSH_ITR 80
 
 // Block Params
 #define TOF_SIDE_DISTANCE 120

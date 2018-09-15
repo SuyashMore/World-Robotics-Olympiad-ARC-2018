@@ -5,21 +5,23 @@ from Jetson.msg import Vector5f
 import time
 
 
-pub = rospy.Publisher('slowLf', Vector5f, queue_size=10)
+
 
 
 def listener():
-	a0 = float(raw_input("Enter x:"))
-	a1 = float(raw_input("Enter y:"))
-	a2 = float(raw_input("Enter z:"))
+	rospy.init_node('debug_Lf_talker', anonymous=True)
+	pub = rospy.Publisher('slowLf', Vector5f, queue_size=10)
+	a0 = float(input("Enter x:"))
+	a1 = float(input("Enter y:"))
+	a2 = float(input("Enter z:"))
 	# a3 = float(raw_input("Enter u:"))
 	# a4 = float(raw_input("Enter v:"))
 
-	rospy.init_node('debug_Lf_talker', anonymous=True)
+	
 	time.sleep(2)
 
 	while not rospy.is_shutdown():
-		msg = Vector5()
+		msg = Vector5f()
 		msg.x=a0
 		msg.y=a1
 		msg.z=a2

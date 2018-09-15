@@ -12,8 +12,8 @@
 #include "Jetson/Dyx2.h"
 #include "Jetson/bot.h"
 
-#include "Jetson/blkData.h"
-#include "Jetson/toCam.h"
+// #include "Jetson/blkData.h"
+// #include "Jetson/toCam.h"
 
 
 // Flag to Control the Output for the Motor
@@ -26,7 +26,7 @@ Motor motor;
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
-void ipCallback(const Jetson::blkData::ConstPtr& msg);
+// void ipCallback(const Jetson::blkData::ConstPtr& msg);
 // void btCallback(const Jetson::Int16::ConstPtr& msg);
 
 
@@ -41,13 +41,13 @@ int main(int argc,char **argv)
 	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
-	ros::Subscriber camSub = n.subscribe("blockColors",100,ipCallback);
+	// ros::Subscriber camSub = n.subscribe("blockColors",100,ipCallback);
 	// ros::Subscriber buttonSub = n.subscribe("buttons",100,btCallback);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
 	servoPub = n.advertise<Jetson::Dyx2>("Dyx",100);
-	camPub = n.advertise<Jetson::toCam>("camTopic",100);
+	// camPub = n.advertise<Jetson::toCam>("camTopic",100);
 	
 	ros::spin();
 
@@ -64,22 +64,18 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 
 // void btCallback(const Jetson::Int16::ConstPtr& msg)
 // {
-// 	int allButtons = msg->data;
-// 	BlockColor[0]=msg->pos3;		//Judge piece
-// 	BlockColor[1]=msg->pos1;		//Supply 1
-// 	BlockColor[2]=msg->pos2;		//Supply 2
-// 	isButtonDataReceived=true;
+// 		handleButtons(msg->data);
 
 // }
 
-void ipCallback(const Jetson::blkData::ConstPtr& msg)
-{
-	navFlag=true;
-	int BlockColor[6];    // Judge , Supply1 ,supply 2, white 1,white 2,white 3
-	BlockColor[0]=msg->pos3;		//Judge piece
-	BlockColor[1]=msg->pos1;		//Supply 1
-	BlockColor[2]=msg->pos2;		//Supply 2
-}
+// void ipCallback(const Jetson::blkData::ConstPtr& msg)
+// {
+// 	navFlag=true;
+// 	int BlockColor[6];    // Judge , Supply1 ,supply 2, white 1,white 2,white 3
+// 	BlockColor[0]=msg->pos3;		//Judge piece
+// 	BlockColor[1]=msg->pos1;		//Supply 1
+// 	BlockColor[2]=msg->pos2;		//Supply 2
+// }
 
 
 

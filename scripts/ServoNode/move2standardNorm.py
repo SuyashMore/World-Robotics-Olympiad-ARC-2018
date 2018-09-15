@@ -5,4 +5,4 @@ if __name__=="__main__":
 
     super.enableAll()
     super.setSpeedAll(130)
-    super.setAngles_rev()
+    super.setAngles_rev(0,-90,90,0,0)

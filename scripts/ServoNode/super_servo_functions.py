@@ -96,6 +96,7 @@ def setAngles_rev(a0,a1,a2,a3,a4):
     tfa4=constants.transform2ServoAngles(a4,4)
     
     setAngle(constants.servoIDArm[0],tfa0)
+    time.sleep(1.5)
     setAngle(constants.servoIDArm[1],tfa1)
     setAngle(constants.servoIDArm[2],tfa2)
     setAngle(constants.servoIDArm[3],tfa3)

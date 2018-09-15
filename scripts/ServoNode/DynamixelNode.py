@@ -63,6 +63,8 @@ def callbackD(data):
 		super.move2standard()
 	elif mode == 3:
 		super.move2standard_norm()
+	elif mode ==4:
+		super.compressArm()
 	elif mode == 11:
 		super.disableAll()
 

@@ -101,6 +101,13 @@ void move2standardNorm()
 	mode = 3;	
 }
 
+void compressArm()
+{
+	disableCordinator();
+	enableArmControl=true;
+	mode = 4;	
+}
+
 int requiredBlockIndex = 0;
 void fillNavMap()
 {

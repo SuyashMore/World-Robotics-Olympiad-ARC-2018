@@ -297,6 +297,11 @@ def pickupXYZ():
     time.sleep(2)
     move2angle(0,-90,80,-15,0)
 
+def compressArm():
+    pass
+
+
+
 if __name__=="__main__":
     while True:
         init()

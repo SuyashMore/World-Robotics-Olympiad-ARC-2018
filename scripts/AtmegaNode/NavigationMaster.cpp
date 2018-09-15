@@ -96,18 +96,18 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 			state.currentStepIndex++;
 		}
 	}
-	else if(state.currentStepIndex==3)	//Rotate and the Pickup the Block from Supply Line and then Return Back to the Same
+	else if(state.currentStepIndex == 3)	//Go Forward One Junction
 	{
 		cout<<"Navigation Step:"<<3<<endl;
-		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
+		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
 	}
-	else if(state.currentStepIndex == 4)	//Go Forward One Junction
+	else if(state.currentStepIndex==4)	//Rotate and the Pickup the Block from Supply Line and then Return Back to the Same
 	{
 		cout<<"Navigation Step:"<<4<<endl;
-		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
+		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -121,27 +121,27 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 		}
 
 	}
-	else if(state.currentStepIndex==6)
+	else if(state.currentStepIndex == 6)	//Go Forward One Junction
 	{
 		cout<<"Navigation Step:"<<6<<endl;
+		if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
+		{
+			state.currentStepIndex++;
+		}
+	}
+	else if(state.currentStepIndex==7)
+	{
+		cout<<"Navigation Step:"<<7<<endl;
 		if(nav_PickupBlock_from__SupplyLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
 		
 	}
-	else if(state.currentStepIndex==7)
-	{
-		cout<<"Navigation Step:"<<7<<endl;
-		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
-	}
 	else if(state.currentStepIndex==8)
 	{
 		cout<<"Navigation Step:"<<8<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(cvt2HX(placeVector[1]),newSensor,oldSensor,motor))
+		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -149,7 +149,7 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==9)
 	{
 		cout<<"Navigation Step:"<<9<<endl;
-		if(nav_Pickup_from_WhiteSpace(newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(cvt2HX(placeVector[1]),newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -157,7 +157,7 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==10)
 	{
 		cout<<"Navigation Step:"<<10<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(cvt2HX(placeVector[2]),newSensor,oldSensor,motor))
+		if(nav_Pickup_from_WhiteSpace(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
@@ -165,13 +165,21 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==11)
 	{
 		cout<<"Navigation Step:"<<11<<endl;
+		if(stack_the_Block_from_MainJunction_at_hx(cvt2HX(placeVector[2]),newSensor,oldSensor,motor))
+		{
+			state.currentStepIndex++;
+		}
+	}
+	else if(state.currentStepIndex==12)
+	{
+		cout<<"Navigation Step:"<<12<<endl;
 		if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
 		
 	}
-	else if(state.currentStepIndex==12)
+	else if(state.currentStepIndex==13)
 	{
 		// cout<<"Navigation Step:"<11<<endl;
 		if(goHome(newSensor,oldSensor,motor))

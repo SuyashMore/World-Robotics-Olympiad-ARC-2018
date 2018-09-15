@@ -5,7 +5,6 @@
 // include Messages
 #include "std_msgs/String.h"
 #include "std_msgs/Int16.h"
-#include "std_msgs/Int32.h"
 
 #include "Jetson/ControlSignal.h"
 #include "Jetson/CtrlSigResponse.h"
@@ -28,7 +27,7 @@ void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
 // void ipCallback(const Jetson::blkData::ConstPtr& msg);
-void btCallback(const std_msgs::Int32::ConstPtr& msg);
+void btCallback(const std_msgs::Int16::ConstPtr& msg);
 
 
 ros::Publisher atmegaPub ;
@@ -63,7 +62,7 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 		navFlag=true;
 }
 
-void btCallback(const std_msgs::Int32::ConstPtr& msg)
+void btCallback(const std_msgs::Int16::ConstPtr& msg)
 {
 		handleButtons(msg->data);
 		isButtonDataReceived=true;

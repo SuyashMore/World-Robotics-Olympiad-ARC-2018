@@ -22,7 +22,7 @@ botData storage; //Used to Store History Data
 Motor motor; 
 
 
-void Distback(const std_msgs::Vector5f::ConstPtr& msg);
+void Distback(const Jetson::Vector5f::ConstPtr& msg);
 void inputCallback(const std_msgs::String::ConstPtr& msg);
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
@@ -58,7 +58,7 @@ void botCallBack(const Jetson::bot::ConstPtr& msg)
 		navFlag=true;
 }
 
-void Distback(const std_msgs::Vector5f::ConstPtr& msg)
+void Distback(const Jetson::Vector5f::ConstPtr& msg)
 {
 	currentDist = msg->v; 
 }

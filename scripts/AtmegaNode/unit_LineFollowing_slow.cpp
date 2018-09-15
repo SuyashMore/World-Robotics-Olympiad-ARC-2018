@@ -9,7 +9,7 @@
 
 #include "Jetson/Dyx2.h"
 #include "Jetson/bot.h"
-#include "Jetson/Vector5.h"
+#include "Jetson/Vector5f.h"
 
 // Flag to Control the Output for the Motor
 bool shouldPublish =false;
@@ -19,14 +19,14 @@ botData storage; //Used to Store History Data
 Motor motor; 
 
 
-int ol=80;
-int oh=105;
+float ol=80;
+float oh=105;
 float kkd = 0.11; 
 	
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
-void lfCallback(const Jetson::Vector5::ConstPtr& msg);
+void lfCallback(const Jetson::Vector5f::ConstPtr& msg);
 
 ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
@@ -49,7 +49,7 @@ int main(int argc,char **argv)
 }
 
 
-void lfCallback(const Jetson::Vector5::ConstPtr& msg)
+void lfCallback(const Jetson::Vector5f::ConstPtr& msg)
 {
 	oh = msg->x;
 	ol = msg->y;

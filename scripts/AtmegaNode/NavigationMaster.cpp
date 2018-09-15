@@ -10,7 +10,7 @@ int currentNavStep = 0;
 int Target_Location=0;
 int navIterator=0;
 int currentBlockColor = 0;
-bool isButtonDataReceived = false;
+
 bool NavLogic(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(NavigationOrder[currentNavStep] == SUPPLY2)

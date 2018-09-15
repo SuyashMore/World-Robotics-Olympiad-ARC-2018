@@ -230,9 +230,13 @@ def move2standard():
     init()
 
     enableAll()
-    setSpeedAll(100)    
+    setSpeedAll(100)
+    FINAL_X =10.3
+    FINAL_Y = -11.45
+    INITIAL_Z = -6.42    
 
-    move2angle(-50,-45,109,-82,25)
+    # move2angle(-50,-45,109,-82,25)
+    move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     setTransformedAngle(4,29)
 
 

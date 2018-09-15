@@ -8,7 +8,7 @@ using namespace std;
 
 // Ros Spin Rate (spins/second)
 #define ROS_LOOP_RATE 40
-#define LF_THRESH 700
+#define LF_THRESH 400
 #define LF_MAX 7
 
 // PWM Settings
@@ -33,14 +33,14 @@ using namespace std;
 #define WHITE_SPACE_ERROR_THRESH 50
 
 #define SIDE_MIDDLE 615
-#define SIDE_1 425
-#define SIDE_2 480
-#define SIDE_3 517
-#define SIDE_4 562
-#define SIDE_5 612
-#define SIDE_6 654
-#define SIDE_7 706
-#define SIDE_8 770 - 10
+#define SIDE_1 420
+#define SIDE_2 475
+#define SIDE_3 512
+#define SIDE_4 557
+#define SIDE_5 607
+#define SIDE_6 649
+#define SIDE_7 701
+#define SIDE_8 770 - 15
 
 #define DIR_LEFT 1
 #define DIR_RIGHT 2

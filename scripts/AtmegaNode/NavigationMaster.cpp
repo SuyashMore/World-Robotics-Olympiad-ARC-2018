@@ -91,7 +91,7 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex == 2)	//Go Forward One Junction
 	{
 		cout<<"Navigation Step:"<<2<<endl;
-		if(nav_goForward_1_Junction(newSens5or,oldSensor,motor))
+		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}

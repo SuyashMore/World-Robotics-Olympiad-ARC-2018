@@ -175,8 +175,9 @@ def disableTorque():
 
 
 def pickupAndPushPos():
-    move2angle(-5,9,32,-140,0)
-    time.sleep(1.2)
+    # move2angle(-5,9,32,-140,0)
+    # time.sleep(1.2)
+    pass
 
 def stackBlock():
     #Sleep Constants

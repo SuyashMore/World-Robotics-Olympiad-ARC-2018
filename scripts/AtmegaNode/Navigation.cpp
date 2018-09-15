@@ -437,6 +437,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
             motor.bot_Stop();
             temp02=true;
             miniEx02=1;
+            stopFlag=true;
             move2standardNorm();
             q=0;
             d=0;

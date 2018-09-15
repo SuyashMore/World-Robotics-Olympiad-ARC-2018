@@ -18,7 +18,7 @@ bool navFlag = true;
 bool camFlag=false;
 bool stopFlag = false;
 int stopFlagIterations = 0;
-int maxStopFlagItr = 70;
+int maxStopFlagItr = 40;
 
 void setDelayItr(int num)
 {
@@ -98,6 +98,13 @@ void move_Arm_down()
 	disableCordinator();
 	enableArmControl=true;
 	mode = 2;
+}
+
+void move2standardNorm()
+{
+	disableCordinator();
+	enableArmControl=true;
+	mode = 3;	
 }
 
 int requiredBlockIndex = 0;

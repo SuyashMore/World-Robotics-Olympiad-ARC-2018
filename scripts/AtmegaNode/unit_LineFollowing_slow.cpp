@@ -109,9 +109,8 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 
 		//followLine(bt,storage,motor);
 
-		followLine(bt,storage,motor);
-		//K_followLine(bt,storage,motor,105,80,0.11,150);
-		// Process_data and then enable the Publish Flag
+		K_processPID(newSensor,oldSensor,motor,110,80,0.11);
+  		motor.bot_Forward_withPWMm(140);
 		
 		std_msgs::String msg;
 			

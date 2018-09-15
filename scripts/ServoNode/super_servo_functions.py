@@ -146,7 +146,7 @@ def move2angleS(a0,a1,a2,a3,a4):
     setAngle(13,a3)
     setAngle(17,a4)    
 
-def startHomePosition()
+def startHomePosition():
     setAngles(0,-110,-10,-155,0)
 
 
@@ -305,7 +305,7 @@ def pickupXYZ():
     
     time.sleep(2)
 #    move2angle(0,-90,80,-15,0)
-    move2standardNorm()
+    move2standard_norm()
 def compressArm():
     pass
 

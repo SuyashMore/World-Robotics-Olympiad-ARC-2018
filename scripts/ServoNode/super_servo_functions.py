@@ -1,4 +1,5 @@
 import servo_functions as servos
+
 import constants
 import fk3 as fk
 import inverseK as ik
@@ -79,11 +80,12 @@ def setAngles(a0,a1,a2,a3,a4):
     tfa3=constants.transform2ServoAngles(a3,3)  
     tfa4=constants.transform2ServoAngles(a4,4)
     
-    setAngle(constants.servoIDArm[4],tfa4)
-    setAngle(constants.servoIDArm[3],tfa3)
-    setAngle(constants.servoIDArm[2],tfa2)
-    setAngle(constants.servoIDArm[1],tfa1)
     setAngle(constants.servoIDArm[0],tfa0)
+    setAngle(constants.servoIDArm[1],tfa1)
+    setAngle(constants.servoIDArm[2],tfa2)
+
+    setAngle(constants.servoIDArm[3],tfa3)
+    setAngle(constants.servoIDArm[4],tfa4)
     print("Servo Angles Written Are :",tfa0,tfa1,tfa2,tfa3,tfa4)
 
 
@@ -143,6 +145,9 @@ def move2angleS(a0,a1,a2,a3,a4):
     setAngle(6,a2)
     setAngle(13,a3)
     setAngle(17,a4)    
+
+def startHomePosition()
+    setAngles(0,-110,-10,-155,0)
 
 
 #Hard-Coded Standard Position for Arm
@@ -240,11 +245,15 @@ def move2standard():
 
 
 def pickupXYZ():
-    FINAL_X =10.3
-    FINAL_Y = -11.45
-    INITIAL_Z = -6.42
-    FINAL_Z = -12
-        
+   # FINAL_X =10.3
+   # FINAL_Y = -11.45
+   #INITIAL_Z = -6.42
+   # FINAL_Z = -12
+    FINAL_X =10.52
+    FINAL_Y = -11.3
+    INITIAL_Z = -6.7
+    FINAL_Z = -11.5
+
     SL4 = 0.4
 
     SL3 = 1.0
@@ -272,7 +281,7 @@ def pickupXYZ():
  
     # raw_input(" ")
     setSpeedAll(250)
-    for i in range (-64,-120,-2):
+    for i in range (-67,-115,-2):
         move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
         # time.sleep(SL2-0.2)
         time.sleep(SL2)
@@ -295,8 +304,8 @@ def pickupXYZ():
     setTransformedAngle(3,-10)
     
     time.sleep(2)
-    move2angle(0,-90,80,-15,0)
-
+#    move2angle(0,-90,80,-15,0)
+    move2standardNorm()
 def compressArm():
     pass
 

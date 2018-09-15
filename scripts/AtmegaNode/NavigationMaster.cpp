@@ -327,7 +327,7 @@ void masterLoop(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(!stopFlag)
     {
-      nav_Complete_1_Row(newSensor,oldSensor,motor);
+      NavWithButtons(newSensor,oldSensor,motor);
     }
   else
     {

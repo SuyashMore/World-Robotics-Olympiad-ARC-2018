@@ -23,6 +23,12 @@ using namespace std;
 // Delays(ms)
 #define DELAY_BOT_TURN 1000
 
+bool navFlag = true;
+bool camFlag=false;
+bool stopFlag = false;
+int stopFlagIterations = 0;
+int maxStopFlagItr = 30;
+
 // Flag Params
 #define TOF_FLAG_MIN_THRESH 20
 #define TOF_FLAG_MAX_THRESH 210
@@ -32,7 +38,6 @@ using namespace std;
 #define WHITE_SPACE_BLOCK_DIST 150
 #define WHITE_SPACE_ERROR_THRESH 50
 
-#define SIDE_MIDDLE 615
 int SIDE_1 = 427;
 int SIDE_2 = 460;
 int SIDE_3 = 515;

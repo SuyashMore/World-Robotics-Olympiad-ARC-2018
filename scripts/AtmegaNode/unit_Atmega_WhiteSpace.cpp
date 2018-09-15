@@ -124,12 +124,12 @@ void masterLoopStack(botData& newSensor,botData& oldSensor,Motor& motor)
 // Handles the Decryption And Processing of the Message Received
 void inputCallback(const std_msgs::String::ConstPtr& msg)
 {
-	// // Check for Arm Signals
-	// if(enableArmControl)
-	// {
-	// 	navFlag=false;
-	// 	handleArmSignal();
-	// }
+	// Check for Arm Signals
+	if(enableArmControl)
+	{
+		navFlag=false;
+		handleArmSignal();
+	}
 
 	string m;
 	m=msg->data.c_str();

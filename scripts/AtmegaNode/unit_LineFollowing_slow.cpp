@@ -9,6 +9,7 @@
 
 #include "Jetson/Dyx2.h"
 #include "Jetson/bot.h"
+#include "Jetson/Vector5.h"
 
 // Flag to Control the Output for the Motor
 bool shouldPublish =false;
@@ -18,10 +19,14 @@ botData storage; //Used to Store History Data
 Motor motor; 
 
 
+int ol=80;
+int oh=105;
+float kkd = 0.11; 
 	
 void botCallBack(const Jetson::bot::ConstPtr& msg);
 void handleArmSignal();
 void inputCallback(const std_msgs::String::ConstPtr& msg);
+void lfCallback(const Jetson::Vector5::ConstPtr& msg);
 
 ros::Publisher atmegaPub ;
 ros::Publisher servoPub ;
@@ -32,6 +37,7 @@ int main(int argc,char **argv)
 	ros::NodeHandle n;
 	ros::Subscriber atmegaSub = n.subscribe("AtmegaOut",100,inputCallback);
 	ros::Subscriber botDataSub = n.subscribe("botData",100,botCallBack);
+	ros::Subscriber botDataSub = n.subscribe("slowLf",100,botCallBack);
 
 
 	atmegaPub = n.advertise<std_msgs::String>("AtmegaIn",100);
@@ -42,6 +48,13 @@ int main(int argc,char **argv)
 	return 0;
 }
 
+
+void lfCallback(const Jetson::Vector5::ConstPtr& msg)
+{
+	oh = msg->x;
+	ol = msg->y;
+	kkd = msg->z;
+}
 	
 // Handles Control Back to the Node After Processing the Arm
 void botCallBack(const Jetson::bot::ConstPtr& msg)
@@ -108,8 +121,8 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 		cout<<"--------------------------------------------------------"<<endl;
 
 		//followLine(bt,storage,motor);
-
-		K_processPID(bt,storage,motor,105,80,0.05);
+		cout<<"OutHigh:"<<oh<<"\n OutLow:"<<ol<<"\n Kd:"<<kkd<<endl;
+		K_processPID(bt,storage,motor,oh,ol,kkd);
   		motor.bot_Forward_withPWMm(140);
 		
 		std_msgs::String msg;

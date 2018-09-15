@@ -309,7 +309,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
   	{
       cout<<"Currently Executing: Correcting with Line"<<endl;
   	  motor.bot_Forward_withPWMm(0);
-      K_processPID(newSensor,oldSensor,motor,105,90,0.5);
+      K_processPID(newSensor,oldSensor,motor,105,90,0.11);
       if( abs(newSensor.errorFront) <= LF_THRESH && abs(newSensor.errorBack) <= LF_THRESH )
       {
         q++;

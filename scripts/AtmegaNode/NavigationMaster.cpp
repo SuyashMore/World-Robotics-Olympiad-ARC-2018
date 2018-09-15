@@ -225,7 +225,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 
 }
 
-void allAtmegaNode()
+void allAtmegaNode(botData& newSensor,botData& oldSensor,Motor& motor)
 {
 	if(isButtonDataReceived)
 	{

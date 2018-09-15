@@ -14,12 +14,6 @@ double Vmap(double input,double inLow,double inHigh,double outLow,double outHigh
 	return (outLow + input * (outHigh-outLow)/(inHigh-inLow));
 }
 
-bool navFlag = true;
-bool camFlag=false;
-bool stopFlag = false;
-int stopFlagIterations = 0;
-int maxStopFlagItr = 40;
-
 void setDelayItr(int num)
 {
   maxStopFlagItr=num;

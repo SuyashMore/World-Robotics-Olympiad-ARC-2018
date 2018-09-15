@@ -219,10 +219,9 @@ def stackBlock():
    
 def move2standard_norm():
     init()
-
     enableAll()
     setSpeedAll(150)    
-
+    print("move2standard-Normalized")
     move2angle(0,-90,90,0,0) 
 
     
@@ -296,6 +295,7 @@ def pickupXYZ():
     setTransformedAngle(3,-10)
     
     time.sleep(2)
+    move2angle(0,-90,80,-15,0)
 
 if __name__=="__main__":
     while True:

@@ -417,6 +417,7 @@ bool stack_the_Block_from_MainJunction_at_hx(float targetDistance,botData& newSe
         {
           temp02=false;
           miniEx02=6;
+          move2standardNorm();
           state.digiCounterR=0;
           state.digiCounter=0;
           q=0;

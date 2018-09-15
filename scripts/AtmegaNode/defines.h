@@ -39,7 +39,7 @@ using namespace std;
 #define SIDE_4 570
 #define SIDE_5 630
 #define SIDE_6 680
-#define SIDE_7 720
+#define SIDE_7 730
 #define SIDE_8 770
 
 #define DIR_LEFT 1

@@ -216,7 +216,7 @@ void nav_Complete_1_Row(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==11)
 	{
 		cout<<"Navigation Step:"<<11<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(SIDE_3,newSensor,oldSensor,motor))
+		if(stack_the_Block_from_MainJunction_at_hx(SIDE_7,newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}

@@ -214,7 +214,7 @@ int printPlaceVector()
 				cout<<"7 , ";
 				break;
 			case 8:
-				cout<<"8 , ";
+				cout<<"6 , ";
 				break;
 		}
 	}

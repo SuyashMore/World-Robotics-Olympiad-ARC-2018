@@ -125,16 +125,17 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	state.printData();
 	cout<<"Game State:"<<itr<<endl;
 
-	if(camFlag)
-	{
-		navFlag=false;
-		Jetson::toCam msg;
-		camPub.publish(msg);
+	// if(camFlag)
+	// {
+	// 	navFlag=false;
+	// 	Jetson::toCam msg;
+	// 	camPub.publish(msg);
 
-	}
+	// }
 
 	// Process Only After The Servo-Node had Completed Processing
-	if(navFlag && !camFlag)			
+	// if(navFlag && !camFlag)		
+	if(navFlag)			
 	{
 
 		// Print the Delay Iterations
@@ -160,10 +161,10 @@ void inputCallback(const std_msgs::String::ConstPtr& msg)
 	{
 		cout<<"Processing Arm !!!!!"<<endl;
 	}
-	else if (camFlag)
-	{
-		cout<<"Processing Camera !!!!!"<<endl;
-	}
+	// else if (camFlag)
+	// {
+	// 	cout<<"Processing Camera !!!!!"<<endl;
+	// }
 }
 
 

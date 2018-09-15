@@ -94,7 +94,8 @@ bool nav_goBackward_1_Junction(botData& newSensor,botData& oldSensor,Motor& moto
 	if(state.digiCounterR<1)
 	{
     cout<<"Currently Executing: Follow Line Back"<<endl;
-          followLineBack(newSensor,oldSensor,motor);
+          // followLineBack(newSensor,oldSensor,motor);
+    followLineBackpwm(newSensor,oldSensor,motor,150);
 	}
 	else
 	{

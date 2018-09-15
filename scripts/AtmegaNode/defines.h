@@ -33,14 +33,14 @@ using namespace std;
 #define WHITE_SPACE_ERROR_THRESH 50
 
 #define SIDE_MIDDLE 615
-#define SIDE_1 420
-#define SIDE_2 475
-#define SIDE_3 512
-#define SIDE_4 557
-#define SIDE_5 607
-#define SIDE_6 649
-#define SIDE_7 701
-#define SIDE_8 770 - 15
+int SIDE_1 = 420;
+int SIDE_2 = 475;
+int SIDE_3 = 512;
+int SIDE_4 = 557;
+int SIDE_5 = 607;
+int SIDE_6 = 649;
+int SIDE_7 = 701;
+int SIDE_8 = 755;
 
 #define DIR_LEFT 1
 #define DIR_RIGHT 2

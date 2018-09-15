@@ -232,7 +232,7 @@ def move2standard():
     enableAll()
     setSpeedAll(100)    
 
-    move2angle(-50,-25,109,-82,25)
+    move2angle(-50,-45,109,-82,25)
     setTransformedAngle(4,29)
 
 

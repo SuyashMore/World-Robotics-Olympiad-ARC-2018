@@ -21,7 +21,7 @@ using namespace std;
 #define HOME_ERROR_THRESH 8
 
 // Delays(ms)
-#define DELAY_BOT_TURN 1001
+#define DELAY_BOT_TURN 1000
 
 // Flag Params
 #define TOF_FLAG_MIN_THRESH 20

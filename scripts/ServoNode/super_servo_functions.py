@@ -170,7 +170,7 @@ def disableTorque():
 
 
 def pickupAndPushPos():
-    move2angle(-5,3,32,-140,0)
+    move2angle(-5,9,32,-140,0)
     time.sleep(1.2)
 
 def stackBlock():

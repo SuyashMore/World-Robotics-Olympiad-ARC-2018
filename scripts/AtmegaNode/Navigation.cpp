@@ -850,6 +850,7 @@ bool goHome(botData& newSensor,botData& oldSensor,Motor& motor)			//Go to Home P
   {
   	miniEx05=1;
     temp05=true;
+    compressArm();
     return true;
   }
   return false;

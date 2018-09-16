@@ -85,7 +85,8 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 		if(nav_2_MainLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
-			move_Arm_down();
+			enableCordinator();
+
 		}
 	}
 	else if(state.currentStepIndex == 2)	//Go Forward One Junction
@@ -93,6 +94,7 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 		cout<<"Navigation Step:"<<2<<endl;
 		if(nav_goForward_1_Junction(newSensor,oldSensor,motor))
 		{
+			move_Arm_down();
 			state.currentStepIndex++;
 		}
 	}

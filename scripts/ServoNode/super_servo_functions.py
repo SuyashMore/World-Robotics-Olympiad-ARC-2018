@@ -247,9 +247,9 @@ def move2standard():
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z-0.6)
 
 def pickupXYZ():
-    FINAL_X =10.3
-    FINAL_Y = -11
-    INITIAL_Z = -7.3
+    FINAL_X =10
+    FINAL_Y = -11.9
+    INITIAL_Z = -6.8
     FINAL_Z = -11.5
 
     SL4 = 0.4

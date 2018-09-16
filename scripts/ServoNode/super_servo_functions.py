@@ -300,6 +300,8 @@ def pickupXYZ():
     time.sleep(0.4)
     move2standard_norm()
 
+    cordinatorDisable()
+
 
 def compressArm():
     init()

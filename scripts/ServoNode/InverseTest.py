@@ -9,7 +9,7 @@ if __name__=="__main__":
         z=float(raw_input("Enter Target z:"))
 
         a0,a1,a2,a3,a4,isPossible = super.processIK(x,y,z)
-        super.setSpeedAll(250)
+        super.setSpeedAll(120)
         if isPossible:
             print("Output Angles are:",a0,a1,a2,a3,a4)
 

@@ -140,10 +140,10 @@ def move2angle(a0,a1,a2,a3,a4):
     setAngles(a0,a1,a2,a3,a4)
 
 def move2angleS(a0,a1,a2,a3,a4):
+    setAngle(13,a3)
     setAngle(8,a0)
     setAngle(9,a1)
     setAngle(6,a2)
-    setAngle(13,a3)
     setAngle(17,a4)    
 
 def startHomePosition():
@@ -175,9 +175,10 @@ def disableTorque():
 
 
 def pickupAndPushPos():
-    # move2angle(-5,9,32,-140,0)
-    # time.sleep(1.2)
-    pass
+    # move2angle(-5,910,32,-140,0)
+    gripEnable() 
+    time.sleep(1.2)
+    
 
 def stackBlock():
     #Sleep Constants
@@ -187,7 +188,7 @@ def stackBlock():
     SLS=2
     init()
     enableAll()
-    setSpeedAll(150)
+    setSpeedAll(90)
 
     # # raw_input("Press Any Key to Enable Grip")
     gripEnable()   
@@ -214,21 +215,22 @@ def stackBlock():
     # raw_input("Take the Bot Back ! ")
 
     move2angle(-5,20,20,-140,0)
-    time.sleep(SL3)
+    time.sleep(3)
     gripDisable()
     time.sleep(SL2)
     
 
     setTransformedAngle(2,35)
     time.sleep(SL3)
+    setTransformedAngle(1,17)
 
    
 def move2standard_norm():
     init()
     enableAll()
-    setSpeedAll(150)    
+    setSpeedAll(100)    
     print("move2standard-Normalized")
-    move2angle(0,-90,90,0,0) 
+    move2angle(0,-90,70,-10,0) 
 
     
 def move2standard():
@@ -236,23 +238,14 @@ def move2standard():
 
     enableAll()
     setSpeedAll(100)
-    FINAL_X =10.3
-    FINAL_Y = -11.45
-    INITIAL_Z = -6.42    
 
-    # move2angle(-50,-45,109,-82,25)
-    move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
-    setTransformedAngle(4,29)
-
+    move2angleS(108,555,569,738,602)
+    setTransformedAngle(4,30)
 
 def pickupXYZ():
-   # FINAL_X =10.3
-   # FINAL_Y = -11.45
-   #INITIAL_Z = -6.42
-   # FINAL_Z = -12
-    FINAL_X =10.52
-    FINAL_Y = -11.3
-    INITIAL_Z = -6.7
+    FINAL_X =10.3
+    FINAL_Y = -11
+    INITIAL_Z = -7.3
     FINAL_Z = -11.5
 
     SL4 = 0.4
@@ -269,9 +262,12 @@ def pickupXYZ():
     init()
     enableAll()
     
+    # move2standard()
+    move2pos(FINAL_X,FINAL_Y,INITIAL_Z-0.3)
     gripDisable()
+    time.sleep(2)
 
-    setSpeedAll(100)
+    setSpeedAll(80)
 
     # move2pos(12,-8.2,-6.5)
     # time.sleep(SLY)
@@ -279,12 +275,12 @@ def pickupXYZ():
     move2pos(FINAL_X,FINAL_Y,INITIAL_Z)
     time.sleep(SLY)
 
+  
  
     # raw_input(" ")
-    setSpeedAll(250)
-    for i in range (-67,-115,-2):
+    setSpeedAll(150)
+    for i in range (-73,-115,-2):
         move2pos(FINAL_X,FINAL_Y,((float)(i)/10))
-        # time.sleep(SL2-0.2)
         time.sleep(SL2)
 
 
@@ -302,11 +298,9 @@ def pickupXYZ():
     setTransformedAngle(0,0)
     setTransformedAngle(4,0)
     time.sleep(0.4)
-    setTransformedAngle(3,-10)
-    
-    time.sleep(2)
-#    move2angle(0,-90,80,-15,0)
     move2standard_norm()
+
+
 def compressArm():
     pass
 

@@ -62,7 +62,7 @@ def process(x,y,z):
 		q3=q3*(180/math.pi)
 		q4=q4*(180/math.pi)
 		#q5=q5*(180/math.pi)
-		q5=31
+		q5=30
 
 		return q1,q2,q3,q4,q5,True
 

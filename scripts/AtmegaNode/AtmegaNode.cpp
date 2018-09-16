@@ -66,6 +66,7 @@ void btCallback(const std_msgs::Int16::ConstPtr& msg)
 {
 		handleButtons(msg->data);
 		isButtonDataReceived=true;
+		move2standardNorm();
 
 }
 

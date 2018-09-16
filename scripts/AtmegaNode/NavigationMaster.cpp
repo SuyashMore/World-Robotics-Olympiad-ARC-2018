@@ -158,29 +158,13 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 	else if(state.currentStepIndex==10)
 	{
 		cout<<"Navigation Step:"<<10<<endl;
-		if(nav_Pickup_from_WhiteSpace(newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
-	}
-	else if(state.currentStepIndex==11)
-	{
-		cout<<"Navigation Step:"<<11<<endl;
-		if(stack_the_Block_from_MainJunction_at_hx(cvt2HX(placeVector[2]),newSensor,oldSensor,motor))
-		{
-			state.currentStepIndex++;
-		}
-	}
-	else if(state.currentStepIndex==12)
-	{
-		cout<<"Navigation Step:"<<12<<endl;
 		if(nav_goBackward_1_Junction(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
 		}
 		
 	}
-	else if(state.currentStepIndex==13)
+	else if(state.currentStepIndex==11)
 	{
 		// cout<<"Navigation Step:"<11<<endl;
 		if(goHome(newSensor,oldSensor,motor))

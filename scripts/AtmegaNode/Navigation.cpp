@@ -507,8 +507,8 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		  state.digiCounterR=0;
     }
 
-		// else if(state.digiCounterR<1)
-        else if(newSensor.tofFront > 350 )
+		else if(state.digiCounterR<1)
+        // else if(newSensor.tofFront > 350 )
 		{
 			temp03=false;
       motor.spot_Left_withPWM(SPOT_LEFT_PWM);
@@ -524,7 +524,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
   {
     if(strafeItr03 <= PICKUP_1_ITR_MAX)
     {
-      motor.strafe_Left_withPWM(100);
+      motor.spo(100);
       strafeItr03++;
     }
     else

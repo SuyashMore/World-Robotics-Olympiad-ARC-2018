@@ -119,7 +119,7 @@ def cordinatorDisable():
     init()
     enableAll()
     setSpeed(1,100)
-    setAngle(1,480)
+    setAngle(1,505)
 
 #moves to x,y,z and returns an boolean value whether the location is reachable or not
 def move2pos(x,y,z):

@@ -522,7 +522,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 	}
   else if(miniEx03==4)
   {
-    if(strafeItr03 <= PICKUP_1_ITR_MAX/6)
+    if(strafeItr03 <= 4)
     {
       motor.spot_Right_withPWM(100);
       strafeItr03++;

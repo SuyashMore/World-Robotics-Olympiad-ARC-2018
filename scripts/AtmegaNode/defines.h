@@ -38,7 +38,7 @@ int maxStopFlagItr = 30;
 #define WHITE_SPACE_BLOCK_DIST 150
 #define WHITE_SPACE_ERROR_THRESH 50
 
-int SIDE_1 = 420;
+int SIDE_1 = 415;
 int SIDE_2 = 460;
 int SIDE_3 = 505;
 int SIDE_4 = 565;

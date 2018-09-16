@@ -302,6 +302,13 @@ def pickupXYZ():
 
 
 def compressArm():
+    init()
+    enableAll()
+    print("Compressing arm !!! 1")
+    move2standard_norm()
+    time.sleep(3)
+        print("Compressing arm !!! 2")
+    setAngles(0,-110,-10,-155,0)
     pass
 
 

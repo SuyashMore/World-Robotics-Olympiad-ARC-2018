@@ -24,7 +24,7 @@ L5=14.70
 
 #Servo Motor Parameters - Speed
 servoSpeed = 200
-servoSpeedArm = 50
+servoSpeedArm = 90
 servoSpeedStack = 200
 servoSpeedCentre = 200
 servoGripperSpeed = 350

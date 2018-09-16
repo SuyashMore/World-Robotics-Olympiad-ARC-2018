@@ -224,6 +224,7 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
 	        temp01 =true;
 
 	        miniEx01 = 4;
+          tempturn=false;
       	}	
   	}
 
@@ -246,13 +247,21 @@ bool nav_PickupBlock_from__SupplyLine(botData& newSensor,botData& oldSensor,Moto
           	else if(!newSensor.isFrontTurnComplete())
           	{
             	temp01=false;
+              tempturn=true;
            		motor.spot_Right_withPWM(SPOT_ROTATE_PWM); 
           	}
+            else if(!newSensor.isBackTurnComplete() && tempturn)
+            {
+              motor.setPWM_all(0);
+              motor.spot_Right();
+              motor.setPWMof(MOTOR_BACK,170);
+            }
           	else
           	{
           		miniEx01=1;
-                        temp01=true;
+              temp01=true;
 				      strafeItr01=0;
+              tempturn=false;
 				      strafeMode=1;
             	return true;
           	}
@@ -512,7 +521,20 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 			miniEx03=4;
 		}
 	}
-	else if(miniEx03==4)         //Step 4: Strafe Forward and Pickup the Block
+  else if(miniEx03==4)
+  {
+    if(strafeItr03 <= PICKUP_1_ITR_MAX)
+    {
+      motor.strafe_Left_withPWM(100);
+      strafeItr03++;
+    }
+    else
+    {
+      strafeItr03=0;
+      miniEx03=5;
+    }
+  }
+	else if(miniEx03==5)         //Step 4: Strafe Forward and Pickup the Block
 	{
 		if(strafeMode3 == 1)			//Strafe Forward
   		{
@@ -553,14 +575,14 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 	        stopFlag=true;
 	        pickupBlock();
 
-	        miniEx03 = 5;
+	        miniEx03 = 6;
 	        temp03=true;
 	        state.digiCounter=0;
   		}
 
   		strafeItr03++;
 	}
-	else if(miniEx03==5)         //Step 5: Strafe Back on the Line
+	else if(miniEx03==6)         //Step 5: Strafe Back on the Line
 	{
 		if(state.digiCounter<1)
 		{
@@ -583,11 +605,11 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		else 
 		{
 			state.digiCounter=0;
-			miniEx03=6;
+			miniEx03=7;
 		}
 	}
 
-	else if(miniEx03==6)         //Step 6 : Return Back to the Main Junction and Spot Rotate-Right
+	else if(miniEx03==7)         //Step 6 : Return Back to the Main Junction and Spot Rotate-Right
 	{
 		if(state.digiCounter<1)
 		{

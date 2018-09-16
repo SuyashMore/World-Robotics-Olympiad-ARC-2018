@@ -40,7 +40,7 @@ int maxStopFlagItr = 30;
 
 int SIDE_1 = 415;
 int SIDE_2 = 460;
-int SIDE_3 = 505;
+int SIDE_3 = 498;
 int SIDE_4 = 565;
 int SIDE_5 = 602;
 int SIDE_6 = 662;

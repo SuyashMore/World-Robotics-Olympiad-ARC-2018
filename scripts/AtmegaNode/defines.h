@@ -8,8 +8,8 @@ using namespace std;
 
 // Ros Spin Rate (spins/second)
 #define ROS_LOOP_RATE 40
-#define LF_THRESH 500
-#define LF_MAX 6
+#define LF_THRESH 400
+#define LF_MAX 4
 
 // PWM Settings
 #define FORWARD_MOTION_PWM 200
@@ -40,11 +40,11 @@ int maxStopFlagItr = 30;
 
 int SIDE_1 = 420;
 int SIDE_2 = 460;
-int SIDE_3 = 515;
+int SIDE_3 = 505;
 int SIDE_4 = 565;
 int SIDE_5 = 602;
 int SIDE_6 = 662;
-int SIDE_7 = 720;
+int SIDE_7 = 702;
 int SIDE_8 = 720;
 
 #define DIR_LEFT 1

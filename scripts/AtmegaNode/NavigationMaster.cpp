@@ -85,7 +85,6 @@ bool NavWithButtons(botData& newSensor,botData& oldSensor,Motor& motor)
 		if(nav_2_MainLine(newSensor,oldSensor,motor))
 		{
 			state.currentStepIndex++;
-			enableCordinator();
 
 		}
 	}

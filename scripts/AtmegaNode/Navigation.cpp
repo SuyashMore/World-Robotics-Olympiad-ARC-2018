@@ -516,7 +516,6 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
 		else
 		{
 			motor.bot_Stop();
-      enableCordinator();
       stopFlag=true;
 			miniEx03=4;
 		}
@@ -532,6 +531,7 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
     {
       strafeItr03=0;
       miniEx03=5;
+      enableCordinator();
     }
   }
 	else if(miniEx03==5)         //Step 4: Strafe Forward and Pickup the Block

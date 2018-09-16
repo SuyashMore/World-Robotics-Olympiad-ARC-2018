@@ -2,12 +2,12 @@
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB9"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB6"
 # ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
-ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB2"
+ttyUSB_USB2DYNAMIXEL = "/dev/ttyUSB0"
 
 # DXL_LIB_PATH = "/home/ajaykumar/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 # DXL_LIB_PATH = "/home/harsh/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
-# DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
-DXL_LIB_PATH = "/home/rshah/Downloads/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
+DXL_LIB_PATH = "/home/nvidia/DynamixelSDK/c/build/linux_sbc/libdxl_sbc_c.so"
+# DXL_LIB_PATH = "/home/rshah/Downloads/DynamixelSDK/c/build/linux64/libdxl_x64_c.so"
 
 ENABLE_DXL_MESSAGES = False
 ENABLE_DEBUG_MESSAGES = True

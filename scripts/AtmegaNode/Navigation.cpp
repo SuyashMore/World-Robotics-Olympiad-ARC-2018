@@ -531,6 +531,8 @@ bool nav_Pickup_from_WhiteSpace(botData& newSensor,botData& oldSensor,Motor& mot
     {
       strafeItr03=0;
       miniEx03=5;
+      motor.bot_Stop();
+      stopFlag=true;
       enableCordinator();
     }
   }

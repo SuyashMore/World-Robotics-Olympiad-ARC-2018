@@ -5,7 +5,16 @@
 
 [Problem Statement](https://github.com/SuyashMore/World-Robotics-Olympiad-ARC-2018/blob/master/WRO-2018-ARC-Tetrastack-game-rule.pdf)
 
-![alt text](https://github.com/SuyashMore/World-Robotics-Olympiad-ARC-2018/blob/master/Images/IMG_20180915_141652.jpg)
+![image](https://github.com/SuyashMore/World-Robotics-Olympiad-ARC-2018/blob/master/Images/IMG_20180915_141652.jpg)
+
+
+For Installation and Dependencies Follow 
+http://wiki.ros.org/kinetic/Installation/Ubuntu
+http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/overview/
+https://docs.opencv.org/3.4/d2/de6/tutorial_py_setup_in_ubuntu.html
+
+
+
 
 
 Build and Run
@@ -16,8 +25,9 @@ catkin_make
 # Package Name : Jetson ("package.xml")
 # Run the Folloiwng Commands in Seperate Terminals
 rosrun Jetson AtmegaNode
-rosrun Jetson DynamixelNode
-rosrun Jetson CameraNode
+rosrun Jetson DynamixelNode.py
+rosrun Jetson CameraNode.py
+rosrun rosserial_python serial_node.py #Com with microcontroller
 ```
 
 Hardware Stack:

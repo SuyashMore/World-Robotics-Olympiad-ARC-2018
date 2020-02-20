@@ -5,6 +5,9 @@
 
 [Problem Statement](https://github.com/SuyashMore/World-Robotics-Olympiad-ARC-2018/blob/master/WRO-2018-ARC-Tetrastack-game-rule.pdf)
 
+![alt text](https://github.com/SuyashMore/World-Robotics-Olympiad-ARC-2018/blob/master/Images/IMG_20180915_141652.jpg)
+
+
 Build and Run
 ```shell
 # Catkin Build System on ROS Kinetic to compile Package
@@ -30,4 +33,3 @@ Video:
 
 [![Video](http://img.youtube.com/vi/DvEpwS4OvB4/0.jpg)](https://youtu.be/DvEpwS4OvB4)
 
-<iframe width="1278" height="719" src="https://www.youtube.com/embed/DvEpwS4OvB4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

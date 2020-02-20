@@ -8,7 +8,8 @@
 ![image](https://github.com/SuyashMore/World-Robotics-Olympiad-ARC-2018/blob/master/Images/IMG_20180915_141652.jpg)
 
 
-For Installation and Dependencies Follow 
+For Installation and Dependencies Follow
+ 
 http://wiki.ros.org/kinetic/Installation/Ubuntu
 http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/overview/
 https://docs.opencv.org/3.4/d2/de6/tutorial_py_setup_in_ubuntu.html
